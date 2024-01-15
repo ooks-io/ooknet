@@ -4,7 +4,6 @@ in
 {
   users.users.ooks = {
     isNormalUser = true;
-    shell = pkgs.fish;
     extraGroups = [
     "wheel"
     "video"

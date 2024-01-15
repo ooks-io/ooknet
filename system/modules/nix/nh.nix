@@ -1,16 +1,23 @@
-{ inputs, ... }: {
+{ inputs, lib, config, ... }: 
 
+let
+  cfg = config.systemModules.nixOptions;
+in
+
+{
   imports = [
     inputs.nh.nixosModules.default
   ];
+  
+  config = lib.mkIf cfg.enable {
+    environment.variables.FLAKE = "/home/ooks/Coding/nix/ooks-io/nix";
 
-  environment.variables.FLAKE = "/home/ooks/Coding/nix/ooks-io/nix";
-
-  nh = {
-    enable = true;
-    clean = {
+    nh = {
       enable = true;
-      extraArgs = "--keep-since 30d";
+      clean = {
+        enable = true;
+        extraArgs = "--keep-since 30d";
+      };
     };
   };
 }

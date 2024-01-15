@@ -8,3 +8,4 @@
   time.timeZone = lib.mkDefault "Pacific/Auckland";
   services.geoclue2.enable = true;
 }
+
