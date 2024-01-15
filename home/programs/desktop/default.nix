@@ -12,6 +12,6 @@
     #./vm -- still needs to be implemented
     ./wayland # -- almost done, need to implement eww 
     #./productivity -- still needs to be implemented
-    #./gaming -- still nneds to be implemented
+    # ./gaming 
   ];
 }

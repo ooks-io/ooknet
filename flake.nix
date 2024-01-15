@@ -64,7 +64,7 @@
       nixosConfigurations = {
         # T480s
         ookst480s =  lib.nixosSystem {
-          modules = [ ./system/ookst480s/ookst480s.nix ];
+          modules = [ ./hosts/ookst480s/ookst480s.nix ];
           specialArgs = { inherit inputs outputs; };
         };
       };
