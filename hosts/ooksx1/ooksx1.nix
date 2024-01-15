@@ -54,13 +54,6 @@
     kdeconnect.enable = true;
   };
 
-# XDG Portal
-# ------------------------------------------------------------------------------------------------
-
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-  };
   
   hardware = {
     opengl = {
