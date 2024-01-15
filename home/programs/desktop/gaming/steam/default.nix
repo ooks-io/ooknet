@@ -1,8 +1,7 @@
 { pkgs, config, inputs, lib, ... }:
 
 let
-  cfg = programs.desktop.games.steam;
-  user = ooks;
+  cfg = config.programs.desktop.games.steam;
 in
 
 {
@@ -21,7 +20,7 @@ in
         enable = true;
         enableRenice = true;
       };
-      home-manager.users.${user} = { config, lib, pkgs, ... }@hm: {
+      home-manager.users.ooks = { config, lib, pkgs, ... }: {
         home.packages = with pkgs; [
           protonup-ng
         ];
