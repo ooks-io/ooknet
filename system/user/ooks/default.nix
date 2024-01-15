@@ -20,8 +20,4 @@ in
   };
 
   home-manager.users.ooks = import ../../../../home/user/ooks/${config.networking.hostName};
-
-  services.geoclue2.enable = true;
-  security.pam.services = { swaylock = { }; };
-
 }

@@ -36,6 +36,12 @@
       url = "github:helix-editor/helix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nh = {
+      url = "github:viperML/nh";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
 
@@ -64,7 +70,7 @@
       nixosConfigurations = {
         # T480s
         ookst480s =  lib.nixosSystem {
-          modules = [ ./hosts/ookst480s/ookst480s.nix ];
+          modules = [ ./hosts/ookst480s ];
           specialArgs = { inherit inputs outputs; };
         };
       };

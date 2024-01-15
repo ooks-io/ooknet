@@ -26,7 +26,6 @@
 
 	networking = {
 		hostName = "ookst480s"; 		
-    networkmanager.enable = true;
 		};
 
 

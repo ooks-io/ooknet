@@ -11,17 +11,6 @@
     ];
 
   home-manager.extraSpecialArgs = { inherit inputs outputs; };
-  
-  nixpkgs = {
-    overlays = builtins.attrValues outputs.overlays;
-    config = {
-      allowUnfree = true;
-      permittedInsecurePackages = [
-        "openssl-1.1.1u"
-      ];
-    };
-  };
-    
     
   #hardware.enableRedistibutableFirmware = true;
   environment.enableAllTerminfo = true;
