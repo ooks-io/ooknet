@@ -1,18 +1,25 @@
-{ lib, ... }:
+{ lib, config, ... }:
+
+let
+  cfg = config.systemModules.networking;
+in
+
 {
-  networking.networkmanager = {
-    enable = true;
-    dns = "systemd-resolved";
-  };
-  networking.firewall.allowedTCPPorts = [57621];
-
-  services = {
-    openssh = {
+  config = lib.mkIf cfg.enable {
+    networking.networkmanager = {
       enable = true;
-      settings.UseDns = true;
+      dns = "systemd-resolved";
     };
-    resolved.enable = true;
-  };
+    networking.firewall.allowedTCPPorts = [57621];
 
-  systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+    services = {
+      openssh = {
+        enable = true;
+        settings.UseDns = true;
+      };
+      resolved.enable = true;
+    };
+
+    systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+  };
 }
