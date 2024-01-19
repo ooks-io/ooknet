@@ -7,7 +7,7 @@ in
     wayland.windowManager.hyprland.settings = lib.mkIf cfg.enable {
       exec = [
         "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
-        "${pkgs.swaybg}/bin/swaybg -i ~/.dotfiles/nix/walls/gruvbox/gruvbox-blank.png --mode fill"
+        "${pkgs.swaybg}/bin/swaybg -i ${config.wallpaper} --mode fill"
       ];
       exec-once = [
         "${pkgs._1password-gui}/bin/1password --silent"
