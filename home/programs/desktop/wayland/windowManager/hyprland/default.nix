@@ -36,7 +36,6 @@ in
           kb_layout = "us";
           touchpad = {
             disable_while_typing = false;
-            scroll.factor = 0.1;
           };
         };
         

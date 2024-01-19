@@ -57,11 +57,11 @@ in
             display-messages = true;
             display-inlay-hints = true;
           };
-          keys.normal.space.u = {
-            f = ":format";
-            w = ":set whitespace.render all";
-            W = ":set whitespace.render none";
-          };
+        };
+        keys.normal.space.u = {
+          f = ":format";
+          w = ":set whitespace.render all";
+          W = ":set whitespace.render none";
         };
       };
       themes = import ./theme.nix { inherit colorscheme; };
