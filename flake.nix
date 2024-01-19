@@ -71,15 +71,15 @@
 
       nixosConfigurations = {
         # T480s
-        ooks-t480 =  lib.nixosSystem {
-          modules = [ ./system/hosts/ooks-t480 ];
+        ookst480s =  lib.nixosSystem {
+          modules = [ ./system/hosts/ookst480s ];
           specialArgs = { inherit inputs outputs; };
         };
       };
       homeConfigurations = {
         # T480s
         "ooks@ookst480s" = lib.homeManagerConfiguration {
-          modules = [ ./home/user/ooks/t480s ];
+          modules = [ ./home/user/ooks/ookst480s ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
       };    

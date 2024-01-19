@@ -16,7 +16,7 @@
 		};
   	
 		networking = {
-  		hostName = "ooks-t480"; 		
+  		hostName = "ookst480s"; 		
 		};
     boot = {
       kernelPackages = pkgs.linuxKernel.packages.linux_zen;
