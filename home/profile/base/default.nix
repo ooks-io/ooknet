@@ -38,7 +38,7 @@ in
       stateVersion = lib.mkDefault "22.05";
       sessionPath = [ "$HOME/.local/bin" ];
       sessionVariables = {
-        FLAKE = "$HOME/.dotfiles/nix";
+        FLAKE = "$HOME/Coding/nix/ooks-io/nix";
       };
     };
 
