@@ -2,7 +2,7 @@
 
 let 
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
-  cfg = config.systemModule.user.ooks;
+  cfg = config.systemModules.user.ooks;
 in
 
 {
@@ -22,7 +22,6 @@ in
 
     packages = [ pkgs.home-manager ];
     };
-
-    home-manager.users.ooks = import ../../../../home/user/ooks/${config.networking.hostName};
+    home-manager.users.ooks = import ../../../home/user/ooks/${config.networking.hostName};
   };
 }

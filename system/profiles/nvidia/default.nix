@@ -7,7 +7,7 @@ in
 
 {
   config = lib.mkIf cfg.enable {
-    harware.nvidia = {
+    hardware.nvidia = {
       open = true;
       package = production;
       modesetting.enable = true;

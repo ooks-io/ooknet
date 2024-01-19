@@ -1,17 +1,13 @@
-{ lib, config, ... }:
-
-let
-  cfg = config.systemModules.bootloader;
-in
+{ lib, ... }:
 
 {
-  config = lib.mkIf cfg.enable {
-    boot.loader = {
-      systemd-boot = {
-        enable = true;
-        consoleMode = "max";
+  imports = [ ./systemd ];
+
+  options.systemModules = {
+    bootloader = {
+      systemd = {
+        enable = lib.mkEnableOption "Enable systemd bootloader module";
       };
-      efi.canTouchEfiVariables = true;
     };
   };
 }

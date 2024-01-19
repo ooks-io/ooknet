@@ -13,6 +13,7 @@ in
       ];
     };
     time.timeZone = lib.mkDefault "Pacific/Auckland";
+    location.provider = "geoclue2";
     services.geoclue2.enable = true;
   };
 }

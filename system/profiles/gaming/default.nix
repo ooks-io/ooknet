@@ -15,7 +15,7 @@ in
       steam.enable = true;
       gamescope = {
         enable = true;
-        capsSysNice = true;
+        capSysNice = true;
       };
       gamemode = {
         enable = true;

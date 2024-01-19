@@ -10,8 +10,8 @@ in
   imports = [
     ./base
     ./nvidia
-    #./gaming
-    #./laptop
+    ./gaming
+    ./laptop
   ];
 
   options = {
@@ -20,7 +20,7 @@ in
       default = [];
     };
     
-    systemProfiles = {
+    systemProfile = {
       base = {
         enable = lib.mkEnableOption "Enable the base profile";
       };
@@ -36,5 +36,5 @@ in
     };
   };
   
-  config.profiles = profileEnabler;
+  config.systemProfile = profileEnabler;
 }

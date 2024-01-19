@@ -3,19 +3,22 @@
 {
   imports = [
     ./hardware
-    ./networking
+    ./bootloader
     ./nix
     ./programs
     ./user
+    ./displayManager
+    ./networking.nix
+    ./locale.nix
+    ./virtualisation.nix
+    ./pipewire.nix
+    ./security.nix
   ];
 
 
   options.systemModules = {
     security = {
       enable = lib.mkEnableOption "Enable security module";
-    };
-    bootloader = {
-      enable = lib.mkEnableOption "Enable systemd bootloader module";
     };
     pipewire = {
       enable = lib.mkEnableOption "Enable pipewire module";

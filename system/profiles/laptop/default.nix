@@ -1,16 +1,17 @@
 { config, lib, ... }:
 let
-  cfg = config.system.profile.laptop;
+  cfg = config.systemProfile.laptop;
 in 
 {
   imports = [
-    ../modules
+    ../../modules
   ];
-  config = cfg.enable {
-    system = {
+  
+  config = lib.mkIf cfg.enable {
+    systemModules = {
       hardware = {
         bluetooth.enable = true;
-        powerSettings.enable = true
+        power.enable = true;
         backlight.enable = true;
       };
     };

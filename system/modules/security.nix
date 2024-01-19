@@ -33,8 +33,8 @@ in
         enable = true;
         wheelNeedsPassword = false;
       };
+      rtkit.enable = true;
     };
-    rtkit.enable = true;
 
     # security tweaks borrowed from @hlissner
     boot.kernel.sysctl = {

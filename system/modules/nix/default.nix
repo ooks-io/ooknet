@@ -4,7 +4,7 @@
   imports = [
     ./nh.nix
     ./nix.nix
-    ./nixpkgs
+    ./nixpkgs.nix
     ./subs.nix
   ];
 
