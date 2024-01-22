@@ -10,24 +10,24 @@ in
     home.packages = [ pkgs.vesktop ];
 
     xdg.configFile."vesktop/themes/nix.css".text = /* css */ ''
-      /*
+      /**
         * @name nix-colors-minimal
         * @author aoku
         * @description minimal theme designed with nix colors
       */
   
       :root {
-        --nix-bg1: #${colors.base00}; /*base00*/
-        --nix-bg2: #${colors.base01}; /*base01*/
-        --nix-bg3: #${colors.base02}; /*base02*/
+        --nix-bg1: #${colors.base00}; 
+        --nix-bg2: #${colors.base01};
+        --nix-bg3: #${colors.base02};
     
-        --nix-fg1: #${colors.base05}; /*base05*/
-        --nix-fg2: #${colors.base07}; /*base07*/
-        --nix-fg3: #${colors.base03}; /*base03*/
-        --nix-link: #${colors.base0D}; /*base0D*/
+        --nix-fg1: #${colors.base05};
+        --nix-fg2: #${colors.base07};
+        --nix-fg3: #${colors.base03};
+        --nix-link: #${colors.base0D};
 
-        --nix-accent: #${colors.base08}; /*base08*/
-        --nix-hi: #${colors.base0B}; /*base0B*/
+        --nix-accent: #${colors.base08};
+        --nix-hi: #${colors.base0B}; 
 
         --font-mono: ${config.fontProfiles.monospace.family}, monospace;
         --font-regular: ${config.fontProfiles.regular.family}, sans serif;
@@ -41,10 +41,10 @@ in
         --background-primary: var(--nix-bg1);
         --background-secondary: var(--nix-bg1);
         --background-secondary-alt: var(--nix-bg1);
-        --background-accent: var(--nix-accent); /*base08*/
-        --background-tertiary: var(--nix-bg2); /*base01*/
-        --background-floating: var(--nix-bg1); /*base00*/
-        --background-mentioned: var(--nix-bg2);
+        --background-accent: var(--nix-accent);
+        --background-tertiary: var(--nix-bg1);
+        --background-floating: var(--nix-bg1);
+        --background-mentioned: var(--nix-bg1);
         --background-mentioned-hover: var(--nix-bg1);
         --background-mobile: var(--nix-bg1);
         --background-mobile-secondary: var(--nix-bg2);
