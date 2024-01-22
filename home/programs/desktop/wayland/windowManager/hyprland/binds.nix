@@ -70,7 +70,7 @@ in
       "SUPER,          e,             exec,     ${editor}"
       "SUPER,          m,             exec,     ${spotify}"
       "SUPERSHIFT,     P,             exec,     ${password}"
-      "SUPER,          d,             exex,     ${discord}"
+      "SUPER,          d,             exec,     ${discord}"
 
       # Spotify PLayer Controls
 
