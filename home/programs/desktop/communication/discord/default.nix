@@ -9,7 +9,7 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = [ pkgs.vesktop ];
 
-    xdg.configFile."vesktop/theme/nix.css".text = /* css */ ''
+    xdg.configFile."vesktop/themes/nix.css".text = /* css */ ''
       /*
         * @name nix-colors-minimal
         * @author aoku
