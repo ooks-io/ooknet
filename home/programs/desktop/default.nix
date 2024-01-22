@@ -3,7 +3,7 @@
     ./themeSettings # done
     ./browser # done -- firefox still need: chrome, brave
     #./creative -- still needs to be implemented
-    #./communication -- still needs to be implemented
+    ./communication # only discord implemented
     #./desktopEnvironment -- still needs to be implemented
     ./media # done -- spotify gui still needs to be implemented
     ./terminal # done -- wezterm still needs to be implemented

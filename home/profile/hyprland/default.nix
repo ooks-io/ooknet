@@ -17,6 +17,9 @@ in
         notification.mako.enable = true;
         bar.eww.enable = true;
       };
+      communication = {
+        discord.enable = true;
+      };
       browser.firefox = {
         enable = true;
         default = true;
