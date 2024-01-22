@@ -53,6 +53,7 @@ in
       swaylock = "${config.programs.swaylock.package}/bin/swaylock";
       spotify = "${terminal} -e spotify_player";
       spotifyctl = "${pkgs.spotify-player}/bin/spotify_player";
+      discord = "${pkgs.vesktop}/bin/vesktop";
     
       #makoctl = "${config.services.mako.package}/bin/makoctl";
 
@@ -69,6 +70,7 @@ in
       "SUPER,          e,             exec,     ${editor}"
       "SUPER,          m,             exec,     ${spotify}"
       "SUPERSHIFT,     P,             exec,     ${password}"
+      "SUPER,          d,             exex,     ${discord}"
 
       # Spotify PLayer Controls
 
