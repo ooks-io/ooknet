@@ -12,7 +12,7 @@ in
       hardware = {
         bluetooth.enable = true;
         power.enable = true;
-        backlight.enable = true;
+        # backlight.enable = true;
       };
     };
   };

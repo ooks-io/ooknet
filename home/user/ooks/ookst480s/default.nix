@@ -16,6 +16,6 @@
     transform = 0;
   }];
 
-  colorscheme = inputs.nix-colors.colorSchemes.gruvbox-dark-soft;
+  colorscheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 }
 

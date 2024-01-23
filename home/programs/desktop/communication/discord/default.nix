@@ -70,9 +70,10 @@ in
         --interactive-muted: var(--nix-fg3); /*base03*/
         --channels-default: var(--nix-fg1);
       
-        --scrollbar-thin-thun: var(--nix-hi);
+        --scrollbar-thin-thumb: transparent;
+        --scrollbar-thin-track: transparent;
         --scrollbar-auto-thumb: var(--nix-fg1);
-        --scrollbar-auto-track:var(--nix-bg2);
+        --scrollbar-auto-track:var(--nix-bg1);
         --scrollbar-auto-scrollbar-color-thumb: var(--nix-accent);
       }
 
