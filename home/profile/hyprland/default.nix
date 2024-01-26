@@ -5,11 +5,11 @@ in
 {
 
   imports = [
-    ../../programs
+    ../../modules
   ];
   
   config = lib.mkIf cfg.enable {
-    programs.desktop = {
+    homeModules.desktop = {
       wayland = {
         base.enable = true;
         windowManager.hyprland.enable = true;

@@ -7,7 +7,7 @@ in
 {
   imports = [
     inputs.nix-colors.homeManagerModule
-    ../../programs
+    ../../modules
   ] ++ (builtins.attrValues outputs.homeManagerModules);
 
   config = lib.mkIf cfg.enable {
@@ -44,7 +44,7 @@ in
 
     xdg.portal.enable = true;
 
-    programs = {
+    homeModules = {
       console = {
         editor.helix = {
           enable = true;

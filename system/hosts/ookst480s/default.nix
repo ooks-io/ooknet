@@ -5,7 +5,6 @@
     inputs.hardware.nixosModules.lenovo-thinkpad-t480s
 		./hardware-configuration.nix
     ../../profiles
-		# ../../modules
 		];
 
     activeProfiles = ["base" "laptop"];
