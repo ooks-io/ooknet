@@ -53,7 +53,7 @@ in
       };
       skim = {
         enable = true;
-        enableFishIntegration = lib.mkIf config.programs.console.shell.fish.enable true;
+        enableFishIntegration = lib.mkIf config.homeModules.console.shell.fish.enable true;
         defaultCommand = "rg --files --hidden";
         changeDirWidgetOptions = [
           "--preview 'eza --icons -L 3 -T --color always {} | head -200'"
