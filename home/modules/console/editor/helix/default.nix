@@ -5,35 +5,23 @@ let
 in
 {
 
-  imports = [
-    ./languages.nix
-  ];
+  # imports = [
+  #   ./languages.nix
+  # ];
   
-  config = {
-    programs.helix = lib.mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
+    home.packages = with pkgs; [
+      marksman
+      clang-tools
+      nil
+      nodePackages.bash-language-server
+      nodePackages.vscode-css-languageserver-bin
+      nodePackages.vscode-langservers-extracted
+      shellcheck
+    ];
+    programs.helix = {
       enable = true;
       defaultEditor = lib.mkIf cfg.default true;
-      package = 
-        inputs.helix.packages.${pkgs.system}.default.overrideAttrs (self: {
-              makeWrapperArgs = with pkgs;
-                self.makeWrapperArgs
-                or []
-                ++ [
-                  "--suffix"
-                  "PATH"
-                  ":"
-                  (lib.makeBinPath [
-                    clang-tools
-                    marksman
-                    nil
-                    nodePackages.bash-language-server
-                    nodePackages.vscode-css-languageserver-bin
-                    nodePackages.vscode-langservers-extracted
-                    shellcheck
-                  ])
-                ];
-            });
-         
       settings = {
         theme = colorscheme.slug;
         editor = {
