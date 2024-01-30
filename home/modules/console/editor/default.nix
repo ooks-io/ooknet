@@ -3,7 +3,7 @@
 
   imports = [
     ./helix
-    # ./nvim
+    ./nvim
   ];
 
   options.homeModules.console.editor = {

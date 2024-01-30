@@ -10,7 +10,7 @@ in
     services.clight = {
       enable = true;
       temperature = {
-        night = 1000;
+        night = 3000;
         day = 6000;
       };
       settings = {

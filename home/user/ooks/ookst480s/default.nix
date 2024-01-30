@@ -6,6 +6,8 @@
   ];
 
   activeProfiles = ["base" "hyprland"];
+
+  homeModules.console.editor.nvim.enable = true;
   
   monitors = [{
     name = "eDP-1";
@@ -16,6 +18,6 @@
     transform = 0;
   }];
 
-  colorscheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
+  colorscheme = inputs.nix-colors.colorSchemes.everforest;
 }
 

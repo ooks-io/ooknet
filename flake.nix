@@ -10,6 +10,8 @@
 
     nix-colors.url = "github:misterio77/nix-colors";
 
+    nixvim.url = "github:nix-community/nixvim";
+
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,6 +36,7 @@
   
     helix = {
       url = "github:helix-editor/helix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nh = {

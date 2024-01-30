@@ -24,9 +24,11 @@ in
         enable = true;
         default = true;
       };
-      terminal.foot = {
-        enable = true;
-        default = true;
+      terminal = {
+        foot = {
+          enable = true;
+          default = true;
+        };
       };
       themeSettings.enable = true;
     };
