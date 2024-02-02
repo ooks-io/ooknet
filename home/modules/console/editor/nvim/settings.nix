@@ -1,34 +1,37 @@
-{ config, lib, inputs, pkgs, ... }:
+{ config, lib, ... }:
 
 let
   inherit (config.colorscheme) colors;
   cfg = config.homeModules.console.editor.nvim;
 in
-  
-{
-  imports = [
-    inputs.nixvim.homeManagerModules.nixvim
-    ./settings.nix
-    ./keymapping.nix
-    ./plugins
-  ];
-  
-  config = lib.mkIf cfg.enable {
-    programs.neovim = {
-      viAlias = true;
-      vimAlias = true;  
-    };
 
+{
+  config = lib.mkIf cfg.enable {
     programs.nixvim = {
-      enable = true;
-      plugins = {
-        which-key = {
-          enable = true;
-          keyLabels = {
-            " " = "<space>";
-          };
-        };
-      };  
+      options = {
+        relativenumber = true;
+        number = true;
+        hidden = true;
+        mouse = "a";
+        mousemodel = "extend";
+        undofile = true;
+        swapfile = false;
+        incsearch = true;
+        ignorecase = true;
+        smartcase = true;
+        fileencoding = "utf-8";
+        termguicolors = true;
+        autoindent = true;
+        shiftwidth = 2;
+        smartindent = true;
+        expandtab = true;
+        updatetime = 100;
+      };
+
+      clipboard = {
+        register = "unnamedplus";
+        providers.wl-copy.enable = true;
+      };
 
       colorschemes.base16 = {
         enable = true;
