@@ -1,7 +1,7 @@
 { config, lib, ... }:
 
 let
-  cfg = config.desktop.console.editor.nvim;
+  cfg = config.homeModules.console.editor.nvim;
 in
 
 {

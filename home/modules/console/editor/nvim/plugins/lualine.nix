@@ -5,7 +5,7 @@ let
 in
 
 {
-  config = lib.mkif cfg.lualine {
+  config = lib.mkIf cfg.lualine {
     programs.nixvim.plugins.lualine = {
       enable = true;
       theme = "base16";

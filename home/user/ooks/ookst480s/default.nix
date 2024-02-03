@@ -7,7 +7,14 @@
 
   activeProfiles = ["base" "hyprland"];
 
-  homeModules.console.editor.nvim.enable = true;
+  homeModules.console.editor.nvim = {
+    enable = true;
+    plugins = {
+      lualine = true;
+      telescope = true;
+      indentBlankline = true;
+    };
+  };
   
   monitors = [{
     name = "eDP-1";
