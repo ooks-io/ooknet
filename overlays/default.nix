@@ -1,4 +1,4 @@
-{ outputs, inputs }:
+{ outputs, inputs, ... }:
 {
   # For every flake input, aliases 'pkgs.inputs.${flake}' to
   # 'inputs.${flake}.packages.${pkgs.system}' or
@@ -14,6 +14,9 @@
       inputs;
   };
 
-  # Adds my custom packages
+  zjstatus = final: prev: {
+    zjstatus = inputs.zjstatus.packages.${prev.system}.default;
+  };  
+
   additions = final: prev: import ../pkgs { pkgs = final; };
 }

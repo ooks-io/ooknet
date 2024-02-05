@@ -48,6 +48,8 @@
     };
 
     nix-gaming.url = "github:fufexan/nix-gaming";
+
+    zjstatus.url = "github:dj95/zjstatus";
     
   };
 
