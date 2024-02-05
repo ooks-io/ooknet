@@ -25,6 +25,6 @@
     transform = 0;
   }];
 
-  colorscheme = inputs.nix-colors.colorSchemes.everforest;
+  colorscheme = inputs.nix-colors.colorSchemes.gruvbox-material-dark-soft;
 }
 
