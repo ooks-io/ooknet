@@ -55,7 +55,7 @@ in
           fish.enable = true;
           bash.enable = true;
         };
-        multiplexer.tmux.enable = true;
+        multiplexer.zellij.enable = true;
         utility = {
           nixIndex.enable = true;
           git.enable = true;
