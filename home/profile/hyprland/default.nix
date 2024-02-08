@@ -30,6 +30,7 @@ in
           default = true;
         };
       };
+      media.music.tui.enable = true;
       themeSettings.enable = true;
     };
   };
