@@ -11,6 +11,7 @@ in
       spotify-player
       ytui-music
       alsa-utils
+      cava
     ];
   };
   
