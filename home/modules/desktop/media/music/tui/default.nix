@@ -3,6 +3,7 @@
 let
   inherit (config.colorscheme) colors;
   cfg = config.homeModules.desktop.media.music.tui;
+  zellij = config.homeModules.console.multiplexer.zellij;
 in
 
 {
@@ -27,6 +28,67 @@ in
           gradient_color_5 = "'#${colors.base0E}'";
         };
       };
+    };
+    xdg.configFile."zellij/layouts/music.kdl".text = lib.mkIf zellij.enable /* kdl */ ''
+      layout {
+      default_tab_template {
+          pane size=2 borderless=true {
+              plugin location="file:${pkgs.zjstatus}/bin/zjstatus.wasm" {
+                  format_left  "{mode} #[fg=#89B4FA,bold] {tabs}"
+                  format_right "{session} {datetime}"
+                  format_space ""
+
+                  border_enabled  "true"
+                  border_char     "─"
+                  border_format   "#[fg=blue]{char}"
+                  border_position "bottom"
+
+                  hide_frame_for_single_pane "true"
+
+                  mode_normal       "#[fg=blue]󰝚"
+                  mode_tmux         "#[fg=purple]󰝚"
+                  mode_pane         "#[fg=red]󰝚"
+                  mode_tab          "#[fg=red]󰝚"
+                  mode_rename_tab   "#[fg=red]󰝚"
+                  mode_rename_pane  "#[fg=red]󰝚"
+                  mode_session      "#[fg=red]󰝚"
+                  mode_locked       "#[fg=white]󰝚"
+                  mode_move         "#[fg=green]󰝚"
+                  mode_resize       "#[fg=green]󰝚"
+                  mode_prompt       "#[fg=yellow]󰝚"
+                  mode_search       "#[fg=yellow]󰝚"
+                  mode_enter_search "#[fg=yellow]󰝚"
+            
+
+                  tab_normal   "#[bg=#3C3836] {name} "
+                  tab_active   "#[bg=#504945] {name} "
+                  tab_separator "  "
+
+                  datetime        "#[fg=#6C7086,bold] {format} "
+                  datetime_format "%I:%M %p"
+                  datetime_timezone "Pacific/Auckland"
+              }
+          }
+          children
+      }
+
+          tab name="spotify" focus=true {
+              pane name="spotify" {
+                  borderless true
+                  command "spotify_player"
+                  focus true
+              }
+              pane name="Visualizer" {
+                  borderless false
+                  split_direction "horizontal"
+                  size "20%"
+                  command "cava"
+              }
+          }
+      }
+    '';
+    home.shellAliases = lib.mkIf zellij.enable {
+      zjm = "zellij --layout music"
     };
   };
   
