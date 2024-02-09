@@ -11,7 +11,6 @@ in
     home.packages = with pkgs; [
       termusic
       spotify-player
-      ytui-music
       alsa-utils
       mpv
     ];
