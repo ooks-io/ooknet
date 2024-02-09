@@ -35,44 +35,44 @@ in
       default_tab_template {
           pane size=2 borderless=true {
               plugin location="file:${pkgs.zjstatus}/bin/zjstatus.wasm" {
-                  format_left  "{mode} #[fg=#89B4FA,bold] {tabs}"
+                  format_left  "{mode} #[fg=#${colors.base0D},bold] {tabs}"
                   format_right "{session} {command_git_branch} {datetime}"
                   format_space ""
 
                   border_enabled  "true"
                   border_char     "─"
-                  border_format   "#[fg=blue]{char}"
+                  border_format   "#[fg=#${colors.base05}]{char}"
                   border_position "bottom"
 
                   hide_frame_for_single_pane "true"
 
-                  mode_normal       "#[fg=blue] "
-                  mode_tmux         "#[fg=purple] "
-                  mode_pane         "#[fg=red] "
-                  mode_tab          "#[fg=red] "
-                  mode_rename_tab   "#[fg=red] "
-                  mode_rename_pane  "#[fg=red] "
-                  mode_session      "#[fg=red] "
-                  mode_locked       "#[fg=white] "
-                  mode_move         "#[fg=green] "
-                  mode_resize       "#[fg=green] "
-                  mode_prompt       "#[fg=yellow] "
-                  mode_search       "#[fg=yellow] "
-                  mode_enter_search "#[fg=yellow] "
+                  mode_normal       "#[fg=#${colors.base0D}] "
+                  mode_tmux         "#[fg=#${colors.base0E}] "
+                  mode_pane         "#[fg=#${colors.base08}] "
+                  mode_tab          "#[fg=#${colors.base08}] "
+                  mode_rename_tab   "#[fg=#${colors.base08}] "
+                  mode_rename_pane  "#[fg=#${colors.base08}] "
+                  mode_session      "#[fg=#${colors.base08}] "
+                  mode_locked       "#[fg=#${colors.base05}] "
+                  mode_move         "#[fg=#${colors.base0B}] "
+                  mode_resize       "#[fg=#${colors.base0B}] "
+                  mode_prompt       "#[fg=#${colors.base0A}] "
+                  mode_search       "#[fg=#${colors.base0A}] "
+                  mode_enter_search "#[fg=#${colors.base0A}] "
             
 
-                  tab_normal   "#[bg=#3C3836] {name} "
-                  tab_active   "#[bg=#504945] {name} "
+                  tab_normal   "#[bg=#${colors.base01}] {name} "
+                  tab_active   "#[bg=#${colors.base02}] {name} "
                   tab_separator "  "
 
                   command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
-                  command_git_branch_format      "#[fg=blue] {stdout} "
+                  command_git_branch_format      "#[fg=#${colors.base0D}] {stdout} "
                   command_git_branch_interval    "10"
                   command_git_branch_rendermode  "static"
 
-                  datetime        "#[fg=#6C7086,bold] {format} "
+                  datetime        "#[fg=#${colors.base05},bold] {format} "
                   datetime_format "%I:%M %p"
-                  datetime_timezone "Pacific/Auckland"
+                  datetime_timezone "${config.home.sessionVariables.TZ}"
               }
           }
           children
@@ -89,44 +89,44 @@ in
       default_tab_template {
           pane size=2 borderless=true {
               plugin location="file:${pkgs.zjstatus}/bin/zjstatus.wasm" {
-                  format_left  "{mode} #[fg=#89B4FA,bold] {tabs}"
+                  format_left  "{mode} #[fg=#${colors.base0D},bold] {tabs}"
                   format_right "{session} {command_git_branch} {datetime}"
                   format_space ""
 
                   border_enabled  "true"
                   border_char     "─"
-                  border_format   "#[fg=blue]{char}"
+                  border_format   "#[fg=#${colors.base05}]{char}"
                   border_position "bottom"
 
                   hide_frame_for_single_pane "true"
 
-                  mode_normal       "#[fg=blue] "
-                  mode_tmux         "#[fg=purple] "
-                  mode_pane         "#[fg=red] "
-                  mode_tab          "#[fg=red] "
-                  mode_rename_tab   "#[fg=red] "
-                  mode_rename_pane  "#[fg=red] "
-                  mode_session      "#[fg=red] "
-                  mode_locked       "#[fg=white] "
-                  mode_move         "#[fg=green] "
-                  mode_resize       "#[fg=green] "
-                  mode_prompt       "#[fg=yellow] "
-                  mode_search       "#[fg=yellow] "
-                  mode_enter_search "#[fg=yellow] "
-        
+                  mode_normal       "#[fg=#${colors.base0D}] "
+                  mode_tmux         "#[fg=#${colors.base0E}] "
+                  mode_pane         "#[fg=#${colors.base08}] "
+                  mode_tab          "#[fg=#${colors.base08}] "
+                  mode_rename_tab   "#[fg=#${colors.base08}] "
+                  mode_rename_pane  "#[fg=#${colors.base08}] "
+                  mode_session      "#[fg=#${colors.base08}] "
+                  mode_locked       "#[fg=#${colors.base05}] "
+                  mode_move         "#[fg=#${colors.base0B}] "
+                  mode_resize       "#[fg=#${colors.base0B}] "
+                  mode_prompt       "#[fg=#${colors.base0A}] "
+                  mode_search       "#[fg=#${colors.base0A}] "
+                  mode_enter_search "#[fg=#${colors.base0A}] "
+            
 
-                  tab_normal   "#[bg=#3C3836] {name} "
-                  tab_active   "#[bg=#504945] {name} "
+                  tab_normal   "#[bg=#${colors.base01}] {name} "
+                  tab_active   "#[bg=#${colors.base02}] {name} "
                   tab_separator "  "
 
                   command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
-                  command_git_branch_format      "#[fg=blue] {stdout} "
+                  command_git_branch_format      "#[fg=#${colors.base0D}] {stdout} "
                   command_git_branch_interval    "10"
                   command_git_branch_rendermode  "static"
 
-                  datetime        "#[fg=#6C7086,bold] {format} "
+                  datetime        "#[fg=#${colors.base05},bold] {format} "
                   datetime_format "%I:%M %p"
-                  datetime_timezone "Pacific/Auckland"
+                  datetime_timezone "${config.home.sessionVariables.TZ}"
               }
           }
           children
