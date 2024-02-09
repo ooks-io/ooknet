@@ -51,7 +51,7 @@ in
         enable = true;
         nix-direnv.enable = true;
       };
-      skim = {
+      fzf = {
         enable = true;
         enableFishIntegration = lib.mkIf config.homeModules.console.shell.fish.enable true;
         defaultCommand = "rg --files --hidden";

@@ -56,7 +56,7 @@ in
 
         fish_user_key_bindings = ''
           bind --preset -M insert \cf fish_flake_edit
-          bind --preset -M insert \ec skim_cd_widget
+          bind --preset -M insert \ec fzf_cd_widget
         '';
       };
       interactiveShellInit =
