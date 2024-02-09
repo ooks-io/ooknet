@@ -88,7 +88,7 @@ in
       layout {
       default_tab_template {
           pane size=2 borderless=true {
-              plugin location="file:/nix/store/af53c2bwldpmpzrb01jy1xn779bhya09-zjstatus-0.12.0/bin/zjstatus.wasm" {
+              plugin location="file:${pkgs.zjstatus}/bin/zjstatus.wasm" {
                   format_left  "{mode} #[fg=#89B4FA,bold] {tabs}"
                   format_right "{session} {command_git_branch} {datetime}"
                   format_space ""
