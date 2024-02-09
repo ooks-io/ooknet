@@ -13,6 +13,7 @@ in
       spotify-player
       ytui-music
       alsa-utils
+      mpv
     ];
     programs.cava = {
       enable = true;
@@ -40,33 +41,20 @@ in
 
                   border_enabled  "true"
                   border_char     "─"
-                  border_format   "#[fg=blue]{char}"
+                  border_format   "#[fg=#${colors.base0D}]{char}"
                   border_position "bottom"
 
                   hide_frame_for_single_pane "true"
 
-                  mode_normal       "#[fg=blue]󰝚"
-                  mode_tmux         "#[fg=purple]󰝚"
-                  mode_pane         "#[fg=red]󰝚"
-                  mode_tab          "#[fg=red]󰝚"
-                  mode_rename_tab   "#[fg=red]󰝚"
-                  mode_rename_pane  "#[fg=red]󰝚"
-                  mode_session      "#[fg=red]󰝚"
-                  mode_locked       "#[fg=white]󰝚"
-                  mode_move         "#[fg=green]󰝚"
-                  mode_resize       "#[fg=green]󰝚"
-                  mode_prompt       "#[fg=yellow]󰝚"
-                  mode_search       "#[fg=yellow]󰝚"
-                  mode_enter_search "#[fg=yellow]󰝚"
+                  mode_normal       "#[fg=${colors.base0D}]󰝚"
             
-
-                  tab_normal   "#[bg=#3C3836] {name} "
-                  tab_active   "#[bg=#504945] {name} "
+                  tab_normal   "#[bg=#${colors.base01}] {name} "
+                  tab_active   "#[bg=#${colors.base02}] {name} "
                   tab_separator "  "
 
-                  datetime        "#[fg=#6C7086,bold] {format} "
+                  datetime        "#[fg=#${colors.base05},bold] {format} "
                   datetime_format "%I:%M %p"
-                  datetime_timezone "Pacific/Auckland"
+                  datetime_timezone "${config.home.sessionVariables.TZ}"
               }
           }
           children

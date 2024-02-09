@@ -59,14 +59,13 @@ in
                   mode_prompt       "#[fg=#${colors.base0A}] "
                   mode_search       "#[fg=#${colors.base0A}] "
                   mode_enter_search "#[fg=#${colors.base0A}] "
-            
 
                   tab_normal   "#[bg=#${colors.base01}] {name} "
                   tab_active   "#[bg=#${colors.base02}] {name} "
                   tab_separator "  "
 
                   command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
-                  command_git_branch_format      "#[fg=#${colors.base0D}] {stdout} "
+                  command_git_branch_format      "#[fg=#${colors.base0C}] {stdout} "
                   command_git_branch_interval    "10"
                   command_git_branch_rendermode  "static"
 
@@ -113,14 +112,13 @@ in
                   mode_prompt       "#[fg=#${colors.base0A}] "
                   mode_search       "#[fg=#${colors.base0A}] "
                   mode_enter_search "#[fg=#${colors.base0A}] "
-            
 
                   tab_normal   "#[bg=#${colors.base01}] {name} "
                   tab_active   "#[bg=#${colors.base02}] {name} "
                   tab_separator "  "
 
                   command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
-                  command_git_branch_format      "#[fg=#${colors.base0D}] {stdout} "
+                  command_git_branch_format      "#[fg=#${colors.base0C}] {stdout} "
                   command_git_branch_interval    "10"
                   command_git_branch_rendermode  "static"
 
