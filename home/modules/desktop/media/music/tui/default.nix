@@ -88,7 +88,7 @@ in
       }
     '';
     home.shellAliases = lib.mkIf zellij.enable {
-      zjm = "zellij --layout music"
+      zjm = "zellij --layout music";
     };
   };
   
