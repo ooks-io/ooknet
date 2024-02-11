@@ -46,6 +46,14 @@ in
           disable_hyprland_logo = true;
           force_default_wallpaper = 0;
         };
+
+        env = lib.mkIf cfg.nvidia [
+          "LIBVA_DRIVER_NAME,nvidia"
+          "XDG_SESSION_TYPE,wayland"
+          "GBM_BACKEND,nvidia-drm"
+          "__GLX_VENDEOR_LIBRARY_NAME,nvidia"
+          "WLR_NO_HARDWARE_CURSORS,1"
+        ];
         
         gestures = {
           workspace_swipe = true;

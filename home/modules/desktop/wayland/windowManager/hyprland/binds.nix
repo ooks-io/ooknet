@@ -92,7 +92,7 @@ in
       
       "SUPER,          Q,             killactive"
       "SUPER CTRL,     backspace,     killactive"
-      "SUPERSHIFT ALT, delete,        exit"
+      "SUPERSHIFT ALT, delete,        exec, pkill Hyprland"
       "SUPER,          F,             fullscreen"
       "SUPER,          Space,         togglefloating"
       "SUPER,          P,             pseudo" # dwindle

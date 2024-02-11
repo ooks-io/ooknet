@@ -1,6 +1,7 @@
 { config, lib, ... }:
 let
   cfg = config.homeModules.desktop.wayland.windowManager.hyprland;
+  pointer = config.home.pointerCursor;
 in
 {
   config = lib.mkIf cfg.enable {
@@ -19,6 +20,10 @@ in
           "col.border_inactive" = "0xff${config.colorscheme.colors.base04}";
         };
         dwindle.split_width_multiplier = 1.35;
+
+        exec-once = [
+          "hyprctl setcursor ${pointer.name} ${toString pointer.size}"
+        ];
 
         decoration = {
           active_opacity = 1.0;

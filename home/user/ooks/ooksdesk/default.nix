@@ -15,6 +15,7 @@
       indentBlankline = true;
     };
   };
+  homeModules.desktop.wayland.windowManager.hyprland.nvidia = true;
   
   monitors = [{
     name = "DP-1";
