@@ -82,6 +82,11 @@
           modules = [ ./system/hosts/ookst480s ];
           specialArgs = { inherit inputs outputs; };
         };
+        # Main Desktop
+        ooksdesk =  lib.nixosSystem {
+          modules = [ ./system/hosts/ooksdesk ];
+          specialArgs = { inherit inputs outputs; };
+        };
       };
       homeConfigurations = {
         # T480s
@@ -89,7 +94,13 @@
           modules = [ ./home/user/ooks/ookst480s ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
-      };    
+      };
+        # Main Desktop
+        "ooks@ooksdesk" = lib.homeManagerConfiguration {
+          modules = [ ./home/user/ooks/ooksdesk ];
+          pkgs = pkgsFor.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+      };
     };
   };
 }
