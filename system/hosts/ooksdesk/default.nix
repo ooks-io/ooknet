@@ -6,7 +6,7 @@
     ../../profiles
 		];
 
-    activeProfiles = ["base"];
+    activeProfiles = ["base" "nvidia"];
 
 		systemModules.user = {
 			ooks.enable = true;
