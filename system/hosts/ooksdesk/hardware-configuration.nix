@@ -14,59 +14,33 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "tmpfs";
-      fsType = "tmpfs";
-    };
-
-  fileSystems."/iso" =
-    { device = "/dev/disk/by-uuid/1980-01-01-00-00-00-00";
-      fsType = "iso9660";
-    };
-
-  fileSystems."/nix/.ro-store" =
-    { device = "/iso/nix-store.squashfs";
-      fsType = "squashfs";
-      options = [ "loop" ];
-    };
-
-  fileSystems."/nix/.rw-store" =
-    { device = "tmpfs";
-      fsType = "tmpfs";
-    };
-
-  fileSystems."/nix/store" =
-    { device = "overlay";
-      fsType = "overlay";
-    };
-
-  fileSystems."/mnt" =
-    { device = "/dev/disk/by-uuid/2a8f0a53-152a-4dc2-bc75-be4ec2dce355";
+    { device = "/dev/disk/by-uuid/68e9e662-69af-47cd-85ad-c44025a6d214";
       fsType = "btrfs";
       options = [ "subvol=root" ];
     };
 
-  boot.initrd.luks.devices."cryptnix".device = "/dev/disk/by-uuid/d3fe0530-6059-416c-9f4a-bcaed213255d";
+  boot.initrd.luks.devices."cryptnix".device = "/dev/disk/by-uuid/18ed0a3c-8ae6-42c2-8ae5-f1b07a2649f5";
 
-  fileSystems."/mnt/nix" =
-    { device = "/dev/disk/by-uuid/2a8f0a53-152a-4dc2-bc75-be4ec2dce355";
+  fileSystems."/nix" =
+    { device = "/dev/disk/by-uuid/68e9e662-69af-47cd-85ad-c44025a6d214";
       fsType = "btrfs";
       options = [ "subvol=nix" ];
     };
 
-  fileSystems."/mnt/persist" =
-    { device = "/dev/disk/by-uuid/2a8f0a53-152a-4dc2-bc75-be4ec2dce355";
+  fileSystems."/persist" =
+    { device = "/dev/disk/by-uuid/68e9e662-69af-47cd-85ad-c44025a6d214";
       fsType = "btrfs";
       options = [ "subvol=persist" ];
     };
 
-  fileSystems."/mnt/swap" =
-    { device = "/dev/disk/by-uuid/2a8f0a53-152a-4dc2-bc75-be4ec2dce355";
+  fileSystems."/swap" =
+    { device = "/dev/disk/by-uuid/68e9e662-69af-47cd-85ad-c44025a6d214";
       fsType = "btrfs";
       options = [ "subvol=swap" ];
     };
 
-  fileSystems."/mnt/boot" =
-    { device = "/dev/disk/by-uuid/D6A9-A9F3";
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/6575-A86A";
       fsType = "vfat";
     };
 
@@ -82,3 +56,4 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
+
