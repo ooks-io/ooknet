@@ -13,6 +13,7 @@
     ./virtualisation.nix
     ./pipewire.nix
     ./security.nix
+    ./services
   ];
 
 

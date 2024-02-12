@@ -6,7 +6,7 @@
     ../../profiles
 		];
 
-    activeProfiles = ["base" "nvidia"];
+    activeProfiles = ["base" "nvidia" "mediaServer"];
 
 		systemModules.user = {
 			ooks.enable = true;
@@ -15,7 +15,7 @@
   	
 		networking = {
   		hostName = "ooksdesk"; 		
-			useDHCP = true;
+			# useDHCP = true;
 		};
     boot = {
       kernelPackages = pkgs.linuxKernel.packages.linux_zen;

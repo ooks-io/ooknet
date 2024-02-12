@@ -15,6 +15,7 @@ in
       "audio"
       ] ++ ifTheyExist [
       "git"
+      "media"
       "network"
       "libvirtd"
       "deluge"
