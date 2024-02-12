@@ -53,6 +53,8 @@ in
       spotify = "${terminal} -e spotify_player";
       spotifyctl = "${pkgs.spotify-player}/bin/spotify_player";
       discord = "${pkgs.vesktop}/bin/vesktop";
+
+      explorer = "${pkgs.cinnamon.nemo-with-extensions}/bin/nemo";
     
       #makoctl = "${config.services.mako.package}/bin/makoctl";
 
@@ -70,6 +72,8 @@ in
       "SUPER,          m,             exec,     ${spotify}"
       "SUPERSHIFT,     P,             exec,     ${password}"
       "SUPER,          d,             exec,     ${discord}"
+      "SUPER,          e,             exec,     ${explorer}"
+      
 
       # Spotify PLayer Controls
 
