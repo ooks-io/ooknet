@@ -15,6 +15,7 @@
   	
 		networking = {
   		hostName = "ooksdesk"; 		
+			useDHCP = true;
 		};
     boot = {
       kernelPackages = pkgs.linuxKernel.packages.linux_zen;

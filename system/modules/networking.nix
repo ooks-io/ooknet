@@ -10,7 +10,7 @@ in
       enable = true;
       dns = "systemd-resolved";
     };
-    networking.firewall.allowedTCPPorts = [57621];
+    networking.firewall.allowedTCPPorts = [57621]; # Spotify
 
     services = {
       openssh = {
