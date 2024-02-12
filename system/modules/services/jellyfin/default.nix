@@ -23,10 +23,10 @@ in
     };
     users.groups.media = {};
 
-    fileSystems."/media" = {
-      device = "/dev/disk/by-label/ooksmedia";
-      fsType = "ntfs";
-      options = [ "rw" "uid=1000" "gid=991" "umask=002" ];
-    };
+    # fileSystems."/media" = {
+    #   device = "/dev/disk/by-label/ooksmedia";
+    #   fsType = "ntfs";
+    #   options = [ "rw" "uid=1000" "gid=991" "umask=002" ];
+    # };
   };
 }

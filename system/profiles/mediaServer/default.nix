@@ -11,6 +11,7 @@ in
     systemModules = {
       services = {
         jellyfin.enable = true;
+        deluge.enable = true;
       };
     };
   };
