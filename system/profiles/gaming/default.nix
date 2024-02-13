@@ -20,8 +20,14 @@ in
       gamemode = {
         enable = true;
         settings = {
-          softrealtime = "auto";
-          renice = 15;
+          general = {
+            renice = 15;
+            softrealtime = "auto";
+          };
+           custom = {
+            start = "${pkgs.libnotify}/bin/notify-send 'GameMode started'";
+            end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
+          };
         };
       };
     };

@@ -50,10 +50,9 @@ in
       volume = "${volumeScript}/bin/volume";
 
       swaylock = "${config.programs.swaylock.package}/bin/swaylock";
-      spotify = "${terminal} -e spotify_player";
       spotifyctl = "${pkgs.spotify-player}/bin/spotify_player";
       discord = "${pkgs.vesktop}/bin/vesktop";
-
+      
       explorer = "${pkgs.cinnamon.nemo-with-extensions}/bin/nemo";
     
       #makoctl = "${config.services.mako.package}/bin/makoctl";
@@ -69,10 +68,11 @@ in
       "SUPER,          b,             exec,     ${browser}"
       "SUPER,          return,        exec,     ${terminal}"
       "SUPER,          e,             exec,     ${editor}"
-      "SUPER,          m,             exec,     ${spotify}"
       "SUPERSHIFT,     P,             exec,     ${password}"
       "SUPER,          d,             exec,     ${discord}"
       "SUPER,          e,             exec,     ${explorer}"
+      "SUPERSHIFT,     S,             exec,     steam"
+      
       
 
       # Spotify PLayer Controls
