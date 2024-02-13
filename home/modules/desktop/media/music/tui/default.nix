@@ -1,9 +1,13 @@
-{ pkgs, config, lib, inputs, ... }:
+{ pkgs, config, lib, ... }:
 
 let
   inherit (config.colorscheme) colors;
   cfg = config.homeModules.desktop.media.music.tui;
   zellij = config.homeModules.console.multiplexer.zellij;
+  spotify-cli = pkgs.spotify-player.override {
+    withImage = false;
+    withSixel = false;
+  };
 in
 
 {
@@ -12,7 +16,7 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       termusic
-      spotify-player
+      spotify-cli
       alsa-utils
       mpv
     ];
