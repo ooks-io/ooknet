@@ -58,7 +58,7 @@ in
     
       #makoctl = "${config.services.mako.package}/bin/makoctl";
 
-      password = "${pkgs._1password-gui}/bin/1password --enable-features=UseOzonePlatform --ozone-platform=wayland";
+      password = "${pkgs._1password-gui}/bin/1password";
       
       #playerctl = "${config.services.playerctld.package}/bin/playerctl";
       #playerctld = "${config.services.playerctld.package}/bin/playerctld";
