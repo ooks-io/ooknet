@@ -7,6 +7,8 @@
 
   activeProfiles = ["base" "hyprland"];
 
+  home.sessionVariables.HN = "ookst480s";
+
   homeModules.console.editor.nvim = {
     enable = true;
     plugins = {

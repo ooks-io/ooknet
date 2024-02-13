@@ -1,0 +1,7 @@
+keys:
+  - &ooks age16ecqs0u4h4qvnp7nr2rdhd0d2qrw7x5kk60u473d6988a0amsass4d5a22
+creation_rules:
+  - path_regex: secrets/secrets.yaml$
+    key_groups:
+    - age:
+        - *ooks

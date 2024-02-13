@@ -8,6 +8,7 @@ in
   imports = [
     inputs.nix-colors.homeManagerModule
     ../../modules
+    ../../secrets
   ] ++ (builtins.attrValues outputs.homeManagerModules);
 
   config = lib.mkIf cfg.enable {
@@ -31,6 +32,7 @@ in
       home-manager.enable = true;
       git.enable = true;
     };
+    home.packages = with pkgs; [ sops ];
 
     home = {
       username = lib.mkDefault "ooks";
@@ -46,6 +48,7 @@ in
     xdg.portal.enable = true;
 
     homeModules = {
+      sops.enable = true;
       console = {
         editor.helix = {
           enable = true;

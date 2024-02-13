@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, lib, inputs, ... }:
 
 let
   inherit (config.colorscheme) colors;
@@ -7,6 +7,8 @@ let
 in
 
 {
+
+ 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       termusic
@@ -29,6 +31,39 @@ in
         };
       };
     };
+    xdg.configFile."spotify-player/app.toml".text =  /* toml */ ''
+      theme = "default"
+      client_id = "fc4c3656d7cc4a7ea70c6080965f8b1a"
+      client_port = 8080
+      tracks_playback_limit = 50
+      playback_format = "{track} • {artists}\n{album}\n{metadata}"
+      notify_format = { summary = "{track} • {artists}", body = "{album}" }
+      app_refresh_duration_in_ms = 32
+      playback_refresh_duration_in_ms = 0
+      page_size_in_rows = 20
+      enable_media_control = false
+      enable_streaming = "Always"
+      enable_notify = true
+      enable_cover_image_cache = false
+      notify_streaming_only = false
+      default_device = "${config.home.sessionVariables.HN}"
+      play_icon = "▶"
+      pause_icon = "▌▌"
+      liked_icon = "♥"
+      playback_window_position = "Top"
+      cover_img_length = 9
+      cover_img_width = 5
+      playback_window_width = 6
+
+      [device]
+      name = "${config.home.sessionVariables.HN}"
+      device_type = "speaker"
+      volume = 100
+      bitrate = 320
+      audio_cache = false
+      normalization = false
+    '';
+    
     xdg.configFile."zellij/layouts/music.kdl".text = lib.mkIf zellij.enable /* kdl */ ''
       layout {
       default_tab_template {
