@@ -37,6 +37,20 @@
 
     ${notifysend} --app-name="system-notify" -h string:x-canonical-private-synchronous:sys-notify "  $VOLUME"
   '';
+
+  # Script to help Hyprland quit https://github.com/hyprwm/Hyprland/issues/3558#issuecomment-1848768654
+  hyprKillScript = pkgs.writeShellScriptBin "killHyprland" ''
+
+    if pgrep -x .Hyprland-wrapp >/dev/null; then
+
+    hyprctl dispatch exit 0
+    sleep 2
+
+    if pgrep -x .Hyprland-wrapp >/dev/null; then
+    killall -9 .Hyprland-wrapp
+    fi
+    fi
+  '';
 in
 
   {
@@ -58,6 +72,7 @@ in
       #makoctl = "${config.services.mako.package}/bin/makoctl";
 
       password = "${pkgs._1password-gui}/bin/1password";
+      killHyprland = "${hyprKillScript}/bin/killHyprland";
       
       #playerctl = "${config.services.playerctld.package}/bin/playerctl";
       #playerctld = "${config.services.playerctld.package}/bin/playerctld";
@@ -96,7 +111,7 @@ in
       
       "SUPER,          Q,             killactive"
       "SUPER CTRL,     backspace,     killactive"
-      "SUPERSHIFT ALT, delete,        exec, pkill Hyprland"
+      "SUPERSHIFT ALT, delete,        exec, ${killHyprland}"
       "SUPER,          F,             fullscreen"
       "SUPER,          Space,         togglefloating"
       "SUPER,          P,             pseudo" # dwindle
