@@ -9,6 +9,7 @@ in
     programs.swaylock = {
       enable = true;
       settings = {
+        image = "${config.wallpaper}";
         font = config.fontProfiles.monospace.family;
         color = "#${colors.base01}";
         ring-color = "#${colors.base02}";
