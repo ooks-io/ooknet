@@ -5,7 +5,7 @@
     ../../../profile
   ];
 
-  activeProfiles = ["base" "hyprland"];
+  activeProfiles = ["base" "hyprland" "gaming"];
 
   home.sessionVariables.HN = "ooksdesk";
 

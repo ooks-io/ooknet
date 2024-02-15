@@ -54,6 +54,11 @@
 
     nix-gaming.url = "github:fufexan/nix-gaming";
 
+    ssbm-nix = {
+      url = "github:djanatyn/ssbm-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     zjstatus.url = "github:dj95/zjstatus";
     
   };
