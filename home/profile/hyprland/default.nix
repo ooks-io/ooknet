@@ -30,7 +30,14 @@ in
           default = true;
         };
       };
-      media.music.tui.enable = true;
+      media = {
+        music.tui.enable = true;
+        image.imv.enable = true;
+        video = {
+          mpv.enable = true;
+          youtube.enable = true;
+        };
+      };
       themeSettings.enable = true;
     };
   };

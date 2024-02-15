@@ -8,5 +8,8 @@ in
     programs.yt-dlp = {
       enable = true;
     };
+
+    home.file."$HOME/Videos/Youtube".enable = true;
+
   };
 }

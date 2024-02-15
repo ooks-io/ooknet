@@ -44,6 +44,12 @@ in
         TZ = "Pacific/Auckland";
       };
     };
+    xdg.userDirs = {
+      createDirectories = true;
+      extraConfig = {
+        XDG_CODE_DIR = "${config.homeDirectory}/Coding";
+      };
+    };
 
     xdg.portal.enable = true;
 
