@@ -14,8 +14,8 @@
     git = {
       enable = lib.mkEnableOption "Enable git + tools";
     };
-    sshssh= {
-      enable = lib.mkEnableOption "Enable various console sshssh;
+    ssh = {
+      enable = lib.mkEnableOption "Enable various console ssh";
     };
     tools = {
       enable = lib.mkEnableOption "Enable various console tools";
