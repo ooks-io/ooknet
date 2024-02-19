@@ -18,6 +18,6 @@
 			# useDHCP = true;
 		};
     boot = {
-      kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+      kernelPackages = pkgs.linuxPackages_xanmod_latest;
 		};
 }
