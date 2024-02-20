@@ -2,11 +2,12 @@
 
 {
 	imports = [
+    inputs.hardware.nixosModules.gpd-micropc
 		./hardware-configuration.nix
     ../../profiles
 		];
 
-    activeProfiles = ["base" "nvidia" "mediaServer" "gaming"];
+    activeProfiles = ["base" "laptop"];
 
 		systemModules.user = {
 			ooks.enable = true;
@@ -14,10 +15,12 @@
 		};
   	
 		networking = {
-  		hostName = "ooksdesk"; 		
-			# useDHCP = true;
+  		hostName = "ooksmicro";
 		};
+		
     boot = {
-      kernelPackages = pkgs.linuxPackages_xanmod_latest;
-		};
+      kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+	    kernelParams = [ "fbcon=rotate:1" ];
+
+    };
 }

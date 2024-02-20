@@ -54,6 +54,11 @@
 
     nix-gaming.url = "github:fufexan/nix-gaming";
 
+    ssbm-nix = {
+      url = "github:djanatyn/ssbm-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     zjstatus.url = "github:dj95/zjstatus";
     
   };
@@ -92,6 +97,11 @@
           modules = [ ./system/hosts/ooksdesk ];
           specialArgs = { inherit inputs outputs; };
         };
+        # GPD Micro-PC
+        ooksmicro =  lib.nixosSystem {
+          modules = [ ./system/hosts/ooksmicro ];
+          specialArgs = { inherit inputs outputs; };
+        };
       };
       homeConfigurations = {
         # T480s
@@ -103,6 +113,12 @@
         # Main Desktop
         "ooks@ooksdesk" = lib.homeManagerConfiguration {
           modules = [ ./home/user/ooks/ooksdesk ];
+          pkgs = pkgsFor.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+      };
+        # Main Desktop
+        "ooks@ooksmicro" = lib.homeManagerConfiguration {
+          modules = [ ./home/user/ooks/ooksmicro ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
       };

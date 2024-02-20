@@ -26,6 +26,9 @@ in
       hyprland = {
         enable = lib.mkEnableOption "Enable the hyprland profile";
       };
+      gaming = {
+        enable = lib.mkEnableOption "Enable the gaming profile";
+      };
     };
   };
   

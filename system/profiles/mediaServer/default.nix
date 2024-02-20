@@ -10,8 +10,7 @@ in
   config = lib.mkIf cfg.enable {
     systemModules = {
       services = {
-        jellyfin.enable = true;
-        deluge.enable = true;
+        mediaServer.enable = true;
       };
     };
   };

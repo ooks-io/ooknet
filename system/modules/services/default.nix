@@ -2,16 +2,12 @@
 
 {
   imports = [ 
-  ./jellyfin
-  ./deluge
+  ./mediaServer
   ];
 
   options.systemModules.services = {
-    jellyfin = {
-      enable = lib.mkEnableOption "Enable jellyfin service module";
-    };
-    deluge = {
-      enable = lib.mkEnableOption "Enable deluge service module";
+    mediaServer = {
+      enable = lib.mkEnableOption "Enable mediaserver service module";
     };
   };
   
