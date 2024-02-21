@@ -3,13 +3,14 @@
 let
   cfg = config.systemProfile.nvidia;
   production = config.boot.kernelPackages.nvidiaPackages.production;
+  beta = config.boot.kernelPackages.nvidiaPackages.beta;
 in
 
 {
   config = lib.mkIf cfg.enable {
     hardware.nvidia = {
       open = true;
-      package = production;
+      package = beta;
       modesetting.enable = true;
       nvidiaSettings = true;
       powerManagement.enable = false;
