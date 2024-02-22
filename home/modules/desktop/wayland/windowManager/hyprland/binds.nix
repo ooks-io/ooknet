@@ -59,11 +59,11 @@ in
       terminal = config.home.sessionVariables.TERMINAL;
       browser = config.home.sessionVariables.BROWSER;
       editor = config.home.sessionVariables.EDITOR;
+      locker = config.home.sessionVariables.LOCKER;
 
       bright = "${brightnessScript}/bin/brightness";
       volume = "${volumeScript}/bin/volume";
 
-      swaylock = "${config.programs.swaylock.package}/bin/swaylock";
       spotifyctl = "${pkgs.spotify-player}/bin/spotify_player";
       discord = "${pkgs.vesktop}/bin/vesktop";
       
@@ -168,7 +168,7 @@ in
       "SUPERSHIFT,     0,             movetoworkspace,10"
 
       # Lock Screen
-      "SUPER,          Backspace,     exec,     ${swaylock}"
+      "SUPER,          Backspace,     exec,     ${locker}"
     ];
       # Mouse
     bindm = [

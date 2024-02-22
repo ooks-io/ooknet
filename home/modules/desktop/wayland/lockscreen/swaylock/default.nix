@@ -6,6 +6,7 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
+    home.sessionVariables.LOCKER  = "swaylock";
     programs.swaylock = {
       enable = true;
       settings = {
