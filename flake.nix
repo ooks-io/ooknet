@@ -10,6 +10,8 @@
 
     nix-colors.url = "github:misterio77/nix-colors";
 
+    ags.url = "github:Aylur/ags";
+
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
