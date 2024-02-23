@@ -43,6 +43,11 @@
     };
 
     hyprlock.url = "github:hyprwm/hyprlock";
+
+    hypridle = {
+      url = "github:hyprwm/hypridle";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   
     hyprpaper.url = "github:hyprwm/hyprpaper";
   

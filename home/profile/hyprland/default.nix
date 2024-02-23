@@ -13,7 +13,7 @@ in
       wayland = {
         base.enable = true;
         windowManager.hyprland.enable = true;
-        lockscreen.swaylock.enable = true;
+        lockscreen.hyprlock.enable = true;
         notification.mako.enable = true;
         bar.ags.enable = true;
       };

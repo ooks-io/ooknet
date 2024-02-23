@@ -1,12 +1,22 @@
-{ lib, config, inputs, ... }:
+{ lib, config, inputs, pkgs, ... }:
 
 let
   cfg = config.homeModules.desktop.wayland.lockscreen.hyprlock;
   inherit (config.colorscheme) colors;
+  suspendScript = pkgs.writeShellScript "suspend-script" ''
+    ${pkgs.pipewire}/bin/pw-cli i all | ${pkgs.ripgrep}/bin/rg running
+    # only suspend if audio isn't running
+    if [ $? == 1 ]; then
+      ${pkgs.systemd}/bin/systemctl suspend
+    fi
+  '';
 in
 
 {
-  imports = [ inputs.hyprlock.homeManagerModules.hyprlock ];
+  imports = [ 
+    inputs.hyprlock.homeManagerModules.default
+    inputs.hypridle.homeManagerModules.default
+  ];
 
   config = lib.mkIf cfg.enable {
     home.sessionVariables.LOCKER = "hyprlock";
@@ -67,7 +77,17 @@ in
         }
       ];
     };
-  };
+    services.hypridle = {
+      enable = true;
+      beforeSleepCmd = "${pkgs.systemd}/bin/loginctl lock-session";
+      lockCmd = lib.getExe config.programs.hyprlock.package;
 
-  
+      listeners = [
+        {
+          timeout = 330;
+          onTimeout = suspendScript.outPath;
+        }
+      ];
+    };
+  };
 }
