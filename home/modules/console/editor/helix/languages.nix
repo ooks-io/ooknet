@@ -40,7 +40,7 @@ in
           {
             name = "javascript";
             auto-format = true;
-            language-servers = ["deno-lsp"];
+            language-servers = ["dprint" "typescript-language-server"];
           }
           {
             name = "json";
