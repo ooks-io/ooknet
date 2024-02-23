@@ -93,6 +93,40 @@ in
           config.nil.formatting.command = ["${lib.getExe pkgs.alejandra}" "-q"];
         };
 
+        dprint = {
+          command = lib.getExe pkgs.dprint;
+          args = ["lsp"];
+        };
+
+        typescript-language-server = {
+          command = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server";
+          args = ["--stdio"];
+          config = let
+            inlayHints = {
+              includeInlayEnumMemberValueHints = true;
+              includeInlayFunctionLikeReturnTypeHints = true;
+              includeInlayFunctionParameterTypeHints = true;
+              includeInlayParameterNameHints = "all";
+              includeInlayParameterNameHintsWhenArgumentMatchesName = true;
+              includeInlayPropertyDeclarationTypeHints = true;
+              includeInlayVariableTypeHints = true;
+            };
+          in {
+            typescript-language-server.source = {
+              addMissingImports.ts = true;
+              fixAll.ts = true;
+              organizeImports.ts = true;
+              removeUnusedImports.ts = true;
+              sortImports.ts = true;
+            };
+
+            typescript = {inherit inlayHints;};
+            javascript = {inherit inlayHints;};
+
+            hostInfo = "helix";
+          };
+        };
+
         vscode-css-language-server = {
           command = "${pkgs.nodePackages.vscode-css-languageserver-bin}/bin/css-languageserver";
           args = ["--stdio"];
