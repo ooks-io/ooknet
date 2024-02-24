@@ -50,8 +50,9 @@ in
       default_tab_template {
           pane size=2 borderless=true {
               plugin location="file:${pkgs.zjstatus}/bin/zjstatus.wasm" {
-                  format_left  "{mode} #[fg=#${colors.base0D},bold] {tabs}"
+                  format_left  "{mode}"
                   format_right "{session} {command_git_branch} {datetime}"
+                  format_center "#[fg=#${colors.base0D},bold] {tabs}"
                   format_space ""
 
                   border_enabled  "true"
@@ -103,8 +104,9 @@ in
       default_tab_template {
           pane size=2 borderless=true {
               plugin location="file:${pkgs.zjstatus}/bin/zjstatus.wasm" {
-                  format_left  "{mode} #[fg=#${colors.base0D},bold] {tabs}"
+                  format_left  "{mode}"
                   format_right "{session} {command_git_branch} {datetime}"
+                  format_center "#[fg=#${colors.base0D},bold] {tabs}"
                   format_space ""
 
                   border_enabled  "true"

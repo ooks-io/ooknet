@@ -73,9 +73,10 @@ in
       default_tab_template {
           pane size=2 borderless=true {
               plugin location="file:${pkgs.zjstatus}/bin/zjstatus.wasm" {
-                  format_left  "{mode} #[fg=#89B4FA,bold] {tabs}"
-                  format_right "{session} {datetime}"
-                  format_space ""
+                  format_left   "{mode}"
+                  format_right  "{session} {datetime}"
+                  format_center "#[fg=#89B4FA,bold] {tabs}"
+                  format_space  ""
 
                   border_enabled  "true"
                   border_char     "─"
