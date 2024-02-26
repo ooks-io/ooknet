@@ -28,6 +28,6 @@
     primary = true;
   }];
 
-  colorscheme = inputs.nix-colors.colorSchemes.gruvbox-material-dark-soft;
+  colorscheme = inputs.nix-colors.colorSchemes.everforest;
 }
 
