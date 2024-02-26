@@ -84,8 +84,6 @@
     {
       inherit lib;
 
-      homeManagerModules = import ./modules/home-manager;
-
       overlays = import ./overlays { inherit inputs outputs; };
 
       packages = forEachSystem (pkgs: {

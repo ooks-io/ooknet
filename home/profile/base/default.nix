@@ -9,7 +9,7 @@ in
     inputs.nix-colors.homeManagerModule
     ../../modules
     ../../secrets
-  ] ++ (builtins.attrValues outputs.homeManagerModules);
+  ];
 
   config = lib.mkIf cfg.enable {
     nixpkgs = {
