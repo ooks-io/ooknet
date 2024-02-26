@@ -14,6 +14,7 @@
     ./pipewire.nix
     ./security.nix
     ./services
+    ./ssh.nix
   ];
 
 

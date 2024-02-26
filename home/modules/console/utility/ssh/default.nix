@@ -11,7 +11,6 @@ in
       enable = true;
       extraConfig = /* config */''
         Host *
-            IdentitiesOnly=yes
             IdentityAgent "~/.1password/agent.sock"
       '';
     };

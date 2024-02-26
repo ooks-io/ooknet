@@ -67,6 +67,7 @@ in
         };
         multiplexer.zellij.enable = true;
         utility = {
+          ssh.enable = true;
           nixIndex.enable = true;
           git.enable = true;
           tools.enable = true;

@@ -13,10 +13,6 @@ in
     networking.firewall.allowedTCPPorts = [57621]; # Spotify
 
     services = {
-      openssh = {
-        enable = true;
-        settings.UseDns = true;
-      };
       resolved.enable = true;
     };
 
