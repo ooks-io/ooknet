@@ -123,7 +123,7 @@
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
       };
-        # Main Desktop
+        # GPD Micro-PC
         "ooks@ooksmicro" = lib.homeManagerConfiguration {
           modules = [ ./home/user/ooks/ooksmicro ];
           pkgs = pkgsFor.x86_64-linux;
