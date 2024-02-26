@@ -43,7 +43,7 @@ in
         };
     
         animations = {
-          enabled = true;
+          enabled = false;
           bezier = [
             "easein,0.11, 0, 0.5, 0"
             "easeout,0.5, 1, 0.89, 1"
