@@ -11,6 +11,7 @@ in
     ./base
     ./hyprland
     #./creative
+    ./productivity
   ];
 
   options = {
@@ -28,6 +29,9 @@ in
       };
       gaming = {
         enable = lib.mkEnableOption "Enable the gaming profile";
+      };
+      productivity = {
+        enable = lib.mkEnableOption "Enable the productivity profile";
       };
     };
   };

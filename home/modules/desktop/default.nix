@@ -9,7 +9,7 @@
     #./wallpaper -- still needs to be implemented
     #./utility -- still needs to be implemented
     ./wayland # -- almost done, need to implement eww 
-    #./productivity -- still needs to be implemented
+    ./productivity
     # ./gaming 
   ];
 }
