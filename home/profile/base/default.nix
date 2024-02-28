@@ -45,9 +45,12 @@ in
       };
     };
     xdg.userDirs = {
+      enable = true;
       createDirectories = true;
       extraConfig = {
-        XDG_CODE_DIR = "${config.homeDirectory}/Coding";
+        XDG_CODE_DIR = "${config.home.homeDirectory}/Coding";
+        XDG_SCREENSHOT_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
+        XDG_NOTES_DIR = "${config.xdg.userDirs.Documents}/Notes";
       };
     };
 
