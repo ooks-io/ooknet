@@ -52,7 +52,7 @@ in
         };
       };
     };
-    services.pipewire.lowLatency.enable = true;
+    # services.pipewire.lowLatency.enable = true;
 
     nixpkgs.overlays = [
       (_: prev: {
