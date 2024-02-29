@@ -10,7 +10,7 @@ in
   config = lib.mkIf cfg.enable {
     hardware.nvidia = {
       open = true;
-      package = beta;
+      package = production;
       modesetting.enable = true;
       nvidiaSettings = true;
       powerManagement.enable = false;
