@@ -29,10 +29,12 @@ in
       radarr = {
         group = "media";
         enable = true;
+        openFirewall = true;
       };
       sonarr = {
         group = "media";
         enable = true;
+        openFirewall = true;
       };
       prowlarr.enable = true;
     };
