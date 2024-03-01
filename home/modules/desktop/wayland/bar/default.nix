@@ -3,7 +3,7 @@
   imports = [
     #./eww
     ./ags
-    #./waybar -- needs to be implemented
+    ./waybar
   ];
 
   options.homeModules.desktop.wayland.bar = {
@@ -12,6 +12,9 @@
     };
     ags = {
       enable = lib.mkEnableOption "Enable ags bar";
+    };
+    waybar = {
+      enable = lib.mkEnableOption "Enable waybar bar";
     };
   };
 

@@ -15,7 +15,7 @@ in
         windowManager.hyprland.enable = true;
         lockscreen.hyprlock.enable = true;
         notification.mako.enable = true;
-        bar.ags.enable = true;
+        bar.waybar.enable = true;
       };
       communication = {
         discord.enable = true;
