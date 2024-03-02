@@ -20,7 +20,7 @@ in
       communication = {
         discord.enable = true;
       };
-      browser.schizofox = {
+      browser.firefox= {
         enable = true;
         default = true;
       };
