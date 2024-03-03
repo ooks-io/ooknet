@@ -33,6 +33,7 @@ in
         wheelNeedsPassword = false;
       };
       rtkit.enable = true;
+      pam.services.hyprlock = {};
     };
 
     # security tweaks borrowed from @hlissner
