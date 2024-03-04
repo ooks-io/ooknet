@@ -64,6 +64,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    anyrun = {
+      url = "github:Kirottu/anyrun";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-gaming = {
       #NEEDFIX:url = "github:fufexan/nix-gaming";
       url ="github:NotAShelf/nix-gaming";

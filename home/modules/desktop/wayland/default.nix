@@ -6,7 +6,7 @@
     ./notification
     ./utility
     ./windowManager
-    # ./launcher
+    ./launcher
   ];
 
   options.homeModules.desktop.wayland = {
