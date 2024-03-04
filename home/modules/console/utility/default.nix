@@ -5,6 +5,7 @@
     ./git
     ./tools
     ./ssh
+    ./transientServices
   ];
 
   options.homeModules.console.utility = {
@@ -19,6 +20,9 @@
     };
     tools = {
       enable = lib.mkEnableOption "Enable various console tools";
+    };
+    transientServices = {
+      enable = lib.mkEnableOption "Enable various console transientServices";
     };
   };
 }
