@@ -51,6 +51,7 @@
     fi
     fi
   '';
+  
 in
 
   {
@@ -174,6 +175,9 @@ in
     bindm = [
       "SUPER,          mouse:272,     movewindow"
       "SUPER,          mouse:273,     resizewindow"
+    ];
+    bindr = [
+      "SUPER, SUPER_L, exec, killall rofi || run-as-service $(rofi -show drun)"
     ];
   };
 }

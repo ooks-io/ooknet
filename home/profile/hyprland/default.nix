@@ -16,7 +16,7 @@ in
         lockscreen.hyprlock.enable = true;
         notification.mako.enable = true;
         bar.waybar.enable = true;
-        launcher.anyrun.enable = true;
+        launcher.rofi.enable = true;
       };
       communication = {
         discord.enable = true;
