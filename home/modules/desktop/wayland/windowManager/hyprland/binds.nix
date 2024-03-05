@@ -177,7 +177,7 @@ in
       "SUPER,          mouse:273,     resizewindow"
     ];
     bindr = [
-      "SUPER, SUPER_L, exec, killall rofi || run-as-service $(rofi -show drun)"
+      "SUPER, SUPER_L, exec, tofi-drun --drun-launch=true"
     ];
   };
 }

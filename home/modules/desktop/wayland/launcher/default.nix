@@ -4,6 +4,7 @@
   imports = [
     ./anyrun
     ./rofi
+    ./tofi
   ];
 
   options.homeModules.desktop.wayland.launcher = {
@@ -12,6 +13,9 @@
     };
     rofi = {
       enable = lib.mkEnableOption "enable rofi launcher module";
+    };
+    tofi = {
+      enable = lib.mkEnableOption "enable tofi launcher module";
     };
   };
 }

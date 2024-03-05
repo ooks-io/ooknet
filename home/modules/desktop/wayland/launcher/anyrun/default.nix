@@ -16,8 +16,18 @@ in
         plugins = with inputs.anyrun.packages.${pkgs.system}; [
           applications
           randr
+          shell
+          rink
+          symbols
         ];
       };
+      extraCss = /* css */ ''
+
+        * {
+          font-family: JetBrains Mono Nerd Font;
+        }
+        
+      '';
     };
   };
   
