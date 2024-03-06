@@ -9,14 +9,6 @@
 
   home.sessionVariables.HN = "ooksdesk";
 
-  homeModules.console.editor.nvim = {
-    enable = true;
-    plugins = {
-      lualine = true;
-      telescope = true;
-      indentBlankline = true;
-    };
-  };
   homeModules.desktop.wayland.windowManager.hyprland.nvidia = true;
   
   monitors = [{
@@ -28,6 +20,6 @@
     primary = true;
   }];
 
-  colorscheme = inputs.nix-colors.colorSchemes.everforest;
+  colorscheme = inputs.nix-colors.colorSchemes.gruvbox-material-dark-soft;
 }
 
