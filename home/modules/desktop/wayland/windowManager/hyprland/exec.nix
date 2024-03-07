@@ -14,6 +14,7 @@ in
         "${pkgs.live-buds-cli}/bin/earbuds -d"
         "eww daemon && eww open bar"
         "systemctl --user start clight"
+        "waybar"
       ];
     };
   };
