@@ -37,6 +37,11 @@ in
       "SUPER,          bracketleft,   exec,     ${spotifyctl} playback previous"
       "SUPER,          backslash,     exec,     ${spotifyctl} playback play-pause"
 
+      # Screenshot
+
+      ",               Print,         exec,     grimblast --notify --cursor copysave area"
+      "SUPER,          Print,         exec,     grimblast --notify --cursor copysave screen"
+
       # Brightness
 
       ",XF86MonBrightnessUp,          exec,     hyprbrightness up"

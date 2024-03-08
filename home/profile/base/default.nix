@@ -49,7 +49,7 @@ in
       createDirectories = true;
       extraConfig = {
         XDG_CODE_DIR = "${config.home.homeDirectory}/Coding";
-        XDG_SCREENSHOT_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
+        XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
         XDG_NOTES_DIR = "${config.xdg.userDirs.documents}/Notes";
       };
     };
