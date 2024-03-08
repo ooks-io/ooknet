@@ -1,10 +1,12 @@
 { config, lib, pkgs, ... }:
+
 let
   cfg = config.homeModules.desktop.wayland.windowManager.hyprland;
 in
+
 {
-  config = {
-    wayland.windowManager.hyprland.settings = lib.mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
+    wayland.windowManager.hyprland.settings = {
       exec = [
         "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
         "${pkgs.swaybg}/bin/swaybg -i ${config.wallpaper} --mode fill"

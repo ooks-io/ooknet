@@ -1,60 +1,10 @@
 { lib, config, pkgs, ... }: 
 
-  let
+let
     cfg = config.homeModules.desktop.wayland.windowManager.hyprland;
-    notifysend = "${pkgs.libnotify}/bin/notify-send";
-    #pamixer = "${pkgs.pamixer}/bin/pamixer";
-
-    brightnessScript = pkgs.writeShellScriptBin "brightness" ''
-      #!/bin/sh
-
-      if [ "$1" == "up" ]; then
-      brillo -q -u 30000 -A 5
-    elif [ "$1" == "down" ]; then
-      brillo -q -u 30000 -U 5
-    else
-      echo "Invalid argument"
-      exit 1
-    fi
-
-    BRIGHTNESS=$(brillo -G | awk -F'.' '{print$1}')
-
-    ${notifysend} --app-name="system-notify" -h string:x-canonical-private-synchronous:sys-notify "󰃠  $BRIGHTNESS%"
-    '';
-
-    volumeScript = pkgs.writeShellScriptBin "volume" ''
-    #!/bin/sh
-
-    if [ "$1" == "up" ]; then
-      pamixer --increase 5
-    elif [ "$1" == "down" ]; then
-      pamixer --decrease 5
-    elif [ "$1" == "mute" ]; then
-      pamixer --toggle-mute
-    fi
-
-    VOLUME=$(pamixer --get-volume-human)
-
-    ${notifysend} --app-name="system-notify" -h string:x-canonical-private-synchronous:sys-notify "  $VOLUME"
-  '';
-
-  # Script to help Hyprland quit https://github.com/hyprwm/Hyprland/issues/3558#issuecomment-1848768654
-  hyprKillScript = pkgs.writeShellScriptBin "killHyprland" ''
-
-    if pgrep -x .Hyprland-wrapp >/dev/null; then
-
-    hyprctl dispatch exit 0
-    sleep 2
-
-    if pgrep -x .Hyprland-wrapp >/dev/null; then
-    killall -9 .Hyprland-wrapp
-    fi
-    fi
-  '';
-  
 in
 
-  {
+{
   wayland.windowManager.hyprland.settings = lib.mkIf cfg.enable {
     bind = let
       terminal = config.home.sessionVariables.TERMINAL;
@@ -62,31 +12,21 @@ in
       editor = config.home.sessionVariables.EDITOR;
       locker = config.home.sessionVariables.LOCKER;
 
-      bright = "${brightnessScript}/bin/brightness";
-      volume = "${volumeScript}/bin/volume";
-
       spotifyctl = "${pkgs.spotify-player}/bin/spotify_player";
       discord = "${pkgs.vesktop}/bin/vesktop";
       
       explorer = "${pkgs.cinnamon.nemo-with-extensions}/bin/nemo";
-    
-      #makoctl = "${config.services.mako.package}/bin/makoctl";
 
       password = "${pkgs._1password-gui}/bin/1password";
-      killHyprland = "${hyprKillScript}/bin/killHyprland";
-      
-      #playerctl = "${config.services.playerctld.package}/bin/playerctl";
-      #playerctld = "${config.services.playerctld.package}/bin/playerctld";
-      #pactl = "${pkgs.pulseaudio}/bin/pactl";
     in [
 
       # Program Launch
       "SUPER,          b,             exec,     ${browser}"
       "SUPER,          return,        exec,     ${terminal}"
-      "SUPER,          e,             exec,     ${editor}"
+      "SUPER,          e,             exec,     ${terminal} ${editor}"
       "SUPERSHIFT,     P,             exec,     ${password}"
       "SUPER,          d,             exec,     ${discord}"
-      "SUPER,          e,             exec,     ${explorer}"
+      "SUPERSHIFT,     e,             exec,     ${explorer}"
       "SUPERSHIFT,     S,             exec,     steam"
       
       
@@ -99,20 +39,20 @@ in
 
       # Brightness
 
-      ",XF86MonBrightnessUp,          exec,     ${bright} up"
-      ",XF86MonBrightnessDown,        exec,     ${bright} down"
+      ",XF86MonBrightnessUp,          exec,     hyprbrightness up"
+      ",XF86MonBrightnessDown,        exec,     hyprbrightness down"
 
       # Volume
 
-      ",XF86AudioRaiseVolume,         exec,     ${volume} up"
-      ",XF86AudioLowerVolume,         exec,     ${volume} down"
-      ",XF86AudioMute,                exec,     ${volume} mute"
+      ",XF86AudioRaiseVolume,         exec,     hyprvolume up"
+      ",XF86AudioLowerVolume,         exec,     hyprvolume down"
+      ",XF86AudioMute,                exec,     hyprvolume mute"
       
       # Window Management
       
       "SUPER,          Q,             killactive"
       "SUPER CTRL,     backspace,     killactive"
-      "SUPERSHIFT ALT, delete,        exec, ${killHyprland}"
+      "SUPERSHIFT ALT, delete,        exec, hyprkillsession"
       "SUPER,          F,             fullscreen"
       "SUPER,          Space,         togglefloating"
       "SUPER,          P,             pseudo" # dwindle
@@ -177,7 +117,7 @@ in
       "SUPER,          mouse:273,     resizewindow"
     ];
     bindr = [
-      "SUPER, SUPER_L, exec, tofi-drun --drun-launch=true"
+      "SUPER, SUPER_L, exec, killall anyrun | anyrun"
     ];
   };
 }

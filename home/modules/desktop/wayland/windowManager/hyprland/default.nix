@@ -1,14 +1,13 @@
-{ lib, config, pkgs, ... }: 
+{ lib, config, pkgs, inputs, ... }: 
 let
   cfg = config.homeModules.desktop.wayland.windowManager.hyprland;
+  inherit (import ./pkgs {inherit pkgs;}) hyprbrightness hyprvolume hyprkillsession;
 in
 {
-    imports = [
-      ./binds.nix #hyprland keybindings
-      ./appearance.nix
-      ./rules.nix
-      ./exec.nix
-      ];
+  imports = [
+    inputs.hyprland.homeManagerModules.default
+    ./settings
+  ];
 
   config = lib.mkIf cfg.enable {
     xdg.portal = {
@@ -16,57 +15,20 @@ in
       configPackages = [ pkgs.inputs.hyprland.hyprland ];
     };
 
-    home.packages = with pkgs; [
-      inputs.hyprwm-contrib.grimblast
-      hyprpicker
-      light
-      hyprshade
-      ];
+    home.packages = [
+      inputs.hyprwm-contrib.packages.${pkgs.system}.grimblast
+      pkgs.hyprshade
+      hyprvolume
+      hyprkillsession
+      hyprbrightness
+    ];
     
     wayland.windowManager.hyprland = {
       enable = true;
-      package = pkgs.inputs.hyprland.hyprland;
+      xwayland.enable = true;
       systemd = {
         enable = true;
-        extraCommands = lib.mkBefore [
-          "systemctl --user stop graphical-session.target"
-          "systemctl --user start hyprland-session.target"
-        ];
-      };
-      settings = {
-        input = {
-          kb_layout = "us";
-          touchpad = {
-            disable_while_typing = false;
-          };
-        };
-        
-        misc = {
-          vrr = true;
-          disable_hyprland_logo = true;
-          force_default_wallpaper = 0;
-        };
-
-        env = lib.mkIf cfg.nvidia [
-          "LIBVA_DRIVER_NAME,nvidia"
-          "XDG_SESSION_TYPE,wayland"
-          "GBM_BACKEND,nvidia-drm"
-          "__GLX_VENDEOR_LIBRARY_NAME,nvidia"
-          "WLR_NO_HARDWARE_CURSORS,1"
-        ];
-        
-        gestures = {
-          workspace_swipe = true;
-          workspace_swipe_forever = true;
-        };
-        
-        monitor = lib.concatMap (m: let
-          resolution = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
-          position = "${toString m.x}x${toString m.y}";
-          basicConfig = "${m.name},${if m.enabled then "${resolution},${position},1" else "disable"}";
-        in
-          [ basicConfig ] ++ (if m.transform != 0 then ["${m.name},transform,${toString m.transform}"] else [])
-        ) (config.monitors);
+        variables = ["--all"];
       };
     };
   };
