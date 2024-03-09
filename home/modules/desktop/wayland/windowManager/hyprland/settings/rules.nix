@@ -15,6 +15,13 @@ in
         "center, class:^(.*jetbrains.*)$, title:^(Confirm Exit|Open Project|win424|win201|splash)$"
         "size 640 400, class:^(.*jetbrains.*)$, title:^(splash)$"
 
+        "float,title:^(BTOP)$"
+        "size 85%,title:^(BTOP)$"
+        "pin,title:^(BTOP)$"
+        "center,title:^(BTOP)$"
+        "stayfocused,title:^(BTOP)$"
+        
+
         "immediate, title:^(TEKKEN™8)$" #allow tearing for tekken8
       ];
     };

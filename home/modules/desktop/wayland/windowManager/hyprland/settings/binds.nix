@@ -28,6 +28,7 @@ in
       "SUPER,          d,             exec,     ${discord}"
       "SUPERSHIFT,     e,             exec,     ${explorer}"
       "SUPERSHIFT,     S,             exec,     steam"
+      "SUPER,          escape,        exec,     ${terminal} --title=BTOP btop"
       
       
 
