@@ -18,6 +18,7 @@ in
     home.packages = [
       inputs.hyprwm-contrib.packages.${pkgs.system}.grimblast
       pkgs.hyprshade
+      pkgs.hyprpicker
       hyprvolume
       hyprkillsession
       hyprbrightness
