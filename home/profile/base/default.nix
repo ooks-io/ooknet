@@ -51,6 +51,7 @@ in
         XDG_CODE_DIR = "${config.home.homeDirectory}/Coding";
         XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
         XDG_NOTES_DIR = "${config.xdg.userDirs.documents}/Notes";
+        XDG_RECORDINGS_DIR = "${config.xdg.userDirs.videos}/Recordings";
       };
     };
 
