@@ -11,9 +11,7 @@ in
         "float, title:^(Picture-in-Picture)$"
         "pin, title:^(Picture-in-Picture)$"
 
-        "rounding 0, xwayland:1"
-        "center, class:^(.*jetbrains.*)$, title:^(Confirm Exit|Open Project|win424|win201|splash)$"
-        "size 640 400, class:^(.*jetbrains.*)$, title:^(splash)$"
+        "workspace 4, title:Vesktop"
 
         "float,title:^(BTOP)$"
         "size 85%,title:^(BTOP)$"
@@ -22,7 +20,8 @@ in
         "stayfocused,title:^(BTOP)$"
         
 
-        "immediate, title:^(TEKKEN™8)$" #allow tearing for tekken8
+        # Tearing
+        "immediate, title:^(TEKKEN™8)$" 
       ];
     };
   };
