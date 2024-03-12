@@ -13,7 +13,7 @@
 			ooks.enable = true;
 			shell.fish.enable = true;
 		};
-  	
+
 		networking = {
   		hostName = "ookst480s"; 		
 		};

@@ -42,6 +42,9 @@ in
 
       ",               Print,         exec,     grimblast --notify --cursor copysave area"
       "SUPER,          Print,         exec,     grimblast --notify --cursor copysave screen"
+      "SUPER,          r,             exec,     hyprrecord -a"
+      "SUPER CTRL,     r,             exec,     hyprrecord -a -r"
+      
 
       # Brightness
 
