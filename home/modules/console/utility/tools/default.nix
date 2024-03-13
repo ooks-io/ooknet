@@ -25,6 +25,7 @@ in
       # resource manager
       powertop
     
+      wl-screenrec
       diffsitter # Better diff
       jq # JSON pretty printer and manipulator
       comma # Install and run with ","
