@@ -8,15 +8,6 @@
   activeProfiles = ["base" "hyprland" "productivity"];
 
   home.sessionVariables.HN = "ookst480s";
-
-  homeModules.console.editor.nvim = {
-    enable = true;
-    plugins = {
-      lualine = true;
-      telescope = true;
-      indentBlankline = true;
-    };
-  };
   
   monitors = [{
     name = "eDP-1";
