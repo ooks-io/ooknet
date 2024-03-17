@@ -1,7 +1,7 @@
 { lib, config, pkgs, inputs, ... }: 
 let
   cfg = config.homeModules.desktop.wayland.windowManager.hyprland;
-  inherit (import ./pkgs {inherit pkgs;}) hyprrecord hyprbrightness hyprvolume hyprkillsession;
+  inherit (import ./pkgs {inherit pkgs;}) hyprbrightness hyprvolume hyprkillsession;
 in
 {
   imports = [
@@ -22,8 +22,8 @@ in
       hyprvolume
       hyprkillsession
       hyprbrightness
-      hyprrecord
-    ];
+      inputs.hyprrecord.packages.${pkgs.system}.hyprrecord
+      ];
     
     wayland.windowManager.hyprland = {
       enable = true;

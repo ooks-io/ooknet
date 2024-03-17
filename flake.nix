@@ -51,6 +51,11 @@
       url = "github:hyprwm/hypridle";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    hyprrecord = {
+      url = "github:ooks-io/hyprrecord";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   
     hyprpaper.url = "github:hyprwm/hyprpaper";
   
