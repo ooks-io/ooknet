@@ -42,9 +42,9 @@ in
 
       ",               Print,         exec,     grimblast --notify --cursor copysave area"
       "SUPER,          Print,         exec,     grimblast --notify --cursor copysave screen"
-      "SUPER,          r,             exec,     hyprrecord -a copysave screen video"
-      "SUPER CTRL,     r,             exec,     hyprrecord -a copysave area video"
-      "SUPER ALT,      r,             exec,     hyprrecord copysave area gif"
+      "SUPER,          r,             exec,     hyprrecord -a -w copysave screen video"
+      "SUPER CTRL,     r,             exec,     hyprrecord -a -w copysave area video"
+      "SUPER ALT,      r,             exec,     hyprrecord -w copysave area gif"
       
 
       # Brightness
