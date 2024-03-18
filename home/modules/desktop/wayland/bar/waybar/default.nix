@@ -24,7 +24,7 @@ in
 
         modules-left = [ "clock" "battery" "hyprland/workspaces" ];
         modules-center = [];
-        modules-right = [ "tray" ];
+        modules-right = [ "custom/hyprrecord" "tray" ];
 
         "hyprland/workspaces" = let
           hyprctl = config.wayland.windowManager.hyprland.package + "/bin/hyprctl";
@@ -66,6 +66,15 @@ in
           icon-size = 21;
           spacing = 5;
         };
+        "custom/hyprrecord" = {
+          format = "{}";
+          interval = "once";
+          exec = "echo  ";
+          tooltip = "false";
+          exec-if = "pgrep wl-screenrec";
+          on-click = "exec hyprrecord -a --waybar screen copysave video";
+          signal = 12;
+        };
       };
       style = /* css */ ''
         * {
@@ -94,7 +103,6 @@ in
         }
 
         #battery {
-          padding-left: 10px;
           padding-left: 10px;
           border-top: 2px solid #${colors.base05};
           border-bottom: 2px solid #${colors.base05};
@@ -132,6 +140,11 @@ in
 
         #workspaces button.urgent {
           color: #${colors.base08};
+        }
+
+        #custom-hyprrecord {
+          color: #${colors.base08};
+          padding-right: 20px;
         }
       '';
     };
