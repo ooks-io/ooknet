@@ -698,11 +698,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1710746957,
-        "narHash": "sha256-MZFPQh1KGxmYBUJrdfbAtcbV7kFMlVUgxPbLpjoEGcs=",
+        "lastModified": 1710755241,
+        "narHash": "sha256-LukbcrluW/m9sbkcpIvmLvcdgODV9VJ9fq3AU/g6oIs=",
         "owner": "ooks-io",
         "repo": "hyprrecord",
-        "rev": "98f2694ab8811541d16d58fda24742db88ac56a1",
+        "rev": "e9d5d35b616a6ec99a7a891dd8da7c7ad6e9110c",
         "type": "github"
       },
       "original": {
