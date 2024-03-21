@@ -42,9 +42,9 @@ in
 
       ",               Print,         exec,     grimblast --notify --cursor copysave area"
       "SUPER,          Print,         exec,     grimblast --notify --cursor copysave screen"
-      "SUPER,          r,             exec,     hyprrecord -a -w copysave screen video"
-      "SUPER CTRL,     r,             exec,     hyprrecord -a -w copysave area video"
-      "SUPER ALT,      r,             exec,     hyprrecord -w copysave area gif"
+      "SUPER,          r,             exec,     hyprrecord -a -w video screen video"
+      "SUPER CTRL,     r,             exec,     hyprrecord -a -w video area copysave"
+      "SUPER ALT,      r,             exec,     hyprrecord -w gif area copysave"
       
 
       # Brightness
@@ -128,7 +128,7 @@ in
       "SUPER,          mouse:273,     resizewindow"
     ];
     bindr = [
-      "SUPER, SUPER_L, exec, killall anyrun | anyrun"
+      # "SUPER, SUPER_L, exec, killall anyrun | anyrun"
     ];
   };
 }
