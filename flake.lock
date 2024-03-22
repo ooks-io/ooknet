@@ -691,26 +691,6 @@
         "type": "github"
       }
     },
-    "hyprrecord": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1710836313,
-        "narHash": "sha256-dk414KuSUmlA2sXufWX6eeezDbKwEbwywuXFPcQKogI=",
-        "owner": "ooks-io",
-        "repo": "hyprrecord",
-        "rev": "87a940a05898e5a17741a79e6fca3c2f0b85b1ac",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ooks-io",
-        "repo": "hyprrecord",
-        "type": "github"
-      }
-    },
     "hyprwm-contrib": {
       "inputs": {
         "nixpkgs": [
@@ -1046,6 +1026,26 @@
         "type": "github"
       }
     },
+    "ooks-scripts": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1711097253,
+        "narHash": "sha256-mjymNZVco1bGVWMJWBJWw94VdIgpfRUfdhl1w36pG+s=",
+        "owner": "ooks-io",
+        "repo": "scripts",
+        "rev": "1ad7935dea85b91ca062ea60a4e56e0df7ae9871",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ooks-io",
+        "repo": "scripts",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat_2",
@@ -1087,13 +1087,13 @@
         "hyprland-plugins": "hyprland-plugins",
         "hyprlock": "hyprlock",
         "hyprpaper": "hyprpaper",
-        "hyprrecord": "hyprrecord",
         "hyprwm-contrib": "hyprwm-contrib",
         "nh": "nh",
         "nix-colors": "nix-colors",
         "nix-gaming": "nix-gaming",
         "nixpkgs": "nixpkgs_6",
         "nixvim": "nixvim",
+        "ooks-scripts": "ooks-scripts",
         "sops-nix": "sops-nix",
         "ssbm-nix": "ssbm-nix",
         "zjstatus": "zjstatus"
