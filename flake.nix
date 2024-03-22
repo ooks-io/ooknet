@@ -52,8 +52,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprrecord = {
-      url = "github:ooks-io/hyprrecord";
+    ooks-scripts = {
+      url = "github:ooks-io/scripts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   
