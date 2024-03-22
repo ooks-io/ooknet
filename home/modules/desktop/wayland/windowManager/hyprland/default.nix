@@ -2,6 +2,7 @@
 let
   cfg = config.homeModules.desktop.wayland.windowManager.hyprland;
   inherit (import ./pkgs {inherit pkgs;}) hyprbrightness hyprvolume hyprkillsession;
+  inherit (inputs.ooks-scripts.packages.${pkgs.system}) hyprrecord powermenu;
 in
 {
   imports = [
@@ -22,7 +23,8 @@ in
       hyprvolume
       hyprkillsession
       hyprbrightness
-      inputs.hyprrecord.packages.${pkgs.system}.hyprrecord
+      hyprrecord
+      powermenu
       ];
     
     wayland.windowManager.hyprland = {

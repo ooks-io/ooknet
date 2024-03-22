@@ -29,6 +29,8 @@ in
       "SUPERSHIFT,     e,             exec,     ${explorer}"
       "SUPERSHIFT,     S,             exec,     steam"
       "SUPER,          escape,        exec,     ${terminal} --title=BTOP btop"
+
+      "SUPER,          delete,        exec,     powermenu -c dmenu"
       
       
 
@@ -42,7 +44,7 @@ in
 
       ",               Print,         exec,     grimblast --notify --cursor copysave area"
       "SUPER,          Print,         exec,     grimblast --notify --cursor copysave screen"
-      "SUPER,          r,             exec,     hyprrecord -a -w video screen video"
+      "SUPER,          r,             exec,     hyprrecord -a -w video screen copysave"
       "SUPER CTRL,     r,             exec,     hyprrecord -a -w video area copysave"
       "SUPER ALT,      r,             exec,     hyprrecord -w gif area copysave"
       
@@ -128,7 +130,7 @@ in
       "SUPER,          mouse:273,     resizewindow"
     ];
     bindr = [
-      # "SUPER, SUPER_L, exec, killall anyrun | anyrun"
+      "SUPER, SUPER_L, exec, killall rofi || rofi -show drun"
     ];
   };
 }
