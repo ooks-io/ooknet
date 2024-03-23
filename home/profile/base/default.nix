@@ -41,6 +41,7 @@ in
       sessionPath = [ "$HOME/.local/bin" ];
       sessionVariables = {
         FLAKE = "$HOME/Coding/nix/ooks-io/nix";
+        SCRIPTS = "$HOME/Coding/sh/scripts";
         TZ = "Pacific/Auckland";
       };
     };

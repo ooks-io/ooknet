@@ -13,25 +13,10 @@ in
     programs.fish = mkIf cfg.enable {
       enable = true;
       shellAbbrs = rec {
-        jqless = "jq -C | less -r";
-
-        n = "nix";
-        nd = "nix develop -c $SHELL";
-        ns = "nix shell";
-        nsn = "nix shell nixpkgs#";
-        nb = "nix build";
-        nbn = "nix build nixpkgs#";
-        nf = "nix flake";
-
-        nr = "nixos-rebuild --flake .";
-        nrs = "nixos-rebuild --flake . switch";
-        snr = "sudo nixos-rebuild --flake .";
-        snrs = "sudo nixos-rebuild --flake . switch";
-        hm = "home-manager --flake .";
-        hms = "home-manager --flake . switch";
 
         fe = mkIf hasHelix "cd $FLAKE; hx $FLAKE";
         f = "cd $FLAKE";
+        s = "cd $SCRIPTS";
 
         tree = mkIf hasEza "eza -T --icons --group-directories-first";
         ls = mkIf hasEza "eza -a --icons --group-directories-first";
