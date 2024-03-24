@@ -13,12 +13,15 @@ in
 
         "workspace 4, title:Vesktop"
 
+        # Floating BTOP
         "float,title:^(BTOP)$"
         "size 85%,title:^(BTOP)$"
         "pin,title:^(BTOP)$"
         "center,title:^(BTOP)$"
         "stayfocused,title:^(BTOP)$"
         
+        # 1Password
+        "stayfocused,title:^(1Password)$"
 
         # Tearing
         "immediate, title:^(TEKKEN™8)$" 
