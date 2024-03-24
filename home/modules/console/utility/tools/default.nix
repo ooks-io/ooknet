@@ -24,6 +24,9 @@ in
 
       # resource manager
       powertop
+
+      #shell scripting
+      gum
     
       wl-screenrec
       diffsitter # Better diff
