@@ -19,6 +19,7 @@ in
           background = mkLiteral "#${colors.base00}";
           foreground = mkLiteral "#${colors.base05}";
           selected = mkLiteral "#${colors.base0B}";
+          message = mkLiteral "#${colors.base0D}";
 
           background-color = mkLiteral "@background";
           border-color = mkLiteral "@foreground";
@@ -30,7 +31,16 @@ in
           width = mkLiteral "15%";
           border = mkLiteral "2";
           padding = mkLiteral "10";
-          children = mkLiteral "[inputbar,listview]";
+          children = mkLiteral "[message,listview,inputbar]";
+        };
+
+        "message" = {
+          children = mkLiteral "[textbox]";
+        };
+
+        "textbox" = {
+          text-color = mkLiteral "@message";
+          horizontal-align = mkLiteral "0.50";
         };
 
         "inputbar" = {
