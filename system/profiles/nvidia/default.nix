@@ -13,11 +13,13 @@ in
       package = production;
       modesetting.enable = true;
       nvidiaSettings = true;
-      powerManagement.enable = false;
+      powerManagement.enable = true;
     };
+    hardware.opengl.extraPackages = [ pkgs.nvidia-vaapi-driver ];
     services.xserver.videoDrivers = [ "nvidia" ];
     environment.sessionVariables = {
       LIBVA_DRIVER_NAME = "nvidia";
+      NVD_BACKEND = "direct";
     };
     environment.systemPackages = with pkgs; [
       vulkan-loader
