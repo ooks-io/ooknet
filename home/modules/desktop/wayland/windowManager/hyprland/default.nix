@@ -2,7 +2,7 @@
 let
   cfg = config.homeModules.desktop.wayland.windowManager.hyprland;
   inherit (import ./pkgs {inherit pkgs;}) hyprbrightness hyprvolume hyprkillsession;
-  inherit (inputs.ooks-scripts.packages.${pkgs.system}) hyprrecord powermenu;
+  inherit (inputs.ooks-scripts.packages.${pkgs.system}) hyprrecord powermenu zellijmenu;
 in
 {
   imports = [
@@ -23,8 +23,11 @@ in
       hyprvolume
       hyprkillsession
       hyprbrightness
+
+      # Personal scripts
       hyprrecord
       powermenu
+      zellijmenu #TODO: only add if zellij enabled
       ];
     
     wayland.windowManager.hyprland = {
