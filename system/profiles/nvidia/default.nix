@@ -15,16 +15,24 @@ in
       nvidiaSettings = true;
       powerManagement.enable = true;
     };
-    hardware.opengl.extraPackages = [ pkgs.nvidia-vaapi-driver ];
+    hardware.opengl.extraPackages = with pkgs; [ nvidia-vaapi-driver ];
+    hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ nvidia-vaapi-driver ];
     services.xserver.videoDrivers = [ "nvidia" ];
     environment.sessionVariables = {
       LIBVA_DRIVER_NAME = "nvidia";
       NVD_BACKEND = "direct";
     };
     environment.systemPackages = with pkgs; [
+      nvtopPackages.nvidia
+      mesa
+      
+      libva
+      libva-utils
+
       vulkan-loader
       vulkan-validation-layers
       vulkan-tools
+      vulkan-extension-layer
     ];
   };
 
