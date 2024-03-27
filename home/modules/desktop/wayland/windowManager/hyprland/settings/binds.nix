@@ -29,7 +29,7 @@ in
       "SUPERSHIFT,     e,             exec,     ${explorer}"
       "SUPERSHIFT,     S,             exec,     steam"
       "SUPER,          escape,        exec,     ${terminal} --title=BTOP btop"
-      "SUPER CTRL,     return,        exec,     zellijmenu --dmenu"
+      "SUPER CTRL,     return,        exec,     zellijmenu -n"
 
       "SUPER,          delete,        exec,     powermenu -c dmenu"
       
