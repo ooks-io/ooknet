@@ -1035,11 +1035,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1711364240,
-        "narHash": "sha256-AAugEGSxtITGctnq5G1Q4X6f7N72vbyvd/OYOguzGm0=",
+        "lastModified": 1711531808,
+        "narHash": "sha256-9hWmukHMF2APgInk1f5cGBc0gdHUoxiv9bjGoT8QZhA=",
         "owner": "ooks-io",
         "repo": "scripts",
-        "rev": "2de3dcdabf9d8741acccdb8e4511ba02ddb45a70",
+        "rev": "45f88bb018191dd19ede49f8dd67f3fee5cb835b",
         "type": "github"
       },
       "original": {
