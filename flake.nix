@@ -74,15 +74,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-gaming = {
-      #NEEDFIX:url = "github:fufexan/nix-gaming";
-      url ="github:NotAShelf/nix-gaming";
-    };
-    ssbm-nix = {
-      url = "github:djanatyn/ssbm-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     zjstatus.url = "github:dj95/zjstatus";
     
   };

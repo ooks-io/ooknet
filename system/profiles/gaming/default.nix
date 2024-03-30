@@ -16,23 +16,19 @@ let
       keyutils
       mangohud
       winetricks
-      inputs.nix-gaming.packages.${pkgs.system}.wine-ge
       protontricks
     ];
   };
 in
 
 {
-  imports = [
-    inputs.nix-gaming.nixosModules.pipewireLowLatency
-  ];
-
   config = lib.mkIf cfg.enable {
     hardware.opengl.extraPackages = [ pkgs.gamescope ];
     programs = {
       steam = {
         enable = true;
         package = steamFix;
+        extraCompatPackages = [ pkgs.proton-ge-bin.steamcompattool ];
       };
       gamescope = {
         enable = true;
@@ -52,14 +48,5 @@ in
         };
       };
     };
-    # services.pipewire.lowLatency.enable = true;
-
-    nixpkgs.overlays = [
-      (_: prev: {
-        steam = prev.steam.override {
-          extraProfile = "export STEAM_EXTRA_COMPAT_TOOLS_PATHS='${inputs.nix-gaming.packages.${pkgs.system}.proton-ge}'";
-        };
-      })
-    ];
   };
 }
