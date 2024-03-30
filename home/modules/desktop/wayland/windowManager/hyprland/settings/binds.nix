@@ -130,8 +130,8 @@ in
       "SUPER,          mouse:272,     movewindow"
       "SUPER,          mouse:273,     resizewindow"
     ];
-    bindr = [
-      "SUPER, SUPER_L, exec, killall rofi || rofi -show drun"
-    ];
+    # bindr = [
+    #   "SUPER, SUPER_L, exec, killall rofi || rofi -show drun"
+    # ];
   };
 }
