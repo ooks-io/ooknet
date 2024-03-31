@@ -13,6 +13,7 @@ in
     ./gaming
     ./laptop
     ./mediaServer
+    ./amd
   ];
 
   options = {
@@ -33,6 +34,9 @@ in
       };
       nvidia = {
         enable = lib.mkEnableOption "Enable the nvidia profile";
+      };
+      amd = {
+        enable = lib.mkEnableOption "Enable the amd profile";
       };
       mediaServer = {
         enable = lib.mkEnableOption "Enable the mediaServer profile";
