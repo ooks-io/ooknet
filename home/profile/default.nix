@@ -12,6 +12,7 @@ in
     ./hyprland
     #./creative
     ./productivity
+    ./gaming
   ];
 
   options = {

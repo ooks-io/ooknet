@@ -3,12 +3,12 @@
 {
 
   imports = [
-    ./slippi
+    ./factorio
   ];
 
   options.homeModules.desktop.gaming = {
-    slippi = {
-      enable = lib.mkEnableOption "Enable Slippi home module";
+    factorio = {
+      enable = lib.mkEnableOption "Enable factorio home module";
     };
   };
   

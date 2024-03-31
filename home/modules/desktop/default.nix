@@ -10,6 +10,6 @@
     #./utility -- still needs to be implemented
     ./wayland # -- almost done, need to implement eww 
     ./productivity
-    # ./gaming 
+    ./gaming 
   ];
 }
