@@ -26,11 +26,12 @@ in {
         padding=3,3
         width=100
         height=100
-        [app-name="bat-notify"]
+        [urgency=critical]
         padding=3,3
         width=100
         height=100
         anchor=top-center
+        border-color=${colors.base08}
       '';
     };
   };
