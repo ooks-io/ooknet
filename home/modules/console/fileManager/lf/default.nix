@@ -9,7 +9,7 @@ in
 
 {
   config = lib.mkIf cfg.enable {
-    home.sessionVariables.TERMFILEMANAGER = lib.mkIf cfg.default "lf";
+    home.sessionVariables.FILEMANAGER = lib.mkIf cfg.default "lf";
   
     xdg.configFile."lf/icons".source = ./icons;
 
