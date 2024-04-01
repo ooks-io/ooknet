@@ -9,7 +9,7 @@
 
   home.sessionVariables.HN = "ooksdesk";
 
-  homeModules.desktop.wayland.windowManager.hyprland.nvidia = true;
+  homeModules.desktop.wayland.nvidia = true;
   
   monitors = [{
     name = "DP-1";
