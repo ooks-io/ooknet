@@ -32,7 +32,6 @@ in
       home-manager.enable = true;
       git.enable = true;
     };
-    home.packages = with pkgs; [ sops ];
 
     home = {
       username = lib.mkDefault "ooks";
