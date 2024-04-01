@@ -31,7 +31,7 @@ in {
         width=100
         height=100
         anchor=top-center
-        border-color=${colors.base08}
+        border-color=#${colors.base08}dd
       '';
     };
   };
