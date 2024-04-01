@@ -10,10 +10,6 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    programs.home-manager.enable = true;
-
-    xdg.portal.enable = true;
-
     homeModules = {
       sops.enable = true;
 
@@ -21,7 +17,8 @@ in
         nix.enable = true;
         nixColors.enable = true;
         home.enable = true;
-        userDirs.enable = true;
+        # userDirs.enable = true;
+        # mimeApps.enable = true;
       };
 
       console = {
