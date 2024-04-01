@@ -27,8 +27,9 @@ in
 
       #shell scripting
       gum
-    
-      wl-screenrec
+      # audio ctrl
+      pamixer
+          
       diffsitter # Better diff
       jq # JSON pretty printer and manipulator
       comma # Install and run with ","
@@ -36,6 +37,9 @@ in
       progress
       killall
       acpi
+
+      # Notifications
+      libnotify
 
       # Nix tooling
       alejandra
