@@ -10,7 +10,7 @@ in
   ];
   
   config = lib.mkIf cfg.enable {
-    environment.variables.FLAKE = "/home/ooks/Coding/nix/ooks-io/nix";
+    environment.variables.FLAKE = "/home/ooks/.config/ooknix/";
 
     nh = {
       enable = true;
