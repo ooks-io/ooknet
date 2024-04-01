@@ -14,6 +14,12 @@ in
       ooks-scripts.packages.${pkgs.system}.hyprrecord
     ];
 
+    # Add XDG user directories that the scripts use
+    xdg.userDirs.extraConfig = {
+      XDG_RECORDINGS_DIR = "${config.xdg.userDirs.videos}/Recordings";
+      XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
+    };
+
     wayland.windowManager.hyprland.settings.bind = [
       # Screenshot binds
       ",               Print,         exec,     grimblast --notify --cursor copysave area"

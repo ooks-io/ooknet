@@ -12,6 +12,7 @@ in
     homeModules.desktop = {
       productivity = {
         obsidian.enable = true;
+        zathura.enable = true;
       };
     };
   };
