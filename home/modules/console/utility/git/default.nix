@@ -3,8 +3,8 @@
     cfg = config.homeModules.console.utility.git;
   in
 { 
-  config = {
-    programs.git = lib.mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
+    programs.git = {
       enable = true;
       package = pkgs.gitAndTools.gitFull;
       userName = "ooks-io";
