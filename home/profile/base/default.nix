@@ -17,8 +17,8 @@ in
         nix.enable = true;
         nixColors.enable = true;
         home.enable = true;
-        # userDirs.enable = true;
-        # mimeApps.enable = true;
+        userDirs.enable = true;
+        mimeApps.enable = true;
       };
 
       console = {
