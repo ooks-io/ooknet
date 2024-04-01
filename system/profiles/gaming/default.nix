@@ -17,6 +17,8 @@ let
       mangohud
       winetricks
       protontricks
+      gtk3
+      gtk3-x11
     ];
   };
 in
