@@ -3,6 +3,7 @@
 let
   cfg = config.homeModules.desktop.productivity.zathura;
   inherit (config.colorscheme) colors;
+  fonts = config.homeModules.theme.fonts;
 in
 
 {
@@ -10,7 +11,7 @@ in
     programs.zathura = {
       enable = true;
       options = {
-        font = "${config.fontProfiles.regular.family} 14";
+        font = "${fonts.regular.family} 14";
         recolor = true;
         selection-clipboard = "clipboard";
         default-bg = "#${colors.base00}";

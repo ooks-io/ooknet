@@ -15,7 +15,7 @@ in
 
       config = {
         nix.enable = true;
-        nixColors.enable = true;
+        # nixColors.enable = true;
         home.enable = true;
         userDirs.enable = true;
         mimeApps.enable = true;

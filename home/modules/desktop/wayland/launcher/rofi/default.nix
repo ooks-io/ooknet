@@ -1,6 +1,7 @@
 { lib, config, pkgs, ... }:
 
 let
+  fonts = config.homeModules.theme.fonts;
   cfg = config.homeModules.desktop.wayland.launcher.rofi;
 in
 
@@ -8,7 +9,7 @@ in
   config = lib.mkIf cfg.enable {
     programs.rofi = {
       enable = true;
-      font = "${config.fontProfiles.monospace.family}";
+      font = "${fonts.monospace.family}";
       package = pkgs.rofi-wayland;
       terminal = "${config.home.sessionVariables.TERMINAL}";
       theme = let
@@ -24,7 +25,7 @@ in
           background-color = mkLiteral "@background";
           border-color = mkLiteral "@foreground";
           text-color = mkLiteral "@foreground";
-          font = mkLiteral "'${config.fontProfiles.monospace.family} 14'";
+          font = mkLiteral "'${fonts.monospace.family} 14'";
         };
 
         "window" = {

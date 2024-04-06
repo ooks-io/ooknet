@@ -2,7 +2,9 @@
 
 let
   inherit (config.colorscheme) colors;
+  fonts = config.homeModules.theme.font;
   cfg = config.homeModules.desktop.terminal.kitty;
+  fish = config.homeModules.console.shell.fish;
 in
 {
 
@@ -14,10 +16,10 @@ in
     programs.kitty = {
       enable = true;
       font = {
-        name = config.fontProfiles.monospace.family;
+        name = fonts.monospace.family;
         size = 12;
       };
-      shellIntegration.enableFishIntegration = true;
+      shellIntegration.enableFishIntegration = lib.mkif fish.enable true;
       settings = {
         scrollback_lines = 4000;
         scrollback_pager_history_size = 2048;

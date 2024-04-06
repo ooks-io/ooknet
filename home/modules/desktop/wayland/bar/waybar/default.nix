@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let
+  fonts = config.homeModules.theme.fonts;
   cfg = config.homeModules.desktop.wayland.bar.waybar;
   monitorWidth =  (lib.head config.monitors).width - 20;
   inherit (config.colorscheme) colors;
@@ -78,7 +79,7 @@ in
       };
       style = /* css */ ''
         * {
-          font-family: "${config.fontProfiles.monospace.family}";
+          font-family: "${fonts.monospace.family}";
           font-size: 19px;
           border: solid #${colors.base05};
         }

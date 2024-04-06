@@ -2,6 +2,7 @@
 
 let
   inherit (config.colorscheme) colors;
+  fonts = config.homeModules.theme.fonts;
   cfg = config.homeModules.desktop.terminal.foot;
 in
 
@@ -16,10 +17,10 @@ in
       server.enable = true;
       settings = {
         main = {
-          font = "${config.fontProfiles.monospace.family}:pixelsize=18:antialias=true";
-          font-bold = "${config.fontProfiles.monospace.family}:style=Bold:pixelsize=18:antialias=true";
-          font-italic = "${config.fontProfiles.monospace.family}:style=Italic:pixelsize=18:antialias=true";
-          font-bold-italic = "${config.fontProfiles.monospace.family}:style=Bold Italic:pixelsize=18:antialias=true";
+          font = "${fonts.monospace.family}:pixelsize=18:antialias=true";
+          font-bold = "${fonts.monospace.family}:style=Bold:pixelsize=18:antialias=true";
+          font-italic = "${fonts.monospace.family}:style=Italic:pixelsize=18:antialias=true";
+          font-bold-italic = "${fonts.monospace.family}:style=Bold Italic:pixelsize=18:antialias=true";
           dpi-aware = "yes";
           letter-spacing = "-1px";
           bold-text-in-bright = "palette-based";

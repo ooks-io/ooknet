@@ -2,14 +2,19 @@
 
 let
   inherit (inputs.nix-colors.lib-contrib { inherit pkgs; }) gtkThemeFromScheme;
-  cfg = config.homeModules.desktop.themeSettings;
+  cfg = config.homeModules.theme.gtk;
 in
 {
+  options.homeModules.theme.gtk = {
+    enable = lib.mkEnableOption "Enable gtk theme module";
+    # TODO: add theme option
+  };
+
   config = lib.mkIf cfg.enable (rec {
     gtk = {
       enable = true;
       font = {
-        name = config.fontProfiles.regular.family;
+        name = config.homeModules.theme.fonts.regular.family;
         size = 12;
       };
       theme = {
@@ -33,3 +38,4 @@ in
     xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   });
 }
+

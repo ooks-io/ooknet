@@ -13,6 +13,7 @@ in
     #./creative
     ./productivity
     ./gaming
+    ./themes
   ];
 
   options = {

@@ -54,8 +54,6 @@ in
           youtube.enable = true;
         };
       };
-
-      themeSettings.enable = true;
     };
   };
 }

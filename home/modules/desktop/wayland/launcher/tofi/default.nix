@@ -2,6 +2,7 @@
 
 let
   cfg = config.homeModules.desktop.wayland.launcher.tofi;
+  fonts = config.homeModules.theme.fonts;
   inherit (config.colorscheme) colors;
 in
 
@@ -24,7 +25,7 @@ in
       result-spacing = 10
       selection-background-padding = 30
       prompt-padding = 10
-      font = "${config.fontProfiles.monospace.family}"
+      font = "${fonts.monospace.family}"
       font-size = 14
       prompt-text = "  "
       background-color = #0000

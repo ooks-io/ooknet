@@ -7,6 +7,8 @@
 
   activeProfiles = ["base" "hyprland" "productivity"];
 
+  theme.minimal.enable = true;
+
   home.sessionVariables.HN = "ookst480s";
   
   monitors = [{
@@ -17,7 +19,5 @@
     primary = true;
     transform = 0;
   }];
-
-  colorscheme = inputs.nix-colors.colorSchemes.gruvbox-material-dark-soft;
 }
 

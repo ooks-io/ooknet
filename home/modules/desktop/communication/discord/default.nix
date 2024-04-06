@@ -2,6 +2,7 @@
 
 let
   cfg = config.homeModules.desktop.communication.discord;
+  fonts = config.homeModules.theme.fonts;
   inherit (config.colorscheme) colors;
 in
 
@@ -29,8 +30,8 @@ in
         --nix-accent: #${colors.base08};
         --nix-hi: #${colors.base0B}; 
 
-        --font-mono: ${config.fontProfiles.monospace.family}, monospace;
-        --font-regular: ${config.fontProfiles.regular.family}, sans serif;
+        --font-mono: ${fonts.monospace.family}, monospace;
+        --font-regular: ${fonts.regular.family}, sans serif;
 
         /* server collapse */
         --sb-collapsed-width: 12px;

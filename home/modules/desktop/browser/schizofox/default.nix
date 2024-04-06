@@ -2,6 +2,7 @@
 
 let
   cfg = config.homeModules.desktop.browser.schizofox;
+  fonts = config.homeModules.theme.fonts;
   inherit (config.colorscheme) colors;
 in
 
@@ -13,7 +14,7 @@ in
     programs.schizofox = {
       enable = true;
       theme = {
-        font = "${config.fontProfiles.regular.family}";
+        font = "${fonts.regular.family}";
         colors = {
           background-darker = "${colors.base00}";
           background = "${colors.base01}";

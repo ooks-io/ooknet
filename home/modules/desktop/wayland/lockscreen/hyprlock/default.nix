@@ -2,6 +2,7 @@
 
 let
   cfg = config.homeModules.desktop.wayland.lockscreen.hyprlock;
+  fonts = config.homeModules.theme.fonts;
   inherit (config.colorscheme) colors;
 in
 
@@ -55,7 +56,7 @@ in
           };
           color = "0xff${colors.base08}";
           font_size = 30;
-          font_family = "${config.fontProfiles.monospace.family}";
+          font_family = "${fonts.monospace.family}";
         }
         {
           monitor = "";
@@ -66,7 +67,7 @@ in
           };
           color = "0xff${colors.base0B}";
           font_size = 20;
-          font_family = "${config.fontProfiles.monospace.family}";
+          font_family = "${fonts.monospace.family}";
         }
       ];
     };

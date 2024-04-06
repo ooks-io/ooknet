@@ -9,5 +9,6 @@
     ./misc.nix
     ./monitor.nix
     ./gestures.nix
+    ./hyprpaper.nix
   ];
 }

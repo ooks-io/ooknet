@@ -3,5 +3,6 @@
     ./desktop
     ./console
     ./config
+    ./theme
   ];
 }

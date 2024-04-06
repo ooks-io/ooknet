@@ -1,6 +1,6 @@
 {
   imports = [
-    ./themeSettings # done
+    # ./themeSettings # done
     ./browser # done -- firefox still need: chrome, brave
     #./creative -- still needs to be implemented
     ./communication # only discord implemented

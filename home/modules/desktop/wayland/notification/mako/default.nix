@@ -1,6 +1,7 @@
 { config, lib, ... }:
 let
   inherit (config.colorscheme) colors kind;
+  fonts = config.homeModules.theme.fonts;
   cfg = config.homeModules.desktop.wayland.notification.mako;
 in {
   config = lib.mkIf cfg.enable {
@@ -11,7 +12,7 @@ in {
           "${config.gtk.iconTheme.package}/share/icons/Papirus-Dark"
         else
           "${config.gtk.iconTheme.package}/share/icons/Papirus-Light";
-      font = "${config.fontProfiles.regular.family} 12";
+      font = "${fonts.regular.family} 12";
       padding = "10,10";
       anchor = "top-right";
       width = 300;

@@ -2,6 +2,8 @@
 
 let
   inherit (config.colorscheme) colors;
+  fonts = config.homeModules.theme.fonts;
+  wallpaperPath = config.homeModules.theme.wallpaper.path;
   cfg = config.homeModules.desktop.wayland.lockscreen.swaylock;
 in
 {
@@ -10,8 +12,8 @@ in
     programs.swaylock = {
       enable = true;
       settings = {
-        image = "${config.wallpaper}";
-        font = config.fontProfiles.monospace.family;
+        image = "${wallpaperPath}";
+        font = fonts.monospace.family;
         color = "#${colors.base01}";
         ring-color = "#${colors.base02}";
         inside-wrong-color = "#${colors.base08}";

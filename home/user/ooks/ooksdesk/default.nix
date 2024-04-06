@@ -7,6 +7,8 @@
 
   activeProfiles = ["base" "hyprland" "productivity" "gaming"];
 
+  theme = "minimal";
+
   home.sessionVariables.HN = "ooksdesk";
 
   homeModules.desktop.wayland.nvidia = true;
