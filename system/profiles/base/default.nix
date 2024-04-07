@@ -23,6 +23,7 @@ in
       displayManager.tuigreet.enable = true;
       openssh.enable = true;
       hardware.ssd.enable = true;
+      services.system76Scheduler.enable = true;
     };
 
     environment.systemPackages = [pkgs.git];

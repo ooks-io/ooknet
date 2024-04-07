@@ -3,6 +3,7 @@
 {
   imports = [ 
   ./mediaServer
+  ./system76Scheduler
   ];
 
   options.systemModules.services = {
