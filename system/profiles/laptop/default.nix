@@ -11,9 +11,9 @@ in
     systemModules = {
       hardware = {
         bluetooth.enable = true;
-        power.enable = true;
         backlight.enable = true;
       };
+      laptop.power.enable = true;
     };
   };
 }
