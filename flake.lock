@@ -916,11 +916,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1711700179,
-        "narHash": "sha256-QNfeUHViDagH5Hm40lof4lXLyqkhJI1DyF+z5qghyW4=",
+        "lastModified": 1712473070,
+        "narHash": "sha256-HsSva/f45CbgGBr8jV4p9l0xaiILh8rMMgRTm0I/SAk=",
         "owner": "ooks-io",
         "repo": "scripts",
-        "rev": "a00af670b4c93fa22a88274ef31573300d72d29e",
+        "rev": "70248ff45e1e52ba2bbf6877321ecad8744b5b9a",
         "type": "github"
       },
       "original": {
