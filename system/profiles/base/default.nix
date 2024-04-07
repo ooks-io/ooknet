@@ -22,6 +22,7 @@ in
       programs.gnomeServices.enable = true;
       displayManager.tuigreet.enable = true;
       openssh.enable = true;
+      hardware.ssd.enable = true;
     };
 
     environment.systemPackages = [pkgs.git];

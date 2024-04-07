@@ -7,7 +7,7 @@ in
 
 {
   options.systemModules.hardware.ssd = {
-    enable = mkEnableOption "Enable bluetooth module";
+    enable = mkEnableOption "Enable ssd module";
   };
   
   config = mkIf cfg.enable {
