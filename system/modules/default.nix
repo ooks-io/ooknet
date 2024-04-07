@@ -4,6 +4,7 @@
   imports = [
     ./hardware
     ./bootloader
+    ./laptop
     ./nix
     ./programs
     ./user
