@@ -2,10 +2,16 @@
 
 let
   cfg = config.systemModules.hardware.bluetooth;
+  inherit (lib) mkIf mkEnableOption;
 in
 
 {
-  config = lib.mkIf cfg.enable {
+  options.systemModules.hardware.bluetooth = {
+    enable = mkEnableOption "Enable bluetooth module";
+  };
+
+  config = mkIf cfg.enable {
+
     hardware.bluetooth = {
       enable = true;
       package = pkgs.bluez5-experimental;
