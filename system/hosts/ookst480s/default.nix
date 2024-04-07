@@ -14,6 +14,17 @@
 			shell.fish.enable = true;
 		};
 
+		systemModules.laptop.power = {
+			powersave = {
+				minFreq = 800;
+				maxFreq = 1800;
+			};
+			performance = {
+				minFreq = 1800;
+				maxFreq = 3600;
+			};
+		};
+
 		networking = {
   		hostName = "ookst480s"; 		
 		};
