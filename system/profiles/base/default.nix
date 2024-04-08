@@ -1,6 +1,7 @@
 { inputs, outputs, lib, config, pkgs, ... }:
 
 let
+  isx86Linux = pkgs: with pkgs.stdenv; hostPlatform.isLinux && hostPlatform.isx86;
   cfg = config.systemProfile.base;
 in
 
@@ -51,17 +52,8 @@ in
       enableAllFirmware = true;
       opengl = {
         enable = true;
-        extraPackages = with pkgs; [
-          intel-media-driver
-          vaapiIntel
-          vaapiVdpau
-          libvdpau-va-gl
-          libva-utils
-        ];
-        extraPackages32 = with pkgs.pkgsi686Linux; [
-          vaapiVdpau
-          libvdpau-va-gl
-        ];
+        driSupport = true;
+        driSupport32Bit = isx86Linux pkgs;
       };
     };
     system.stateVersion = lib.mkDefault "23.11";

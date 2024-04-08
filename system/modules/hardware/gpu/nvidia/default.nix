@@ -19,7 +19,7 @@ in
         nvidiaSettings = false;
         nvidiaPersistenced = true;
         modesetting.enable = true;
-        powermanagement = {
+        powerManagement = {
           enable = mkDefault true;
           finegrained = mkDefault false;
         };

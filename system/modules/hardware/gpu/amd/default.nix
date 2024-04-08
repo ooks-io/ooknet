@@ -18,12 +18,12 @@ in
         mesa
       ];
       extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
-      boot = {
-        initrd.kernelModules = ["amdgpu"];
-        kernelModules = ["amdgpu"];
-      };
-      environment.systemPackages = [ pkgs.nvtopPackages.amd ];
-      services.xserver.videoDrivers = mkDefault ["modesetting" "amdgpu"];
     };
+    boot = {
+      initrd.kernelModules = ["amdgpu"];
+      kernelModules = ["amdgpu"];
+    };
+    environment.systemPackages = [ pkgs.nvtopPackages.amd ];
+    services.xserver.videoDrivers = mkDefault ["modesetting" "amdgpu"];
   };
 }

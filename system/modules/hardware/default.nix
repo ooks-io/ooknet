@@ -1,7 +1,8 @@
 {
   imports = [
-    ./bluetooth
-    ./backlight
+    ./cpu
+    ./gpu
+    ./features
     ./ssd
   ];
 }

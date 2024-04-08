@@ -7,21 +7,27 @@
     ../../profiles
 		];
 
-    activeProfiles = ["base" "laptop"];
+    activeProfiles = ["base"];
 
-		systemModules.user = {
-			ooks.enable = true;
-			shell.fish.enable = true;
-		};
-
-		systemModules.laptop.power = {
-			powersave = {
-				minFreq = 800;
-				maxFreq = 1800;
+		systemModules = {
+			user = {
+				ooks.enable = true;
+				shell.fish.enable = true;
 			};
-			performance = {
-				minFreq = 1800;
-				maxFreq = 3600;
+			hardware = {
+				cpu.type = "intel";
+				gpu.type = "intel";
+				features = [ "bluetooth" "backlight" "battery" ];
+				battery = {
+					powersave = {
+						minFreq = 800;
+						maxFreq = 1800;
+					};
+					performance = {
+						minFreq = 1800;
+						maxFreq = 3600;
+					};
+				};
 			};
 		};
 

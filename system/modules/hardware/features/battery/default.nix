@@ -2,14 +2,15 @@
 { lib, config, pkgs, ... }:
 
 let
-  cfg = config.systemModules.laptop.power;
-  inherit (lib) mkIf mkDefault mkEnableOption mkOption types;
+  features = config.systemModules.hardware.features;
+  cfg = config.systemModules.hardware.battery;
+  inherit (lib) mkIf mkDefault mkOption types;
+  inherit (builtins) elem;
   MHz = x: x * 1000;
 in
   
 {
-  options.systemModules.laptop.power = {
-    enable = mkEnableOption "Enable laptop power module";
+  options.systemModules.hardware.battery = {
     powersave = {
       minFreq = mkOption {
         type = types.int;
@@ -36,7 +37,7 @@ in
     };
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf (elem "battery" features) {
     boot = {
       kernelModules = ["acpi_call"];
       extraModulePackages = with config.boot.kernelPackages; [

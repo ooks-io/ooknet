@@ -9,11 +9,8 @@ in
 {
   imports = [
     ./base
-    ./nvidia
     ./gaming
-    ./laptop
     ./mediaServer
-    ./amd
   ];
 
   options = {
@@ -28,15 +25,6 @@ in
       };
       gaming = {
         enable = lib.mkEnableOption "Enable the gaming profile";
-      };
-      laptop = {
-        enable = lib.mkEnableOption "Enable the laptop profile";
-      };
-      nvidia = {
-        enable = lib.mkEnableOption "Enable the nvidia profile";
-      };
-      amd = {
-        enable = lib.mkEnableOption "Enable the amd profile";
       };
       mediaServer = {
         enable = lib.mkEnableOption "Enable the mediaServer profile";

@@ -5,7 +5,7 @@ let
   inherit (lib) mkIf;
   inherit (builtins) elem;
 
-  vaapiIntel = pkgs.vaapiIntel.override {enableHypbridCodec = true;};
+  # vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};
 in
 
 {
