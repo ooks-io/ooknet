@@ -1,18 +1,15 @@
 { lib, config, ... }:
 
 let
-  cfg = config.systemModules.openssh;
+  cfg = config.systemModules.networking;
   key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBn3ff3HaZHIyH4K13k8Mwqu/o7jIABJ8rANK+r2PfJk";
+  inherit (lib) mkIf mkEnableOption;
 in
 
 {
-  options.systemModules = {
-    openssh = {
-      enable = lib.mkEnableOption "enable openssh system module";
-    };
-  };
+  options.systemModules.networking.ssh = mkEnableOption "Enable ssh networking module";
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.ssh {
     environment.sessionVariables.SSH_AUTH_SOCK = "~/.1password/agent.sock";
 
     users.users.ooks.openssh.authorizedKeys.keys = [ key ];
@@ -26,7 +23,5 @@ in
         StreamLocalBindUnlink = "yes";
       };
     };
-    
   };
-  
 }
