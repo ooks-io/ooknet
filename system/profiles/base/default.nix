@@ -17,7 +17,15 @@ in
       security.enable = true;
       nixOptions.enable = true;
       pipewire.enable = true;
-      networking.enable = true;
+      networking = {
+        enable = true;
+        firewall = true;
+        resolved = true;
+        ssh = true;
+        tools = true;
+        hardenTcp = true;
+      };
+
       locale.enable = true;
       bootloader.systemd.enable = true;
       programs.gnomeServices.enable = true;
@@ -50,6 +58,7 @@ in
 
     hardware = {
       enableAllFirmware = true;
+      enableRedistributableFirmware = true;
       opengl = {
         enable = true;
         driSupport = true;
