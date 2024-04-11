@@ -6,11 +6,16 @@
     ../../profiles
 		];
 
-    activeProfiles = ["base" "nvidia" "mediaServer" "gaming"];
+    activeProfiles = ["base" "gaming"];
 
 		systemModules.user = {
 			ooks.enable = true;
 			shell.fish.enable = true;
+		};
+
+		systemModules.hardware = {
+			cpu.type = "amd";
+			gpu.type = "amd";
 		};
   	
 		networking = {

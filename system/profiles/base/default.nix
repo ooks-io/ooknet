@@ -30,7 +30,6 @@ in
       bootloader.systemd.enable = true;
       programs.gnomeServices.enable = true;
       displayManager.tuigreet.enable = true;
-      openssh.enable = true;
       hardware.ssd.enable = true;
       services.system76Scheduler.enable = true;
     };

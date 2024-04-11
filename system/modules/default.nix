@@ -8,13 +8,12 @@
     ./programs
     ./user
     ./displayManager
-    ./networking.nix
-    ./locale.nix
-    ./virtualisation.nix
-    ./pipewire.nix
-    ./security.nix
+    ./networking
+    ./locale
+    ./virtualisation
+    ./security
     ./services
-    ./ssh.nix
+    ./audio
   ];
 
 

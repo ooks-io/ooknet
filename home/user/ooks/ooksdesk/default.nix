@@ -7,7 +7,7 @@
 
   activeProfiles = ["base" "hyprland" "productivity" "gaming"];
 
-  theme = "minimal";
+  theme.minimal.enable = true;
 
   home.sessionVariables.HN = "ooksdesk";
 
@@ -21,7 +21,5 @@
     workspace = "1";
     primary = true;
   }];
-
-  colorscheme = inputs.nix-colors.colorSchemes.gruvbox-material-dark-soft;
 }
 

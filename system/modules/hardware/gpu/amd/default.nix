@@ -13,7 +13,7 @@ in
         vulkan-tools
         vulkan-loader
         vulkan-extension-layer
-        vulkan-validation-layer
+        vulkan-validation-layers
         amdvlk
         mesa
       ];
