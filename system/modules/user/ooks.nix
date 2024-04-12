@@ -19,6 +19,8 @@ in
       "network"
       "libvirtd"
       "deluge"
+      "streamer"
+      "torrenter"
       ];
 
     packages = [ pkgs.home-manager ];

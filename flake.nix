@@ -75,6 +75,10 @@
     };
 
     zjstatus.url = "github:dj95/zjstatus";
+
+    nixarr = {
+      url = "github:rasmus-kirk/nixarr";
+    };
     
   };
 
