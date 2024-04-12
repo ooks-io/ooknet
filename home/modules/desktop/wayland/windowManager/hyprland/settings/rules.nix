@@ -19,9 +19,6 @@ in
         "pin,title:^(BTOP)$"
         "center,title:^(BTOP)$"
         "stayfocused,title:^(BTOP)$"
-        
-        # 1Password
-        "stayfocused,title:^(1Password)$"
 
         # Tearing
         "immediate, title:^(TEKKEN™8)$" 
