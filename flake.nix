@@ -115,6 +115,11 @@
           modules = [ ./system/hosts/ooksmicro ];
           specialArgs = { inherit inputs outputs; };
         };
+        # Media Server/Alternative desktop
+        ooksmedia =  lib.nixosSystem {
+          modules = [ ./system/hosts/ooksmedia ];
+          specialArgs = { inherit inputs outputs; };
+        };
       };
       homeConfigurations = {
         # T480s
@@ -132,6 +137,12 @@
         # GPD Micro-PC
         "ooks@ooksmicro" = lib.homeManagerConfiguration {
           modules = [ ./home/user/ooks/ooksmicro ];
+          pkgs = pkgsFor.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+      };
+        # Media Server/Alternative desktop
+        "ooks@ooksmedia" = lib.homeManagerConfiguration {
+          modules = [ ./home/user/ooks/ooksmedia ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
       };
