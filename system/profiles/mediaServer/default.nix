@@ -10,7 +10,7 @@ in
   config = lib.mkIf cfg.enable {
     systemModules = {
       services = {
-        mediaServer.enable = true;
+        nixarr.enable = true;
       };
     };
   };
