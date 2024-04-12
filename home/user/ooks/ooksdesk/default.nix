@@ -10,8 +10,6 @@
   theme.minimal.enable = true;
 
   home.sessionVariables.HN = "ooksdesk";
-
-  homeModules.desktop.wayland.nvidia = true;
   
   monitors = [{
     name = "DP-1";
