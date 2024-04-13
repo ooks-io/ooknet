@@ -10,7 +10,6 @@ in
   imports = [
     ./base
     ./gaming
-    ./mediaServer
   ];
 
   options = {
@@ -25,9 +24,6 @@ in
       };
       gaming = {
         enable = lib.mkEnableOption "Enable the gaming profile";
-      };
-      mediaServer = {
-        enable = lib.mkEnableOption "Enable the mediaServer profile";
       };
     };
   };

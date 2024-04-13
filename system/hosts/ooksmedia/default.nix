@@ -4,9 +4,10 @@
 	imports = [
 		./hardware-configuration.nix
     ../../profiles
+		./nixarr.nix
 		];
 
-    activeProfiles = ["base" "mediaServer" "gaming"];
+    activeProfiles = ["base" "gaming"];
 
 		systemModules.user = {
 			ooks.enable = true;
