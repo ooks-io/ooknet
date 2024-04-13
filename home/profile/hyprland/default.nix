@@ -52,6 +52,7 @@ in
         video = {
           mpv.enable = true;
           youtube.enable = true;
+          jellyfin.enable = true;
         };
       };
     };
