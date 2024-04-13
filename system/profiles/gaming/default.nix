@@ -50,5 +50,16 @@ in
         };
       };
     };
+    networking.firewall = {
+      allowedTCPPorts = [ 3074 ];
+      allowedUDPPorts = [
+        88
+        500
+        3074
+        2075
+        3544
+        4500
+      ];
+    };
   };
 }
