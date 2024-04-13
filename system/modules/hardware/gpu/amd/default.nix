@@ -14,7 +14,7 @@ in
         vulkan-loader
         vulkan-extension-layer
         vulkan-validation-layers
-        amdvlk
+        # amdvlk
         mesa
       ];
       extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
