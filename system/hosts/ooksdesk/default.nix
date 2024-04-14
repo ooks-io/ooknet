@@ -10,7 +10,7 @@
 
 		systemModules.user = {
 			ooks.enable = true;
-			shell.fish.enable = true;
+			shell = "fish";
 		};
 
 		systemModules.hardware = {

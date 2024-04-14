@@ -1,11 +1,12 @@
 { pkgs, lib, config, ... }:
 
 let
-  cfg = config.systemModules.user.shell.fish;
+  inherit (lib) mkIf;
+  userShell = config.systemModules.user.shell;
 in
 
 {
-  config = lib.mkIf cfg.enable {
+  config = mkIf (userShell == "fish") {
     users.users.ooks.shell = pkgs.fish;
     programs.fish = {
       enable = true;
