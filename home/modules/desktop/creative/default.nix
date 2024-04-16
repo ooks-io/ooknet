@@ -1,7 +1,7 @@
 {
   imports = [
     ./audio
+    ./image
     # ./video
-    # ./image
   ];
 }
