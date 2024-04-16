@@ -34,6 +34,12 @@ in
         discord.enable = true;
       };
 
+      creative = {
+        audio = {
+          audacity.enable = true;
+        };
+      };
+
       browser.firefox= {
         enable = true;
         default = true;
@@ -48,6 +54,7 @@ in
 
       media = {
         music.tui.enable = true;
+        music.easyeffects.enable = true;
         image.imv.enable = true;
         video = {
           mpv.enable = true;

@@ -2,6 +2,7 @@
 {
   imports = [
     #./spotify --- still needs to be implemented
+    ./easyeffects
     ./tui
   ];
 

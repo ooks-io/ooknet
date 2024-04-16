@@ -2,7 +2,7 @@
   imports = [
     # ./themeSettings # done
     ./browser # done -- firefox still need: chrome, brave
-    #./creative -- still needs to be implemented
+    ./creative
     ./communication # only discord implemented
     ./media # done -- spotify gui still needs to be implemented
     ./terminal # done -- wezterm still needs to be implemented
