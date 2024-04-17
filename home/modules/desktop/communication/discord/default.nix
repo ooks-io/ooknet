@@ -4,10 +4,12 @@ let
   cfg = config.homeModules.desktop.communication.discord;
   fonts = config.homeModules.theme.fonts;
   inherit (config.colorscheme) colors;
+  inherit (lib) mkIf mkEnableOption;
 in
 
 {
-  config = lib.mkIf cfg.enable {
+  options.homeModules.desktop.communication.discord.enable = mkEnableOption "Enable discord home manager module";
+  config = mkIf cfg.enable {
     home.packages = [ pkgs.vesktop ];
 
     xdg.configFile."vesktop/themes/nix.css".text = /* css */ ''

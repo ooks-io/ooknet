@@ -1,4 +1,4 @@
-{lib, config, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 
 let
   cfg = config.homeModules.desktop.creative.audio.audacity;
