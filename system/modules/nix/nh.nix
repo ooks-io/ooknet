@@ -1,19 +1,17 @@
-{ inputs, lib, config, ... }: 
+{ pkgs, lib, config, ... }: 
 
 let
   cfg = config.systemModules.nixOptions;
+  inherit (lib) mkIf;
 in
 
 {
-  imports = [
-    inputs.nh.nixosModules.default
-  ];
-  
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     environment.variables.FLAKE = "/home/ooks/.config/ooknix/";
 
-    nh = {
+    programs.nh = {
       enable = true;
+      package = pkgs.nh;
       clean = {
         enable = true;
         extraArgs = "--keep-since 30d";
