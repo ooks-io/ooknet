@@ -1,7 +1,7 @@
 { pkgs, inputs, outputs, ... }:
 
 {
-  imports = [ ./theme.nix ];
+  imports = [ ./modules ];
 
   environment.packages = with pkgs; [
     git
