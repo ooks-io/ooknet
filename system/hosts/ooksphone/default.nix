@@ -1,6 +1,11 @@
 { config, lib, pkgs, ... }:
 
 {
+  imports = [
+    ../../profiles
+  ];
+
+  activeProfiles = ["base"];
   # Simply install just the packages
   environment.packages = with pkgs; [
     # User-facing stuff that you really really want to have
