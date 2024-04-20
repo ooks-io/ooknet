@@ -3,7 +3,7 @@
 
 {
   imports = [
-    ../../../profiles
+    ../../../profile
   ];
 
   theme.phone.enable = true;
