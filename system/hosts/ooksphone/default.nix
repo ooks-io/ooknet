@@ -32,15 +32,6 @@
   home-manager = {
     backupFileExtension = "hm-bak";
     useGlobalPkgs = true;
-
-    config =
-      { config, lib, pkgs, ... }:
-      {
-        imports = [ ../../../home/modules/console/editor ];
-
-        homeModules.home.console.editor.helix.enable = true;
-
-        home.stateVersion = "23.11";
-      };
+    config = import ../../../home/user/ooks/ooksphone;
   };
 }
