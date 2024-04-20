@@ -23,7 +23,7 @@
   time.timeZone = "Pacific/Auckland";
 
   user = {
-    userName = "ooks";
+    userName = lib.mkForce "ooks";
     home = "/data/data/com.termux.nix/files/ooks/home";
     shell = "${pkgs.fish}/bin/fish";
   };
