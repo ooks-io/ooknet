@@ -157,7 +157,7 @@
           extraSpecialArgs = { inherit inputs outputs; };
       };
     };
-    nixOnDroidConfigurations.default = nix-on-droid.lib.nixOnDroidConfiguration {
+    nixOnDroidConfigurations = nix-on-droid.lib.nixOnDroidConfiguration {
       modules = [ ./system/hosts/ooksphone ];
       pkgs = import nixpkgs {
         system = "aarch64-linux";
