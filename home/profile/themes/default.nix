@@ -7,10 +7,12 @@
 {
   imports = [
     ./minimal
+    ./phone
   ];
 
   options.theme = {
     minimal.enable = lib.mkEnableOption "enable minimal theme";
+    phone.enable = lib.mkEnableOption "Enable phone theme";
   };
 
   # config = {

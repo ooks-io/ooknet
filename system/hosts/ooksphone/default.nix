@@ -1,10 +1,10 @@
-{ config, lib, pkgs, inputs, outputs, ... }:
+{ pkgs, inputs, outputs, ... }:
 
 {
-  # Simply install just the packages
+  imports = [ ./theme.nix ];
+
   environment.packages = with pkgs; [
-    # User-facing stuff that you really really want to have
-    helix # or some other editor, e.g. nano or neovim
+    helix
     git
     killall
     hostname
@@ -26,7 +26,6 @@
     shell = "${pkgs.fish}/bin/fish";
   };
 
-  # Configure home-manager
   home-manager = {
     backupFileExtension = "hm-bak";
     useGlobalPkgs = true;
