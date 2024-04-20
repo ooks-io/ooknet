@@ -14,6 +14,9 @@
       shell.fish.enable = true;
       prompt.starship.enable = true;
       # FIXME: multiplexer.zellij.enable = true;
+      utility = {
+        tools.enable = true;
+      };
     };
   };
 
