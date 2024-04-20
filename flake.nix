@@ -161,9 +161,9 @@
       modules = [ ./system/hosts/ooksphone ];
       pkgs = import nixpkgs {
         system = "aarch64-linux";
-        overlays = [ nix-on-droid.overlays.default ];
       };
-      home-manager-path = home-manager.outPath;
+      system = "aarch64-linux";
+      extraSpecialArgs = { inherit inputs outputs; };
     };
   };
 }
