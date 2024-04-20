@@ -4,7 +4,6 @@
   imports = [ ./theme.nix ];
 
   environment.packages = with pkgs; [
-    helix
     git
     killall
     hostname
