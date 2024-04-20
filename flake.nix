@@ -6,6 +6,12 @@
 
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    nix-on-droid = {
+      url = "github:nix-community/nix-on-droid/release-23.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
     hardware.url = "github:nixos/nixos-hardware";
 
     nix-colors.url = "github:misterio77/nix-colors";
@@ -83,7 +89,7 @@
   };
 
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nix-on-droid, ... }@inputs:
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
@@ -150,6 +156,15 @@
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
       };
+    };
+    nixOnDroidConfigurations.default = nix-on-droid.lib.nixOnDroidConfiguration {
+      modules = [ ./system/hosts/ooksphone ];
+      extraSpecialArgs = { inherit inputs outputs; };
+      pkgs = import nixpkgs {
+        system = "aarch64-linux";
+        overlays = [ nix-on-droid.overlays.default ];
+      };
+      home-manager-path = home-manager.outPath;
     };
   };
 }
