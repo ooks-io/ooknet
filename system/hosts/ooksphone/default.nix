@@ -38,8 +38,6 @@
   };
 
   home-manager = {
-    backupFileExtension = "hm-bak";
-    useGlobalPkgs = true;
     extraSpecialArgs = { inherit inputs outputs; };
     config = import ../../../home/user/ooks/ooksphone;
   };
