@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, outputs, ... }:
 
 {
   # Simply install just the packages
@@ -32,6 +32,7 @@
   home-manager = {
     backupFileExtension = "hm-bak";
     useGlobalPkgs = true;
+    extraSpecialArgs = { inherit inputs outputs; };
     config = import ../../../home/user/ooks/ooksphone;
   };
 }
