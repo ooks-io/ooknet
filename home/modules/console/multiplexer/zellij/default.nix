@@ -11,6 +11,7 @@ in
       enable = true;
       settings = {
         theme = "${colorscheme.slug}";
+        default_shell = "fish";
         default_layout = "default";
         pane_frames = false;
         themes = {

@@ -4,7 +4,6 @@
   imports = [ ./modules ];
 
   environment.packages = with pkgs; [
-    git
     killall
     hostname
     man
