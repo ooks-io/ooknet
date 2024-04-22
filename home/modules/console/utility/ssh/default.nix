@@ -2,7 +2,7 @@
 
 let
   cfg = config.homeModules.console.utility.ssh;
-  fish = config.homeModules.console.shell.fish;
+  hasFish = mkIf config.homeModules.console.shell.fish.enable;
   inherit (lib) mkIf;
 in
 
@@ -16,7 +16,7 @@ in
             IdentityAgent "~/.1password/agent.sock"
       '';
     };
-    fish.interactiveShellInit = mkIf fish.enable ''
+    programs.fish.interactiveShellInit = hasFish ''
       set -gx SSH_AUTH_SOCK ~/.1password/agent.sock
     '';
   };
