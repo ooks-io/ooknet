@@ -23,6 +23,7 @@
   home.packages = with pkgs; [
     pfetch
     lazygit
+    openssh
   ];
   programs = {
     ssh.enable = true;

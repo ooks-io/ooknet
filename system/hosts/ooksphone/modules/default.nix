@@ -1,6 +1,6 @@
 {
   imports = [
     ./theme.nix
-    # ./ssh.nix
+    # ./openssh.nix
   ];
 }
