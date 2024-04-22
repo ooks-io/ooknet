@@ -12,6 +12,7 @@ in
     ./ssh
     ./tcp
     ./resolved
+    ./tailscale
   ];
 
   options.systemModule.networking.enable = mkEnableOption "Enable networking system module";

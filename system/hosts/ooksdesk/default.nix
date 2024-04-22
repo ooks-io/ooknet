@@ -18,6 +18,11 @@
 			gpu.type = "amd";
 		};
   	
+		systemModules.networking.tailscale = {
+			enable = true;
+			client = true;
+		};
+
 		networking = {
   		hostName = "ooksdesk"; 		
 			# useDHCP = true;
