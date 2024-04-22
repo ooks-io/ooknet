@@ -24,6 +24,7 @@
     pfetch
     lazygit
     openssh
+    htop
   ];
   programs = {
     ssh = {
