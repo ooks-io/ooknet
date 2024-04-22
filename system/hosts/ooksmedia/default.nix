@@ -18,6 +18,11 @@
 			cpu.type = "intel";
 			gpu.type = "nvidia";
 		};
+
+		systemModules.networking.tailscale = {
+			enable = true;
+			server = true;
+		};
   	
 		networking = {
   		hostName = "ooksmedia"; 		
