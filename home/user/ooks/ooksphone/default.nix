@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 
 {
@@ -26,7 +26,16 @@
     openssh
   ];
   programs = {
-    ssh.enable = true;
+    ssh = {
+      enable = true;
+      matchBlocks = {
+        "ooksdesk" = {
+          host = 192.168.1.201;
+          user = "ooks";
+          identityFile = "~/.ssh/id_ed25519";
+        };
+      };
+    };
     git = {
       enable = true;
       package = pkgs.gitAndTools.gitFull;
