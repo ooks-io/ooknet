@@ -33,7 +33,7 @@
           hostname = "192.168.1.201";
           user = "ooks";
           identityFile = "~/.ssh/id_ed25519";
-          fowardAgent = true;
+          forwardAgent = true;
         };
       };
     };
