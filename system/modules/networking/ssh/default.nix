@@ -3,7 +3,8 @@
 let
   cfg = config.systemModules.networking;
   key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBn3ff3HaZHIyH4K13k8Mwqu/o7jIABJ8rANK+r2PfJk";
-  inherit (lib) mkIf mkEnableOption;
+  phoneKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINredx07UAk2l1wUPujYnmJci1+XEmcUuSX0DIYg6Vzz";
+  inherit (lib) mkIf mkDefault mkEnableOption;
 in
 
 {
@@ -17,10 +18,18 @@ in
     services.openssh = {
       enable = true;
       settings = {
-        UseDns = true;
+        UseDns = false;
         PasswordAuthentication = false;
+        AuthenticationMethods = "publickey";
+        UsePam = "no";
         PermitRootLogin = "no";
         StreamLocalBindUnlink = "yes";
+        KbdInteractiveAuthentication = mkDefault false;
+      };
+    };
+    programs.ssh = {
+      knownHosts = {
+        "192.168.1.36".publicKey = phoneKey;
       };
     };
   };
