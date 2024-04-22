@@ -49,7 +49,7 @@ in
       labels = [
         {
           monitor = "";
-          text = "";
+          text = "  ";
           position = {
             x = 0;
             y = 80; 

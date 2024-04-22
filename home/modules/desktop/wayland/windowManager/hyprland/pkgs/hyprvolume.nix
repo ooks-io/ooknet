@@ -14,6 +14,6 @@ pkgs.writeShellApplication {
 
     VOLUME=$(pamixer --get-volume-human)
 
-    notify-send --app-name="system-notify" -h string:x-canonical-private-synchronous:sys-notify "  $VOLUME"
+    notify-send --app-name="system-notify" -h string:x-canonical-private-synchronous:sys-notify "󰕾 $VOLUME"
   '';
 }
