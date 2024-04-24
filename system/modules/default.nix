@@ -14,6 +14,7 @@
     ./security
     ./services
     ./audio
+    ./meta
   ];
 
 
