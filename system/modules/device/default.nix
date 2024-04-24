@@ -1,0 +1,7 @@
+{
+  imports = [
+    ./function
+    ./type
+    ./hardware
+  ];
+}
