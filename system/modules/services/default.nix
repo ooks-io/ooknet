@@ -4,6 +4,7 @@
   imports = [ 
   ./mediaServer
   ./system76Scheduler
+  ./dbus
   ];
 
   options.systemModules.services = {
