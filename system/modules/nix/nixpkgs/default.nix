@@ -1,11 +1,12 @@
 { outputs, lib, config, ... }:
 
 let
-  cfg = config.systemModules.nixOptions;
+  inherit (lib) mkIf;
+  host = config.systemModules.host;
 in
 
 {
-  config = lib.mkIf cfg.enable {
+  config = mkIf host.type != "phone" {
     nixpkgs = {
       overlays = builtins.attrValues outputs.overlays;
       config = {

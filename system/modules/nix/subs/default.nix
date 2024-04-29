@@ -1,11 +1,12 @@
 { lib, config, ... }:
 
 let
-  cfg = config.systemModules.nixOptions;
+  inherit (lib) mkIf;
+  host = config.systemModules.host;
 in
 
 {
-  config = lib.mkIf cfg.enable {
+  config = mkIf (host.type != "phone") {
     nix.settings = {
       substituters = [
         "https://cache.nixos.org?priority=10"

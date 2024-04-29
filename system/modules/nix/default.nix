@@ -2,13 +2,9 @@
 
 {
   imports = [
-    ./nh.nix
-    ./nix.nix
-    ./nixpkgs.nix
-    ./subs.nix
+    ./nh
+    ./nix
+    ./nixpkgs
+    ./subs
   ];
-
-  options.systemModules.nixOptions = {
-    enable = lib.mkEnableOption "Enable nix related configuration modules";
-  };
 }

@@ -1,12 +1,13 @@
 { pkgs, lib, config, ... }: 
 
 let
-  cfg = config.systemModules.nixOptions;
   inherit (lib) mkIf;
+  host = config.systemModules.host;
 in
 
 {
-  config = mkIf cfg.enable {
+  config = mkIf (host.type != "phone") {
+  # TODO: i dont't want to hardcode this.
     environment.variables.FLAKE = "/home/ooks/.config/ooknix/";
 
     programs.nh = {
