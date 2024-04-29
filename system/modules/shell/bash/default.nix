@@ -2,12 +2,12 @@
 
 let
   inherit (lib) mkIf;
-  userShell = config.systemModules.user.shell;
+  adminShell = config.systemModules.host.admin.shell;
+  cfg = config.systemModules.shell.zsh;
 in
 
 {
-  config = mkIf (userShell == "bash") {
-    users.users.ooks.shell = pkgs.bash;
+  config = mkIf (adminShell == "bash" || cfg.enable) {
     programs.bash = {
       enable = true;
     };
