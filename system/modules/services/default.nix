@@ -5,6 +5,7 @@
   ./mediaServer
   ./system76Scheduler
   ./dbus
+  ./kdeconnect
   ];
 
   options.systemModules.services = {
