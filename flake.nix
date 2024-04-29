@@ -96,6 +96,8 @@
       systems = [ "x86_64-linux" "aarch64-linux" ];
       forEachSystem = f: lib.genAttrs systems (sys: f pkgsFor.${sys});
       pkgsFor = nixpkgs.legacyPackages;
+
+      hm = inputs.home-manager.nixosModules.home-manager;
     in
     {
       inherit lib;
@@ -140,7 +142,10 @@
       };
         # Main Desktop
         "ooks@ooksdesk" = lib.homeManagerConfiguration {
-          modules = [ ./home/user/ooks/ooksdesk ];
+          modules = [
+            ./home/user/ooks/ooksdesk 
+            hm
+          ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
       };
