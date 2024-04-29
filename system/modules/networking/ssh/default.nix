@@ -1,19 +1,15 @@
 { lib, config, ... }:
 
 let
-  cfg = config.systemModules.networking;
+  inherit (lib) mkIf mkDefault;
   key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBn3ff3HaZHIyH4K13k8Mwqu/o7jIABJ8rANK+r2PfJk";
   phoneKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINredx07UAk2l1wUPujYnmJci1+XEmcUuSX0DIYg6Vzz";
-  inherit (lib) mkIf mkDefault mkEnableOption;
+  host = config.systemModules.host;
 in
 
 {
-  options.systemModules.networking.ssh = mkEnableOption "Enable ssh networking module";
-
-  config = mkIf cfg.ssh {
+  config = mkIf (host.type != "phone") {
     environment.sessionVariables.SSH_AUTH_SOCK = "~/.1password/agent.sock";
-
-    users.users.ooks.openssh.authorizedKeys.keys = [ key ];
 
     services.openssh = {
       enable = true;

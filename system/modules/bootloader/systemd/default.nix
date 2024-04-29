@@ -1,11 +1,12 @@
 { lib, config, ... }:
 
 let
-  cfg = config.systemModules.bootloader.systemd;
+  inherit (lib) mkIf;
+  host = config.systemModules.host;
 in
 
 {
-  config = lib.mkIf cfg.enable {
+  config = mkIf (host.type != "phone") {
     boot.loader = {
       systemd-boot = {
         enable = true;

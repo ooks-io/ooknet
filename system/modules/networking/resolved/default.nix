@@ -1,14 +1,12 @@
 { lib, config, ... }:
 
 let
-  cfg = config.systemModules.networking;
-  inherit (lib) mkIf mkEnableOption;
+  inherit (lib) mkIf;
+  host = config.systemModules.host;
 in
 
 {
-  options.systemModules.networking.resolved = mkEnableOption "Enable systemd resolved daemon";
-
-  config = mkIf cfg.resolved {
+  config = mkIf (host.type != "phone") {
     services.resolved = {
       enable = true;
       fallbackDns = ["9.9.9.9"];

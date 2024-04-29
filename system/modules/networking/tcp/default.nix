@@ -1,14 +1,13 @@
 { lib, config, ... }:
 
 let
-  cfg = config.systemModules.networking;
-  inherit (lib) mkIf mkEnableOption;
+  inherit (lib) mkIf;
+  host = config.systemModules.type;
 in
 
 {
-  options.systemModules.networking.hardenTcp = mkEnableOption "Harden TCP";
-
-  config = mkIf cfg.hardenTcp {
+  # nyx module
+  config = mkIf (host.type != "phone") {
     boot = {
       kernelModules = ["tls" "tcp_bbr"];
       kernel.sysctl = {

@@ -1,8 +1,8 @@
 { lib, config, ... }:
 
 let
-  cfg = config.systemModules.networking;
-  inherit (lib) mkIf mkEnableOption;
+  inherit (lib) mkIf;
+  host = config.systemModules.host;
 in
 
 {
@@ -15,9 +15,7 @@ in
     ./tailscale
   ];
 
-  options.systemModule.networking.enable = mkEnableOption "Enable networking system module";
-
-  config = mkIf cfg.enable {
+  config = mkIf (host.type != "phone") {
     networking.networkmanager = {
       enable = true;
       dns = "systemd-resolved";

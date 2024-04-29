@@ -1,13 +1,12 @@
 { lib, config, ... }:
 
 let
-  cfg = config.systemModules.networking;
-  inherit (lib) mkIf mkEnableOption;
+  inherit (lib) mkIf;
+  host = config.systemModules.host;
 in
 
 {
-  options.systemModules.networking.firewall = mkEnableOption "Enable networking firewall system modules";
-  config = mkIf cfg.firewall {
+  config = mkIf (host.type != "phone") {
     networking.firewall = {
       enable = true;
       allowedTCPPorts = [
