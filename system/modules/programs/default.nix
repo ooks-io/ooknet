@@ -3,6 +3,7 @@
 {
   imports = [
     ./gnomeServices.nix
+    ./dconf
   ];
 
   options.systemModules.programs = {
