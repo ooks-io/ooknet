@@ -30,6 +30,8 @@ in
         };
       };
 
+      security.polkit = "pantheon";
+
       communication = {
         discord.enable = true;
       };
