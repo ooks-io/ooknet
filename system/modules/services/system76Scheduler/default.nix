@@ -1,16 +1,12 @@
 { lib, config, ... }:
 
 let
-  cfg = config.systemModules.services.system76Scheduler;
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkIf;
+  host = config.systemModules.host;
 in
 
 {
-  options.systemModules.services.system76Scheduler = {
-    enable = mkEnableOption "Enable system 76 scheduler module";
-  };
-
-  config = mkIf cfg.enable {
+  config = mkIf (host.type != "phone") {
 
     services.system76-scheduler = {
       enable = true;

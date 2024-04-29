@@ -6,6 +6,8 @@
   ./system76Scheduler
   ./dbus
   ./kdeconnect
+  ./gnome
+  ./gvfs
   ];
 
   options.systemModules.services = {
