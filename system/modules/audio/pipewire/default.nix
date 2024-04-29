@@ -1,16 +1,20 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.systemModules.pipewire;
   inherit (lib) mkIf;
   inherit (lib.generators) toLua;
   inherit (lib.lists) optionals;
-  hasBT = (builtins.elem "bluetooth" config.systemModules.hardware.features);
+  inherit (builtins) elem;
+  hasBT = (elem "bluetooth" config.systemModules.hardware.features);
+  host = config.systemModules.host;
+
+  validFunction = ["workstation" "gaming" "media-server"];
 in
 
 {
-  config = mkIf cfg.enable {
+  config = mkIf (elem host.function validFunction) {
     hardware.pulseaudio.enable = !config.services.pipewire.enable;
+    security.rtkit.enable = config.services.pipewire.enable;
     services.pipewire = 
     let
       quantum = 64;
