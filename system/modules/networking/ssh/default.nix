@@ -27,9 +27,16 @@ in
         KbdInteractiveAuthentication = mkDefault false;
       };
     };
-    programs.ssh = {
-      knownHosts = {
-        "192.168.1.36".publicKey = phoneKey;
+
+    programs = {
+      ssh = {
+        knownHosts = {
+          "192.168.1.36".publicKey = phoneKey;
+        };
+      };
+      gnupg.agent = {
+        enable = true;
+        enableSSHSupport = true;
       };
     };
   };
