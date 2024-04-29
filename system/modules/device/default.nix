@@ -1,7 +1,0 @@
-{
-  imports = [
-    ./function
-    ./type
-    ./hardware
-  ];
-}
