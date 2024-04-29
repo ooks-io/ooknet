@@ -15,13 +15,12 @@
     ./services
     ./audio
     ./meta
+    ./host
+    ./video
   ];
 
 
   options.systemModules = {
-    security = {
-      enable = lib.mkEnableOption "Enable security module";
-    };
     pipewire = {
       enable = lib.mkEnableOption "Enable pipewire module";
     };
