@@ -1,14 +1,13 @@
 { lib, config, pkgs, ... }:
 
 let
-  inherit (lib) mkEnableOption mkIf;
-  cfg = config.systemModules.services.dbus;
+  inherit (lib) mkIf;
+  inherit (lib.lists) any elem;
+  hasFunction = f: elem f config.systemModules.host.function;
 in
 
 {
-  options.systemModules.services.dbus.enable = mkEnableOption "Enable dbus system module";
-
-  config = mkIf cfg.enable {
+  config = mkIf (any hasFunction ["workstation" "gaming"]) {
     services.dbus = {
       enable = true;
       packages = with pkgs; [ dconf gcr udisks2 ];
