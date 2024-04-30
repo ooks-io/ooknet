@@ -3,16 +3,14 @@
 let
   inherit (lib) mkIf;
   inherit (lib.generators) toLua;
-  inherit (lib.lists) optionals;
-  inherit (builtins) elem;
-  hasBT = (elem "bluetooth" config.systemModules.hardware.features);
-  host = config.systemModules.host;
-
-  validFunction = ["workstation" "gaming" "media-server"];
+  inherit (lib.lists) any elem optionals;
+  # inherit (builtins) elem;
+  hasBT = (elem "bluetooth" config.systemModules.host.hardware.features);
+  hasFunction = f: elem f config.systemModules.host.function;
 in
 
 {
-  config = mkIf (elem host.function validFunction) {
+  config = mkIf (any hasFunction ["workstation" "gaming" "media-server"]) {
     hardware.pulseaudio.enable = !config.services.pipewire.enable;
     security.rtkit.enable = config.services.pipewire.enable;
     services.pipewire = 
