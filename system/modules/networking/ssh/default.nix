@@ -17,7 +17,7 @@ in
         UseDns = false;
         PasswordAuthentication = false;
         AuthenticationMethods = "publickey";
-        UsePam = "no";
+        UsePAM = false;
         PermitRootLogin = "no";
         StreamLocalBindUnlink = "yes";
         KbdInteractiveAuthentication = mkDefault false;
