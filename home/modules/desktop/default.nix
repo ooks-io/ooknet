@@ -9,5 +9,6 @@
     ./productivity
     ./gaming 
     ./security
+    ./tools
   ];
 }
