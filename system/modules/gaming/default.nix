@@ -26,7 +26,7 @@ let
 in
 
 {
-  config = mkIf (elem "gamiing" host.function) {
+  config = mkIf (elem "gaming" host.function) {
     hardware.opengl.extraPackages = [ pkgs.gamescope ];
     programs = {
       steam = {
