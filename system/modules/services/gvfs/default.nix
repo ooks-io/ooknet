@@ -7,6 +7,6 @@ in
 
 {
   config = mkIf ( host.type != "phone") {
-    services.gvfs = true;
+    services.gvfs.enable = true;
   };
 }

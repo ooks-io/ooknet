@@ -9,9 +9,8 @@ in
   options.systemModules.services.kdeconnect.enable = mkEnableOption "Enable kdeconnect system module";
 
   config = mkIf cfg.enable {
-    services.kdeconnect = {
+    programs.kdeconnect = {
       enable = true;
-      indicator = true;
     };
   };
 }

@@ -4,5 +4,6 @@
     ./name
     ./type
     ./function
+    ./hardware
   ];
 }

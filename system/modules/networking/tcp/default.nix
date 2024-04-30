@@ -2,7 +2,7 @@
 
 let
   inherit (lib) mkIf;
-  host = config.systemModules.type;
+  host = config.systemModules.host;
 in
 
 {

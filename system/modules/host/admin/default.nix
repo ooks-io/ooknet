@@ -36,7 +36,7 @@ in
       isNormalUser = true;
       shell = pkgs.${cfg.shell};
       initialPassword = "password";
-      openssh.authorizedKeys = "${cfg.sshKey}";
+      openssh.authorizedKeys.keys = [ "${cfg.sshKey}" ];
       extraGroups = [
         "wheel"
         "video"

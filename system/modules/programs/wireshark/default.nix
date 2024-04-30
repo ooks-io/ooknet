@@ -1,14 +1,13 @@
 { lib, config, ... }:
 
 let
-  inherit (lib) mkIf mkEnableOption;
-  cfg = config.systemModules.programs.wireshark;
+  inherit (lib) mkIf;
+  inherit (builtins) elem;
+  host = config.systemModules.host;
 in
 
 {
-  options.systemModules.programs.wireshark.enable = mkEnableOption "Enable wireshark system module";
-
-  config = mkIf cfg.enable {
+  config = mkIf (elem "workstation" host.function) {
     programs.wireshark.enable = true;
   };
 }

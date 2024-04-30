@@ -6,7 +6,7 @@ let
 in
 
 {
-  config = mkIf host.type != "phone" {
+  config = mkIf (host.type != "phone") {
     nixpkgs = {
       overlays = builtins.attrValues outputs.overlays;
       config = {

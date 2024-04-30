@@ -3,6 +3,6 @@
     ./cpu
     ./gpu
     ./features
-    ./ssd
+    ./common
   ];
 }

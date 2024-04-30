@@ -5,7 +5,6 @@
   ./mediaServer
   ./system76Scheduler
   ./dbus
-  ./kdeconnect
   ./gnome
   ./gvfs
   ];

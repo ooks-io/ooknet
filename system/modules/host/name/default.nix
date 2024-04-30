@@ -15,7 +15,7 @@ in
   };
 
   config = {
-    networking.hostname = cfg.name;
+    networking.hostName = cfg.name;
     environment.sessionVariables.HN = cfg.name;
   };
 }

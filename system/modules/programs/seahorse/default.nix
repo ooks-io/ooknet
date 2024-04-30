@@ -1,14 +1,13 @@
 { lib, config, ... }:
 
 let
-  inherit (lib) mkIf mkEnableOption;
-  cfg = config.systemModules.programs.seahorse;
+  inherit (lib) mkIf;
+  inherit (builtins) elem;
+  host = config.systemModules.host;
 in
 
 {
-  options.systemModules.programs.seahorse.enable = mkEnableOption "Enable seahorse system module";
-
-  config = mkIf cfg.enable {
+  config = mkIf (elem "workstation" host.function) {
     programs.seahorse.enable = true;
   };
 }

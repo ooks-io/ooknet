@@ -1,7 +1,8 @@
-{ lib, config, pkgs, inputs, ... }:
+{ lib, config, pkgs, ... }:
 
 let
-  cfg = config.systemProfile.gaming;
+  inherit (lib) mkIf;
+  inherit (builtins) elem;
   steamFix = pkgs.steam.override {
     extraPkgs = pkgs: with pkgs; [
       xorg.libXcursor
@@ -21,10 +22,11 @@ let
       gtk3-x11
     ];
   };
+  host = config.systemModules.host;
 in
 
 {
-  config = lib.mkIf cfg.enable {
+  config = mkIf (elem "gamiing" host.function) {
     hardware.opengl.extraPackages = [ pkgs.gamescope ];
     programs = {
       steam = {
@@ -63,3 +65,4 @@ in
     };
   };
 }
+

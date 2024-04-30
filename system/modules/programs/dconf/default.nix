@@ -1,14 +1,13 @@
 { lib, config, ... }:
 
 let
-  inherit (lib) mkIf mkEnableOption;
-  cfg = config.systemModules.programs.dconf;
+  inherit (lib) mkIf;
+  inherit (builtins) elem;
+  host = config.systemModules.host;
 in
 
 {
-  options.systemModules.programs.dconf.enable = mkEnableOption "Enable dconf system module";
-
-  config = mkIf cfg.enable {
+  config = mkIf (elem "workstation" host.function){
     programs.dconf.enable = true;
   };
 }

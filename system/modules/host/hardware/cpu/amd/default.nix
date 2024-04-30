@@ -2,19 +2,18 @@
 
 let
   inherit (lib) mkMerge mkEnableOption mkIf versionAtLeast versionOlder;
-  hardware = config.systemModules.host.hardware.cpu; 
-  cfg = hardware.amd;
-  kernelVersion = config.kernelPackages.kernel.version;
+  inherit (builtins) elem;
+  cpu = config.systemModules.host.hardware.cpu; 
+  cfg = cpu.amd;
+  kernelVersion = config.boot.kernelPackages.kernel.version;
   kernelVersionAtLeast = versionAtLeast kernelVersion;
   kernelVersionOlder= versionOlder kernelVersion;
 in
 
 {
-  options.systemModules.host.hardware.cpu.amd = {
-    pstate.enable = mkEnableOption "Enable pstate amd module";
-  };
+  options.systemModules.host.hardware.cpu.amd.pstate.enable = mkEnableOption "Enable amd pstate module";
 
-  config = mkIf (builtins.elem hardware.type ["amd"]) {
+  config = mkIf (elem cpu.type ["amd"]) {
     environment.systemPackages = [pkgs.amdctl];
     hardware.cpu.amd.updateMicrocode = true;
     boot = mkMerge [

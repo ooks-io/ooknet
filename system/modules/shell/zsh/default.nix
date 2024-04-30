@@ -8,7 +8,7 @@ in
 
 {
 
-  options.systemModules.zsh.enable = mkEnableOption "Enable zsh module";
+  options.systemModules.shell.zsh.enable = mkEnableOption "Enable zsh module";
 
   config = mkIf (adminShell == "zsh" || cfg.enable) {
     programs.zsh = {

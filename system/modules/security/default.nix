@@ -1,5 +1,5 @@
 {
-  import = [
+  imports = [
     ./1password
     ./kernel
     ./pam

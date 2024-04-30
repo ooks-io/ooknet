@@ -1,14 +1,13 @@
 { lib, config, ... }:
 
 let
-  inherit (lib) mkIf mkEnableOption;
-  cfg = config.systemModules.programs.bandwhich;
+  inherit (lib) mkIf;
+  inherit (builtins) elem;
+  host = config.systemModules.host;
 in
 
 {
-  options.systemModules.programs.bandwhich.enable = mkEnableOption "Enable bandwhich system module";
-
-  config = mkIf cfg.enable {
+  config = mkIf (elem "workstation" host.function) {
     programs.bandwhich.enable = true;
   };
 }

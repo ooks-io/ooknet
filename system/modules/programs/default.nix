@@ -1,14 +1,9 @@
-{ lib, ... }:
-
 {
   imports = [
-    ./gnomeServices.nix
     ./dconf
+    ./kdeconnect
+    ./seahorse
+    ./wireshark
+    ./bandwhich
   ];
-
-  options.systemModules.programs = {
-    gnomeServices = {
-      enable = lib.mkEnableOption "Enable gnome services module";
-    };
-  };
 }
