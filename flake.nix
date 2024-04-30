@@ -119,7 +119,10 @@
         };
         # Main Desktop
         ooksdesk =  lib.nixosSystem {
-          modules = [ ./system/hosts/ooksdesk ];
+          modules = [ 
+            ./system/hosts/ooksdesk
+            hm
+          ];
           specialArgs = { inherit inputs outputs; };
         };
         # GPD Micro-PC
@@ -142,10 +145,7 @@
       };
         # Main Desktop
         "ooks@ooksdesk" = lib.homeManagerConfiguration {
-          modules = [
-            ./home/user/ooks/ooksdesk 
-            hm
-          ];
+          modules = [ ./home/user/ooks/ooksdesk ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
       };
