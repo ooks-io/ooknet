@@ -26,7 +26,14 @@ in
           bold-text-in-bright = "palette-based";
           resize-delay-ms = "80";       
           pad = "9x9 center";
+          selection-target = "clipboard";
         };
+
+        tweak = {
+          sixel = "yes";
+          font-monospace-warn = "no";  
+        };
+        
         cursor = {
           style = "beam";
           blink = "yes";
