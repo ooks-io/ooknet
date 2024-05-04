@@ -13,6 +13,7 @@ in
       productivity = {
         obsidian.enable = true;
         zathura.enable = true;
+        office.enable = true;
       };
     };
   };

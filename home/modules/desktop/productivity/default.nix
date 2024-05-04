@@ -4,6 +4,7 @@
   imports = [
     ./obsidian
     ./zathura
+    ./office
   ];
 
   options.homeModules.desktop.productivity = {
