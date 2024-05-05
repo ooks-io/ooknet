@@ -123,7 +123,7 @@
             ./system/hosts/ooksdesk
             hm
           ];
-          specialArgs = { inherit inputs outputs; };
+          specialArgs = { inherit inputs outputs self; };
         };
         # GPD Micro-PC
         ooksmicro =  lib.nixosSystem {
