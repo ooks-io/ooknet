@@ -18,6 +18,7 @@ in
 			name = "ooks";
 			shell = "fish";
 			sshKey = key;
+			homeManager = true;
 		};
 		hardware = {
 			cpu.type = "amd";

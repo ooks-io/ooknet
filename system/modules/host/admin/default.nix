@@ -57,7 +57,9 @@ in
       backupFileExtension = "hm.old";
       verbose = true;
       extraSpecialArgs = { inherit inputs outputs self; };
-      users.${cfg.name} = import "${self}/home/user/${cfg.name}/${host.name}";
+      users.${cfg.name} = {
+        imports = [ "${self}/home/user/${cfg.name}/${host.name}" ];
+      };
     };
   };
 }
