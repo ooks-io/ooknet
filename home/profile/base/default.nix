@@ -14,7 +14,7 @@ in
       sops.enable = true;
 
       config = {
-        nix.enable = true;
+        # nix.enable = true;
         # nixColors.enable = true;
         home.enable = true;
         userDirs.enable = true;
