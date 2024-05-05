@@ -13,7 +13,7 @@ in
       exec-once = [
         "${pkgs._1password-gui}/bin/1password --silent"
         "${pkgs.live-buds-cli}/bin/earbuds -d"
-        "waybar"
+        # "waybar"
       ];
     };
   };
