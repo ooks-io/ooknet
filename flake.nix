@@ -42,7 +42,7 @@
     };
   
     hyprland = {
-      url = "github:hyprwm/hyprland";
+      url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; # FIXME: https://github.com/hyprwm/Hyprland/issues/5891
       inputs.nixpkgs.follows = "nixpkgs";
     };
   
@@ -52,6 +52,8 @@
     };
 
     hyprlock.url = "github:hyprwm/hyprlock";
+
+    xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
 
     hypridle = {
       url = "github:hyprwm/hypridle";
@@ -84,6 +86,11 @@
 
     nixarr = {
       url = "github:rasmus-kirk/nixarr";
+    };
+
+    nixpkgs-wayland = {
+      url = "github:nix-community/nixpkgs-wayland";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     
   };
