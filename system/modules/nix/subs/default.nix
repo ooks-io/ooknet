@@ -16,6 +16,7 @@ in
         "https://nix-community.cachix.org"
         "https://nix-gaming.cachix.org"
         "https://anyrun.cachix.org"
+        "https://nixpkgs-wayland.cachix.org"
       ];
 
       trusted-public-keys = [
@@ -25,6 +26,7 @@ in
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
         "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
+        "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
       ];
     };
   };
