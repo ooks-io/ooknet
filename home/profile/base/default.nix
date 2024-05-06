@@ -1,6 +1,7 @@
 { lib, config, ... }:
 let
   cfg = config.profiles.base;
+  inherit (lib) mkDefault;
 in
 {
   imports = [
@@ -9,6 +10,8 @@ in
   ];
 
   config = lib.mkIf cfg.enable {
+
+    systemd.user.startServices = mkDefault "sd-switch";
 
     homeModules = {
       sops.enable = true;
