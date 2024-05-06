@@ -9,7 +9,7 @@ in
 {
   imports = [ 
     inputs.hyprlock.homeManagerModules.default
-    inputs.hypridle.homeManagerModules.default
+    # inputs.hypridle.homeManagerModules.default
   ];
 
   config = lib.mkIf cfg.enable {
@@ -71,18 +71,18 @@ in
         }
       ];
     };
-    services.hypridle = {
-      enable = true;
-      package = pkgs.hypridle;
-      beforeSleepCmd = "${pkgs.systemd}/bin/loginctl lock-session";
-      lockCmd = lib.getExe config.programs.hyprlock.package;
+    # services.hypridle = {
+    #   enable = true;
+    #   package = pkgs.hypridle;
+    #   beforeSleepCmd = "${pkgs.systemd}/bin/loginctl lock-session";
+    #   lockCmd = lib.getExe config.programs.hyprlock.package;
 
-      listeners = [
-        {
-          timeout = 500;
-          onTimeout = lib.getExe config.programs.hyprlock.package;
-        }
-      ];
-    };
+    #   listeners = [
+    #     {
+    #       timeout = 500;
+    #       onTimeout = lib.getExe config.programs.hyprlock.package;
+    #     }
+    #   ];
+    # };
   };
 }
