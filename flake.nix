@@ -42,7 +42,7 @@
     };
   
     hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; # FIXME: https://github.com/hyprwm/Hyprland/issues/5891
+      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   
