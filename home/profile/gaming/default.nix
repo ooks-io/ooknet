@@ -11,7 +11,7 @@ in
   config = lib.mkIf cfg.enable {
     homeModules.desktop = {
       gaming = {
-        factorio.enable = false;
+        lutris.enable = true;
       };
     };
   };
