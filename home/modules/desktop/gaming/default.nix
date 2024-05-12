@@ -4,6 +4,7 @@
 
   imports = [
     ./factorio
+    ./lutris
   ];
 
   options.homeModules.desktop.gaming = {
