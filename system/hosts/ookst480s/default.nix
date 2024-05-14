@@ -1,23 +1,31 @@
-{ config, inputs, pkgs, ... }:
+{ inputs, pkgs, lib, ... }:
+
+let
+	inherit (lib) mkDefault;
+	key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBn3ff3HaZHIyH4K13k8Mwqu/o7jIABJ8rANK+r2PfJk";
+in
 
 {
 	imports = [
-    inputs.hardware.nixosModules.lenovo-thinkpad-t480s
 		./hardware-configuration.nix
-    ../../profiles
+    ../../modules
 		];
 
-    activeProfiles = ["base"];
 
-		systemModules = {
-			user = {
-				ooks.enable = true;
+		systemModules.host = {
+			name = "ookst480s";
+			type = "laptop";
+			function = [ "workstation" ];
+			admin = {
+				name = "ooks";
 				shell = "fish";
+				sshKey = key;
+				homeManager = true;
 			};
 			hardware = {
 				cpu.type = "intel";
 				gpu.type = "intel";
-				features = [ "bluetooth" "backlight" "battery" ];
+				features = [ "bluetooth" "backlight" "battery" "ssd" ];
 				battery = {
 					powersave = {
 						minFreq = 800;
@@ -31,10 +39,9 @@
 			};
 		};
 
-		networking = {
-  		hostName = "ookst480s"; 		
-		};
     boot = {
       kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     };
+
+		system.stateVersion = mkDefault "23.11";
 }

@@ -121,8 +121,11 @@
       nixosConfigurations = {
         # T480s
         ookst480s =  lib.nixosSystem {
-          modules = [ ./system/hosts/ookst480s ];
-          specialArgs = { inherit inputs outputs; };
+          modules = [ 
+            ./system/hosts/ookst480s 
+            hm
+          ];
+          specialArgs = { inherit inputs outputs self; };
         };
         # Main Desktop
         ooksdesk =  lib.nixosSystem {
