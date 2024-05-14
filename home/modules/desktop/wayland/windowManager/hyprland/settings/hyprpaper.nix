@@ -6,14 +6,13 @@ let
 in
 
 {
-  imports = [ inputs.hyprpaper.homeManagerModules.hyprpaper ];
-  
   config = lib.mkIf cfg.enable {
     services.hyprpaper = {
       enable = true;
-      preloads = ["${wallpaperPath}"];
-      wallpapers = [", ${wallpaperPath}"];
-      ipc = false;
     };
+    xdg.configFile."hypr/hyprpaper.conf".text = ''
+    preload = ${wallpaperPath}
+    wallpaper = , ${wallpaperPath}
+  '';
   };
 }

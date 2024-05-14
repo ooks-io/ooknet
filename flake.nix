@@ -36,37 +36,54 @@
     #   url = "github:schizofox/schizofox";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-    hyprwm-contrib = {
-      url = "github:hyprwm/contrib";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  
+
+    systems.url = "github:nix-systems/default-linux";
+    # hyprland "ecosystem"
+    
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
-  
+
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
 
-    hyprlock.url = "github:hyprwm/hyprlock";
+    hyprwm-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "hyprland/nixpkgs";
+    };
+  
+    hypridle = {
+      url = "github:hyprwm/hypridle";
+      inputs.nixpkgs.follows = "hyprland/nixpkgs";
+      inputs.systems.follows = "hyprland/systems";
+      inputs.hyprlang.follows = "hyprland/hyprlang";
+    };
+
+    hyprlock = {
+      url = "github:hyprwm/hyprlock";
+      inputs.nixpkgs.follows = "hyprland/nixpkgs";
+      inputs.systems.follows = "hyprland/systems";
+      inputs.hyprlang.follows = "hyprland/hyprlang";
+    };
+
+    hyprpaper = {
+      url = "github:hyprwm/hyprpaper";
+      inputs.nixpkgs.follows = "hyprland/nixpkgs";
+      inputs.systems.follows = "hyprland/systems";
+      inputs.hyprlang.follows = "hyprland/hyprlang";
+    };
 
     xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
 
-    hypridle = {
-      url = "github:hyprwm/hypridle";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     ooks-scripts = {
       url = "github:ooks-io/scripts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   
-    hyprpaper.url = "github:hyprwm/hyprpaper";
-  
+    
     helix = {
       url = "github:helix-editor/helix";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -9,12 +9,13 @@ in
   config = lib.mkIf cfg.enable {
     wayland.windowManager.hyprland = {
       settings = {
+        cursor = {
+          inactive_timeout = 4;
+        };
         general = {
-
           gaps_in = 10;
           gaps_out = 10;
           border_size = 2;
-          cursor_inactive_timeout = 4;
           "col.active_border" = "0xff${config.colorscheme.colors.base05}";
           "col.inactive_border" = "0xff${config.colorscheme.colors.base02}";
           };
