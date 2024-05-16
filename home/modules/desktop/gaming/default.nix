@@ -5,6 +5,7 @@
   imports = [
     ./factorio
     ./lutris
+    ./bottles
   ];
 
   options.homeModules.desktop.gaming = {

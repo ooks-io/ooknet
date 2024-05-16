@@ -28,6 +28,7 @@ in
 {
   config = mkIf (elem "gaming" host.function) {
     hardware.opengl.extraPackages = [ pkgs.gamescope ];
+    services.flatpak.enable = true;
     programs = {
       steam = {
         enable = true;

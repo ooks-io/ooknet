@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   cfg = config.profiles.gaming;
 in
@@ -11,8 +11,15 @@ in
   config = lib.mkIf cfg.enable {
     homeModules.desktop = {
       gaming = {
-        lutris.enable = true;
+        lutris.enable = false;
       };
     };
+    home.packages = with pkgs; [
+      bottles
+      winetricks
+      protontricks
+      protonup-qt
+      wineWowPackages.full
+    ];
   };
 }
