@@ -1,33 +1,25 @@
-{ pkgs, lib, config, ... }:
+{ lib, config, ... }:
 let
   cfg = config.homeModules.console.shell.fish;
   inherit (lib) mkIf;
   hasPackage = pname: lib.any (p: p ? pname && p.pname == pname) config.home.packages;
   hasEza = hasPackage "eza";
-  hasNeovim = config.programs.neovim.enable;
   hasBat = hasPackage "bat";
-  hasHelix = hasPackage "helix";
 in
 {
   config = {
     programs.fish = mkIf cfg.enable {
       enable = true;
-      shellAbbrs = rec {
-
-        fe = mkIf hasHelix "cd $FLAKE; hx $FLAKE";
+      shellAbbrs = {
+        fe = "cd $FLAKE; $EDITOR $FLAKE";
         f = "cd $FLAKE";
         s = "cd $SCRIPTS";
-
         tree = mkIf hasEza "eza -T --icons --group-directories-first";
         ls = mkIf hasEza "eza -a --icons --group-directories-first";
         lsd = mkIf hasEza "eza -al --icons --group-directories-first";
         lst = mkIf hasEza "eza -T -L 5 --icons --group-directories-first";
         lsta = mkIf hasEza "eza -T --icons --group-directories-first";
-
         cat = mkIf hasBat "bat";
-
-        vim = mkIf hasNeovim "nvim";
-
       };
       functions = {
         fish_greeting = "";
@@ -45,12 +37,6 @@ in
         '';
       };
       interactiveShellInit =
-        ''
-          set --global KITTY_INSTALLATION_DIR "${pkgs.kitty}/lib/kitty"
-          set --global KITTY_SHELL_INTEGRATION enabled
-          source "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_conf.d/kitty-shell-integration.fish"
-          set --prepend fish_complete_path "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_completions.d"
-        '' +
         # Use vim bindings and cursors
         ''
           fish_vi_key_bindings
