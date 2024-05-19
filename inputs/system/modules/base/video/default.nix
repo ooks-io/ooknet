@@ -2,7 +2,6 @@
 
 let
   inherit (lib) mkIf;
-  inherit (builtins) elem;
   isx86Linux = pkgs: with pkgs.stdenv; hostPlatform.isLinux && hostPlatform.isx86;
   host = config.systemModules.host;
 in
@@ -18,6 +17,7 @@ in
     };
     xdg.portal = {
       enable = true;
+      xdgOpenUsePortal = true;
       extraPortals = [
         pkgs.xdg-desktop-portal-gtk
       ];

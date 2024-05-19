@@ -23,7 +23,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    xdg.portal.enable = true;
     home.sessionVariables = {
       CLUTTER_BACKEND = "wayland";
       NIXOS_OZONE_WL = "1";

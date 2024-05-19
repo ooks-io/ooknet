@@ -12,10 +12,6 @@ in
   ];
 
   config = lib.mkIf cfg.enable {
-    xdg.portal = {
-      extraPortals = [ inputs.xdg-portal-hyprland.packages.${pkgs.system}.default ];
-    };
-
     home.packages = [
       pkgs.hyprpicker
       hyprvolume
