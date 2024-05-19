@@ -3,6 +3,7 @@
 let
   cfg = config.homeModules.desktop.wayland.windowManager.hyprland;
   pointer = config.home.pointerCursor;
+  inherit (config.colorscheme) palette;
 in
 
 {
@@ -16,8 +17,8 @@ in
           gaps_in = 10;
           gaps_out = 10;
           border_size = 2;
-          "col.active_border" = "0xff${config.colorscheme.colors.base05}";
-          "col.inactive_border" = "0xff${config.colorscheme.colors.base02}";
+          "col.active_border" = "0xff${palette.base05}";
+          "col.inactive_border" = "0xff${palette.base02}";
           };
 
         exec-once = [

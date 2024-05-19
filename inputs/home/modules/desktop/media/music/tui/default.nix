@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }:
 
 let
-  inherit (config.colorscheme) colors;
+  inherit (config.colorscheme) palette;
   cfg = config.homeModules.desktop.media.music.tui;
   zellij = config.homeModules.console.multiplexer.zellij;
   spotify-cli = pkgs.spotify-player.override {
@@ -27,11 +27,11 @@ in
         color = {
           gradient = 1;
           gradient_count = 5;
-          gradient_color_1 = "'#${colors.base0A}'";
-          gradient_color_2 = "'#${colors.base0B}'";
-          gradient_color_3 = "'#${colors.base0C}'";
-          gradient_color_4 = "'#${colors.base0D}'";
-          gradient_color_5 = "'#${colors.base0E}'";
+          gradient_color_1 = "'#${palette.base0A}'";
+          gradient_color_2 = "'#${palette.base0B}'";
+          gradient_color_3 = "'#${palette.base0C}'";
+          gradient_color_4 = "'#${palette.base0D}'";
+          gradient_color_5 = "'#${palette.base0E}'";
         };
       };
     };
@@ -80,18 +80,18 @@ in
 
                   border_enabled  "true"
                   border_char     "─"
-                  border_format   "#[fg=#${colors.base0D}]{char}"
+                  border_format   "#[fg=#${palette.base0D}]{char}"
                   border_position "bottom"
 
                   hide_frame_for_single_pane "true"
 
-                  mode_normal       "#[fg=${colors.base0D}]󰝚"
+                  mode_normal       "#[fg=${palette.base0D}]󰝚"
             
-                  tab_normal   "#[bg=#${colors.base01}] {name} "
-                  tab_active   "#[bg=#${colors.base02}] {name} "
+                  tab_normal   "#[bg=#${palette.base01}] {name} "
+                  tab_active   "#[bg=#${palette.base02}] {name} "
                   tab_separator "  "
 
-                  datetime        "#[fg=#${colors.base05},bold] {format} "
+                  datetime        "#[fg=#${palette.base05},bold] {format} "
                   datetime_format "%I:%M %p"
                   datetime_timezone "${config.home.sessionVariables.TZ}"
               }

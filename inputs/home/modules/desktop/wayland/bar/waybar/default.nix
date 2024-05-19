@@ -1,10 +1,10 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   fonts = config.homeModules.theme.fonts;
   cfg = config.homeModules.desktop.wayland.bar.waybar;
   monitorWidth =  (lib.head config.monitors).width - 20;
-  inherit (config.colorscheme) colors;
+  inherit (config.colorscheme) palette;
 in
 
 {
@@ -81,7 +81,7 @@ in
         * {
           font-family: "${fonts.monospace.family}";
           font-size: 19px;
-          border: solid #${colors.base05};
+          border: solid #${palette.base05};
         }
 
         window#waybar {
@@ -92,32 +92,32 @@ in
         #clock,
         #battery,
         #workspaces {
-          background-color: #${colors.base00};
+          background-color: #${palette.base00};
           padding-right: 10px;
         }
 
         #clock {
           padding-left: 10px;
-          border: 2px solid #${colors.base05};
+          border: 2px solid #${palette.base05};
           border-right: 0px;
           border-top-left-radius: 10px;
         }
 
         #battery {
           padding-left: 10px;
-          border-top: 2px solid #${colors.base05};
-          border-bottom: 2px solid #${colors.base05};
+          border-top: 2px solid #${palette.base05};
+          border-bottom: 2px solid #${palette.base05};
           border-left: 0px;
         }
 
         #battery.good {
-          color: #${colors.base0B};
+          color: #${palette.base0B};
         }
         #battery.warning {
-          color: #${colors.base0A};
+          color: #${palette.base0A};
         }
         #battery.critical {
-          color: #${colors.base08};
+          color: #${palette.base08};
         }
 
         #tray {
@@ -128,7 +128,7 @@ in
         }
 
         #workspaces {
-          border: 2px solid #${colors.base05};
+          border: 2px solid #${palette.base05};
           border-left: 0;
           border-top-right-radius: 10px;
         }
@@ -136,15 +136,15 @@ in
         #workspace button,
         #workspaces button.active,
         #workspaces button.visible {
-          color: #${colors.base0B};
+          color: #${palette.base0B};
         }
 
         #workspaces button.urgent {
-          color: #${colors.base08};
+          color: #${palette.base08};
         }
 
         #custom-hyprrecord {
-          color: #${colors.base08};
+          color: #${palette.base08};
           padding-right: 20px;
         }
       '';

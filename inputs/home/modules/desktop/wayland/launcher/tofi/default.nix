@@ -3,7 +3,7 @@
 let
   cfg = config.homeModules.desktop.wayland.launcher.tofi;
   fonts = config.homeModules.theme.fonts;
-  inherit (config.colorscheme) colors;
+  inherit (config.colorscheme) palette;
 in
 
 {
@@ -30,11 +30,11 @@ in
       prompt-text = "  "
       background-color = #0000
       prompt-background = #0000
-      prompt-color = ${colors.base0B}
-      input-color = ${colors.base05}
-      placeholder-color = ${colors.base03}
-      default-result-color = ${colors.base03}
-      selection-color = ${colors.base04}
+      prompt-color = ${palette.base0B}
+      input-color = ${palette.base05}
+      placeholder-color = ${palette.base03}
+      default-result-color = ${palette.base03}
+      selection-color = ${palette.base04}
     '';
   };
   

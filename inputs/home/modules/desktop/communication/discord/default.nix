@@ -3,7 +3,7 @@
 let
   cfg = config.homeModules.desktop.communication.discord;
   fonts = config.homeModules.theme.fonts;
-  inherit (config.colorscheme) colors;
+  inherit (config.colorscheme) palette;
   inherit (lib) mkIf mkEnableOption;
 in
 
@@ -20,17 +20,17 @@ in
       */
   
       :root {
-        --nix-bg1: #${colors.base00}; 
-        --nix-bg2: #${colors.base01};
-        --nix-bg3: #${colors.base02};
+        --nix-bg1: #${palette.base00}; 
+        --nix-bg2: #${palette.base01};
+        --nix-bg3: #${palette.base02};
     
-        --nix-fg1: #${colors.base05};
-        --nix-fg2: #${colors.base07};
-        --nix-fg3: #${colors.base03};
-        --nix-link: #${colors.base0D};
+        --nix-fg1: #${palette.base05};
+        --nix-fg2: #${palette.base07};
+        --nix-fg3: #${palette.base03};
+        --nix-link: #${palette.base0D};
 
-        --nix-accent: #${colors.base08};
-        --nix-hi: #${colors.base0B}; 
+        --nix-accent: #${palette.base08};
+        --nix-hi: #${palette.base0B}; 
 
         --font-mono: ${fonts.monospace.family}, monospace;
         --font-regular: ${fonts.regular.family}, sans serif;

@@ -6,7 +6,7 @@ let
 in
 
 {
-  options.homeModules.console.zsh.enable = mkEnableOption "";
+  options.homeModules.console.shell.zsh.enable = mkEnableOption "";
 
   config = mkIf cfg.enable {
     programs.zsh = {

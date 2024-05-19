@@ -1,7 +1,6 @@
 { lib, config, pkgs, ... }:
 let
-  inherit (config) colorscheme;
-  inherit (colorscheme) colors;
+  inherit (config.colorscheme) palette;
   cfg = config.homeModules.console.multiplexer.zellij;
 in
 
@@ -10,23 +9,23 @@ in
     programs.zellij = {
       enable = true;
       settings = {
-        theme = "${colorscheme.slug}";
+        theme = "${config.colorscheme.slug}";
         default_shell = "fish";
         default_layout = "default";
         pane_frames = false;
         themes = {
-          "${colorscheme.slug}" = {
-            fg = "#${colors.base05}";
-            bg = "#${colors.base00}";
-            black = "#${colors.base00}";
-            red = "#${colors.base08}";
-            green = "#${colors.base0B}";
-            yellow = "#${colors.base0A}";
-            blue = "#${colors.base0D}";
-            magenta = "#${colors.base0E}";
-            cyan = "#${colors.base0C}";
-            white = "#${colors.base05}";
-            orange = "#${colors.base09}";
+          "${config.colorscheme.slug}" = {
+            fg = "#${palette.base05}";
+            bg = "#${palette.base00}";
+            black = "#${palette.base00}";
+            red = "#${palette.base08}";
+            green = "#${palette.base0B}";
+            yellow = "#${palette.base0A}";
+            blue = "#${palette.base0D}";
+            magenta = "#${palette.base0E}";
+            cyan = "#${palette.base0C}";
+            white = "#${palette.base05}";
+            orange = "#${palette.base09}";
           };
         };
       };

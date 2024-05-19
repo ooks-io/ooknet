@@ -3,7 +3,7 @@
 let
   cfg = config.homeModules.desktop.wayland.lockscreen.hyprlock;
   fonts = config.homeModules.theme.fonts;
-  inherit (config.colorscheme) colors;
+  inherit (config.colorscheme) palette;
 in
 
 {
@@ -25,7 +25,7 @@ in
           {
             monitor = "";
             path = "";
-            color = "0xff${colors.base01}";
+            color = "0xff${palette.base01}";
           }
         ];
         input-fields = [
@@ -42,9 +42,9 @@ in
             dots_spacing = 0.2;
             fade_on_empty = false;
             placeholder_text = "";
-            outer_color = "0xff${colors.base02}";
-            inner_color = "0xff${colors.base00}";
-            font_color = "0xff${colors.base05}";
+            outer_color = "0xff${palette.base02}";
+            inner_color = "0xff${palette.base00}";
+            font_color = "0xff${palette.base05}";
           }
         ];
         labels = [
@@ -55,7 +55,7 @@ in
               x = 0;
               y = 80; 
             };
-            color = "0xff${colors.base08}";
+            color = "0xff${palette.base08}";
             font_size = 30;
             font_family = "${fonts.monospace.family}";
           }
@@ -66,7 +66,7 @@ in
               x = 0;
               y = -80; 
             };
-            color = "0xff${colors.base0B}";
+            color = "0xff${palette.base0B}";
             font_size = 20;
             font_family = "${fonts.monospace.family}";
           }

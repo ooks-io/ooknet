@@ -2,7 +2,7 @@
 
 let
   cfg = config.homeModules.console.multiplexer.tmux;
-  inherit (config.colorscheme) colors;
+  inherit (config.colorscheme) palette;
 in
 
 {
@@ -25,13 +25,13 @@ in
         set -g set-clipboard on
         #Appearance
         set -g status-position top
-        set -g status-style "fg=#${colors.base05} bg=#${colors.base00}"
+        set -g status-style "fg=#${palette.base05} bg=#${palette.base00}"
         #Windows
         set -g status-justify "centre"
-        setw -g window-status-current-format "#[bg=#${colors.base0B},fg=#${colors.base00},bold] #W "
-        setw -g window-status-format "#[bg=#${colors.base03},fg=#${colors.base05}] #W "
+        setw -g window-status-current-format "#[bg=#${palette.base0B},fg=#${palette.base00},bold] #W "
+        setw -g window-status-format "#[bg=#${palette.base03},fg=#${palette.base05}] #W "
         #Left
-        set -g status-left " #{tmux_mode_indicator} #[bg=#${colors.base0B},fg=#${colors.base00}] #S"
+        set -g status-left " #{tmux_mode_indicator} #[bg=#${palette.base0B},fg=#${palette.base00}] #S"
         set -g status-right '%Y-%m-%d %H:%M #{tmux_mode_indicator}'
         #Move to Pane
         bind -n M-Left select-pane -L

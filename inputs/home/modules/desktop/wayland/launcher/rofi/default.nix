@@ -13,14 +13,14 @@ in
       package = pkgs.rofi-wayland;
       terminal = "${config.home.sessionVariables.TERMINAL}";
       theme = let
-        inherit (config.colorscheme ) colors;
+        inherit (config.colorscheme ) palette;
         inherit (config.lib.formats.rasi) mkLiteral;
       in {
         "*" = {
-          background = mkLiteral "#${colors.base00}";
-          foreground = mkLiteral "#${colors.base05}";
-          selected = mkLiteral "#${colors.base0B}";
-          message = mkLiteral "#${colors.base0D}";
+          background = mkLiteral "#${palette.base00}";
+          foreground = mkLiteral "#${palette.base05}";
+          selected = mkLiteral "#${palette.base0B}";
+          message = mkLiteral "#${palette.base0D}";
 
           background-color = mkLiteral "@background";
           border-color = mkLiteral "@foreground";

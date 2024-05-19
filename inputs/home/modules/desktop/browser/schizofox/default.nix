@@ -3,7 +3,7 @@
 let
   cfg = config.homeModules.desktop.browser.schizofox;
   fonts = config.homeModules.theme.fonts;
-  inherit (config.colorscheme) colors;
+  inherit (config.colorscheme) palette;
 in
 
 {
@@ -16,9 +16,9 @@ in
       theme = {
         font = "${fonts.regular.family}";
         colors = {
-          background-darker = "${colors.base00}";
-          background = "${colors.base01}";
-          foreground = "${colors.base07}";
+          background-darker = "${palette.base00}";
+          background = "${palette.base01}";
+          foreground = "${palette.base07}";
         };
       };
       
