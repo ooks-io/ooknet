@@ -3,6 +3,7 @@
   imports = [
     ./fish
     ./bash
+    ./zsh
   ];
 
   options.homeModules.console.shell = {
@@ -11,9 +12,6 @@
     };
     bash = {
       enable = lib.mkEnableOption "Enable bash configuration";
-    };
-    zsh = {
-      enable = lib.mkEnableOption "Enable zsh configuration";
     };
   };
 }
