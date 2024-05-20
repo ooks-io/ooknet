@@ -15,7 +15,7 @@
       ];
 
       flake = {
-        nixosConfigurations = import ./outputs/nixos {inherit self inputs nixpkgs;};
+        nixosConfigurations = import ./outputs/nixos.nix {inherit self inputs nixpkgs;};
       };
 
     });

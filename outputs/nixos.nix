@@ -6,6 +6,7 @@ let
   hm = inputs.home-manager.nixosModules.home-manager;
 
   systemInputs = "${self}/inputs/system";
+  hosts = "${systemInputs}/hosts";
   base = "${systemInputs}/modules/base";
 
   specialArgs = {inherit inputs self;};
@@ -16,7 +17,7 @@ in
     inherit specialArgs;
     system = "x86_64-linux";
     modules = [
-      ./ooksdesk
+      "${hosts}/ooksdesk"
       hm
       base
     ];
