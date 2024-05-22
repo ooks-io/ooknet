@@ -6,8 +6,8 @@ in
 
 {
   imports = [
-    ./amd
-    ./intel
+    ./amd.nix
+    ./intel.nix
   ];
 
   options.systemModules.host.hardware.cpu.type = mkOption {

@@ -18,9 +18,9 @@
     zjstatus = inputs.zjstatus.packages.${prev.system}.default;
   };  
 
-  waybar = final: prev: {
-    waybar = inputs.nixpkgs-wayland.packages.${prev.system}.waybar;
-  };
+  # waybar = final: prev: {
+  #   waybar = inputs.nixpkgs-wayland.packages.${prev.system}.waybar;
+  # };
 
   additions = final: prev: import ../pkgs { pkgs = final; };
 }

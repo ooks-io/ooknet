@@ -1,9 +1,9 @@
 {
   imports = [
-    ./admin
-    ./name
-    ./type
-    ./function
+    ./admin.nix
+    ./name.nix
+    ./type.nix
+    ./role.nix
     ./hardware
   ];
 }

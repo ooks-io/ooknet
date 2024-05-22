@@ -2,11 +2,11 @@
 
 let
   inherit (lib) mkIf;
-  host = config.systemModules.host;
+  bootloader = config.systemModules.boot.loader;
 in
 
 {
-  config = mkIf (host.type != "phone") {
+  config = mkIf (bootloader == "systemd") {
     boot.loader = {
       systemd-boot = {
         enable = true;

@@ -3,6 +3,6 @@
     ./cpu
     ./gpu
     ./features
-    ./common
+    ./common.nix
   ];
 }

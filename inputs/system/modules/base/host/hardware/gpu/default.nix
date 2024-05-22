@@ -6,9 +6,9 @@ in
 
 {
   imports = [
-    ./amd
-    ./intel
-    ./nvidia
+    ./amd.nix
+    ./intel.nix
+    ./nvidia.nix
   ];
 
   options.systemModules.host.hardware.gpu.type = mkOption {

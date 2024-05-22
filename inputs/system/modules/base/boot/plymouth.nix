@@ -1,11 +1,14 @@
 { lib, config, pkgs, ... }:
 
 let
+  inherit (lib) mkIf mkEnableOption;
   cfg = config.systemModules.plymouth;
 in
 
 {
-  config = lib.mkIf cfg.enable {
+  options.systemModules.boot.plymouth.enable = mkEnableOption "";
+
+  config = mkIf cfg.enable {
     boot.plymouth = {
       enable = true;
       themePackages = [(pkgs.catppuccin-plymouth.override {variant = "mocha";})];
