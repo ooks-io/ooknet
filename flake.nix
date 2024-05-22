@@ -30,8 +30,8 @@
     nixpkgs.url = "github:Nixos/nixpkgs/nixos-unstable";
     nixpkgs-small.url = "github:Nixos/nixpkgs/nixos-unstable-small";
 
-    # contains more up-to-date wayland related packages
-    nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
+    # contains more up-to-date wayland related packages. no need enabling atm
+    # nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
 
     # split your flake into... parts?
     flake-parts = {
