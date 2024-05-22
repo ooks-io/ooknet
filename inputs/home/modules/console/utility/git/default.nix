@@ -17,7 +17,6 @@
     };
   
     home.packages = with pkgs; [
-      git-credential-1password
       lazygit
     ];
   };
