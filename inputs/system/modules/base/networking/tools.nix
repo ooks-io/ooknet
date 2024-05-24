@@ -6,4 +6,9 @@
     mtr
     tcpdump
   ];
+
+  programs = {
+    wireshark.enable = true;
+    bandwhich.enable = true;
+  };
 }

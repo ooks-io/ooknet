@@ -1,18 +1,8 @@
-{ lib, ... }:
-
 {
   imports = [ 
-  ./mediaServer
-  ./system76Scheduler
-  ./dbus
-  ./gnome
-  ./gvfs
+  ./system76Scheduler.nix
+  ./dbus.nix
+  ./gnome.nix
+  ./gvfs.nix
   ];
-
-  options.systemModules.services = {
-    mediaServer = {
-      enable = lib.mkEnableOption "Enable mediaserver service module";
-    };
-  };
-  
 }

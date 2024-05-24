@@ -38,7 +38,7 @@ in
         options = "--delete-older-than 30d";
       };
       settings = {
-        flake-registry = "etc/nix/registry.json";
+        flake-registry = "/etc/nix/registry.json";
         allowed-users = [ "root" "@wheel" ];
         trusted-users = [ "root" "@wheel" ];
         experimental-features = [ "nix-command" "flakes" ];

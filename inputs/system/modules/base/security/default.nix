@@ -1,9 +1,8 @@
 {
   imports = [
-    ./1password
-    ./kernel
-    ./pam
-    ./polkit
-    ./sudo
+    ./kernel.nix
+    ./pam.nix
+    ./polkit.nix
+    ./sudo.nix
   ];
 }

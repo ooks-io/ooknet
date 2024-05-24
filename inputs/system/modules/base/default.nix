@@ -5,16 +5,13 @@
     ./shell
     ./boot
     ./nix
-    ./programs
     ./displayManager
     ./networking
     ./locale.nix
     ./virtualization
     ./security
     ./services
-    ./audio
     ./host
-    ./video
   ];
 
 

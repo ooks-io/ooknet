@@ -23,7 +23,7 @@ in
 			cpu.type = "amd";
 			cpu.amd.pstate.enable = true;
 			gpu.type = "amd";
-			features = [ "ssd" ];
+			features = [ "ssd" "audio" "video" ];
 		};
 	};
   	

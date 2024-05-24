@@ -9,6 +9,10 @@ let
   hosts = "${systemInputs}/hosts";
   base = "${systemInputs}/modules/base";
 
+  gaming = "${systemInputs}/modules/roles/gaming";
+  workstation = "${systemInputs}/modules/roles/workstation";
+
+
   specialArgs = {inherit inputs self;};
 in
 
@@ -20,6 +24,8 @@ in
       "${hosts}/ooksdesk"
       hm
       base
+      gaming
+      workstation
     ];
   };
 }
