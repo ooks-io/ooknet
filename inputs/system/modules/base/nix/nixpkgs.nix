@@ -17,7 +17,6 @@ in
       };
       overlays = [
         (final: prev: {
-          waybar = inputs.nixpkgs-wayland.packages.${prev.system}.waybar;
           zjstatus = inputs.zjstatus.packages.${prev.system}.default;
         })
       ];

@@ -7,12 +7,12 @@ in
 
 {
   imports = [
-    ./firewall
-    ./tools
-    ./ssh
-    ./tcp
-    ./resolved
-    ./tailscale
+    ./firewall.nix
+    ./tools.nix
+    ./ssh.nix
+    ./tcp.nix
+    ./resolved.nix
+    ./tailscale.nix
   ];
 
   config = mkIf (host.type != "phone") {

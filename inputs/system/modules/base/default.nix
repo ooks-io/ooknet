@@ -2,14 +2,13 @@
 
 {
   imports = [
-    ./gaming
     ./shell
-    ./bootloader
+    ./boot
     ./nix
     ./programs
     ./displayManager
     ./networking
-    ./locale
+    ./locale.nix
     ./virtualization
     ./security
     ./services

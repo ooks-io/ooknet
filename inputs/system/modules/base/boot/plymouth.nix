@@ -2,7 +2,7 @@
 
 let
   inherit (lib) mkIf mkEnableOption;
-  cfg = config.systemModules.plymouth;
+  cfg = config.systemModules.boot.plymouth;
 in
 
 {

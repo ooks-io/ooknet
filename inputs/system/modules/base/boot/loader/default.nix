@@ -6,7 +6,7 @@ in
 
 {
   imports = [
-    ./systemd
+    ./systemd.nix
     # ./grub
   ];
 

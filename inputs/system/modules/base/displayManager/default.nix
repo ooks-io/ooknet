@@ -1,5 +1,5 @@
 {
   imports = [
-    ./tuigreet
+    ./tuigreet.nix
   ];
 }

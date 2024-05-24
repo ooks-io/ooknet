@@ -13,10 +13,6 @@ in
     programs.nh = {
       enable = true;
       package = pkgs.nh;
-      clean = {
-        enable = true;
-        extraArgs = "--keep-since 30d";
-      };
     };
   };
 }
