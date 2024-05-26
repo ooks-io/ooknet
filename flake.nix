@@ -3,7 +3,7 @@
   description = "a nix configuration written by an orangutan";
 
   outputs = { flake-parts, nixpkgs, self, ... } @ inputs:
-    flake-parts.lib.mkFlake {inherit inputs;} ({withSystem, ...}: {
+    flake-parts.lib.mkFlake { inherit inputs; } {
 
       systems = [
         "x86_64-linux"
@@ -12,13 +12,14 @@
 
       imports = [
         ./flake/pkgs
+        ./flake/nixos.nix
       ];
 
-      flake = {
-        nixosConfigurations = import ./flake/nixos.nix {inherit self inputs nixpkgs;};
-      };
+      # flake = {
+      #   nixosConfigurations = import ./flake/nixos.nix {inherit self inputs nixpkgs;};
+      # };
 
-    });
+    };
 
   # External inputs we depend on
   inputs = {
