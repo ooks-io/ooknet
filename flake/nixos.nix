@@ -5,11 +5,11 @@ let
 
   hm = inputs.home-manager.nixosModules.home-manager;
 
-  systemInputs = "${self}/sys";
-  hosts = "${systemInputs}/hosts";
-  base = "${systemInputs}/modules/base";
+  sys = "${self}/sys";
+  hosts = "${self}/hosts";
 
-  roles = "${systemInputs}/modules/roles";
+  base = "${sys}/modules/base";
+  roles = "${sys}/modules/roles";
   gaming = "${roles}/gaming";
   workstation = "${roles}/workstation";
   media-server = "${roles}/media-server";
