@@ -1,5 +1,8 @@
-{ inputs, ... }:
-  
+{ config, inputs, ... }:
+
+let
+  admin = config.systemModules.host.admin;
+in
   
 {
   imports = [ inputs.nixarr.nixosModules.default ];
@@ -7,7 +10,7 @@
     enable = true;
     mediaDir = "/jellyfin";
     stateDir = "/var/lib/nixarr";
-    mediaUsers = ["ooks"];
+    mediaUsers = ["${admin.name}"];
 
     jellyfin.enable = true;
     sonarr.enable = true;
