@@ -1,4 +1,4 @@
-{ lib, rustPlatform, fetchFromGitHub, stdenv, pkg-config, dbus, libpulseaudio, bluez }:
+{ lib, rustPlatform, fetchFromGitHub, pkg-config, dbus, libpulseaudio, bluez }:
 
 rustPlatform.buildRustPackage rec {
   pname = "live-buds-cli";
@@ -12,7 +12,7 @@ rustPlatform.buildRustPackage rec {
 
   };
 
-  cargoSha256 = "w/dt7Q9TACw5N/+QNAKMUEngf8sAhWyGslnw3B16crQ=";  # you will need to determine this hash
+  cargoSha256 = "w/dt7Q9TACw5N/+QNAKMUEngf8sAhWyGslnw3B16crQ=";
 
   nativeBuildInputs = [ pkg-config ];
   buildInputs = [ libpulseaudio bluez dbus ];
@@ -20,7 +20,6 @@ rustPlatform.buildRustPackage rec {
   meta = with lib; {
     description = "A free cli tool to control your Galaxy buds live, Galaxy Buds+, Galaxy Buds Pro, Galaxy Buds 2 and Galaxy Buds 2 Pro";
     license = licenses.gpl3;
-   #maintainers = [ maintainers.ooks-io ];  # replace with your maintainer info
     platforms = platforms.unix;
   };
 }

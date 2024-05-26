@@ -14,8 +14,6 @@ in
 
     homeModules = {
       config = {
-        # nix.enable = true;
-        # nixColors.enable = true;
         home.enable = true;
         userDirs.enable = true;
         mimeApps.enable = true;
@@ -37,7 +35,6 @@ in
           nixIndex.enable = true;
           git.enable = true;
           tools.enable = true;
-          transientServices.enable = true;
         };
       };
     };  

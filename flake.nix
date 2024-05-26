@@ -11,11 +11,11 @@
       ];
 
       imports = [
-        ./outputs/pkgs
+        ./flake/pkgs
       ];
 
       flake = {
-        nixosConfigurations = import ./outputs/nixos.nix {inherit self inputs nixpkgs;};
+        nixosConfigurations = import ./flake/nixos.nix {inherit self inputs nixpkgs;};
       };
 
     });

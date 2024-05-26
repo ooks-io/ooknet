@@ -5,7 +5,7 @@ let
 
   hm = inputs.home-manager.nixosModules.home-manager;
 
-  systemInputs = "${self}/inputs/system";
+  systemInputs = "${self}/sys";
   hosts = "${systemInputs}/hosts";
   base = "${systemInputs}/modules/base";
 
@@ -28,6 +28,17 @@ in
       hm
       base
       gaming
+      workstation
+    ];
+  };
+  ookst480s = nixosSystem {
+    inherit specialArgs;
+    system = "x86_64-linux";
+    modules = [
+      "${hosts}/ookst480s"
+      hm
+      base
+
       workstation
     ];
   };

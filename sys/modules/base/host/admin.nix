@@ -58,7 +58,7 @@ in
       verbose = true;
       extraSpecialArgs = { inherit inputs outputs self; };
       users.${cfg.name} = {
-        imports = [ "${self}/inputs/home/user/${cfg.name}/${host.name}" ];
+        imports = [ "${self}/home/user/${cfg.name}/${host.name}" ];
       };
     };
   };

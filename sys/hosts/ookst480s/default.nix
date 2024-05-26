@@ -1,4 +1,4 @@
-{ inputs, pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 
 let
 	inherit (lib) mkDefault;
@@ -8,8 +8,7 @@ in
 {
 	imports = [
 		./hardware-configuration.nix
-    ../../modules
-		];
+	];
 
 
 		systemModules.host = {
@@ -25,7 +24,14 @@ in
 			hardware = {
 				cpu.type = "intel";
 				gpu.type = "intel";
-				features = [ "bluetooth" "backlight" "battery" "ssd" ];
+				features = [
+					"bluetooth"
+					"backlight"
+					"battery"
+					"ssd"
+					"audio"
+					"video"
+				];
 				battery = {
 					powersave = {
 						minFreq = 800;

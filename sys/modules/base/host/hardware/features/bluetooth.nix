@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, self, ... }:
 
 let
   features = config.systemModules.host.hardware.features;
@@ -14,7 +14,7 @@ in
     };
   
     environment.systemPackages = with pkgs; [
-      live-buds-cli
+      self.packages.${pkgs.system}.live-buds-cli
   	  bluetuith
   	];
 
