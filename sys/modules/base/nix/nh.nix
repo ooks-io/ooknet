@@ -8,7 +8,7 @@ in
 {
   config = mkIf (host.type != "phone") {
   # TODO: i dont't want to hardcode this.
-    environment.variables.FLAKE = "/home/ooks/.config/ooknix/";
+    environment.variables.FLAKE = "/home/ooks/.config/ooknet/";
 
     programs.nh = {
       enable = true;

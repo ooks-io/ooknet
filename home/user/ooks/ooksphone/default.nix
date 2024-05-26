@@ -54,7 +54,7 @@
 
   home.sessionVariables = {
     TZ = "Pacific/Auckland";
-    FLAKE = "$HOME/.config/ooknix";
+    FLAKE = "$HOME/.config/ooknet";
   };
 
   home.stateVersion = "23.11";
