@@ -4,7 +4,7 @@ let
   inherit (lib) mkIf mkDefault;
   key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBn3ff3HaZHIyH4K13k8Mwqu/o7jIABJ8rANK+r2PfJk";
   phoneKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINredx07UAk2l1wUPujYnmJci1+XEmcUuSX0DIYg6Vzz";
-  host = config.systemModules.host;
+  host = config.ooknet.host;
 in
 
 {

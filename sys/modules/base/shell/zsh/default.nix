@@ -2,13 +2,13 @@
 
 let
   inherit (lib) mkIf mkEnableOption;
-  adminShell = config.systemModules.host.admin.shell;
-  cfg = config.systemModules.shell.zsh;
+  adminShell = config.ooknet.host.admin.shell;
+  cfg = config.ooknet.shell.zsh;
 in
 
 {
 
-  options.systemModules.shell.zsh.enable = mkEnableOption "Enable zsh module";
+  options.ooknet.shell.zsh.enable = mkEnableOption "Enable zsh module";
 
   config = mkIf (adminShell == "zsh" || cfg.enable) {
     programs.zsh = {

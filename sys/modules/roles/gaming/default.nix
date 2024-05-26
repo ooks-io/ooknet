@@ -22,7 +22,7 @@ let
       gtk3-x11
     ];
   };
-  host = config.systemModules.host;
+  host = config.ooknet.host;
 in
 
 {

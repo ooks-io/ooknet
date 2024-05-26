@@ -8,12 +8,12 @@
 
     activeProfiles = ["base" "laptop"];
 
-		systemModules.user = {
+		ooknet.user = {
 			ooks.enable = true;
 			shell.fish.enable = true;
 		};
 
-		systemModules.laptop.power = {
+		ooknet.laptop.power = {
 			powersave = {
 				minFreq = 800;
 				maxFreq = 1600;

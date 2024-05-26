@@ -2,8 +2,8 @@
 
 let
   inherit (lib) mkIf;
-  adminShell = config.systemModules.host.admin.shell;
-  cfg = config.systemModules.shell.zsh;
+  adminShell = config.ooknet.host.admin.shell;
+  cfg = config.ooknet.shell.zsh;
 in
 
 {

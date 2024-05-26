@@ -1,14 +1,14 @@
 { lib, config, pkgs, inputs, outputs, self, ... }:
 
 let
-  cfg = config.systemModules.host.admin;
-  host = config.systemModules.host;
+  cfg = config.ooknet.host.admin;
+  host = config.ooknet.host;
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
   inherit (lib) mkIf types mkOption;
 in
 
 {
-  options.systemModules.host.admin = {
+  options.ooknet.host.admin = {
     name = mkOption {
       type = types.str;
       default = "ooks";

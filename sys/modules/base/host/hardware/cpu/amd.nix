@@ -3,7 +3,7 @@
 let
   inherit (lib) mkMerge mkEnableOption mkIf versionAtLeast versionOlder;
   inherit (builtins) elem;
-  cpu = config.systemModules.host.hardware.cpu; 
+  cpu = config.ooknet.host.hardware.cpu; 
   cfg = cpu.amd;
   kernelVersion = config.boot.kernelPackages.kernel.version;
   kernelVersionAtLeast = versionAtLeast kernelVersion;
@@ -11,7 +11,7 @@ let
 in
 
 {
-  options.systemModules.host.hardware.cpu.amd.pstate.enable = mkEnableOption "Enable amd pstate module";
+  options.ooknet.host.hardware.cpu.amd.pstate.enable = mkEnableOption "Enable amd pstate module";
 
   config = mkIf (elem cpu.type ["amd"]) {
     environment.systemPackages = [pkgs.amdctl];

@@ -2,7 +2,7 @@
 let
   inherit (lib) mkIf;
   tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
-  host = config.systemModules.host;
+  host = config.ooknet.host;
 in
 {
   config = mkIf (host.type != "phone") {

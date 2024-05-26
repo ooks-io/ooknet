@@ -2,7 +2,7 @@
 
 let
   inherit (lib) mkIf mapAttrs mapAttrsToList;
-  host = config.systemModules.host;
+  host = config.ooknet.host;
 in
 
 {

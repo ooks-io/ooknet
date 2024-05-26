@@ -1,7 +1,7 @@
 { config, inputs, ... }:
 
 let
-  admin = config.systemModules.host.admin;
+  admin = config.ooknet.host.admin;
 in
   
 {

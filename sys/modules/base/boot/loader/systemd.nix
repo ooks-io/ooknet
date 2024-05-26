@@ -2,7 +2,7 @@
 
 let
   inherit (lib) mkIf;
-  bootloader = config.systemModules.boot.loader;
+  bootloader = config.ooknet.boot.loader;
 in
 
 {

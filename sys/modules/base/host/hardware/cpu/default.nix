@@ -10,7 +10,7 @@ in
     ./intel.nix
   ];
 
-  options.systemModules.host.hardware.cpu.type = mkOption {
+  options.ooknet.host.hardware.cpu.type = mkOption {
     type = with types; nullOr (enum ["intel" "amd"]);
     default = null;
     description = "Type of cpu system module to use";

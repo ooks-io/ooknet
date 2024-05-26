@@ -5,7 +5,7 @@ let
 in
 
 {
-  options.systemModules.host.function = mkOption {
+  options.ooknet.host.function = mkOption {
     type = with types; listOf (enum ["gaming" "workstation" "media-server"]);
     default = [];
     description = "Host's primary function/s";

@@ -5,7 +5,7 @@ let
   inherit (lib.generators) toLua;
   inherit (lib.lists) elem optionals;
   # inherit (builtins) elem;
-  features = config.systemModules.host.hardware.features;
+  features = config.ooknet.host.hardware.features;
   hasBT = (elem "bluetooth" features);
 in
 

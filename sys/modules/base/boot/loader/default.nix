@@ -10,7 +10,7 @@ in
     # ./grub
   ];
 
-  options.systemModules.boot.loader = mkOption {
+  options.ooknet.boot.loader = mkOption {
     type = types.enum ["systemd" "grub"];
     default = "systemd";
   };

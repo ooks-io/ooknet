@@ -2,11 +2,11 @@
 
 let
   inherit (lib) types mkOption;
-  cfg = config.systemModules.host;
+  cfg = config.ooknet.host;
 in
 
 {
-  options.systemModules.host = {
+  options.ooknet.host = {
     name = mkOption {
       type = types.str;
       default = "ooksgeneric";

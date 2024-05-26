@@ -11,7 +11,7 @@ in
 	];
 
 
-		systemModules.host = {
+		ooknet.host = {
 			name = "ookst480s";
 			type = "laptop";
 			function = [ "workstation" ];

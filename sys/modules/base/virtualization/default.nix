@@ -1,7 +1,7 @@
 { lib, config, pkgs, ... }:
 
 let
-  cfg = config.systemModules.virtualisation;
+  cfg = config.ooknet.virtualisation;
 in
 
 {

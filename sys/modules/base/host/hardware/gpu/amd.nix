@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let
-  gpu = config.systemModules.host.hardware.gpu;
+  gpu = config.ooknet.host.hardware.gpu;
   inherit (lib) mkIf mkDefault;
   inherit (builtins) elem;
 in

@@ -1,7 +1,7 @@
 { lib, config, pkgs, ... }:
 
 let
-  cfg = config.systemModules.networking.tailscale;
+  cfg = config.ooknet.networking.tailscale;
   inherit (config.services) tailscale;
   inherit (lib.lists) optionals;
   inherit (lib.types) bool listOf str; 
@@ -10,7 +10,7 @@ let
 in
 
 {
-  options.systemModules.networking.tailscale = {
+  options.ooknet.networking.tailscale = {
     enable = mkEnableOption "Enable tailscale system module";
     server = mkOption {
       type = bool;

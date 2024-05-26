@@ -3,7 +3,7 @@
 let
   inherit (lib) mkIf;
   inherit (lib.lists) any elem;
-  hasFunction = f: elem f config.systemModules.host.function;
+  hasFunction = f: elem f config.ooknet.host.function;
 in
 
 {

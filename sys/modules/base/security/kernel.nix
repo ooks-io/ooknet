@@ -3,7 +3,7 @@
 let
   inherit (lib) optionals mkForce concatLists;
   inherit (builtins) elem;
-  features = config.systemModules.host.hardware.features;
+  features = config.ooknet.host.hardware.features;
 in
 
 {

@@ -2,12 +2,12 @@
 
 let
   inherit (lib) mkIf mkEnableOption;
-  adminShell = config.systemModules.host.admin.shell;
-  cfg = config.systemModules.shell.fish;
+  adminShell = config.ooknet.host.admin.shell;
+  cfg = config.ooknet.shell.fish;
 in
 
 {
-  options.systemModules.shell.fish.enable = mkEnableOption "Enable fish module";
+  options.ooknet.shell.fish.enable = mkEnableOption "Enable fish module";
 
   config = mkIf (adminShell == "fish" || cfg.enable) {
     programs.fish = {

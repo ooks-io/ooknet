@@ -9,7 +9,7 @@ in
 		./hardware-configuration.nix
 	];
 
-	systemModules.host = {
+	ooknet.host = {
 		name = "ooksmedia";
 		type = "desktop";
 		function = [
@@ -35,7 +35,7 @@ in
 		};
 	};
   	
-	systemModules.networking.tailscale = {
+	ooknet.networking.tailscale = {
 		enable = true;
 		server = true;
 	};

@@ -3,7 +3,7 @@
 let
   inherit (lib) mkIf;
   inherit (builtins) elem;
-  host = config.systemModules.host;
+  host = config.ooknet.host;
 in
 
 {

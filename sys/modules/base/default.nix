@@ -15,7 +15,7 @@
   ];
 
 
-  options.systemModules = {
+  options.ooknet = {
     virtualisation = {
       enable = lib.mkEnableOption "Enable virtualisation module";
     };

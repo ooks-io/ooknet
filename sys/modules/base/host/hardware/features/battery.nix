@@ -2,15 +2,15 @@
 { lib, config, pkgs, ... }:
 
 let
-  features = config.systemModules.host.hardware.features;
-  cfg = config.systemModules.host.hardware.battery;
+  features = config.ooknet.host.hardware.features;
+  cfg = config.ooknet.host.hardware.battery;
   inherit (lib) mkIf mkDefault mkOption types;
   inherit (builtins) elem;
   MHz = x: x * 1000;
 in
   
 {
-  options.systemModules.host.hardware.battery = {
+  options.ooknet.host.hardware.battery = {
     powersave = {
       minFreq = mkOption {
         type = types.int;

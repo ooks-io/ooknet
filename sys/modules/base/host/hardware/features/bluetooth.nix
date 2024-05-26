@@ -1,7 +1,7 @@
 { config, lib, pkgs, self, ... }:
 
 let
-  features = config.systemModules.host.hardware.features;
+  features = config.ooknet.host.hardware.features;
   inherit (lib) mkIf;
   inherit (builtins) elem;
 in
