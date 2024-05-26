@@ -1,11 +1,7 @@
 { config, inputs, pkgs, ... }:
 
 {
-	imports = [
-		./hardware-configuration.nix
-    ../../profiles
-		./nixarr.nix
-		];
+	imports = [ ./hardware-configuration.nix ];
 
     activeProfiles = ["base" "gaming"];
 
@@ -26,7 +22,6 @@
   	
 		networking = {
   		hostName = "ooksmedia"; 		
-			# useDHCP = true;
 		};
     boot = {
       kernelPackages = pkgs.linuxPackages_xanmod_latest;
