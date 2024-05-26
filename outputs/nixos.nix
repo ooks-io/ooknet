@@ -9,8 +9,11 @@ let
   hosts = "${systemInputs}/hosts";
   base = "${systemInputs}/modules/base";
 
-  gaming = "${systemInputs}/modules/roles/gaming";
-  workstation = "${systemInputs}/modules/roles/workstation";
+  roles = "${systemInputs}/modules/roles";
+  gaming = "${roles}/gaming";
+  workstation = "${roles}/workstation";
+  media-server = "${roles}/media-server";
+
 
 
   specialArgs = {inherit inputs self;};
@@ -26,6 +29,19 @@ in
       base
       gaming
       workstation
+    ];
+  };
+  ooksmedia = nixosSystem {
+    inherit specialArgs;
+    system = "x86_64-linux";
+    modules = [
+      "${hosts}/ooksmedia"
+      hm
+      base
+
+      gaming
+      workstation
+      media-server
     ];
   };
 }
