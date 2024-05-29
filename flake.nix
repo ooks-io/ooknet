@@ -70,16 +70,18 @@
 
 
     # hyprland "ecosystem". hyprDE perhaps?
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    # hyprland = {
+    #   url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    # };
     hyprlock.url = "github:hyprwm/hyprlock";
     hypridle.url = "github:hyprwm/hypridle";
     hyprpaper.url = "github:hyprwm/hyprpaper";
     hyprland-contrib.url = "github:hyprwm/contrib";
     xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
+    # hyprland-plugins = {
+    #   url = "github:hyprwm/hyprland-plugins";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
 
     # helix because noun -> verb helps scratches my ape brain in the right spot
     helix = {
