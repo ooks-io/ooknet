@@ -1,10 +1,10 @@
 { lib, config, ... }: 
 let
-  cfg = config.homeModules.theme.cursor;
+  cfg = config.ooknet.theme.cursor;
 in
 
 {
-  options.homeModules.theme.cursor = {
+  options.ooknet.theme.cursor = {
     enable = lib.mkEnableOption "Enable cursor module";
     package = lib.mkOption {
       type = lib.types.package;

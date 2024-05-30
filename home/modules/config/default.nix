@@ -9,7 +9,7 @@
     ./mimeApps
   ];
 
-  options.homeModules.config = {
+  options.ooknet.config = {
     nix.enable = lib.mkEnableOption "enable nix configuration module";
     home.enable = lib.mkEnableOption "enable home configuration module";
     userDirs.enable = lib.mkEnableOption "enable userDirs configuration module";

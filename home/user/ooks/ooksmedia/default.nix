@@ -11,7 +11,7 @@
 
   home.sessionVariables.HN = "ooksmedia";
 
-  homeModules.desktop.wayland.nvidia = true;
+  ooknet.desktop.wayland.nvidia = true;
   
   monitors = [{
     name = "HDMI-A-1";

@@ -1,6 +1,6 @@
 { pkgs, lib, config, ... }:
 let
-  cfg = config.homeModules.desktop.media.video.jellyfin;
+  cfg = config.ooknet.desktop.media.video.jellyfin;
 in
 {
   config = lib.mkIf cfg.enable {

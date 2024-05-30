@@ -13,7 +13,7 @@ in
     home.file.".colorscheme".text = config.colorscheme.slug;
     home.sessionVariables.COLOR_SCHEME = "${config.colorscheme.slug}";
 
-    homeModules.theme = {
+    ooknet.theme = {
       fonts.enable = true;
       fonts.regular = {
         family = "Fira Sans";

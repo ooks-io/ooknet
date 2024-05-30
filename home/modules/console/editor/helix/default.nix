@@ -1,6 +1,6 @@
 { inputs, config, pkgs, lib, ... }:
 let
-  cfg = config.homeModules.console.editor.helix;
+  cfg = config.ooknet.console.editor.helix;
   inherit (config) colorscheme;
 in
 {

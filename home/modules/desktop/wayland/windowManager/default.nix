@@ -5,7 +5,7 @@
     ./hyprland
   ];
 
-  options.homeModules.desktop.wayland.windowManager = { 
+  options.ooknet.desktop.wayland.windowManager = { 
     hyprland = {
       enable = lib.mkEnableOption "Enable Hyprland window-manager";
     };

@@ -1,7 +1,7 @@
 { lib, config, inputs, ... }:
 
 let
-  cfg = config.homeModules.desktop.wayland.bar.ags;
+  cfg = config.ooknet.desktop.wayland.bar.ags;
 in
 
 {

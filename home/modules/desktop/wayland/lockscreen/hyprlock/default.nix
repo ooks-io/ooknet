@@ -1,8 +1,8 @@
 { lib, config, inputs, pkgs, ... }:
 
 let
-  cfg = config.homeModules.desktop.wayland.lockscreen.hyprlock;
-  fonts = config.homeModules.theme.fonts;
+  cfg = config.ooknet.desktop.wayland.lockscreen.hyprlock;
+  fonts = config.ooknet.theme.fonts;
   inherit (config.colorscheme) palette;
 in
 

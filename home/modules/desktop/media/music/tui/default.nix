@@ -2,8 +2,8 @@
 
 let
   inherit (config.colorscheme) palette;
-  cfg = config.homeModules.desktop.media.music.tui;
-  zellij = config.homeModules.console.multiplexer.zellij;
+  cfg = config.ooknet.desktop.media.music.tui;
+  zellij = config.ooknet.console.multiplexer.zellij;
   spotify-cli = pkgs.spotify-player.override {
     withImage = false;
     withSixel = false;

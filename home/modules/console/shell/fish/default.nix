@@ -1,6 +1,6 @@
 { lib, config, ... }:
 let
-  cfg = config.homeModules.console.shell.fish;
+  cfg = config.ooknet.console.shell.fish;
   inherit (lib) mkIf;
   hasPackage = pname: lib.any (p: p ? pname && p.pname == pname) config.home.packages;
   hasEza = hasPackage "eza";

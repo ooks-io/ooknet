@@ -1,7 +1,7 @@
 { lib, config, ... }:
 
 let
-  cfg = config.homeModules.desktop.wayland;
+  cfg = config.ooknet.desktop.wayland;
 in
 {
   imports = [
@@ -13,7 +13,7 @@ in
     ./launcher
   ];
 
-  options.homeModules.desktop.wayland = {
+  options.ooknet.desktop.wayland = {
     enable = lib.mkEnableOption "Enable wayland specific confurations";
     nvidia = lib.mkOption {
       type = lib.types.bool;

@@ -1,8 +1,8 @@
 { lib, config, pkgs, ... }:
 
 let
-  fonts = config.homeModules.theme.fonts;
-  cfg = config.homeModules.desktop.wayland.launcher.rofi;
+  fonts = config.ooknet.theme.fonts;
+  cfg = config.ooknet.desktop.wayland.launcher.rofi;
 in
 
 {

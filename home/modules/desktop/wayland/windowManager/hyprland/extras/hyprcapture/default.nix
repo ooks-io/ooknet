@@ -1,7 +1,7 @@
 { lib, config, pkgs, inputs, ... }:
 
 let
-  cfg = config.homeModules.desktop.wayland.windowManager.hyprland.extras.hyprcapture;
+  cfg = config.ooknet.desktop.wayland.windowManager.hyprland.extras.hyprcapture;
 in
 
 {

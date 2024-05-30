@@ -1,8 +1,8 @@
 { lib, config, inputs,  ... }:
 
 let
-  cfg = config.homeModules.desktop.wayland.windowManager.hyprland;
-  wallpaperPath = config.homeModules.theme.wallpaper.path;
+  cfg = config.ooknet.desktop.wayland.windowManager.hyprland;
+  wallpaperPath = config.ooknet.theme.wallpaper.path;
 in
 
 {

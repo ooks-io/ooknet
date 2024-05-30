@@ -12,7 +12,7 @@ in
 
     systemd.user.startServices = mkDefault "sd-switch";
 
-    homeModules = {
+    ooknet = {
       config = {
         home.enable = true;
         userDirs.enable = true;

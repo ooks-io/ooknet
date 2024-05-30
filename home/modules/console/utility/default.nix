@@ -7,7 +7,7 @@
     ./ssh
   ];
 
-  options.homeModules.console.utility = {
+  options.ooknet.console.utility = {
     nixIndex = {
       enable = lib.mkEnableOption "Enable nixIndex configuration";
     };

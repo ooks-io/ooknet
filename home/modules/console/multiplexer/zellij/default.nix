@@ -1,7 +1,7 @@
 { lib, config, pkgs, ... }:
 let
   inherit (config.colorscheme) palette;
-  cfg = config.homeModules.console.multiplexer.zellij;
+  cfg = config.ooknet.console.multiplexer.zellij;
 in
 
 {

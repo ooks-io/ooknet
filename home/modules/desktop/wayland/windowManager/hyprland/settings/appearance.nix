@@ -1,7 +1,7 @@
 { config, lib, ... }:
 
 let
-  cfg = config.homeModules.desktop.wayland.windowManager.hyprland;
+  cfg = config.ooknet.desktop.wayland.windowManager.hyprland;
   pointer = config.home.pointerCursor;
   inherit (config.colorscheme) palette;
 in

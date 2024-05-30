@@ -7,7 +7,7 @@
     # ./ranger
   ];
 
-  options.homeModules.console.fileManager = {
+  options.ooknet.console.fileManager = {
     lf = {
       enable = lib.mkEnableOption "Enable lf file manager";
       default = lib.mkOption {

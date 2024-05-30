@@ -3,11 +3,11 @@
 let
   inherit (lib) mkIf types mkOption; 
   inherit (builtins) elem;
-  cfg = config.homeModules.desktop.security.polkit;
+  cfg = config.ooknet.desktop.security.polkit;
 in
 
 {
-  options.homeModules.desktop.security.polkit = mkOption {
+  options.ooknet.desktop.security.polkit = mkOption {
     type = types.enum ["gnome" "pantheon"]; # TODO: add kde agent
     default = "";
     description = "Type of polkit agent module to use";

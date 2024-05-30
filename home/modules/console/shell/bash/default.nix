@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  cfg = config.homeModules.console.shell.bash;
+  cfg = config.ooknet.console.shell.bash;
 in
 {
   config = lib.mkIf cfg.enable {

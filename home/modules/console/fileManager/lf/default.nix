@@ -4,7 +4,7 @@
 #     - ripdrag support
 #     - color parity with eza
 let
- cfg = config.homeModules.console.fileManager.lf;
+ cfg = config.ooknet.console.fileManager.lf;
 in
 
 {

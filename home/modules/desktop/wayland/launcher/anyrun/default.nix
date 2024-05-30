@@ -1,7 +1,7 @@
 { config, lib, inputs, pkgs, ... }:
 
 let
-  cfg = config.homeModules.desktop.wayland.launcher.anyrun;
+  cfg = config.ooknet.desktop.wayland.launcher.anyrun;
 in
 
 {

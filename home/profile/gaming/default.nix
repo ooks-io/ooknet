@@ -9,7 +9,7 @@ in
   ];
   
   config = lib.mkIf cfg.enable {
-    homeModules.desktop = {
+    ooknet.desktop = {
       gaming = {
         lutris.enable = false;
       };

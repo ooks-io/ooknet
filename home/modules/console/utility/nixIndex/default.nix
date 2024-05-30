@@ -1,6 +1,6 @@
 { pkgs, config, lib, ... }:
 let
-  cfg = config.homeModules.console.utility.nixIndex;
+  cfg = config.ooknet.console.utility.nixIndex;
   update-script = pkgs.writeShellApplication {
     name = "fetch-nix-index-database";
     runtimeInputs = with pkgs; [ wget coreutils ];

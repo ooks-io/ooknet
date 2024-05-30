@@ -7,7 +7,7 @@
     ./office
   ];
 
-  options.homeModules.desktop.productivity = {
+  options.ooknet.desktop.productivity = {
     obsidian = {
       enable = lib.mkEnableOption "enable obsidian home module";
     };

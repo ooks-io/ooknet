@@ -1,8 +1,8 @@
 { lib, config, pkgs, ... }:
 
 let
-  cfg = config.homeModules.desktop.wayland.launcher.tofi;
-  fonts = config.homeModules.theme.fonts;
+  cfg = config.ooknet.desktop.wayland.launcher.tofi;
+  fonts = config.ooknet.theme.fonts;
   inherit (config.colorscheme) palette;
 in
 

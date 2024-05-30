@@ -1,7 +1,7 @@
 { lib, config, pkgs, ... }:
 
 let
-  cfg = config.homeModules.config.mimeApps;
+  cfg = config.ooknet.config.mimeApps;
 
   browser = ["${config.home.sessionVariables.BROWSER}.desktop"];
   zathura = ["org.pwmt.zethura.desktop.desktop"];

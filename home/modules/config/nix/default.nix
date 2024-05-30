@@ -1,7 +1,7 @@
 { lib, config, pkgs, outputs, ... }:
 
 let
-  cfg = config.homeModules.config.nix;
+  cfg = config.ooknet.config.nix;
 in
 
 {

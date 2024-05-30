@@ -1,12 +1,5 @@
-{ lib, ... }:
 {
   imports = [
-    ./starship
+    ./starship.nix
   ];
-
-  options.homeModules.console.prompt = {
-    starship = {
-      enable = lib.mkEnableOption "Enable starship prompt";
-    };
-  };
 }

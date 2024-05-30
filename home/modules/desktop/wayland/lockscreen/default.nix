@@ -7,7 +7,7 @@
     ./hyprlock
   ];
 
-  options.homeModules.desktop.wayland.lockscreen = {
+  options.ooknet.desktop.wayland.lockscreen = {
     swaylock = {
       enable = lib.mkEnableOption "Enable Swaylock screen";
     };

@@ -6,7 +6,7 @@
     ./tools
   ];
 
-  options.homeModules.desktop.wayland.utility = {
+  options.ooknet.desktop.wayland.utility = {
     tools = {
       enable = lib.mkEnableOption "Enable wayland specific tools";
     };

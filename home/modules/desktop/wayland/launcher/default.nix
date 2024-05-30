@@ -7,7 +7,7 @@
     ./tofi
   ];
 
-  options.homeModules.desktop.wayland.launcher = {
+  options.ooknet.desktop.wayland.launcher = {
     anyrun = {
       enable = lib.mkEnableOption "enable anyrun launcher module";
     };

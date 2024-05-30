@@ -1,8 +1,8 @@
 { inputs, config, lib, ... }:
 
 let
-  cfg = config.homeModules.desktop.browser.schizofox;
-  fonts = config.homeModules.theme.fonts;
+  cfg = config.ooknet.desktop.browser.schizofox;
+  fonts = config.ooknet.theme.fonts;
   inherit (config.colorscheme) palette;
 in
 

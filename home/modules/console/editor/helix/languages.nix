@@ -1,7 +1,7 @@
 { pkgs, lib, config, ... }: 
 
 let
-  cfg = config.homeModules.console.editor.helix;
+  cfg = config.ooknet.console.editor.helix;
 in
 
 {

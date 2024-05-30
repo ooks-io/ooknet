@@ -1,7 +1,7 @@
 { lib, config, pkgs, ... }:
 
 let
-  cfg = config.homeModules.desktop.productivity.obsidian;
+  cfg = config.ooknet.desktop.productivity.obsidian;
 in
 
 {

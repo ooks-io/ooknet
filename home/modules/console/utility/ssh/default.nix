@@ -1,8 +1,8 @@
 { lib, config, ... }:
 
 let
-  cfg = config.homeModules.console.utility.ssh;
-  hasFish = mkIf config.homeModules.console.shell.fish.enable;
+  cfg = config.ooknet.console.utility.ssh;
+  hasFish = mkIf config.ooknet.console.shell.fish.enable;
   inherit (lib) mkIf;
 in
 
@@ -16,9 +16,8 @@ in
             IdentityAgent "~/.1password/agent.sock"
       '';
     };
-    programs.fish.interactiveShellInit = hasFish ''
+    programs.fish.interactiveShellInit = hasFish /* fish */ ''
       set -gx SSH_AUTH_SOCK ~/.1password/agent.sock
     '';
   };
-  
 }

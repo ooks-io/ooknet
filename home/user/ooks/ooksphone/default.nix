@@ -8,7 +8,7 @@
   
   theme.phone.enable = true;
 
-  homeModules = {
+  ooknet = {
     console = {
       editor.helix.enable = true;
       shell.fish.enable = true;

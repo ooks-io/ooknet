@@ -2,9 +2,9 @@
 
 let
   inherit (config.colorscheme) palette;
-  fonts = config.homeModules.theme.font;
-  cfg = config.homeModules.desktop.terminal.kitty;
-  fish = config.homeModules.console.shell.fish;
+  fonts = config.ooknet.theme.font;
+  cfg = config.ooknet.desktop.terminal.kitty;
+  fish = config.ooknet.console.shell.fish;
 in
 {
 

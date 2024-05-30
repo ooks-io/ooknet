@@ -2,10 +2,10 @@
 
 let
   inherit (inputs.nix-colors.lib-contrib { inherit pkgs; }) gtkThemeFromScheme;
-  cfg = config.homeModules.theme.gtk;
+  cfg = config.ooknet.theme.gtk;
 in
 {
-  options.homeModules.theme.gtk = {
+  options.ooknet.theme.gtk = {
     enable = lib.mkEnableOption "Enable gtk theme module";
     # TODO: add theme option
   };
@@ -14,7 +14,7 @@ in
     gtk = {
       enable = true;
       font = {
-        name = config.homeModules.theme.fonts.regular.family;
+        name = config.ooknet.theme.fonts.regular.family;
         size = 12;
       };
       theme = {

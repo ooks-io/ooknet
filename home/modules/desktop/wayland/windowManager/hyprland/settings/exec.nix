@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.homeModules.desktop.wayland.windowManager.hyprland;
+  cfg = config.ooknet.desktop.wayland.windowManager.hyprland;
 in
 
 {

@@ -1,6 +1,6 @@
 { lib, config, pkgs, inputs, ... }: 
 let
-  cfg = config.homeModules.desktop.wayland.windowManager.hyprland;
+  cfg = config.ooknet.desktop.wayland.windowManager.hyprland;
   inherit (import ./pkgs {inherit pkgs;}) hyprbrightness hyprvolume;
   inherit (inputs.ooks-scripts.packages.${pkgs.system}) powermenu zellijmenu;
 in

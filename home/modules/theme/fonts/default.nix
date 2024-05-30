@@ -15,10 +15,10 @@ let
       example = "pkgs.fira-code";
     };
   };
-  cfg = config.homeModules.theme.fonts;
+  cfg = config.ooknet.theme.fonts;
 in
 {
-  options.homeModules.theme.fonts = {
+  options.ooknet.theme.fonts = {
     enable = lib.mkEnableOption "Whether to enable font profiles";
     monospace = mkFontOption "monospace";
     regular = mkFontOption "regular";

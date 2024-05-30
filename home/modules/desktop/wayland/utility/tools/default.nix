@@ -1,7 +1,7 @@
 { lib, config, pkgs, ... }:
 
 let
-  cfg = config.homeModules.desktop.wayland.utility.tools;
+  cfg = config.ooknet.desktop.wayland.utility.tools;
 in
 
 {

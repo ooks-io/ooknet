@@ -1,9 +1,9 @@
 { lib, config, ... }:
 
 let
-  cfg = config.homeModules.desktop.productivity.zathura;
+  cfg = config.ooknet.desktop.productivity.zathura;
   inherit (config.colorscheme) palette;
-  fonts = config.homeModules.theme.fonts;
+  fonts = config.ooknet.theme.fonts;
 in
 
 {

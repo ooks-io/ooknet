@@ -2,7 +2,7 @@
 
 let
   addons = inputs.firefox-addons.packages.${pkgs.system};
-  cfg = config.homeModules.desktop.browser.firefox;
+  cfg = config.ooknet.desktop.browser.firefox;
   inherit (lib) mkIf;
 in
 {

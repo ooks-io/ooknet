@@ -6,7 +6,7 @@
     ./tui
   ];
 
-  options.homeModules.desktop.media.music = {
+  options.ooknet.desktop.media.music = {
     tui = {
       enable = lib.mkEnableOption "Enable tui music";
     };

@@ -1,7 +1,7 @@
 { config, lib, ... }:
 
 let
-  cfg = config.homeModules.console.editor.nvim;
+  cfg = config.ooknet.console.editor.nvim;
 in
 
 {

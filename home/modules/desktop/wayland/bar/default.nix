@@ -6,7 +6,7 @@
     ./waybar
   ];
 
-  options.homeModules.desktop.wayland.bar = {
+  options.ooknet.desktop.wayland.bar = {
     eww = {
       enable = lib.mkEnableOption "Enable Eww bar";
     };

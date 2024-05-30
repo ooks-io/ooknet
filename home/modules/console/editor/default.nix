@@ -6,7 +6,7 @@
     # ./nvim
   ];
 
-  options.homeModules.console.editor = {
+  options.ooknet.console.editor = {
     helix = {
       enable = lib.mkEnableOption "Enable helix text editor";
       default = lib.mkOption {

@@ -6,7 +6,7 @@
     ./mpv
   ];
   
-  options.homeModules.desktop.media.video = {
+  options.ooknet.desktop.media.video = {
     mpv = {
       enable = lib.mkEnableOption "Enable mpv video player";
     };

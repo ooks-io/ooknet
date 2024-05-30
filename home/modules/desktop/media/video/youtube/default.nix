@@ -1,6 +1,6 @@
 { lib, config, pkgs, ...}:
 let
-  cfg = config.homeModules.desktop.media.video.youtube;
+  cfg = config.ooknet.desktop.media.video.youtube;
 in
 {
   config = lib.mkIf cfg.enable {

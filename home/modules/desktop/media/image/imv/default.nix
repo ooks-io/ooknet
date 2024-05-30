@@ -1,6 +1,6 @@
 { lib, config, ... }:
 let
-  cfg = config.homeModules.desktop.media.image.imv;
+  cfg = config.ooknet.desktop.media.image.imv;
 in
 {
   config = lib.mkIf cfg.enable {

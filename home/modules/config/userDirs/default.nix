@@ -1,7 +1,7 @@
 { lib, config, ... }:
 
 let
-  cfg = config.homeModules.config.userDirs;
+  cfg = config.ooknet.config.userDirs;
 in
 
 {

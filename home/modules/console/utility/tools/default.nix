@@ -1,6 +1,6 @@
 { pkgs, lib, config, ... }:
 let
-  cfg = config.homeModules.console.utility.tools;
+  cfg = config.ooknet.console.utility.tools;
 in
 {
   config = lib.mkIf cfg.enable {
@@ -61,7 +61,7 @@ in
       };
       fzf = {
         enable = true;
-        enableFishIntegration = lib.mkIf config.homeModules.console.shell.fish.enable true;
+        enableFishIntegration = lib.mkIf config.ooknet.console.shell.fish.enable true;
         defaultCommand = "rg --files --hidden";
         changeDirWidgetOptions = [
           "--preview 'eza --icons -L 3 -T --color always {} | head -200'"

@@ -8,7 +8,7 @@
     ./bottles
   ];
 
-  options.homeModules.desktop.gaming = {
+  options.ooknet.desktop.gaming = {
     factorio = {
       enable = lib.mkEnableOption "Enable factorio home module";
     };

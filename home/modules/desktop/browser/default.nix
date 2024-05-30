@@ -8,7 +8,7 @@
     #./brave -- still needs tio be implemented
   ];
 
-  options.homeModules.desktop.browser = {
+  options.ooknet.desktop.browser = {
     firefox = {
       enable = lib.mkEnableOption "Enable firefox browser";
       default = lib.mkOption {

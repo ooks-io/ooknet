@@ -2,9 +2,9 @@
 
 let
   inherit (config.colorscheme) palette;
-  fonts = config.homeModules.theme.fonts;
-  wallpaperPath = config.homeModules.theme.wallpaper.path;
-  cfg = config.homeModules.desktop.wayland.lockscreen.swaylock;
+  fonts = config.ooknet.theme.fonts;
+  wallpaperPath = config.ooknet.theme.wallpaper.path;
+  cfg = config.ooknet.desktop.wayland.lockscreen.swaylock;
 in
 {
   config = lib.mkIf cfg.enable {

@@ -6,7 +6,7 @@
     ./zsh
   ];
 
-  options.homeModules.console.shell = {
+  options.ooknet.console.shell = {
     fish = {
       enable = lib.mkEnableOption "Enable fish configuration";
     };

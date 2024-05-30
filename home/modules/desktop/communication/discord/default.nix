@@ -1,14 +1,14 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.homeModules.desktop.communication.discord;
-  fonts = config.homeModules.theme.fonts;
+  cfg = config.ooknet.desktop.communication.discord;
+  fonts = config.ooknet.theme.fonts;
   inherit (config.colorscheme) palette;
   inherit (lib) mkIf mkEnableOption;
 in
 
 {
-  options.homeModules.desktop.communication.discord.enable = mkEnableOption "Enable discord home manager module";
+  options.ooknet.desktop.communication.discord.enable = mkEnableOption "Enable discord home manager module";
   config = mkIf cfg.enable {
     home.packages = [ pkgs.vesktop ];
 

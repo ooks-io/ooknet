@@ -1,8 +1,8 @@
 { config, lib, ... }:
 let
   inherit (config.colorscheme) palette variant;
-  fonts = config.homeModules.theme.fonts;
-  cfg = config.homeModules.desktop.wayland.notification.mako;
+  fonts = config.ooknet.theme.fonts;
+  cfg = config.ooknet.desktop.wayland.notification.mako;
 in {
   config = lib.mkIf cfg.enable {
     services.mako  = {

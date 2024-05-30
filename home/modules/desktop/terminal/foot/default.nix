@@ -2,8 +2,8 @@
 
 let
   inherit (config.colorscheme) palette;
-  fonts = config.homeModules.theme.fonts;
-  cfg = config.homeModules.desktop.terminal.foot;
+  fonts = config.ooknet.theme.fonts;
+  cfg = config.ooknet.desktop.terminal.foot;
 in
 
 {

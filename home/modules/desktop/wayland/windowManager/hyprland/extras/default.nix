@@ -6,7 +6,7 @@
     ./hyprshade
   ];
 
-  options.homeModules.desktop.wayland.windowManager.hyprland.extras = {
+  options.ooknet.desktop.wayland.windowManager.hyprland.extras = {
     hyprcapture = {
       enable = lib.mkEnableOption "Enable hyprcapture screenshot/recording module";
     };

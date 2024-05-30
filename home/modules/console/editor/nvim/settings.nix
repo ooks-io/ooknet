@@ -2,7 +2,7 @@
 
 let
   inherit (config.colorscheme) palette;
-  cfg = config.homeModules.console.editor.nvim;
+  cfg = config.ooknet.console.editor.nvim;
 in
 
 {

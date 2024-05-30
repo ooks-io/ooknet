@@ -1,7 +1,7 @@
 { lib, config, pkgs, ... }:
 
 let
-  cfg = config.homeModules.desktop.media.video.mpv;
+  cfg = config.ooknet.desktop.media.video.mpv;
 in
 {
   config = {

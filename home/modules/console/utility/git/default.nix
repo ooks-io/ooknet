@@ -1,6 +1,6 @@
 { pkgs, config, lib, ... }:
   let 
-    cfg = config.homeModules.console.utility.git;
+    cfg = config.ooknet.console.utility.git;
   in
 { 
   config = lib.mkIf cfg.enable {

@@ -7,7 +7,7 @@
     ./lualine.nix
   ];
 
-  options.homeModules.console.editor.nvim.plugins = {
+  options.ooknet.console.editor.nvim.plugins = {
     indentBlankline = lib.mkOption {
       type = lib.types.bool;
       default = false;

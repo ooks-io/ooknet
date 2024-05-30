@@ -6,7 +6,7 @@
     ./tmux
   ];
 
-  options.homeModules.console.multiplexer = {
+  options.ooknet.console.multiplexer = {
     zellij = {
       enable = lib.mkEnableOption "Enable zellij multiplexer";
     };

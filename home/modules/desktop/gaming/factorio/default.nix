@@ -1,7 +1,7 @@
 { lib, config, pkgs, ... }:
 
 let
-  cfg=config.homeModules.desktop.gaming.factorio;
+  cfg=config.ooknet.desktop.gaming.factorio;
 in
 
 {

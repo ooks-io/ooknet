@@ -2,11 +2,11 @@
 
 let
   inherit (lib) mkIf mkEnableOption;
-  cfg = config.homeModules.console.shell.zsh;
+  cfg = config.ooknet.console.shell.zsh;
 in
 
 {
-  options.homeModules.console.shell.zsh.enable = mkEnableOption "";
+  options.ooknet.console.shell.zsh.enable = mkEnableOption "";
 
   config = mkIf cfg.enable {
     programs.zsh = {

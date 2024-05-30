@@ -1,7 +1,7 @@
 { lib, config, ... }:
 
 let
-  cfg = config.homeModules.desktop.wayland.utility.gammastep;
+  cfg = config.ooknet.desktop.wayland.utility.gammastep;
 in
 
 {

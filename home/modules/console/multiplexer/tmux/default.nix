@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.homeModules.console.multiplexer.tmux;
+  cfg = config.ooknet.console.multiplexer.tmux;
   inherit (config.colorscheme) palette;
 in
 

@@ -1,6 +1,6 @@
 { lib, config, ... }:
   let
-    cfg = config.homeModules.desktop.terminal;
+    cfg = config.ooknet.desktop.terminal;
   in
 {
 
@@ -9,7 +9,7 @@
     ./kitty
   ];
 
-  options.homeModules.desktop.terminal = {
+  options.ooknet.desktop.terminal = {
     foot = {
       enable = lib.mkEnableOption "Enable foot terminal";
       default = lib.mkOption {
