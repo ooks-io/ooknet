@@ -1,14 +1,16 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, osConfig, ... }:
 
 let
-  fonts = config.ooknet.theme.fonts;
-  cfg = config.ooknet.desktop.wayland.bar.waybar;
-  monitorWidth =  (lib.head config.monitors).width - 20;
   inherit (config.colorscheme) palette;
+  inherit (lib) mkIf head;
+  fonts = config.ooknet.fonts;
+  wayland = config.ooknet.wayland;
+  monitors = osConfig.ooknet.host.hardware.monitors;
+  monitorWidth =  (head monitors).width - 20;
 in
 
 {
-  config = lib.mkIf cfg.enable {
+  config = mkIf (wayland.bar == "waybar") {
     programs.waybar = {
       enable = true;
       systemd.enable = true;

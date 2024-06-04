@@ -1,17 +1,6 @@
-{ lib, ... }:
-
 {
   imports = [
-    ./gammastep
-    ./tools
+    ./gammastep.nix
+    ./tools.nix
   ];
-
-  options.ooknet.desktop.wayland.utility = {
-    tools = {
-      enable = lib.mkEnableOption "Enable wayland specific tools";
-    };
-    gammastep = {
-      enable = lib.mkEnableOption "Enable gammastep module";
-    };
-  };
 }

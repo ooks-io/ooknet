@@ -1,8 +1,11 @@
-{ lib, config, ... }:
+{ lib, config, osConfig, ... }:
 
 let
+  inherit (lib) mkIf;
   cfg = config.ooknet.desktop.wayland;
+  gpu = osConfig.ooknet.host.hardware.gpu;
 in
+
 {
   imports = [
     ./bar
@@ -13,16 +16,7 @@ in
     ./launcher
   ];
 
-  options.ooknet.desktop.wayland = {
-    enable = lib.mkEnableOption "Enable wayland specific confurations";
-    nvidia = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Enable nvidia wayland configuration";
-    };
-  };
-
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     home.sessionVariables = {
       CLUTTER_BACKEND = "wayland";
       NIXOS_OZONE_WL = "1";
@@ -33,7 +27,7 @@ in
       MOZ_DBUS_REMOTE = "1";
       XDG_SESSION_TYPE = "wayland";
       SDL_VIDEODRIVER = "wayland";
-    } // lib.mkIf cfg.nvidia {
+    } // mkIf (gpu == "nvidia") {
       LIBVA_DRIVER_NAME = "nvidia";
       GBM_BACKEND = "nvidia-drm";
       __GLX_VENDOR_LIBRARY_NAME = "nvidia";

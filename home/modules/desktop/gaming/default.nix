@@ -1,17 +1,7 @@
-{ lib, ... }:
-
 {
-
   imports = [
-    ./factorio
-    ./lutris
-    ./bottles
+    ./factorio.nix
+    ./lutris.nix
+    ./bottles.nix
   ];
-
-  options.ooknet.desktop.gaming = {
-    factorio = {
-      enable = lib.mkEnableOption "Enable factorio home module";
-    };
-  };
-  
 }

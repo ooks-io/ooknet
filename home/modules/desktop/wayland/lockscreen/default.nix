@@ -1,21 +1,7 @@
-{ lib, ... }:
 {
-
   imports = [
-    #./gtkLock --- still needs to be implemented
-    ./swaylock
-    ./hyprlock
+    ./swaylock.nix
+    ./hyprlock.nix
   ];
-
-  options.ooknet.desktop.wayland.lockscreen = {
-    swaylock = {
-      enable = lib.mkEnableOption "Enable Swaylock screen";
-    };
-    hyprlock = {
-      enable = lib.mkEnableOption "Enable hyprlock screen";
-    };
-  };
-
-  #TODO: make assertion to prevent 2 lockscreens
 }
 

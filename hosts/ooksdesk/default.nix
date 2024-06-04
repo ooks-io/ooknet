@@ -24,6 +24,14 @@ in
 			cpu.amd.pstate.enable = true;
 			gpu.type = "amd";
 			features = [ "ssd" "audio" "video" ];
+			monitors = [{
+				name = "DP-1";
+				primary = true;
+				width = 2560;
+				height = 1440;
+				refreshRate = 155;
+				workspace = "1";
+			}];
 		};
 	};
   	
