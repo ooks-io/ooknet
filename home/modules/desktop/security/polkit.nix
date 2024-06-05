@@ -1,21 +1,14 @@
 { lib, config, pkgs, ... }:
 
 let
-  inherit (lib) mkIf types mkOption; 
-  inherit (builtins) elem;
-  cfg = config.ooknet.desktop.security.polkit;
+  inherit (lib) mkIf; 
+  polkit = config.ooknet.security.polkit;
 in
 
 {
-  options.ooknet.desktop.security.polkit = mkOption {
-    type = types.enum ["gnome" "pantheon"]; # TODO: add kde agent
-    default = "";
-    description = "Type of polkit agent module to use";
-  };
-
   config = {
     systemd.user.services = {
-      polkit-pantheon-authentication-agent-1 = mkIf (elem cfg ["pantheon"]) {
+      polkit-pantheon-authentication-agent-1 = mkIf (polkit == "pantheon") {
         Unit.Description = "polkit-pantheon-authentication-agent-1";
 
         Install = {
@@ -33,7 +26,7 @@ in
         };
       };
 
-      polkit-gnome-authentication-agent-1 = mkIf (elem cfg ["gnome"]) {
+      polkit-gnome-authentication-agent-1 = mkIf (polkit == "gnome") {
         Unit.Description = "polkit-pantheon-authentication-agent-1";
         Install = {
           WantedBy = [ "graphical-session.target" ];
