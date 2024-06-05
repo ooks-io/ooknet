@@ -15,5 +15,6 @@ in
       notification = "mako";
       bar = "waybar";
     };
+    ooknet.security.polkit = "pantheon";
   };
 }
