@@ -1,5 +1,5 @@
 {
   imports = [
-    ./polkit
+    ./polkit.nix
   ];
 }

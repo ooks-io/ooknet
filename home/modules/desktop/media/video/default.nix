@@ -1,20 +1,7 @@
-{ lib, ... }:
 {
   imports = [
-    ./youtube
-    ./jellyfin
-    ./mpv
+    ./youtube.nix
+    ./jellyfin-player.nix
+    ./mpv.nix
   ];
-  
-  options.ooknet.desktop.media.video = {
-    mpv = {
-      enable = lib.mkEnableOption "Enable mpv video player";
-    };
-    youtube = {
-      enable = lib.mkEnableOption "Enable youtube tui player";
-    };
-    jellyfin = {
-      enable = lib.mkEnableOption "Enable jellyifn media player";
-    };
-  };
 }

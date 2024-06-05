@@ -1,5 +1,5 @@
 {
   imports = [
-    ./inkscape
+    ./obsidian.nix
   ];
 }

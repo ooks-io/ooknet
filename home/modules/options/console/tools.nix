@@ -16,5 +16,6 @@ in
     nixIndex.enable = mkEnableOption "";
     starship.enable = mkEnableOption "";
     utils.enable = mkEnableOption "";
+    ffmpeg.enable = mkEnableOption "";
   };
 }

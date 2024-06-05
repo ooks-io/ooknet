@@ -1,5 +1,5 @@
 {
   imports = [
-    ./audacity
+    ./zathura.nix
   ];
 }

@@ -1,25 +1,32 @@
-{ config, lib, ... }:
+{ config, lib, osConfig, ... }:
 
 let
+  inherit (lib) mkIf;
   inherit (config.colorscheme) palette;
-  fonts = config.ooknet.theme.font;
-  cfg = config.ooknet.desktop.terminal.kitty;
-  fish = config.ooknet.console.shell.fish;
+  fonts = config.ooknet.fonts;
+  cfg = config.ooknet.terminal.kitty;
+  terminal = config.ooknet.desktop.terminal;
+  shell = osConfig.ooknet.host.admin.shell;
 in
-{
 
-  config = lib.mkIf cfg.enable {
-    home.sessionVariables = lib.mkIf cfg.default {
+{
+  config = mkIf (cfg.enable || terminal == "kitty") {
+
+    home.sessionVariables = mkIf (terminal == "kitty") {
       TERMINAL = "kitty -1";
       TERM = "kitty -1";
     };
+
+    ooknet.binds.terminal = mkIf (terminal == "kitty") "kitty -1";
+    ooknet.binds.terminalLaunch = mkIf (terminal == "kitty") "kitty -e";
+
     programs.kitty = {
       enable = true;
       font = {
         name = fonts.monospace.family;
         size = 12;
       };
-      shellIntegration.enableFishIntegration = lib.mkif fish.enable true;
+      shellIntegration.enableFishIntegration = mkIf (shell == "fish") true;
       settings = {
         scrollback_lines = 4000;
         scrollback_pager_history_size = 2048;

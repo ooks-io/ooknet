@@ -1,14 +1,15 @@
-{ lib, config, ... }:
+{ lib, config, osConfig, ... }:
 let
-  cfg = config.ooknet.console.shell.fish;
-  inherit (lib) mkIf;
-  hasPackage = pname: lib.any (p: p ? pname && p.pname == pname) config.home.packages;
+  inherit (lib) mkIf any;
+  cfg = config.ooknet.shell.fish;
+  admin = osConfig.ooknet.host.admin;
+  hasPackage = pname: any (p: p ? pname && p.pname == pname) config.home.packages;
   hasEza = hasPackage "eza";
   hasBat = hasPackage "bat";
 in
 {
-  config = {
-    programs.fish = mkIf cfg.enable {
+  config = mkIf (cfg.enable || admin.shell == "fish") {
+    programs.fish = {
       enable = true;
       shellAbbrs = {
         fe = "cd $FLAKE; $EDITOR $FLAKE";

@@ -1,5 +1,5 @@
 {
   imports = [
-    ./kdeconnect
+    ./kdeconnect.nix
   ];
 }

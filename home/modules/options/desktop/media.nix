@@ -15,7 +15,7 @@ in
       youtube.enable = mkEnableOption "";
     };
     music = {
-      spotifyCli.enable = mkEnableOption "";
+      tui.enable = mkEnableOption "";
     };
   };
 }

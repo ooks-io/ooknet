@@ -2,18 +2,17 @@
 
 let
   addons = inputs.firefox-addons.packages.${pkgs.system};
-  cfg = config.ooknet.desktop.browser.firefox;
+  cfg = config.ooknet.browser.firefox;
+  browser = config.ooknet.desktop.browser;
   inherit (lib) mkIf;
 in
 {
 
-  config = {
-    nixpkgs.config.allowUnfree = true;
-    home.sessionVariables = mkIf cfg.default {
-      BROWSER = "firefox";
-    };
+  config = mkIf (cfg.enable || browser == "firefox") {
+    home.sessionVariables.BROWSER = mkIf (browser == "firefox") "firefox";
+    ooknet.binds.browser = mkIf (browser == "firefox") "firefox";
   
-    programs.firefox = mkIf cfg.enable {
+    programs.firefox = {
       enable = true;
       profiles.ooks = {
         extensions = with addons; [

@@ -1,8 +1,9 @@
 {
   imports = [
-    ./desktop
-    ./console
-    ./config
-    ./theme
+    ./base # default configuration modules for home-manager.
+    ./desktop # gui modules
+    ./console # cli modules
+    ./appearance # modules for configuring themes ie: fonts, wallpapers, color-schemes, etc...
+    ./options # all module options live here
   ];
 }

@@ -1,9 +1,12 @@
 { lib, config, ... }:
+
 let
-  cfg = config.ooknet.desktop.media.image.imv;
+  inherit (lib) mkIf;
+  cfg = config.ooknet.media.image.imv;
 in
+
 {
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     programs = {
       imv = {
         enable = true;

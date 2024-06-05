@@ -2,16 +2,22 @@
 
 let
   inherit (config.colorscheme) palette;
-  fonts = config.ooknet.theme.fonts;
+  inherit (lib) mkIf;
+  fonts = config.ooknet.fonts;
   cfg = config.ooknet.desktop.terminal.foot;
+  terminal = config.ooknet.desktop.terminal;
 in
 
 {
-  config = lib.mkIf cfg.enable {
-    home.sessionVariables = lib.mkIf cfg.default {
+  config = mkIf (cfg.enable || terminal == "foot") {
+    home.sessionVariables = mkIf (terminal == "foot") {
       TERMINAL = "foot";
       TERM = "foot";
     };
+
+    ooknet.binds.terminal = mkIf (terminal == "foot") "foot";
+    ooknet.binds.terminalLaunch = mkIf (terminal == "foot") "foot";
+
     programs.foot = {
       enable = true;
       server.enable = true;
@@ -38,6 +44,7 @@ in
           style = "beam";
           blink = "yes";
         };
+
         colors = {
           alpha = 1.0;
           foreground = "${palette.base05}";

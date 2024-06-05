@@ -1,12 +1,14 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.ooknet.console.multiplexer.tmux;
   inherit (config.colorscheme) palette;
+  inherit (lib) mkIf;
+  cfg = config.ooknet.multiplexer.tmux;
+  console = config.ooknet.console;
 in
 
 {
-  config = lib.mkIf cfg.enable {
+  config = mkIf (cfg.enable || console.multiplexer == "tmux") {
     programs.tmux = {
       enable = true;
       shell = "${pkgs.fish}/bin/fish";

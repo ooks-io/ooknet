@@ -1,18 +1,21 @@
 { inputs, config, pkgs, lib, ... }:
-let
-  cfg = config.ooknet.console.editor.helix;
-  inherit (config) colorscheme;
-in
-{
 
+let
+  inherit (config) colorscheme;
+  inherit (lib) mkIf;
+  cfg = config.ooknet.editor.helix;
+  console = config.ooknet.console;
+in
+
+{
   imports = [
     ./languages.nix
   ];
   
-  config = lib.mkIf cfg.enable {
+  config = mkIf (cfg.enable || console.editor == "helix") {
     programs.helix = {
       enable = true;
-      defaultEditor = lib.mkIf cfg.default true;
+      defaultEditor = mkIf (console.editor == "helix") true;
       package = inputs.helix.packages.${pkgs.system}.default.overrideAttrs (old: {
         makeWrapperArgs = with pkgs;
           old.makeWrapperArgs

@@ -1,11 +1,13 @@
 { lib, config, pkgs, ... }:
 let
   inherit (config.colorscheme) palette;
-  cfg = config.ooknet.console.multiplexer.zellij;
+  inherit (lib) mkIf;
+  cfg = config.ooknet.multiplexer.zellij;
+  console = config.ooknet.console;
 in
 
 {
-  config = lib.mkIf cfg.enable {
+  config = mkIf (cfg.enable || console.multiplexer == "zellij") {
     programs.zellij = {
       enable = true;
       settings = {

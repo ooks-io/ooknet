@@ -2,7 +2,9 @@
 
 let
   inherit (config.colorscheme) palette;
-  cfg = config.ooknet.console.editor.nvim;
+  inherit (lib) mkIf;
+  cfg = config.ooknet.editor.nvim;
+  console = config.ooknet.console;
 in
   
 {
@@ -13,7 +15,7 @@ in
     ./plugins
   ];
   
-  config = lib.mkIf cfg.enable {
+  config = mkIf (cfg.enable || console.editor == "nvim") {
     programs.neovim = {
       viAlias = true;
       vimAlias = true;  

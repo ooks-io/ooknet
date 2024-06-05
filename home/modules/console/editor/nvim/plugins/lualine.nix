@@ -1,11 +1,13 @@
 { config, lib, ... }:
 
 let
-  cfg = config.ooknet.console.editor.nvim.plugins;
+  inherit (lib) mkIf;
+  cfg = config.ooknet.editor.nvim;
+  console = config.ooknet.console;
 in
 
 {
-  config = lib.mkIf cfg.lualine {
+  config = mkIf (cfg.enable || console.editor == "nvim") {
     programs.nixvim.plugins.lualine = {
       enable = true;
       theme = "base16";

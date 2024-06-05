@@ -2,8 +2,13 @@
 
 let
   inherit (config.colorscheme) palette;
+  inherit (lib) mkIf;
+
   cfg = config.ooknet.desktop.media.music.tui;
-  zellij = config.ooknet.console.multiplexer.zellij;
+  zellij = config.ooknet.multiplexer.zellij;
+  multiplexer= config.ooknet.console.multiplexer;
+
+  # removed image support because it was causing issues with zellij
   spotify-cli = pkgs.spotify-player.override {
     withImage = false;
     withSixel = false;
@@ -11,15 +16,14 @@ let
 in
 
 {
-
- 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     home.packages = with pkgs; [
       termusic
       spotify-cli
       alsa-utils
       mpv
     ];
+
     programs.cava = {
       enable = true;
       settings = {
@@ -35,6 +39,7 @@ in
         };
       };
     };
+
     xdg.configFile."spotify-player/app.toml".text =  /* toml */ ''
       theme = "default"
       client_id = "fc4c3656d7cc4a7ea70c6080965f8b1a"
@@ -68,7 +73,7 @@ in
       normalization = false
     '';
     
-    xdg.configFile."zellij/layouts/music.kdl".text = lib.mkIf zellij.enable /* kdl */ ''
+    xdg.configFile."zellij/layouts/music.kdl".text = mkIf (zellij.enable || multiplexer == "zellij") /* kdl */ ''
       layout {
       default_tab_template {
           pane size=2 borderless=true {
@@ -114,7 +119,7 @@ in
           }
       }
     '';
-    home.shellAliases = lib.mkIf zellij.enable {
+    home.shellAliases = mkIf (zellij.enable || multiplexer == "zellij") {
       zjm = "zellij --layout music";
     };
   };

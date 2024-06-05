@@ -1,11 +1,13 @@
 { config, lib, ... }:
 
 let
-  cfg = config.ooknet.console.editor.nvim;
+  inherit (lib) mkIf mapAttrsToList;
+  cfg = config.ooknet.editor.nvim;
+  console = config.ooknet.console;
 in
 
 {
-  config = lib.mkIf cfg.enable {
+  config = mkIf (cfg.enable || console.editor == "nvim") {
     programs.nixvim = {
       globals = {
         mapleader = " ";
@@ -14,7 +16,7 @@ in
 
       keymaps = let
         normal = 
-          lib.mapAttrsToList
+          mapAttrsToList
           (key: action: {
             mode = "n";
             inherit action key;
@@ -25,7 +27,7 @@ in
             "Y" = "$y";
           };
           visual =
-            lib.mapAttrsToList
+            mapAttrsToList
             (key: action: {
               mode = "v";
               inherit action key;

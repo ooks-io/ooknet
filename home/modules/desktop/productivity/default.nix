@@ -2,17 +2,8 @@
 
 {
   imports = [
-    ./obsidian
-    ./zathura
     ./office
+    ./notes
+    ./pdf
   ];
-
-  options.ooknet.desktop.productivity = {
-    obsidian = {
-      enable = lib.mkEnableOption "enable obsidian home module";
-    };
-    zathura = {
-      enable = lib.mkEnableOption "enable zathura home module";
-    };
-  };
 }

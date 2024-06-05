@@ -1,11 +1,13 @@
 { pkgs, lib, config, ... }: 
 
 let
-  cfg = config.ooknet.console.editor.helix;
+  inherit (lib) mkIf getExe;
+  cfg = config.ooknet.editor.helix;
+  console = config.ooknet.console;
 in
 
 {
-  config = lib.mkIf cfg.enable {
+  config = mkIf (cfg.enable || console.editor == "helix") {
     programs.helix.languages = {
       language = let
         deno = lang: {
@@ -89,12 +91,12 @@ in
         };
 
         nil = {
-          command = lib.getExe pkgs.nil;
-          config.nil.formatting.command = ["${lib.getExe pkgs.alejandra}" "-q"];
+          command = getExe pkgs.nil;
+          config.nil.formatting.command = ["${getExe pkgs.alejandra}" "-q"];
         };
 
         dprint = {
-          command = lib.getExe pkgs.dprint;
+          command = getExe pkgs.dprint;
           args = ["lsp"];
         };
 

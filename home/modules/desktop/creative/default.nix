@@ -1,7 +1,6 @@
 {
   imports = [
-    ./audio
-    ./image
-    # ./video
+    ./audacity.nix
+    ./inkscape.nix
   ];
 }

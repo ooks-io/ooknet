@@ -1,13 +1,15 @@
 { lib, config, ... }:
 
 let
-  cfg = config.ooknet.desktop.productivity.zathura;
   inherit (config.colorscheme) palette;
-  fonts = config.ooknet.theme.fonts;
+  inherit (lib) mkIf;
+  cfg = config.ooknet.productivity.pdf.zathura;
+  pdf = config.ooknet.desktop.pdf;
+  fonts = config.ooknet.fonts;
 in
 
 {
-  config = lib.mkIf cfg.enable {
+  config = mkIf (cfg.enable || pdf == "zathura") {
     programs.zathura = {
       enable = true;
       options = {
