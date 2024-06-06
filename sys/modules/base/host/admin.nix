@@ -2,7 +2,6 @@
 
 let
   cfg = config.ooknet.host.admin;
-  host = config.ooknet.host;
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
   inherit (lib) mkIf types mkOption;
 in
@@ -68,7 +67,7 @@ in
       verbose = true;
       extraSpecialArgs = { inherit inputs outputs self; };
       users.${cfg.name} = {
-        imports = [ "${self}/home/user/${cfg.name}/${host.name}" ];
+        imports = [ "${self}/home" ];
       };
     };
   };
