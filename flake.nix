@@ -11,8 +11,8 @@
       ];
 
       imports = [
-        ./flake/pkgs
-        ./flake/nixos.nix
+        ./outputs/pkgs
+        ./outputs/nixos.nix
       ];
 
       # flake = {
