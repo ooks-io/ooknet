@@ -1,8 +1,6 @@
-{ lib, config, pkgs, inputs, ... }: 
+{ lib, config, pkgs, ... }: 
 let
   wayland = config.ooknet.wayland;
-  inherit (import ./pkgs {inherit pkgs;}) hyprbrightness hyprvolume;
-  inherit (inputs.ooks-scripts.packages.${pkgs.system}) powermenu zellijmenu;
   inherit (lib) mkIf;
 in
 {
@@ -15,12 +13,6 @@ in
   config = mkIf (wayland.compositor == "hyprland") {
     home.packages = [
       pkgs.hyprpicker
-      hyprvolume
-      hyprbrightness
-
-      # Personal scripts
-      powermenu
-      zellijmenu #TODO: only add if zellij enabled
       ];
     
     wayland.windowManager.hyprland = {
