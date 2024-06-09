@@ -1,56 +1,39 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 let
-  inherit (lib) mkOption types;
-  inherit (types) str;
-  mkWarn = message: "notify-send --urgency=normal 'warning' '${message}'";
+  mkBind = message: lib.mkOption {
+    type = lib.types.str;
+    default = "${pkgs.libnotify}/bin/notify-send --urgency=normal 'Warning' '${message}'";
+  };
 in
 
 {
   options.ooknet.binds = {
-    browser = mkOption {
-      type = str;
-      default = mkWarn "No browser is enabled";
+    browser = mkBind "No browser is enabled";
+    terminal = mkBind "No terminal is enabled";
+    terminalLaunch = mkBind "Failed to launch tui";
+    fileManager = mkBind "No file manager is enabled.";
+    notes = mkBind "No Notes app is enabled";
+    discord = mkBind "No Discord app is enabled";
+    steam = mkBind "Steam is not enabled";
+    powerMenu = mkBind "No power menu is enabled";
+    lock = mkBind "No screen locker enabled";
+    password = mkBind "No password manager enabled";
+    zellijMenu = mkBind "Zellij Menu is not enabled";
+    volume = {
+      up = mkBind "Volume binding not found...";
+      down = mkBind "Volume binding not found...";
+      mute = mkBind "Volume binding not found...";
     };
-
-    terminal = mkOption {
-      type = str;
-      default = mkWarn "No terminal is enabled";
+    brightness = {
+      up = mkBind "Brightness binding not found...";
+      down = mkBind "Brightness binding not found...";
     };
-
-    terminalLaunch = mkOption {
-      type = str;
-      default = mkWarn "Failed to launch tui";
-    };
-
-    fileManager = mkOption {
-      type = str;
-      default = mkWarn "No file manager is enabled.";
-    };
-
-    notes = mkOption {
-      type = str;
-      default = mkWarn "No notes app is enabled";
-    };
-
-    discord = mkOption {
-      type = str;
-      default = mkWarn "No discord app is enabled";
-    };
-
-    steam = mkOption {
-      type = str;
-      default = mkWarn "Steam is not enabled";
-    };
-
-    powerMenu = mkOption {
-      type = str;
-      default = mkWarn "No power menu is enabled";
-    };
-
-    locker = mkOption {
-      type = str;
-      default = mkWarn "No screen locker enabled";
+    spotify = {
+      launch = mkBind "Spotify is not enabled";
+      next = mkBind "Spotify is not enabled";
+      previous = mkBind "Spotify is not enabled";
+      play = mkBind "Spotify is not enabled";
     };
   };
 }

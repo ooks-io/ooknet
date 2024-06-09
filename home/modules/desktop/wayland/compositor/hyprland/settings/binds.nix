@@ -1,39 +1,27 @@
-{ lib, config, pkgs, ... }: 
+{ lib, config, ... }: 
 
 let
   inherit (lib) mkIf;
   wayland = config.ooknet.wayland;
+  binds = config.ooknet.binds;
 in
 
 {
   config = mkIf (wayland.compositor == "hyprland") {
     wayland.windowManager.hyprland.settings = {
-      bind = let
-        terminal = config.home.sessionVariables.TERMINAL;
-        browser = config.home.sessionVariables.BROWSER;
-        editor = config.home.sessionVariables.EDITOR;
-        locker = config.home.sessionVariables.LOCKER;
-
-        spotifyctl = "${pkgs.spotify-player}/bin/spotify_player";
-        discord = "${pkgs.vesktop}/bin/vesktop";
-      
-        explorer = "${pkgs.cinnamon.nemo-with-extensions}/bin/nemo";
-
-        password = "${pkgs._1password-gui}/bin/1password";
-      in [
-
+      bind = [
         # Program Launch
-        "SUPER,          b,             exec,     ${browser}"
-        "SUPER,          return,        exec,     ${terminal}"
-        "SUPER,          e,             exec,     ${terminal} ${editor}"
-        "SUPERSHIFT,     P,             exec,     ${password}"
-        "SUPER,          d,             exec,     ${discord}"
-        "SUPERSHIFT,     e,             exec,     ${explorer}"
-        "SUPERSHIFT,     S,             exec,     steam"
-        "SUPER,          escape,        exec,     ${terminal} --title=BTOP btop"
-        "SUPER CTRL,     return,        exec,     zellijmenu -n"
+        "SUPER,          b,             exec,     ${binds.browser}"
+        "SUPER,          return,        exec,     ${binds.terminal}"
+        "SUPER,          e,             exec,     ${binds.terminalLaunch} $EDITOR"
+        "SUPERSHIFT,     P,             exec,     ${binds.password}"
+        "SUPER,          d,             exec,     ${binds.discord}"
+        "SUPERSHIFT,     e,             exec,     ${binds.fileManager}"
+        "SUPERSHIFT,     S,             exec,     ${binds.steam}"
+        "SUPER,          escape,        exec,     ${binds.terminalLaunch} --title=BTOP btop"
+        "SUPER CTRL,     return,        exec,     ${binds.zellijMenu}"
 
-        "SUPER,          delete,        exec,     powermenu -c dmenu"
+        "SUPER,          delete,        exec,     ${binds.powermenu} -c dmenu"
       
       
 
@@ -116,7 +104,7 @@ in
         "SUPERSHIFT,     0,             movetoworkspace,10"
 
         # Lock Screen
-        "SUPER,          Backspace,     exec,     ${locker}"
+        "SUPER,          Backspace,     exec,     ${binds.lock}"
       ];
         # Mouse
       bindm = [
