@@ -12,7 +12,8 @@ in
 	ooknet.host = {
 		name = "ooksdesk";
 		type = "desktop";
-		function = [ "workstation" "gaming" ];
+		role = "workstation";
+		profiles = [ "gaming" "creativity" ];
 		admin = {
 			name = "ooks";
 			shell = "fish";
