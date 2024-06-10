@@ -3,5 +3,6 @@
     ./modules
     ./profiles
     ./roles
+    ./options
   ];
 }
