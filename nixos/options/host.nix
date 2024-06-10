@@ -73,6 +73,33 @@ in
         default = [ "ssd" ];
       };
 
+      battery = {
+        powersave = {
+          minFreq = mkOption {
+            type = int;
+            default = 800;
+            description = "Minimum frequency for powersave mode in MHz";
+          };
+          maxFreq = mkOption {
+            type = int;
+            default = 1100;
+            description = "Maximum frequency for powersave mode in MHz";
+          };
+        };
+        performance = {
+          minFreq = mkOption {
+            type = int;
+            default = 1500;
+            description = "Minimum frequency for performance mode in MHz";
+          };
+          maxFreq = mkOption {
+            type = int;
+            default = 2600;
+            description = "Maximum frequency for performance mode in MHz";
+          };
+        };
+      };
+
       monitors = mkOption {
         type = listOf (submodule {
           options = {
