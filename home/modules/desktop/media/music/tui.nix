@@ -24,6 +24,13 @@ in
       mpv
     ];
 
+    ooknet.binds.spotify = {
+      launch = "${config.ooknet.binds.terminalLaunch} spotify_player";
+      next = "spotify_player playback next";
+      previous = "spotify_player playback previous";
+      play = "spotify_player playback play-pause";
+    };
+
     programs.cava = {
       enable = true;
       settings = {
@@ -119,6 +126,7 @@ in
           }
       }
     '';
+
     home.shellAliases = mkIf (zellij.enable || multiplexer == "zellij") {
       zjm = "zellij --layout music";
     };

@@ -21,7 +21,7 @@ in
         "SUPER,          escape,        exec,     ${binds.terminalLaunch} --title=BTOP btop"
         "SUPER CTRL,     return,        exec,     ${binds.zellijMenu}"
 
-        "SUPER,          delete,        exec,     ${binds.powermenu} -c dmenu"
+        "SUPER,          delete,        exec,     ${binds.powermenu}"
       
       
 
