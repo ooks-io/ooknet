@@ -1,7 +1,7 @@
 { lib, config, pkgs, ... }:
 
 let
-  inherit (lib) mkMerge mkEnableOption mkIf versionAtLeast versionOlder;
+  inherit (lib) mkMerge mkIf versionAtLeast versionOlder;
   inherit (builtins) elem;
   cpu = config.ooknet.host.hardware.cpu; 
   cfg = cpu.amd;
@@ -11,8 +11,6 @@ let
 in
 
 {
-  options.ooknet.host.hardware.cpu.amd.pstate.enable = mkEnableOption "Enable amd pstate module";
-
   config = mkIf (elem cpu.type ["amd"]) {
     environment.systemPackages = [pkgs.amdctl];
     hardware.cpu.amd.updateMicrocode = true;

@@ -1,9 +1,3 @@
-{ lib, config, ... }:
-
-let
-  inherit (lib) types mkOption;
-in
-
 {
   imports = [
     ./bluetooth.nix
@@ -13,10 +7,4 @@ in
     ./audio.nix
     ./video.nix
   ];
-
-  options.ooknet.host.hardware.features = mkOption {
-    type = with types; listOf (enum ["audio" "video" "bluetooth" "backlight" "battery" "ssd"]);
-    default = [];
-    description = "What extra hardware feature system modules to use";
-  };
 }

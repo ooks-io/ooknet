@@ -4,39 +4,12 @@
 let
   features = config.ooknet.host.hardware.features;
   cfg = config.ooknet.host.hardware.battery;
-  inherit (lib) mkIf mkDefault mkOption types;
+  inherit (lib) mkIf mkDefault;
   inherit (builtins) elem;
   MHz = x: x * 1000;
 in
   
 {
-  options.ooknet.host.hardware.battery = {
-    powersave = {
-      minFreq = mkOption {
-        type = types.int;
-        default = 800;
-        description = "Minimum frequency for powersave mode in MHz";
-      };
-      maxFreq = mkOption {
-        type = types.int;
-        default = 1100;
-        description = "Maximum frequency for powersave mode in MHz";
-      };
-    };
-    performance = {
-      minFreq = mkOption {
-        type = types.int;
-        default = 1500;
-        description = "Minimum frequency for performance mode in MHz";
-      };
-      maxFreq = mkOption {
-        type = types.int;
-        default = 2600;
-        description = "Maximum frequency for performance mode in MHz";
-      };
-    };
-  };
-
   config = mkIf (elem "battery" features) {
     boot = {
       kernelModules = ["acpi_call"];
