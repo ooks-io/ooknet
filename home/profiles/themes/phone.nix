@@ -7,7 +7,6 @@ let
 in
 
 {
-  imports = [ inputs.nix-colors.homeManagerModule ];
   config = mkIf (theme == "phone") {
 
     colorscheme = colorSchemes.gruvbox-material-dark-soft;

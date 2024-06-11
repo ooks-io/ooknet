@@ -9,7 +9,7 @@ in
 
 {
   config = mkIf (wayland.locker == "hyprlock") {
-    ooknet.binds.locker = "hyprlock";
+    ooknet.binds.lock = "hyprlock";
     programs.hyprlock = {
       settings = {
         enable = true;

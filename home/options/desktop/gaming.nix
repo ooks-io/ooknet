@@ -9,5 +9,6 @@ in
     factorio.enable = mkEnableOption "";
     bottles.enable = mkEnableOption "";
     lutris.enable = mkEnableOption "";
+    wine.enable = mkEnableOption "";
   };
 }

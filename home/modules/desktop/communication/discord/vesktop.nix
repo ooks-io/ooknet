@@ -5,7 +5,7 @@ let
   inherit (lib) mkIf;
   cfg = config.ooknet.communication.discord;
   discord = config.ooknet.desktop.discord;
-  fonts = config.ooknet.theme.fonts;
+  fonts = config.ooknet.fonts;
 in
 
 {
@@ -20,7 +20,6 @@ in
       */
   
       :root {
-        /* Palette */
         --nix-bg1: #${palette.base00}; 
         --nix-bg2: #${palette.base01};
         --nix-bg3: #${palette.base02};

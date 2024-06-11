@@ -4,7 +4,7 @@ let
   inherit (config.colorscheme) palette;
   inherit (lib) mkIf;
   fonts = config.ooknet.fonts;
-  cfg = config.ooknet.desktop.terminal.foot;
+  cfg = config.ooknet.terminal.foot;
   terminal = config.ooknet.desktop.terminal;
 in
 

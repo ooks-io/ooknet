@@ -13,7 +13,7 @@ in
 		name = "ooksdesk";
 		type = "desktop";
 		role = "workstation";
-		profiles = [ "gaming" "creativity" ];
+		profiles = [ "gaming" "creative" ];
 		admin = {
 			name = "ooks";
 			shell = "fish";

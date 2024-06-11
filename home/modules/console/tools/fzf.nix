@@ -8,7 +8,7 @@ in
 
 {
   config = mkIf cfg.enable {
-    fzf = {
+    programs.fzf = {
       enable = true;
       enableFishIntegration = mkIf (admin.shell == "fish") true;
       defaultCommand = "rg --files --hidden";

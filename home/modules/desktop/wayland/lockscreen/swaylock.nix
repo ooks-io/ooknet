@@ -9,7 +9,7 @@ let
 in
 {
   config = mkIf (wayland.locker == "swaylock") {
-    ooknet.binds.locker = "swaylock";
+    ooknet.binds.lock = "swaylock";
     programs.swaylock = {
       enable = true;
       settings = {

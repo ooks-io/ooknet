@@ -4,7 +4,7 @@ let
   inherit (config.colorscheme) palette;
   inherit (lib) mkIf;
 
-  cfg = config.ooknet.desktop.media.music.tui;
+  cfg = config.ooknet.media.music.tui;
   zellij = config.ooknet.multiplexer.zellij;
   multiplexer= config.ooknet.console.multiplexer;
 

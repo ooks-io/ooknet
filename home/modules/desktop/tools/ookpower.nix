@@ -9,6 +9,6 @@ in
 {
   config = mkIf (launcher == "rofi") {
     home.packages = [ inputs.ooks-scripts.packages.${pkgs.system}.powermenu ];
-    ooknet.binds.powermenu = "powermenu -c dmenu";
+    ooknet.binds.powerMenu = "powermenu -c dmenu";
   };
 }

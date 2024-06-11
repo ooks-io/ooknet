@@ -6,7 +6,7 @@ let
 in
 
 {
-  ooknet.wayland = {
+  options.ooknet.wayland = {
     enable = mkEnableOption "";
     compositor = mkOption {
       type = nullOr (enum [ "hyprland" ]);

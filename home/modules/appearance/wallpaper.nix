@@ -4,11 +4,11 @@ let
   inherit (lib) mkDefault mkIf;
 
   monitors = osConfig.ooknet.host.hardware.monitors;
-  cfg = config.ooknet.theme.wallpaper;
+  cfg = config.ooknet.wallpaper;
 in
 {
   config = mkIf cfg.enable {
-    ooknet.theme.wallpaper.path =
+    ooknet.wallpaper.path =
       let
         largest = f: xs: builtins.head (builtins.sort (a: b: a > b) (map f xs));
         largestWidth = largest (x: x.width) monitors;

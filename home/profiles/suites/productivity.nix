@@ -1,20 +1,17 @@
-{ config, lib, ... }:
-let
-  cfg = config.profiles.productivity;
-in
-{
+{ osConfig, lib, ... }:
 
-  imports = [
-    ../../modules
-  ];
-  
-  config = lib.mkIf cfg.enable {
-    homeModules.desktop = {
-      productivity = {
-        obsidian.enable = true;
-        zathura.enable = true;
-        office.enable = true;
-      };
+let
+  inherit (lib) mkIf;
+  inherit (builtins) elem;
+  profiles = osConfig.ooknet.host.profiles;
+in
+
+{
+  config = mkIf (elem "productiviy" profiles) {
+    ooknet.productivity = {
+      notes.obsidian.enable = true;
+      office.libreoffice.enable = true;
+      pdf.zathura.enable = true;
     };
   };
 }

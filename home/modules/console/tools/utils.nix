@@ -1,7 +1,9 @@
 { pkgs, lib, config, ... }:
+
 let
-  cfg = config.ooknet.console.utility.tools;
+  cfg = config.ooknet.tools.utils;
 in
+
 {
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [

@@ -17,7 +17,7 @@ let
   };
 in
 {
-  options.ooknet.theme.fonts = {
+  options.ooknet.fonts = {
     enable = lib.mkEnableOption "Whether to enable font profiles";
     monospace = mkFontOption "monospace";
     regular = mkFontOption "regular";

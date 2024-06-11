@@ -5,5 +5,5 @@ let
 in
 
 {
-  options.ooknet.gtk.enable = mkEnableOption;
+  options.ooknet.gtk.enable = mkEnableOption "";
 }

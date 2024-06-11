@@ -1,13 +1,12 @@
-{ lib, config, osConfig, ... }:
+{ lib, osConfig, ... }:
 
 let
   inherit (lib) mkIf;
-  inherit (builtins) elem;
-  host = osConfig.ooknet.host;
+  cfg = osConfig.ooknet.programs.kdeconnect;
 in
 
 {
-  config = mkIf (elem "workstation" host.function) {
+  config = mkIf cfg.enable {
     services.kdeconnect = {
       enable = true;
       indicator = true;

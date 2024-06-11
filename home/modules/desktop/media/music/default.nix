@@ -1,6 +1,6 @@
 {
   imports = [
     #./spotify --- still needs to be implemented
-    ./tui
+    ./tui.nix
   ];
 }

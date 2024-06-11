@@ -1,23 +1,11 @@
-{ lib, ... }:
-
 {
   imports = [
-    ./shell
     ./boot
-    ./nix
     ./displayManager
     ./networking
-    ./locale.nix
-    ./virtualization
+    ./nix
     ./security
-    ./services
-    ./host
+    ./shell
+    ./locale.nix
   ];
-
-
-  options.ooknet = {
-    virtualisation = {
-      enable = lib.mkEnableOption "Enable virtualisation module";
-    };
-  };
 }

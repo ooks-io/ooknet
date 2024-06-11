@@ -12,11 +12,15 @@
       enable = true;
       createDirectories = true;
       desktop = "${config.home.homeDirectory}/Desktop";
-      code = "${config.home.homeDirectory}/Code";
       documents = "${config.home.homeDirectory}/Documents";
       music = "${config.home.homeDirectory}/Media/Music";
       videos = "${config.home.homeDirectory}/Media/Videos";
       pictures = "${config.home.homeDirectory}/Media/Pictures";
+      extraConfig = {
+        XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
+        XDG_CODE_DIR = "${config.home.homeDirectory}/Code";
+        XDG_RECORDINGs_DIR = "${config.xdg.userDirs.videos}/Recordings";
+      };
     };
   };
 }

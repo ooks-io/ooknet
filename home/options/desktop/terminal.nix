@@ -7,5 +7,6 @@ in
 {
   options.ooknet.terminal = {
     foot.enable = mkEnableOption "";
+    kitty.enable = mkEnableOption "";
   };
 }

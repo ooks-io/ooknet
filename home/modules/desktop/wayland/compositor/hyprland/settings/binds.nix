@@ -20,30 +20,24 @@ in
         "SUPERSHIFT,     S,             exec,     ${binds.steam}"
         "SUPER,          escape,        exec,     ${binds.terminalLaunch} --title=BTOP btop"
         "SUPER CTRL,     return,        exec,     ${binds.zellijMenu}"
-
-        "SUPER,          delete,        exec,     ${binds.powermenu}"
-      
-      
+        "SUPER,          delete,        exec,     ${binds.powerMenu}"
 
         # Spotify PLayer Controls
-
-        "SUPER,          bracketright,  exec,     ${spotifyctl} playback next"
-        "SUPER,          bracketleft,   exec,     ${spotifyctl} playback previous"
-        "SUPER,          backslash,     exec,     ${spotifyctl} playback play-pause"
+        "SUPER,          M,             exec,     ${binds.spotify.launch}"
+        "SUPER,          bracketright,  exec,     ${binds.spotify.next}"
+        "SUPER,          bracketleft,   exec,     ${binds.spotify.previous}"
+        "SUPER,          backslash,     exec,     ${binds.spotify.play}"
 
         # Brightness
-
         ",XF86MonBrightnessUp,          exec,     hyprbrightness up"
         ",XF86MonBrightnessDown,        exec,     hyprbrightness down"
 
         # Volume
-
         ",XF86AudioRaiseVolume,         exec,     hyprvolume up"
         ",XF86AudioLowerVolume,         exec,     hyprvolume down"
         ",XF86AudioMute,                exec,     hyprvolume mute"
       
         # Window Management
-      
         "SUPER,          Q,             killactive"
         "SUPER CTRL,     backspace,     killactive"
         "SUPERSHIFT ALT, delete,        exec, hyprkillsession"
@@ -54,28 +48,24 @@ in
         "SUPER,          S,             togglesplit" # dwindle
 
         # Focus
-
         "SUPER,          left,          movefocus,l"
         "SUPER,          right,         movefocus,r"
         "SUPER,          up,            movefocus,u"
         "SUPER,          down,          movefocus,d"
 
         # Move
-
         "SUPERSHIFT,     left,          movewindow,l"
         "SUPERSHIFT,     right,         movewindow,r"
         "SUPERSHIFT,     up,            movewindow,u"
         "SUPERSHIFT,     down,          movewindow,d"
 
         #Resize
-
         "SUPER CTRL,     left,          resizeactive,-20 0"
         "SUPERCTRL,      right,         resizeactive,20 0"
         "SUPER CTRL,     up,            resizeactive,0 -20"
         "SUPERCTRL,      down,          resizeactive,0 20"
 
         # Switch workspace
-    
         "SUPER,          1,             workspace,1"
         "SUPER,          2,             workspace,2"
         "SUPER,          3,             workspace,3"
@@ -91,7 +81,6 @@ in
         "SUPER,          tab,           focusCurrentOrLast"
 
         # Move workspace
-
         "SUPERSHIFT,     1,             movetoworkspace,1"
         "SUPERSHIFT,     2,             movetoworkspace,2"
         "SUPERSHIFT,     3,             movetoworkspace,3"
