@@ -39,6 +39,14 @@ in
 				"audio"
 				"video"
 			];
+		  monitors = [{
+		    name = "DSI-1";
+		    width = 720;
+		    height = 1280;
+		    workspace = "1";
+		    primary = true;
+		    transform = 3;
+		  }];
 			battery = {
 				powersave = {
 					minFreq = 500;
@@ -50,14 +58,6 @@ in
 				};
 			};
 		};
-	  monitors = [{
-	    name = "DSI-1";
-	    width = 720;
-	    height = 1280;
-	    workspace = "1";
-	    primary = true;
-	    transform = 3;
-	  }];
 	};
 
   boot = {
