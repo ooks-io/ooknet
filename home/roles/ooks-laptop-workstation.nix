@@ -6,7 +6,7 @@ let
 in
 
 {
-  config = mkIf (host.admin.name == "ooks" && host.type == "desktop" && host.role == "workstation") {
+  config = mkIf (host.admin.name == "ooks" && host.type == "laptop" && host.role == "workstation") {
     ooknet = {
       theme = "minimal";
       desktop = {
