@@ -26,7 +26,7 @@ in
     };
 
     profiles = mkOption {
-      type = listOf (enum ["gaming" "creative" "productivity" "console-tools" "media-server"]);
+      type = listOf (enum ["gaming" "creative" "productivity" "console-tools" "media" "media-server"]);
       default = [];
     };
 

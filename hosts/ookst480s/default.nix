@@ -15,7 +15,7 @@ in
 		name = "ookst480s";
 		type = "laptop";
 		role = "workstation";
-		profiles = [ "console-tools" ];
+		profiles = [ "console-tools" "media" ];
 		admin = {
 			name = "ooks";
 			shell = "fish";
