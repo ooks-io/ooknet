@@ -1,4 +1,4 @@
-{ lib, config, inputs, pkgs, ... }:
+{ lib, pkgs, ... }:
 
 let
 	key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBn3ff3HaZHIyH4K13k8Mwqu/o7jIABJ8rANK+r2PfJk";
@@ -13,12 +13,18 @@ in
 		name = "ooksdesk";
 		type = "desktop";
 		role = "workstation";
-		profiles = [ "gaming" "creative" ];
+		profiles = [ "gaming" "creative" "console-tools" ];
 		admin = {
 			name = "ooks";
 			shell = "fish";
 			sshKey = key;
 			homeManager = true;
+		};
+		networking = {
+			tailscale = {
+				enable = true;
+				client = true;
+			};
 		};
 		hardware = {
 			cpu.type = "amd";
@@ -34,11 +40,6 @@ in
 				workspace = "1";
 			}];
 		};
-	};
-  	
-	ooknet.networking.tailscale = {
-		enable = true;
-		client = true;
 	};
 
   boot = {

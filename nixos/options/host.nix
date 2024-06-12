@@ -3,7 +3,9 @@
 let
   inherit (lib) mkOption mkEnableOption;
   inherit (lib.types) bool enum listOf int submodule nullOr str;
+  admin = config.ooknet.host.admin;
   hardware = config.ooknet.host.hardware;
+  tailscale = config.ooknet.host.networking.tailscale;
 in
 
 {
@@ -24,7 +26,7 @@ in
     };
 
     profiles = mkOption {
-      type = listOf (enum ["gaming" "creative" "productivity" "media-server"]);
+      type = listOf (enum ["gaming" "creative" "productivity" "console-tools" "media-server"]);
       default = [];
     };
 
@@ -50,6 +52,35 @@ in
         default = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBn3ff3HaZHIyH4K13k8Mwqu/o7jIABJ8rANK+r2PfJk";
       };
       homeManager = mkEnableOption "";
+    };
+
+    networking = {
+      tailscale = {
+        enable = mkEnableOption "Enable tailscale system module";
+        server = mkOption {
+          type = bool;
+          default = false;
+          description = "Define if the host is a server";
+        };
+        client = mkOption {
+          type = bool;
+          default = tailscale.enable;
+          description = "Define if the host is a client";
+        };
+        tag = mkOption {
+          type = listOf str;
+          default = 
+            if tailscale.client then ["tag:client"]
+            else if tailscale.server then ["tag:server"]
+            else [];
+          description = "Sets host tag depending on if server/client";
+        };
+        operator = mkOption {
+          type = str;
+          default = "${admin.name}";
+          description = "Name of the tailscale operator";
+        };
+      };
     };
 
     hardware = {

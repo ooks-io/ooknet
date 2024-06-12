@@ -12,16 +12,19 @@ in
 	ooknet.host = {
 		name = "ooksmedia";
 		type = "desktop";
-		function = [
-			"workstation"
-			"gaming"
-			"media-server"
-		];
+		role = "workstation";
+		profiles = [ "media-server" "console-tools" ];
 		admin = {
 			name = "ooks";
 			shell = "fish";
 			sshKey = key;
 			homeManager = true;
+		};
+		networking = {
+			tailscale = {
+				enable = true;
+				server = true;
+			};
 		};
 		hardware = {
 			cpu.type = "intel";
@@ -34,12 +37,6 @@ in
 			];
 		};
 	};
-  	
-	ooknet.networking.tailscale = {
-		enable = true;
-		server = true;
-	};
-
   boot = {
 	  kernelPackages = pkgs.linuxPackages_xanmod_latest;
 	};
