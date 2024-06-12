@@ -11,7 +11,7 @@ in
       winetricks
       protontricks
       protonup-qt
-      wineWowPackages.full
+      wineWowPackages.waylandFull
     ];
   };
 }
