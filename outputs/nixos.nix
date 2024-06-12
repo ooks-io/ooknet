@@ -40,5 +40,23 @@ in
         nixosModules
       ];
     };
+    ooksmicro = nixosSystem {
+      inherit specialArgs;
+      system = "x86_64-linux";
+      modules = [
+        "${hosts}/ooksmicro"
+        hm
+        nixosModules
+      ];
+    };
+    ooksx1 = nixosSystem {
+      inherit specialArgs;
+      system = "x86_64-linux";
+      modules = [
+        "${hosts}/ooksx1"
+        hm
+        nixosModules
+      ];
+    };
   };
 }
