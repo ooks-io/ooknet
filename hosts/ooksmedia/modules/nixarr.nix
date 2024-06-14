@@ -1,4 +1,4 @@
-{ config, inputs, lib, ... }:
+{ config, lib, ... }:
 
 let
   inherit (lib) mkIf;
@@ -7,9 +7,10 @@ let
 in
   
 {
-  imports = [ inputs.nixarr.nixosModules.default ];
   config = mkIf cfg.enable {
     nixarr = {
+      vpn.enable = false;
+      openssh.expose.vpn.enable = false;
       enable = true;
       mediaDir = "/jellyfin";
       stateDir = "/var/lib/nixarr";

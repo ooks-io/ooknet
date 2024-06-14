@@ -4,6 +4,7 @@ let
   inherit (inputs.nixpkgs.lib) nixosSystem;
 
   hm = inputs.home-manager.nixosModules.home-manager;
+  nixarr = inputs.nixarr.nixosModules.default;
 
   nixosModules = "${self}/nixos";
   hosts = "${self}/hosts";
@@ -38,6 +39,7 @@ in
         "${hosts}/ooksmedia"
         hm
         nixosModules
+        nixarr
       ];
     };
     ooksmicro = nixosSystem {
