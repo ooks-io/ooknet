@@ -9,6 +9,6 @@ in
 {
   config = mkIf (multiplexer == "zellij" && launcher == "rofi") {
     home.packages = [ inputs.ooks-scripts.packages.${pkgs.system}.zellijmenu ];
-    ooknet.binds.zellijMenu = "zellijMenu -n";
+    ooknet.binds.zellijMenu = "zellijmenu -n";
   };
 }

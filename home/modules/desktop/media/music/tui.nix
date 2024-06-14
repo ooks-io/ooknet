@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }:
+{ osConfig, pkgs, config, lib, ... }:
 
 let
   inherit (config.colorscheme) palette;
@@ -7,6 +7,7 @@ let
   cfg = config.ooknet.media.music.tui;
   zellij = config.ooknet.multiplexer.zellij;
   multiplexer= config.ooknet.console.multiplexer;
+  hostName = osConfig.networking.hostName;
 
   # removed image support because it was causing issues with zellij
   spotify-cli = pkgs.spotify-player.override {
@@ -62,7 +63,7 @@ in
       enable_notify = true
       enable_cover_image_cache = false
       notify_streaming_only = false
-      default_device = "${config.home.sessionVariables.HN}"
+      default_device = "${hostName}"
       play_icon = "▶"
       pause_icon = "▌▌"
       liked_icon = "♥"
@@ -72,7 +73,7 @@ in
       playback_window_width = 6
 
       [device]
-      name = "${config.home.sessionVariables.HN}"
+      name = "${hostName}"
       device_type = "speaker"
       volume = 100
       bitrate = 320

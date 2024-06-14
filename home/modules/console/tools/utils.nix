@@ -34,7 +34,6 @@ in
           
       diffsitter # Better diff
       jq # JSON pretty printer and manipulator
-      comma # Install and run with ","
       tldr # Community maintained help pages
       progress
       killall
