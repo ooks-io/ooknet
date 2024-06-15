@@ -12,5 +12,6 @@ in
       wine.enable = true;
       bottles.enable = true;
     };
+    ooknet.binds.steam = "steam";
   };
 }
