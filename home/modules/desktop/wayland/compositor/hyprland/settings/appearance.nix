@@ -11,9 +11,9 @@ in
   config = mkIf (wayland.compositor == "hyprland") {
     wayland.windowManager.hyprland = {
       settings = {
-        cursor = {
-          inactive_timeout = 4;
-        };
+        # cursor = {
+        #   inactive_timeout = 4;
+        # };
         general = {
           gaps_in = 10;
           gaps_out = 10;
