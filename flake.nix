@@ -3,23 +3,20 @@
   description = "a nix configuration written by an orangutan";
 
   outputs = { flake-parts, nixpkgs, self, ... } @ inputs:
-    flake-parts.lib.mkFlake { inherit inputs; } {
+    flake-parts.lib.mkFlake { inherit inputs; } ({withSystem, ... }: {
 
-      systems = [
-        "x86_64-linux"
-        "aarch64-linux"
-      ];
+      systems = import inputs.systems;
 
       imports = [
         ./outputs/pkgs
-        ./outputs/nixos.nix
+        ./outputs/sshKeys.nix
       ];
 
-      # flake = {
-      #   nixosConfigurations = import ./flake/nixos.nix {inherit self inputs nixpkgs;};
-      # };
+      flake = {
+        nixosConfigurations = import ./outputs/nixos.nix {inherit self inputs withSystem;};
+      };
 
-    };
+    });
 
   # External inputs we depend on
   inputs = {
@@ -34,6 +31,8 @@
     # contains more up-to-date wayland related packages. no need enabling atm
     # nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
 
+    # default system see <https://github.com/nix-systems/nix-systems>
+    systems.url = "github:nix-systems/default-linux";
     # split your flake into... parts?
     flake-parts = {
       url = "github:hercules-ci/flake-parts"; 
@@ -73,6 +72,8 @@
     # colorschemes library
     nix-colors.url = "github:misterio77/nix-colors";
 
+    # secret management
+    agenix.url = "github:ryantm/agenix";
 
     # hyprland "ecosystem". hyprDE perhaps?
     # hyprland = {

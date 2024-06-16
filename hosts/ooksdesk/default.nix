@@ -1,8 +1,4 @@
-{ lib, pkgs, ... }:
-
-let
-	key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBn3ff3HaZHIyH4K13k8Mwqu/o7jIABJ8rANK+r2PfJk";
-in
+{ lib, pkgs, keys, ... }:
 
 {
 	imports = [
@@ -17,7 +13,7 @@ in
 		admin = {
 			name = "ooks";
 			shell = "fish";
-			sshKey = key;
+			sshKey = "${keys.users.ooks}";
 			homeManager = true;
 		};
 		networking = {
