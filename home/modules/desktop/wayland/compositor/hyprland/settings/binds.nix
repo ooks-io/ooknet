@@ -29,13 +29,13 @@ in
         "SUPER,          backslash,     exec,     ${binds.spotify.play}"
 
         # Brightness
-        ",XF86MonBrightnessUp,          exec,     hyprbrightness up"
-        ",XF86MonBrightnessDown,        exec,     hyprbrightness down"
+        ",XF86MonBrightnessUp,          exec,     ${binds.brightness.up}"
+        ",XF86MonBrightnessDown,        exec,     ${binds.brightness.down}"
 
         # Volume
-        ",XF86AudioRaiseVolume,         exec,     hyprvolume up"
-        ",XF86AudioLowerVolume,         exec,     hyprvolume down"
-        ",XF86AudioMute,                exec,     hyprvolume mute"
+        ",XF86AudioRaiseVolume,         exec,     ${binds.volume.up}"
+        ",XF86AudioLowerVolume,         exec,     ${binds.volume.down}"
+        ",XF86AudioMute,                exec,     ${binds.volume.mute}"
       
         # Window Management
         "SUPER,          Q,             killactive"
