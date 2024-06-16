@@ -19,7 +19,7 @@
       extraConfig = {
         XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
         XDG_CODE_DIR = "${config.home.homeDirectory}/Code";
-        XDG_RECORDINGs_DIR = "${config.xdg.userDirs.videos}/Recordings";
+        XDG_RECORDINGS_DIR = "${config.xdg.userDirs.videos}/Recordings";
       };
     };
   };
