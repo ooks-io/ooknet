@@ -4,5 +4,5 @@ let
 in
 
 {
-  "tailscale.age".publicKeys = [ users.ooks] ++ workstations;
+  "tailscale-auth.age".publicKeys = [ users.ooks] ++ workstations;
 }

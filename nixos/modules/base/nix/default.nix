@@ -18,6 +18,7 @@ in
         git
         deadnix
         statix
+        inputs.agenix.packages.${system}.default
       ];
       defaultPackages = [];
       etc = {
