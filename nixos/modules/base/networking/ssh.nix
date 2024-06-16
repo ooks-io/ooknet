@@ -2,8 +2,6 @@
 
 let
   inherit (lib) mkIf mkDefault;
-  key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBn3ff3HaZHIyH4K13k8Mwqu/o7jIABJ8rANK+r2PfJk";
-  phoneKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINredx07UAk2l1wUPujYnmJci1+XEmcUuSX0DIYg6Vzz";
   host = config.ooknet.host;
 in
 
@@ -27,7 +25,14 @@ in
     programs = {
       ssh = {
         knownHosts = {
-          "192.168.1.36".publicKey = phoneKey;
+          github = {
+            hostNames = ["github.com"];
+            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl";
+          };
+          gitlab = {
+            hostNames = ["gitlab.com"];
+            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAfuCHKVTjquxvt6CM6tdG4SLp1Btn/nOeHHE5UOzRdf";
+          };
         };
       };
       gnupg.agent = {
