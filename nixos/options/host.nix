@@ -50,10 +50,6 @@ in
         type = str;
         default = "ooks@protonmail.com";
       };
-      sshKey = mkOption {
-        type = str;
-        default = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBn3ff3HaZHIyH4K13k8Mwqu/o7jIABJ8rANK+r2PfJk";
-      };
       homeManager = mkEnableOption "";
     };
 

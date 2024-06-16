@@ -1,4 +1,4 @@
-{ lib, pkgs, keys, ... }:
+{ lib, pkgs, ... }:
 
 {
 	imports = [
@@ -13,7 +13,6 @@
 		admin = {
 			name = "ooks";
 			shell = "fish";
-			sshKey = "${keys.users.ooks}";
 			homeManager = true;
 		};
 		networking = {

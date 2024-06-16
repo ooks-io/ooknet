@@ -2,7 +2,6 @@
 
 let
 	inherit (lib) mkDefault;
-	key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBn3ff3HaZHIyH4K13k8Mwqu/o7jIABJ8rANK+r2PfJk";
 in
 
 {
@@ -19,7 +18,6 @@ in
 		admin = {
 			name = "ooks";
 			shell = "fish";
-			sshKey = key;
 			homeManager = true;
 		};
 		hardware = {
@@ -33,6 +31,13 @@ in
 				"audio"
 				"video"
 			];
+			monitors = [{
+		    name = "eDP-1";
+		    width = 1920;
+		    height = 1080;
+		    workspace = "1";
+		    primary = true;
+			}];
 			battery = {
 				powersave = {
 					minFreq = 800;

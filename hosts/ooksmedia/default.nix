@@ -1,9 +1,5 @@
 { lib, pkgs, ... }:
 
-let
-	key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBn3ff3HaZHIyH4K13k8Mwqu/o7jIABJ8rANK+r2PfJk";
-in
-
 {
 	imports = [
 		./hardware-configuration.nix
@@ -18,7 +14,6 @@ in
 		admin = {
 			name = "ooks";
 			shell = "fish";
-			sshKey = key;
 			homeManager = true;
 		};
 		networking = {
