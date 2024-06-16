@@ -3,6 +3,9 @@
 let
   inherit (lib) mkOption mkEnableOption;
   inherit (lib.types) bool enum listOf int submodule nullOr str;
+  inherit (lib.lists) optionals concatLists;
+  inherit (builtins) concatStringsSep;
+
   admin = config.ooknet.host.admin;
   hardware = config.ooknet.host.hardware;
   tailscale = config.ooknet.host.networking.tailscale;
@@ -54,9 +57,15 @@ in
       homeManager = mkEnableOption "";
     };
 
+    # tailscale options brought to you by github:notashelf/nyx
     networking = {
       tailscale = {
         enable = mkEnableOption "Enable tailscale system module";
+        autoconnect = mkEnableOption "Enable auto connect tailscale service";
+        authkey = mkOption {
+          type = str;
+          default = config.age.secrets.tailscale-auth.path;
+        };
         server = mkOption {
           type = bool;
           default = false;
@@ -67,7 +76,7 @@ in
           default = tailscale.enable;
           description = "Define if the host is a client";
         };
-        tag = mkOption {
+        tags = mkOption {
           type = listOf str;
           default = 
             if tailscale.client then ["tag:client"]
@@ -79,6 +88,24 @@ in
           type = str;
           default = "${admin.name}";
           description = "Name of the tailscale operator";
+        };
+        flags = {
+          default = mkOption {
+            type = listOf str;
+            default = ["--ssh"];
+          };
+          final = mkOption {
+            type = listOf str;
+            internal = true;
+            readOnly = true;
+            default = concatLists [
+              tailscale.flags.default
+              (optionals (tailscale.authkey != null) ["--authkey file:${config.age.secrets.tailscale-auth.path}"])
+              (optionals (tailscale.operator != null) ["--operator ${tailscale.operator}"])
+              (optionals (tailscale.tags != []) ["--advertise-tags" (concatStringsSep "," tailscale.tags)])
+              (optionals tailscale.server ["--advertise-exit-node"])
+            ];
+          };
         };
       };
     };
@@ -185,7 +212,7 @@ in
     assertions = [{
       assertion = ((lib.length hardware.monitors) != 0) ->
         ((lib.length (lib.filter (m: m.primary) hardware.monitors)) == 1);
-      message = "Exactly one monitor must be set to primary.";
+      message = "At least 1 primary monitor is required";
     }];
   };
 }

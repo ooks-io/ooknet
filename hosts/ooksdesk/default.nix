@@ -20,6 +20,7 @@
 			tailscale = {
 				enable = true;
 				client = true;
+				autoconnect = true;
 			};
 		};
 		hardware = {

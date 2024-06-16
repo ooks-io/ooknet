@@ -25,6 +25,7 @@ in
 			tailscale = {
 				enable = true;
 				server = true;
+				autoconnect = true;
 			};
 		};
 		hardware = {

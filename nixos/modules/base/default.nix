@@ -7,5 +7,6 @@
     ./security
     ./shell
     ./locale.nix
+    ./secrets.nix
   ];
 }
