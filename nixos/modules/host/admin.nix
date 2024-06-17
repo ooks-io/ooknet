@@ -1,4 +1,4 @@
-{ lib, config, pkgs, inputs, outputs, self, ... }:
+{ lib, config, pkgs, inputs, outputs, self, keys, ... }:
 
 let
   cfg = config.ooknet.host.admin;
@@ -12,7 +12,7 @@ in
       isNormalUser = true;
       shell = pkgs.${cfg.shell};
       initialPassword = "password";
-      openssh.authorizedKeys.keys = [ "${cfg.sshKey}" ];
+      openssh.authorizedKeys.keys = [ (keys.users."${cfg.name}") ];
       extraGroups = [
         "wheel"
         "video"

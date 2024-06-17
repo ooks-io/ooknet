@@ -75,8 +75,7 @@ in
         tags = mkOption {
           type = listOf str;
           default = 
-            if tailscale.client then ["tag:client"]
-            else if tailscale.server then ["tag:server"]
+            if tailscale.server then ["tag:server"]
             else [];
           description = "Sets host tag depending on if server/client";
         };
@@ -98,7 +97,7 @@ in
               tailscale.flags.default
               (optionals (tailscale.authkey != null) ["--authkey file:${config.age.secrets.tailscale-auth.path}"])
               (optionals (tailscale.operator != null) ["--operator ${tailscale.operator}"])
-              (optionals (tailscale.tags != []) ["--advertise-tags" (concatStringsSep "," tailscale.tags)])
+              # (optionals (tailscale.tags != []) ["--advertise-tags" (concatStringsSep "," tailscale.tags)])
               (optionals tailscale.server ["--advertise-exit-node"])
             ];
           };
