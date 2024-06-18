@@ -6,8 +6,10 @@ let
   browser = config.ooknet.desktop.browser;
   inherit (lib) mkIf;
 in
+
 {
 
+  imports = [ ./tridactyl.nix ];
   config = mkIf (cfg.enable || browser == "firefox") {
     home.sessionVariables.BROWSER = mkIf (browser == "firefox") "firefox";
     ooknet.binds.browser = mkIf (browser == "firefox") "firefox";
