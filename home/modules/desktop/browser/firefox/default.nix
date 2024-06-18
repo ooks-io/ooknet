@@ -14,6 +14,7 @@ in
   
     programs.firefox = {
       enable = true;
+      nativeMessagingHosts = [pkgs.tridactyl-native];
       profiles.ooks = {
         extensions = with addons; [
           ublock-origin
