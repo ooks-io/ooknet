@@ -14,7 +14,7 @@ in
   config = mkIf (browser == "firefox" || cfg.enable) {
     xdg.configFile = {
       "tridactyl/tridactylrc".text = ''
-        set modeindicator false
+        set searchurls.nix https://sourcegraph.com/search?q=context:global+lang:nix %s
       '';
 
       # theme based off base16 themes
