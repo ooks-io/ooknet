@@ -15,9 +15,27 @@ in
     xdg.configFile = {
       "tridactyl/tridactylrc".text = ''
         set searchurls.nix https://sourcegraph.com/search?q=context:global+lang:nix %s
+
+        colorscheme ooknet
+
+        unbind --mode=normal t
+        unbind --mode=normal gt
+        
+        bind / fillcmdline find
+        bind n findnext 1
+        bind N findnext -1
+
+        bind gtr open http://192.168.1.210:9091/transmission/web/
+        bind ttr tabopen http://192.168.1.210:9091/transmission/web/
+        
+        bind gem open https://gmail.com
+        bind tem tabopen https://gmail.com
+
+        bind gjf open http://192.168.1.210:8096
+        bind tjf tabopen http://192.168.1.210:8096
       '';
 
-      # theme based off base16 themes
+      # based off base16 themes
       # source: <https://github.com/bezmi/base16-tridactyl>
       "tridactyl/themes/ooknet.css".text = /* css */ ''
         :root {
