@@ -1,9 +1,10 @@
-{ lib, config, pkgs, ... }:
+{ osConfig, lib, config, pkgs, ... }:
 let
   inherit (config.colorscheme) palette;
   inherit (lib) mkIf;
   cfg = config.ooknet.multiplexer.zellij;
   console = config.ooknet.console;
+  admin = osConfig.ooknet.host.admin;
 in
 
 {
@@ -12,7 +13,7 @@ in
       enable = true;
       settings = {
         theme = "${config.colorscheme.slug}";
-        default_shell = "fish";
+        default_shell = "${admin.shell}";
         default_layout = "default";
         pane_frames = false;
         themes = {
