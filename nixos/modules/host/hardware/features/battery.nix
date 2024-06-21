@@ -53,8 +53,6 @@ in
 
       thermald.enable = true;
 
-      power-profiles-daemon.enable = true;
-
       logind = {
         lidSwitch = "suspend";
       };
