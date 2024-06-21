@@ -76,9 +76,9 @@
     agenix.url = "github:ryantm/agenix";
 
     # hyprland "ecosystem". hyprDE perhaps?
-    # hyprland = {
-    #   url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    # };
+    hyprland = {
+      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    };
     hyprlock.url = "github:hyprwm/hyprlock";
     hypridle.url = "github:hyprwm/hypridle";
     hyprpaper.url = "github:hyprwm/hyprpaper";
