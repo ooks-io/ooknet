@@ -10,5 +10,6 @@
     ./starship.nix
     ./utils.nix
     ./ssh.nix
+    ./sourcegraph.nix
   ];
 }

@@ -17,5 +17,6 @@ in
     starship.enable = mkEnableOption "";
     utils.enable = mkEnableOption "";
     ffmpeg.enable = mkEnableOption "";
+    sourcegraph.enable = mkEnableOption "";
   };
 }

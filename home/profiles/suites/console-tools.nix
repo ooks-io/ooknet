@@ -20,6 +20,7 @@ in
       starship.enable = true;
       utils.enable = true;
       ffmpeg.enable = true;
+      sourcegraph.enable = true;
     };
   };
 }
