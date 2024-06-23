@@ -11,5 +11,6 @@
     ./terminal.nix
     ./tools.nix
     ./wayland.nix
+    ./fileManager.nix
   ];
 }

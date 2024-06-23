@@ -16,6 +16,7 @@ in
         notes = "obsidian";
         pdf = "zathura";
         discord = "vesktop";
+        fileManager = "nemo";
       };
       console = {
         editor = "helix";
