@@ -3,6 +3,8 @@
 let
   inherit (config.colorscheme) palette;
   inherit (lib) mkIf;
+  
+  zathura = { "application/pdf" = ["org.pwmt.zathura.desktop"]; };
   cfg = config.ooknet.productivity.pdf.zathura;
   pdf = config.ooknet.desktop.pdf;
   fonts = config.ooknet.fonts;
@@ -37,6 +39,10 @@ in
         recolor-lightcolor = "#${palette.base00}";
         recolor-darkcolor = "#${palette.base06}";
       };
+    };
+    xdg.mimeApps = mkIf (pdf == "zathura") {
+      associations.added = zathura;
+      defaultApplications = zathura;
     };
   };
 }

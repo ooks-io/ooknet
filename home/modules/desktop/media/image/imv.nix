@@ -3,6 +3,9 @@
 let
   inherit (lib) mkIf;
   cfg = config.ooknet.media.image.imv;
+  imvMime = {
+    "image/*" = ["imv.desktop"];
+  };
 in
 
 {
@@ -11,6 +14,10 @@ in
       imv = {
         enable = true;
       };
+    };
+    xdg.mimeApps = {
+      associations.added = imvMime;
+      defaultApplications = imvMime;
     };
   };
 }
