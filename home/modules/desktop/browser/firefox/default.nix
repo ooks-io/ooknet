@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, config, ... }:
+{ pkgs, lib, inputs, config, osConfig, ... }:
 
 let
   inherit (lib) mkIf mkMerge;
@@ -6,6 +6,7 @@ let
   addons = inputs.firefox-addons.packages.${pkgs.system};
   cfg = config.ooknet.browser.firefox;
   browser = config.ooknet.desktop.browser;
+  admin = osConfig.ooknet.host.admin;
   firefoxMime = {
     "text/html" = ["firefox.desktop"];
     "x-scheme-handler/http" = ["firefox.desktop"];
@@ -31,7 +32,7 @@ in
       programs.firefox = {
         enable = true;
         nativeMessagingHosts = [ pkgs.tridactyl-native ];
-        profiles.ooks = {
+        profiles.${admin.name} = {
           extensions = with addons; [
             ublock-origin
             darkreader
