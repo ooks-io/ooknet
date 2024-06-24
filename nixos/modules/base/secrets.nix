@@ -20,5 +20,11 @@ in
       group = "users";
       mode = "400";
     };
+    github_key = mkIf admin.homeManager {
+      file = "${self}/secrets/github_key.age";
+      path = "/home/${admin.name}/.ssh/github_key";
+      owner = "${admin.name}";
+      group = "users";
+    };
   };
 }

@@ -5,4 +5,5 @@ in
 
 {
   "tailscale-auth.age".publicKeys = [ users.ooks] ++ workstations;
+  "github_key.age".publicKeys = [ users.ooks ] ++ workstations;
 }
