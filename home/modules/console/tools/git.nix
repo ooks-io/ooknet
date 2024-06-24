@@ -11,9 +11,6 @@
       package = pkgs.gitAndTools.gitFull;
       userName = admin.gitName;
       userEmail = admin.gitEmail;
-      extraConfig = {
-        gpg."ssh".program = "${pkgs._1password-gui}/bin/op-ssh-sign";
-      };
       ignores = [ ".direnv" "result" ];
       lfs.enable = true;
     };

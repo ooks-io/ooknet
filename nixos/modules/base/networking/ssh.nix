@@ -7,8 +7,6 @@ in
 
 {
   config = mkIf (host.type != "phone") {
-    environment.sessionVariables.SSH_AUTH_SOCK = "~/.1password/agent.sock";
-
     services.openssh = {
       enable = true;
       settings = {
