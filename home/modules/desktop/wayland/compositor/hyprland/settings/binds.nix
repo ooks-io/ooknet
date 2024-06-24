@@ -18,6 +18,7 @@ in
         "SUPER,          d,             exec,     ${binds.discord}"
         "SUPERSHIFT,     e,             exec,     ${binds.fileManager}"
         "SUPERSHIFT,     S,             exec,     ${binds.steam}"
+        "SUPERSHIFT,     n,             exec,     ${binds.notes}"
         "SUPER,          escape,        exec,     ${binds.terminalLaunch} --title=BTOP btop"
         "SUPER CTRL,     return,        exec,     ${binds.zellijMenu}"
         "SUPER,          delete,        exec,     ${binds.powerMenu}"

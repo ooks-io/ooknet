@@ -18,8 +18,8 @@ in
     (mkIf (fileManager == "nemo") {
      ooknet.binds.fileManager = "nemo"; 
       xdg.mimeApps = {
-        association.added = nemoMime;
-        defaultApplication = nemoMime;    
+        associations.added = nemoMime;
+        defaultApplications = nemoMime;    
       };
     })
   ];
