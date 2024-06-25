@@ -2,27 +2,21 @@
 
 let
   inherit (config.colorscheme) palette;
-  inherit (lib) mkIf;
+  inherit (lib) mkMerge mkIf;
   fonts = config.ooknet.fonts;
   cfg = config.ooknet.terminal.foot;
-  terminal = config.ooknet.desktop.terminal;
+  desktop = config.ooknet.desktop;
 in
 
 {
-  config = mkIf (cfg.enable || terminal == "foot") {
-    home.sessionVariables = mkIf (terminal == "foot") {
-      TERMINAL = "foot";
-      TERM = "foot";
-    };
-
-    ooknet.binds.terminal = mkIf (terminal == "foot") "foot";
-    ooknet.binds.terminalLaunch = mkIf (terminal == "foot") "foot";
-
+  config = mkMerge [ 
+  (mkIf (cfg.enable || desktop.terminal == "foot") {
     programs.foot = {
       enable = true;
       server.enable = true;
       settings = {
         main = {
+          term = "xterm-256color";
           font = "${fonts.monospace.family}:pixelsize=18:antialias=true";
           font-bold = "${fonts.monospace.family}:style=Bold:pixelsize=18:antialias=true";
           font-italic = "${fonts.monospace.family}:style=Italic:pixelsize=18:antialias=true";
@@ -74,5 +68,15 @@ in
         };
       };
     };
-  };
+  })
+
+  (mkIf (desktop.terminal == "foot") {
+    home.sessionVariables = {
+      TERMINAL = "foot";
+      TERM = "foot";
+    };
+    ooknet.binds.terminal = "foot";
+    ooknet.binds.terminalLaunch = "foot";
+    })
+  ];
 }
