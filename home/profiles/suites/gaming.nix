@@ -12,6 +12,9 @@ in
       wine.enable = true;
       bottles.enable = true;
     };
-    ooknet.binds.steam = "steam";
+    ooknet.binds = {
+      steam = "steam";
+      factorio = "steam steam://rungameid/427520";
+    };
   };
 }

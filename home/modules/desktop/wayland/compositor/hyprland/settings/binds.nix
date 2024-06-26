@@ -22,6 +22,7 @@ in
         "SUPER,          escape,        exec,     ${binds.terminalLaunch} --title=BTOP btop"
         "SUPER CTRL,     return,        exec,     ${binds.zellijMenu}"
         "SUPER,          delete,        exec,     ${binds.powerMenu}"
+        "SUPERSHIFT,     F,             exec,     ${binds.factorio}"
 
         # Spotify PLayer Controls
         "SUPER,          M,             exec,     ${binds.spotify.launch}"

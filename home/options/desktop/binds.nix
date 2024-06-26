@@ -20,6 +20,7 @@ in
     lock = mkBind "No screen locker enabled";
     password = mkBind "No password manager enabled";
     zellijMenu = mkBind "Zellij Menu is not enabled";
+    factorio = mkBind "Gaming module is not enabled";
     volume = {
       up = mkBind "Volume binding not found...";
       down = mkBind "Volume binding not found...";
