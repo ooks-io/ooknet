@@ -15,7 +15,13 @@ in
 {
   config = mkMerge [ 
     (mkIf (cfg.enable || discord == "vesktop") {
-      home.packages = [ pkgs.vesktop ];
+    # <https://github.com/AlephNought0/Faery/blob/main/Home/Programs/Vesktop/patchedvesktop.patch>
+      home.packages = [ 
+        (pkgs.vesktop.overrideAttrs (old: {
+          patches = (old.patches or []) ++ [./vesktop-patch.patch];
+        }))
+      ];
+
       xdg.configFile."vesktop/themes/nix.css".text = /* css */ ''
         /**
           * @name nix-colors-minimal
