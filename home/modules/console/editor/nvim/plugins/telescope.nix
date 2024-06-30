@@ -28,8 +28,6 @@ in
           "<C-f>" = "live_grep";
         };
 
-        keymapsSilent = true;
-
         defaults = {
           file_ignore_patterns = [
             "^.git/"

@@ -22,5 +22,6 @@ in
       ffmpeg.enable = true;
       sourcegraph.enable = true;
     };
+    ooknet.editor.nvim.enable = true;
   };
 }

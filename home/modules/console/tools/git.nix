@@ -1,9 +1,11 @@
 { pkgs, config, lib, osConfig, ... }:
+
   let 
     inherit (lib) mkIf;
     cfg = config.ooknet.tools.git;
     admin = osConfig.ooknet.host.admin;
   in
+  
 { 
   config = mkIf cfg.enable {
     programs.git = {

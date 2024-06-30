@@ -95,6 +95,12 @@
       inputs.nixpkgs.follows = "nixpkgs-small";
     };
 
+    # neovim configured with nix
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # packaged firefox addons
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
