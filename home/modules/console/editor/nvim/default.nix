@@ -12,6 +12,7 @@ in
     ./settings.nix
     ./keymapping.nix
     ./plugins
+    ./colorscheme.nix
   ];
   
   config = mkIf (cfg.enable || console.editor == "nvim") {

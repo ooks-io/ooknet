@@ -10,7 +10,6 @@ in
   config = mkIf (cfg.enable || console.editor == "nvim") {
     programs.nixvim.plugins.lualine = {
       enable = true;
-      theme = "base16";
       globalstatus = true;
       sections = {
         lualine_a = ["mode"];
