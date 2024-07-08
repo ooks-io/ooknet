@@ -21,6 +21,7 @@ in
       radarr.enable = true;
       prowlarr.enable = true;
       transmission.enable = true;
+      readarr.enable = true;
     };
     fileSystems."/jellyfin" = {
       device = "/dev/disk/by-label/jellyfin";
