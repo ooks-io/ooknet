@@ -17,7 +17,7 @@ in
 		profiles = [ "console-tools" "media" ];
 		admin = {
 			name = "ooks";
-			shell = "fish";
+			shell = "zsh";
 			homeManager = true;
 		};
 		networking = {

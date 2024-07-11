@@ -23,5 +23,6 @@ in
       sourcegraph.enable = true;
     };
     ooknet.editor.nvim.enable = true;
+    ooknet.shell.fish.enable = true;
   };
 }
