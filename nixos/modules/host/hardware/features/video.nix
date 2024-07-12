@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ lib, inputs, config, pkgs, ... }:
 
 let
   inherit (lib) mkIf;
@@ -19,7 +19,7 @@ in
       enable = true;
       xdgOpenUsePortal = true;
       extraPortals = with pkgs; [
-        xdg-desktop-portal-hyprland
+        inputs.xdg-portal-hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland
         xdg-desktop-portal-gtk
       ];
       config = {
