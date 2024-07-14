@@ -7,10 +7,17 @@ let
 in
 
 {
+  imports = [
+    ./plugins.nix
+  ];
+  
   config = mkIf (cfg.enable || admin.shell == "zsh") {
     programs.zsh = {
       enable = true;
       autocd = true;
+      enableCompletion = true;
+      autosuggestion.enable = true;
+      syntaxHighlighting.enable = true;
       dotDir = ".config/zsh";
       history = {
         expireDuplicatesFirst = true;

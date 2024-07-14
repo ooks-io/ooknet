@@ -1,13 +1,12 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, ... }:
 
 let
   inherit (lib) mkIf;
   adminShell = config.ooknet.host.admin.shell;
-  cfg = config.ooknet.shell.zsh;
 in
 
 {
-  config = mkIf (adminShell == "bash" || cfg.enable) {
+  config = mkIf (adminShell == "bash" ) {
     programs.bash = {
       enable = true;
     };

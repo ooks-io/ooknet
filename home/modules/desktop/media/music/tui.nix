@@ -2,7 +2,7 @@
 
 let
   inherit (config.colorscheme) palette;
-  inherit (lib) mkIf;
+  inherit (lib) mkIf getExe;
 
   cfg = config.ooknet.media.music.tui;
   zellij = config.ooknet.multiplexer.zellij;
@@ -115,14 +115,14 @@ in
           tab name="spotify" focus=true {
               pane name="spotify" {
                   borderless true
-                  command "spotify_player"
+                  command "${getExe pkgs.spotify-player}"
                   focus true
               }
               pane name="Visualizer" {
                   borderless false
                   split_direction "horizontal"
                   size "20%"
-                  command "cava"
+                  command "${getExe pkgs.cava}"
               }
           }
       }
