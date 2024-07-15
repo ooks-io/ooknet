@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 
 let
   inherit (lib) mkIf;
@@ -9,9 +9,14 @@ in
   config = mkIf cfg.enable {
     programs.bat = {
       enable = true;
+      extraPackages = with pkgs.bat-extras; [
+        batgrep
+        prettybat
+        batwatch
+        batman
+      ];
       config = {
         theme = "base16";
-        pager = "less -FR";
       };
     };
   };
