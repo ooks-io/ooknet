@@ -2,7 +2,7 @@
 
 let
   inherit (lib) mkIf getExe;
-  inherit (pkgs) bat eza dust;
+  inherit (pkgs) bat eza dust nh;
   
   cfg = config.ooknet.shell.fish;
   admin = osConfig.ooknet.host.admin;
@@ -20,6 +20,8 @@ in
       shellAbbrs = {
         f = "cd $FLAKE";
         fe = "$EDITOR $FLAKE";
+
+        nswitch = "${getExe nh} os switch";
       };
     };
   };
