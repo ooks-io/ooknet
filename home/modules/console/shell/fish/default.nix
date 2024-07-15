@@ -1,41 +1,23 @@
 { lib, config, osConfig, ... }:
+
 let
-  inherit (lib) mkIf any;
+  inherit (lib) mkIf;
   cfg = config.ooknet.shell.fish;
   admin = osConfig.ooknet.host.admin;
-  hasPackage = pname: any (p: p ? pname && p.pname == pname) config.home.packages;
-  hasEza = hasPackage "eza";
-  hasBat = hasPackage "bat";
 in
+
 {
+  imports = [
+    ./plugins.nix
+    ./binds.nix
+    ./aliases.nix
+  ];
+
   config = mkIf (cfg.enable || admin.shell == "fish") {
     programs.fish = {
       enable = true;
-      shellAbbrs = {
-        fe = "cd $FLAKE; $EDITOR $FLAKE";
-        f = "cd $FLAKE";
-        s = "cd $SCRIPTS";
-        tree = mkIf hasEza "eza -T --icons --group-directories-first";
-        ls = mkIf hasEza "eza -a --icons --group-directories-first";
-        lsd = mkIf hasEza "eza -al --icons --group-directories-first";
-        lst = mkIf hasEza "eza -T -L 5 --icons --group-directories-first";
-        lsta = mkIf hasEza "eza -T --icons --group-directories-first";
-        cat = mkIf hasBat "bat";
-      };
       functions = {
         fish_greeting = "";
-        fish_flake_edit = ''
-        cd $FLAKE
-        hx $FLAKE
-        '';
-        fish_hello_world = ''
-          echo "Hello World"; string repeat -N \n --count=(math (count (fish_prompt)) - 1); commandline -f repaint
-          '';
-
-        fish_user_key_bindings = ''
-          bind --preset -M insert \cf fish_flake_edit
-          bind --preset -M insert \ec fzf_cd_widget
-        '';
       };
       interactiveShellInit =
         # Use vim bindings and cursors
