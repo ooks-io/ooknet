@@ -16,7 +16,7 @@ in
         ];
       };
       overlays = [
-        (final: prev: {
+        (_final: prev: {
           zjstatus = inputs.zjstatus.packages.${prev.system}.default;
         })
       ];

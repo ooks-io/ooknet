@@ -1,7 +1,7 @@
 { config, lib, ... }:
 
 let
-  inherit (lib) mkIf mapAttrsToList;
+  inherit (lib) mkIf;
   cfg = config.ooknet.editor.nvim;
   console = config.ooknet.console;
 in

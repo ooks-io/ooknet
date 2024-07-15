@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = [ pkgs.xdg-utils ];

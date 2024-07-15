@@ -3,7 +3,7 @@ let
 in
 
 {
-  perSystem = { config, ... }: {
+  perSystem = { ... }: {
     imports = [
       {
         _module.args.keys = sshKeys;

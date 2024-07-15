@@ -2,7 +2,7 @@
 
 let
   inherit (lib) mkIf;
-  inherit (config.colorscheme) slug palette;
+  inherit (config.colorscheme) slug;
   cfg = config.ooknet.editor.nvim;
   console = config.ooknet.console;
 in

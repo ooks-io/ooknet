@@ -4,7 +4,6 @@ let
   inherit (lib) mkOption mkEnableOption;
   inherit (lib.types) bool enum listOf int submodule nullOr str;
   inherit (lib.lists) optionals concatLists;
-  inherit (builtins) concatStringsSep;
 
   admin = config.ooknet.host.admin;
   hardware = config.ooknet.host.hardware;

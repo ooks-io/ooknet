@@ -2,7 +2,7 @@
   # ooknet
   description = "a nix configuration written by an orangutan";
 
-  outputs = { flake-parts, nixpkgs, self, ... } @ inputs:
+  outputs = { flake-parts, self, ... } @ inputs:
     flake-parts.lib.mkFlake { inherit inputs; } ({withSystem, ... }: {
 
       systems = import inputs.systems;

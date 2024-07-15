@@ -1,5 +1,5 @@
 { 
-  perSystem = { system, pkgs, inputs, ... }: {
+  perSystem = { pkgs, ... }: {
     packages = {  
       live-buds-cli = pkgs.callPackage ./live-buds-cli {};
     };
