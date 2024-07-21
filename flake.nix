@@ -93,10 +93,7 @@
     };
 
     # neovim configured with nix
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    ookvim.url = "git+ssh://git@github.com/ooks-io/ookvim";
 
     # packaged firefox addons
     firefox-addons = {
