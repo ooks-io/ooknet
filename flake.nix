@@ -20,9 +20,6 @@
 
   # External inputs we depend on
   inputs = {
-  ## TODO: 
-  ## look into nix-super
-  ## IMPLEMENT SECRETS YOU APE (agenix looks best)
   
     # unstable because why not
     nixpkgs.url = "github:Nixos/nixpkgs/nixos-unstable";
