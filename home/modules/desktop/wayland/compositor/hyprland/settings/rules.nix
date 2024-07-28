@@ -14,6 +14,8 @@ in
         "float, title:^(Picture-in-Picture)$"
         "pin, title:^(Picture-in-Picture)$"
 
+        "float,move 237 175, size 1200 720,title:^(File Upload)$"
+
         "workspace 4, title:^(Vesktop)$"
 
         # Floating BTOP
