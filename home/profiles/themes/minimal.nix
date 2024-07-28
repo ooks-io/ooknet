@@ -10,7 +10,7 @@ in
   imports = [ inputs.nix-colors.homeManagerModule ];
   config = mkIf (theme == "minimal") {
 
-    colorscheme = colorSchemes.gruvbox-material-dark-soft;
+    colorscheme = colorSchemes.gruvbox-material-dark-medium;
     home.file.".colorscheme".text = config.colorscheme.slug;
     home.sessionVariables.COLOR_SCHEME = "${config.colorscheme.slug}";
 
