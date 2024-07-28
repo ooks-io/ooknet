@@ -9,18 +9,13 @@ let
   multiplexer= config.ooknet.console.multiplexer;
   hostName = osConfig.networking.hostName;
 
-  # removed image support because it was causing issues with zellij
-  spotify-cli = pkgs.spotify-player.override {
-    withImage = false;
-    withSixel = false;
-  };
 in
 
 {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       termusic
-      spotify-cli
+      spotify-player
       alsa-utils
       mpv
     ];
