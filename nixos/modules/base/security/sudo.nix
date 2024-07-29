@@ -1,10 +1,6 @@
-{ lib, ... }: 
-
-let
+{lib, ...}: let
   inherit (lib) mkDefault mkForce;
-in
-
-{
+in {
   # nyx module
   security = {
     sudo-rs.enable = mkForce false; # we don't want the rust sudo fork
@@ -12,12 +8,16 @@ in
       enable = true;
       wheelNeedsPassword = mkDefault false; # only use false here if the extraRules below are enabled
       execWheelOnly = mkForce true; # only allow wheel to execute sudo
-      extraConfig = /* shell */ ''
-        Defaults lecture = never # disable sudo lecture
-        Defaults pwfeedback # password feedback
-        Defaults env_keep += "EDITOR PATH DISPLAY" # variables to be passes to root
-        Defaults timestamp_timeout = 300 # asks for sudo password ever 300s
-      '';
+      extraConfig =
+        /*
+        shell
+        */
+        ''
+          Defaults lecture = never # disable sudo lecture
+          Defaults pwfeedback # password feedback
+          Defaults env_keep += "EDITOR PATH DISPLAY" # variables to be passes to root
+          Defaults timestamp_timeout = 300 # asks for sudo password ever 300s
+        '';
       extraRules = [
         {
           # allow wheel group to run nixos-rebuild without password

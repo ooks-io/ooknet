@@ -1,12 +1,13 @@
-{ lib, config, pkgs, ... }:
-
-let
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   inherit (lib) mkIf;
   cfg = config.ooknet.tools.ffmpeg;
-in
-
-{
+in {
   config = mkIf cfg.enable {
-    home.packages = [ pkgs.ffmpeg ];
+    home.packages = [pkgs.ffmpeg];
   };
 }

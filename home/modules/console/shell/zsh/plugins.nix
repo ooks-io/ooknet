@@ -1,12 +1,14 @@
-{ lib, pkgs, config, osConfig, ... }:
-
-let
+{
+  lib,
+  pkgs,
+  config,
+  osConfig,
+  ...
+}: let
   inherit (lib) mkIf;
   cfg = config.ooknet.shell.zsh;
   admin = osConfig.ooknet.host.admin;
-in
-
-{
+in {
   config = mkIf (cfg.enable || admin.shell == "zsh") {
     programs.zsh.plugins = [
       {

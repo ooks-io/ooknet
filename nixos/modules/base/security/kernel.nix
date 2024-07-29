@@ -1,18 +1,18 @@
-{ lib, config, ... }:
-
-let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) optionals mkForce concatLists;
   inherit (builtins) elem;
   features = config.ooknet.host.hardware.features;
-in
-
-{
+in {
   security = {
     # Protects the kernel from being tampered with at runtime. prevents the ability to hibernate.
-    protectKernelImage = true; 
+    protectKernelImage = true;
 
     # page table isolation (PTI) is a kernel option designed to protect against
-    # side-channel attacks, including Meltdown & Spectre vunerabilities.  
+    # side-channel attacks, including Meltdown & Spectre vunerabilities.
     forcePageTableIsolation = true;
 
     # locking kernel modules during runtime breaks certain services by stopping them from being
@@ -41,7 +41,7 @@ in
 
         # limits the exposer of the kernel memory address via dmesg
         "kernel.dmesg_restrict" = 1;
-        
+
         # we are not a kernel developer so we disable this to prevent potential information leaks & attacks
         "kernel.ftrace_enabled" = false;
 
@@ -100,7 +100,7 @@ in
       # disables a common interface that contains sensitive info on the kernel
       "debugfs=off"
 
-      # prevent kernel from blanking plymouth out of the frame buffer console 
+      # prevent kernel from blanking plymouth out of the frame buffer console
       "fbcon=nodefer"
 
       # enables auditing of integrity measurement events
@@ -112,11 +112,10 @@ in
 
       # disables the legacy vyscall mechanism, reducing attack surface.
       "vsyscall=none"
-      
+
       # reduce exposure to heap attacks by preventing different slab caches from being merged.
       "slab_nomerge"
 
-      
       "rootflags=noatime"
       "lsm=landlock,lockdown,yama,integrity,apparmor,bpf,tomoyo,selinux"
     ];

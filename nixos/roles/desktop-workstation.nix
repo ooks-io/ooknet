@@ -1,18 +1,18 @@
-{ lib, config, ... }:
-
-let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) mkIf;
   host = config.ooknet.host;
-in
-
-{
+in {
   config = mkIf (host.type == "desktop" && host.role == "workstation") {
     ooknet = {
       services = {
         gnomeServices.enable = true;
         gvfs.enable = true;
         dbus.enable = true;
-        system76Scheduler.enable = true; 
+        system76Scheduler.enable = true;
       };
       programs = {
         _1password.enable = true;

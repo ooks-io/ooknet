@@ -1,6 +1,11 @@
-{ pkgs, lib, inputs, config, osConfig, ... }:
-
-let
+{
+  pkgs,
+  lib,
+  inputs,
+  config,
+  osConfig,
+  ...
+}: let
   inherit (lib) mkIf mkMerge;
 
   addons = inputs.firefox-addons.packages.${pkgs.system};
@@ -22,16 +27,13 @@ let
     "application/x-extension-xht" = ["firefox.desktop"];
     "application/json" = ["firefox.desktop"];
   };
-in
-
-{
-
-  imports = [ ./tridactyl.nix ];
-  config = mkMerge [ 
+in {
+  imports = [./tridactyl.nix];
+  config = mkMerge [
     (mkIf (cfg.enable || browser == "firefox") {
       programs.firefox = {
         enable = true;
-        nativeMessagingHosts = [ pkgs.tridactyl-native ];
+        nativeMessagingHosts = [pkgs.tridactyl-native];
         profiles.${admin.name} = {
           extensions = with addons; [
             ublock-origin
@@ -54,6 +56,5 @@ in
         defaultApplications = firefoxMime;
       };
     })
-
   ];
 }

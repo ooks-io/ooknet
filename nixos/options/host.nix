@@ -1,6 +1,8 @@
-{ lib, config, ... }:
-
-let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) mkOption mkEnableOption;
   inherit (lib.types) bool enum listOf int submodule nullOr str;
   inherit (lib.lists) optionals concatLists;
@@ -8,15 +10,13 @@ let
   admin = config.ooknet.host.admin;
   hardware = config.ooknet.host.hardware;
   tailscale = config.ooknet.host.networking.tailscale;
-in
-
-{
+in {
   options.ooknet.host = {
     name = mkOption {
       type = str;
       default = "ooksgeneric";
     };
-    
+
     type = mkOption {
       type = enum ["desktop" "laptop" "phone" "micro" "vm"];
       default = "desktop";
@@ -73,8 +73,9 @@ in
         };
         tags = mkOption {
           type = listOf str;
-          default = 
-            if tailscale.server then ["tag:server"]
+          default =
+            if tailscale.server
+            then ["tag:server"]
             else [];
           description = "Sets host tag depending on if server/client";
         };
@@ -121,8 +122,8 @@ in
       };
 
       features = mkOption {
-        type = listOf (enum ["audio" "video" "bluetooth" "backlight" "battery" "ssd"]);  
-        default = [ "ssd" ];
+        type = listOf (enum ["audio" "video" "bluetooth" "backlight" "battery" "ssd"]);
+        default = ["ssd"];
       };
 
       battery = {
@@ -197,16 +198,19 @@ in
             };
           };
         });
-        default = [ ];
+        default = [];
       };
     };
   };
 
   config = {
-    assertions = [{
-      assertion = ((lib.length hardware.monitors) != 0) ->
-        ((lib.length (lib.filter (m: m.primary) hardware.monitors)) == 1);
-      message = "At least 1 primary monitor is required";
-    }];
+    assertions = [
+      {
+        assertion =
+          ((lib.length hardware.monitors) != 0)
+          -> ((lib.length (lib.filter (m: m.primary) hardware.monitors)) == 1);
+        message = "At least 1 primary monitor is required";
+      }
+    ];
   };
 }

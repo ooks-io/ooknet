@@ -20,8 +20,6 @@ let
     hosts.ooksmicro
     hosts.ooksx1
   ];
-in
-
-{
+in {
   inherit users hosts workstations;
 }

@@ -1,4 +1,6 @@
- /* css */ 
+/*
+css
+*/
 ''
   /* config */
 
@@ -177,4 +179,3 @@
   /*  Removes the annoying rainbow thing from the hamburger  */
   #appMenu-fxa-separator{border-image:none !important;}
 ''
-

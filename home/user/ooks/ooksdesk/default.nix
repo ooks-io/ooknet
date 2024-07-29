@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{...}: {
   imports = [
     ../../../profile
   ];
@@ -11,4 +9,3 @@
 
   home.sessionVariables.HN = "ooksdesk";
 }
-

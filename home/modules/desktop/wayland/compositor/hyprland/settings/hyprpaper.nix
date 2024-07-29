@@ -1,12 +1,12 @@
-{ lib, config,  ... }:
-
-let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) mkIf;
   wayland = config.ooknet.wayland;
   wallpaperPath = config.ooknet.wallpaper.path;
-in
-
-{
+in {
   config = mkIf (wayland.compositor == "hyprland") {
     services.hyprpaper = {
       enable = true;

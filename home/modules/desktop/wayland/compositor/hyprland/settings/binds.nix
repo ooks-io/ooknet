@@ -1,12 +1,12 @@
-{ lib, config, ... }: 
-
-let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) mkIf;
   wayland = config.ooknet.wayland;
   binds = config.ooknet.binds;
-in
-
-{
+in {
   config = mkIf (wayland.compositor == "hyprland") {
     wayland.windowManager.hyprland.settings = {
       bind = [
@@ -38,7 +38,7 @@ in
         ",XF86AudioRaiseVolume,         exec,     ${binds.volume.up}"
         ",XF86AudioLowerVolume,         exec,     ${binds.volume.down}"
         ",XF86AudioMute,                exec,     ${binds.volume.mute}"
-      
+
         # Window Management
         "SUPER,          Q,             killactive"
         "SUPER CTRL,     backspace,     killactive"
@@ -97,7 +97,7 @@ in
         # Lock Screen
         "SUPER,          Backspace,     exec,     ${binds.lock}"
       ];
-        # Mouse
+      # Mouse
       bindm = [
         "SUPER,          mouse:272,     movewindow"
         "SUPER,          mouse:273,     resizewindow"

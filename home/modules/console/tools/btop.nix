@@ -1,11 +1,11 @@
-{ lib, config, ... }:
-
-let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) mkIf;
   cfg = config.ooknet.tools.btop;
-in
-
-{
+in {
   config = mkIf cfg.enable {
     programs.btop = {
       enable = true;

@@ -1,11 +1,11 @@
-{ lib, config, ... }:
-
-let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) mkIf;
   cfg = config.ooknet.services.gvfs;
-in
-
-{
+in {
   config = mkIf cfg.enable {
     services.gvfs.enable = true;
   };

@@ -35,7 +35,7 @@
   "toolkit.telemetry.updatePing.enabled" = false;
   "toolkit.telemetry.bhrPing.enabled" = false;
   "toolkit.telemetry.firstShutdownPing.enabled" = false;
-  "toolkit.telemetry.coverage.opt-out" = true; 
+  "toolkit.telemetry.coverage.opt-out" = true;
   "toolkit.coverage.opt-out" = true;
   "toolkit.coverage.endpoint.base" = "";
   "browser.ping-centre.telemetry" = false;
@@ -64,5 +64,5 @@
   "geo.provider.use_geoclue" = false;
 
   #Calculator
-    "browser.urlbar.suggest.calculator" = true;
+  "browser.urlbar.suggest.calculator" = true;
 }

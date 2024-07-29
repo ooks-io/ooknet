@@ -1,6 +1,9 @@
-{ lib, pkgs, osConfig, ... }:
-
-let
+{
+  lib,
+  pkgs,
+  osConfig,
+  ...
+}: let
   inherit (lib) mkIf;
   inherit (builtins) elem;
   features = osConfig.ooknet.host.hardware.features;
@@ -33,11 +36,9 @@ let
       main "$@"
     '';
   };
-in
-
-{
+in {
   config = mkIf (elem "audio" features) {
-    home.packages = [ ookvolume ];
+    home.packages = [ookvolume];
     ooknet.binds.volume = {
       up = "ookvolume up";
       down = "ookvolume down";

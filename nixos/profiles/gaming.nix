@@ -1,12 +1,12 @@
-{ lib, config, ... }:
-
-let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) mkIf;
   inherit (builtins) elem;
   profiles = config.ooknet.host.profiles;
-in
-
-{
+in {
   config = mkIf (elem "gaming" profiles) {
     ooknet.gaming = {
       steam.enable = true;
@@ -14,5 +14,5 @@ in
       gamemode.enable = true;
     };
     ooknet.services.flatpak.enable = true;
-  };  
+  };
 }

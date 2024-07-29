@@ -1,13 +1,14 @@
-{ config, lib, ... }:
-
-let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (config.colorscheme) palette;
   inherit (lib) mkIf;
   fonts = config.ooknet.fonts;
   wallpaperPath = config.ooknet.wallpaper.path;
   wayland = config.ooknet.wayland;
-in
-{
+in {
   config = mkIf (wayland.locker == "swaylock") {
     ooknet.binds.lock = "swaylock";
     programs.swaylock = {

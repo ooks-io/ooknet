@@ -1,13 +1,9 @@
-{ lib, ... }:
-
-let
+{lib, ...}: let
   inherit (lib) mkOption;
   inherit (lib.types) nullOr enum;
-in
-
-{
+in {
   options.ooknet.theme = mkOption {
-    type = nullOr (enum [ "minimal" "phone" ]);
+    type = nullOr (enum ["minimal" "phone"]);
     default = null;
   };
 }

@@ -1,11 +1,11 @@
-{ config, lib, ... }:
-
-let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.ooknet.tools.starship;
   inherit (lib) concatStrings mkIf;
-in
-
-{
+in {
   config = mkIf cfg.enable {
     programs.starship = {
       enable = true;
@@ -73,4 +73,3 @@ in
     };
   };
 }
-

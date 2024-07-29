@@ -1,17 +1,19 @@
-{ inputs, config, pkgs, lib, ... }:
-
-let
+{
+  inputs,
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   inherit (config) colorscheme;
   inherit (lib) mkIf;
   cfg = config.ooknet.editor.helix;
   console = config.ooknet.console;
-in
-
-{
+in {
   imports = [
     ./languages.nix
   ];
-  
+
   config = mkIf (cfg.enable || console.editor == "helix") {
     programs.helix = {
       enable = true;
@@ -49,9 +51,9 @@ in
             select = "underline";
           };
           statusline = {
-            left = [ "mode" "spinner" ];
-            center = [ "file-name" ];
-            right = [ "diagnostics" "selections" "position" "file-encoding" "file-line-ending" "file-type" ];
+            left = ["mode" "spinner"];
+            center = ["file-name"];
+            right = ["diagnostics" "selections" "position" "file-encoding" "file-line-ending" "file-type"];
           };
           lsp = {
             display-messages = true;
@@ -64,7 +66,7 @@ in
           W = ":set whitespace.render none";
         };
       };
-      themes = import ./theme.nix { inherit colorscheme; };
+      themes = import ./theme.nix {inherit colorscheme;};
     };
   };
 }

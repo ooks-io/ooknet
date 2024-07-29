@@ -1,12 +1,13 @@
-{ lib, config, pkgs, ... }:
-
-let
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   cfg = config.ooknet.host.networking.tailscale;
   inherit (config.services) tailscale;
   inherit (lib) mkIf mkDefault mkBefore;
-in
-
-{
+in {
   config = mkIf cfg.enable {
     services.tailscale = {
       enable = true;
@@ -29,7 +30,7 @@ in
     };
     systemd.network.wait-online.ignoredInterfaces = ["${tailscale.interfaceName}"];
 
-    environment.systemPackages = [ pkgs.tailscale ];
+    environment.systemPackages = [pkgs.tailscale];
 
     # disable tailscale logging
     systemd.services.tailscaled.serviceConfig.Environment = mkBefore ["TS_NO_LOGS_NO_SUPPORT"];

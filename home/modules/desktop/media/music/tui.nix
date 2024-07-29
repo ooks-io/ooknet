@@ -1,17 +1,18 @@
-{ osConfig, pkgs, config, lib, ... }:
-
-let
+{
+  osConfig,
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
   inherit (config.colorscheme) palette;
   inherit (lib) mkIf getExe;
 
   cfg = config.ooknet.media.music.tui;
   zellij = config.ooknet.multiplexer.zellij;
-  multiplexer= config.ooknet.console.multiplexer;
+  multiplexer = config.ooknet.console.multiplexer;
   hostName = osConfig.networking.hostName;
-
-in
-
-{
+in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       termusic
@@ -43,89 +44,97 @@ in
       };
     };
 
-    xdg.configFile."spotify-player/app.toml".text =  /* toml */ ''
-      theme = "default"
-      client_id = "fc4c3656d7cc4a7ea70c6080965f8b1a"
-      client_port = 8080
-      tracks_playback_limit = 50
-      playback_format = "{track} • {artists}\n{album}\n{metadata}"
-      notify_format = { summary = "{track} • {artists}", body = "{album}" }
-      app_refresh_duration_in_ms = 32
-      playback_refresh_duration_in_ms = 0
-      page_size_in_rows = 20
-      enable_media_control = false
-      enable_streaming = "Always"
-      enable_notify = true
-      enable_cover_image_cache = false
-      notify_streaming_only = false
-      default_device = "${hostName}"
-      play_icon = "▶"
-      pause_icon = "▌▌"
-      liked_icon = "♥"
-      playback_window_position = "Top"
-      cover_img_length = 9
-      cover_img_width = 5
-      playback_window_width = 6
+    xdg.configFile."spotify-player/app.toml".text =
+      /*
+      toml
+      */
+      ''
+        theme = "default"
+        client_id = "fc4c3656d7cc4a7ea70c6080965f8b1a"
+        client_port = 8080
+        tracks_playback_limit = 50
+        playback_format = "{track} • {artists}\n{album}\n{metadata}"
+        notify_format = { summary = "{track} • {artists}", body = "{album}" }
+        app_refresh_duration_in_ms = 32
+        playback_refresh_duration_in_ms = 0
+        page_size_in_rows = 20
+        enable_media_control = false
+        enable_streaming = "Always"
+        enable_notify = true
+        enable_cover_image_cache = false
+        notify_streaming_only = false
+        default_device = "${hostName}"
+        play_icon = "▶"
+        pause_icon = "▌▌"
+        liked_icon = "♥"
+        playback_window_position = "Top"
+        cover_img_length = 9
+        cover_img_width = 5
+        playback_window_width = 6
 
-      [device]
-      name = "${hostName}"
-      device_type = "speaker"
-      volume = 100
-      bitrate = 320
-      audio_cache = false
-      normalization = false
-    '';
-    
-    xdg.configFile."zellij/layouts/music.kdl".text = mkIf (zellij.enable || multiplexer == "zellij") /* kdl */ ''
-      layout {
-      default_tab_template {
-          pane size=2 borderless=true {
-              plugin location="file:${pkgs.zjstatus}/bin/zjstatus.wasm" {
-                  format_left   "{mode}"
-                  format_right  "{session} {datetime}"
-                  format_center "#[fg=#89B4FA,bold] {tabs}"
-                  format_space  ""
+        [device]
+        name = "${hostName}"
+        device_type = "speaker"
+        volume = 100
+        bitrate = 320
+        audio_cache = false
+        normalization = false
+      '';
 
-                  border_enabled  "true"
-                  border_char     "─"
-                  border_format   "#[fg=#${palette.base0D}]{char}"
-                  border_position "bottom"
+    xdg.configFile."zellij/layouts/music.kdl".text =
+      mkIf (zellij.enable || multiplexer == "zellij")
+      /*
+      kdl
+      */
+      ''
+        layout {
+        default_tab_template {
+            pane size=2 borderless=true {
+                plugin location="file:${pkgs.zjstatus}/bin/zjstatus.wasm" {
+                    format_left   "{mode}"
+                    format_right  "{session} {datetime}"
+                    format_center "#[fg=#89B4FA,bold] {tabs}"
+                    format_space  ""
 
-                  hide_frame_for_single_pane "true"
+                    border_enabled  "true"
+                    border_char     "─"
+                    border_format   "#[fg=#${palette.base0D}]{char}"
+                    border_position "bottom"
 
-                  mode_normal       "#[fg=${palette.base0D}]󰝚"
-            
-                  tab_normal   "#[bg=#${palette.base01}] {name} "
-                  tab_active   "#[bg=#${palette.base02}] {name} "
-                  tab_separator "  "
+                    hide_frame_for_single_pane "true"
 
-                  datetime        "#[fg=#${palette.base05},bold] {format} "
-                  datetime_format "%I:%M %p"
-                  datetime_timezone "${config.home.sessionVariables.TZ}"
-              }
-          }
-          children
-      }
+                    mode_normal       "#[fg=${palette.base0D}]󰝚"
 
-          tab name="spotify" focus=true {
-              pane name="spotify" {
-                  borderless true
-                  command "${getExe pkgs.spotify-player}"
-                  focus true
-              }
-              pane name="Visualizer" {
-                  borderless false
-                  split_direction "horizontal"
-                  size "20%"
-                  command "${getExe pkgs.cava}"
-              }
-          }
-      }
-    '';
+                    tab_normal   "#[bg=#${palette.base01}] {name} "
+                    tab_active   "#[bg=#${palette.base02}] {name} "
+                    tab_separator "  "
+
+                    datetime        "#[fg=#${palette.base05},bold] {format} "
+                    datetime_format "%I:%M %p"
+                    datetime_timezone "${config.home.sessionVariables.TZ}"
+                }
+            }
+            children
+        }
+
+            tab name="spotify" focus=true {
+                pane name="spotify" {
+                    borderless true
+                    command "${getExe pkgs.spotify-player}"
+                    focus true
+                }
+                pane name="Visualizer" {
+                    borderless false
+                    split_direction "horizontal"
+                    size "20%"
+                    command "${getExe pkgs.cava}"
+                }
+            }
+        }
+      '';
 
     home.shellAliases = mkIf (zellij.enable || multiplexer == "zellij") {
       zjm = "zellij --layout music";
     };
   };
-  
 }

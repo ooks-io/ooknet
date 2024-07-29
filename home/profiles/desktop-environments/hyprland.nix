@@ -1,11 +1,11 @@
-{ lib, config, ... }:
-
-let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) mkIf;
   desktop = config.ooknet.desktop;
-in
-
-{
+in {
   config = mkIf (desktop.environment == "hyprland") {
     ooknet.wayland = {
       enable = true;

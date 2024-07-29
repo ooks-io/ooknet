@@ -1,16 +1,15 @@
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   gpu = config.ooknet.host.hardware.gpu;
   inherit (lib) mkIf;
   inherit (builtins) elem;
-
   # vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};
-in
-
-{
+in {
   config = mkIf (elem gpu.type ["intel"]) {
-    
     services.xserver.videoDrivers = ["modesetting"];
     hardware.opengl = {
       extraPackages = with pkgs; [
@@ -29,7 +28,7 @@ in
         intel-media-driver
       ];
     };
-    boot.initrd.kernelModules = ["i915"];    
+    boot.initrd.kernelModules = ["i915"];
     environment.variables = mkIf config.hardware.opengl.enable {
       VDPAU_DRIVER = "va_gl";
     };

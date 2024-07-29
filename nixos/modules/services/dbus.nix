@@ -1,15 +1,16 @@
-{ lib, config, pkgs, ... }:
-
-let
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   inherit (lib) mkIf;
   cfg = config.ooknet.services.dbus;
-in
-
-{
+in {
   config = mkIf cfg.enable {
     services.dbus = {
       enable = true;
-      packages = with pkgs; [ dconf gcr udisks2 ];
+      packages = with pkgs; [dconf gcr udisks2];
       implementation = "broker";
     };
   };

@@ -1,12 +1,13 @@
-{ lib, config, pkgs, ... }:
-
-let
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   inherit (lib) mkIf;
   cfg = config.ooknet.creative.audacity;
-in
-
-{
+in {
   config = mkIf cfg.enable {
-    home.packages = [ pkgs.audacity ];
+    home.packages = [pkgs.audacity];
   };
 }

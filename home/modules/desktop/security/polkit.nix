@@ -1,20 +1,21 @@
-{ lib, config, pkgs, ... }:
-
-let
-  inherit (lib) mkIf; 
-  polkit = config.ooknet.security.polkit;
-in
-
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  inherit (lib) mkIf;
+  polkit = config.ooknet.security.polkit;
+in {
   config = {
     systemd.user.services = {
       polkit-pantheon-authentication-agent-1 = mkIf (polkit == "pantheon") {
         Unit.Description = "polkit-pantheon-authentication-agent-1";
 
         Install = {
-          WantedBy = [ "graphical-session.target" ];
-          Wants = [ "graphical-session.target" ];
-          After = [ "graphical-session.target" ];
+          WantedBy = ["graphical-session.target"];
+          Wants = ["graphical-session.target"];
+          After = ["graphical-session.target"];
         };
 
         Service = {
@@ -29,9 +30,9 @@ in
       polkit-gnome-authentication-agent-1 = mkIf (polkit == "gnome") {
         Unit.Description = "polkit-pantheon-authentication-agent-1";
         Install = {
-          WantedBy = [ "graphical-session.target" ];
-          Wants = [ "graphical-session.target" ];
-          After = [ "graphical-session.target" ];
+          WantedBy = ["graphical-session.target"];
+          Wants = ["graphical-session.target"];
+          After = ["graphical-session.target"];
         };
 
         Service = {

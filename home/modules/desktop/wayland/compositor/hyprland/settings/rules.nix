@@ -1,11 +1,11 @@
-{ lib, config, ... }:
-
-let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) mkIf;
   wayland = config.ooknet.wayland;
-in
-
-{
+in {
   config = mkIf (wayland.compositor == "hyprland") {
     wayland.windowManager.hyprland.settings = {
       windowrulev2 = [
@@ -26,7 +26,7 @@ in
         "stayfocused,title:^(BTOP)$"
 
         # Tearing
-        "immediate, title:^(TEKKEN™8)$" 
+        "immediate, title:^(TEKKEN™8)$"
       ];
     };
   };

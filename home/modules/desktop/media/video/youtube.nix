@@ -1,13 +1,14 @@
-{ lib, config, pkgs, ...}:
-
-let
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   inherit (lib) mkIf;
   cfg = config.ooknet.media.video.youtube;
-in
-
-{
+in {
   config = mkIf cfg.enable {
-    home.packages = [ pkgs.youtube-tui ];
+    home.packages = [pkgs.youtube-tui];
     programs.yt-dlp = {
       enable = true;
     };

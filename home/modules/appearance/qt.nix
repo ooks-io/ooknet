@@ -1,15 +1,16 @@
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   inherit (lib) mkIf;
   cfg = config.ooknet.qt;
-in
-
-{
+in {
   config = mkIf cfg.enable {
     qt = {
       enable = true;
-      style.name = "gtk2"; 
+      style.name = "gtk2";
       platformTheme.name = "gtk2";
     };
 

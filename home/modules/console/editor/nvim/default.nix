@@ -1,16 +1,19 @@
-{ config, lib, inputs, pkgs, ... }:
-
-let
-  inherit (lib) mkIf;
-  cfg = config.ooknet.editor.nvim;
-  console = config.ooknet.console;
-
-  ookvim = inputs.ookvim.packages.${pkgs.system}.default;
-in
-  
 {
-  
+  config,
+  lib,
+  inputs,
+  pkgs,
+  ...
+}: let
+  inherit (lib) mkIf;
+  inherit (config.ooknet) console;
+
+  cfg = config.ooknet.editor.nvim;
+
+  ookvim = inputs.ooks-vim.packages.${pkgs.system}.ooks-vim;
+in {
   config = mkIf (cfg.enable || console.editor == "nvim") {
-    home.packages = [ ookvim ];
+    home.packages = [ookvim];
+    home.sessionVariables.EDITOR = mkIf (console.editor == "nvim") "nvim";
   };
 }

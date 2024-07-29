@@ -1,9 +1,13 @@
-{ inputs, lib, config, pkgs, ... }: 
-let
+{
+  inputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   wayland = config.ooknet.wayland;
   inherit (lib) mkIf;
-in
-{
+in {
   imports = [
     inputs.hyprland.homeManagerModules.default
     ./settings
@@ -13,8 +17,8 @@ in
   config = mkIf (wayland.compositor == "hyprland") {
     home.packages = [
       pkgs.hyprpicker
-      ];
-    
+    ];
+
     wayland.windowManager.hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;

@@ -1,11 +1,12 @@
-{ lib, config, pkgs, ... }:
-
-let
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   inherit (lib) mkIf;
   cfg = config.ooknet.gaming.gamemode;
-in
-
-{
+in {
   config = mkIf cfg.enable {
     programs.gamemode = {
       enable = true;

@@ -1,12 +1,14 @@
-{ lib, config, pkgs, osConfig, ... }:
-
-let
+{
+  lib,
+  config,
+  pkgs,
+  osConfig,
+  ...
+}: let
   inherit (lib) mkIf;
   cfg = config.ooknet.shell.fish;
   admin = osConfig.ooknet.host.admin;
-in
-
-{
+in {
   config = mkIf (cfg.enable || admin.shell == "fish") {
     programs.fish = {
       plugins = [
@@ -26,4 +28,3 @@ in
     };
   };
 }
-

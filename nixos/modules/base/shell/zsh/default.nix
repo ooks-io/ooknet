@@ -1,14 +1,14 @@
-{ lib, config, ... }:
-
-let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) mkIf;
   adminShell = config.ooknet.host.admin.shell;
-in
-
-{
+in {
   config = mkIf (adminShell == "zsh") {
-  # enable nixpkgs module if zsh is the main users login shell
-  # configure with home-manager module
+    # enable nixpkgs module if zsh is the main users login shell
+    # configure with home-manager module
     programs.zsh = {
       enable = true;
 

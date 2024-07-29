@@ -1,5 +1,5 @@
 {
-  imports = [ 
+  imports = [
     ./system76Scheduler.nix
     ./dbus.nix
     ./gnome.nix

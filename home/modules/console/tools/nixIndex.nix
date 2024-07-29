@@ -1,12 +1,13 @@
-{ lib, config, inputs, ... }:
-
-let
+{
+  lib,
+  config,
+  inputs,
+  ...
+}: let
   inherit (lib) mkIf;
   cfg = config.ooknet.tools.nixIndex;
-in
-
-{
-  imports = [ inputs.nix-index-db.hmModules.nix-index ];
+in {
+  imports = [inputs.nix-index-db.hmModules.nix-index];
   config = mkIf cfg.enable {
     programs = {
       nix-index = {

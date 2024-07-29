@@ -1,13 +1,14 @@
-{ lib, pkgs, ... }:
-
-let
-  mkBind = message: lib.mkOption {
-    type = lib.types.str;
-    default = "${pkgs.libnotify}/bin/notify-send --urgency=normal 'Warning' '${message}'";
-  };
-in
-
 {
+  lib,
+  pkgs,
+  ...
+}: let
+  mkBind = message:
+    lib.mkOption {
+      type = lib.types.str;
+      default = "${pkgs.libnotify}/bin/notify-send --urgency=normal 'Warning' '${message}'";
+    };
+in {
   options.ooknet.binds = {
     browser = mkBind "No browser is enabled";
     terminal = mkBind "No terminal is enabled";

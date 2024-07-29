@@ -1,11 +1,12 @@
-{ pkgs, config, ... }:
-
-
 {
+  pkgs,
+  config,
+  ...
+}: {
   imports = [
     ../../../profile
   ];
-  
+
   theme.phone.enable = true;
 
   ooknet = {
@@ -43,7 +44,7 @@
       package = pkgs.gitAndTools.gitFull;
       userName = "ooks-io";
       userEmail = "ooks@protonmail.com";
-      ignores = [ ".direnv" "result" ];
+      ignores = [".direnv" "result"];
       lfs.enable = true;
     };
   };
@@ -59,4 +60,3 @@
 
   home.stateVersion = "23.11";
 }
-

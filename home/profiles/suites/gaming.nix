@@ -1,12 +1,12 @@
-{ osConfig, lib, ... }:
-
-let
+{
+  osConfig,
+  lib,
+  ...
+}: let
   inherit (lib) mkIf;
   inherit (builtins) elem;
   profiles = osConfig.ooknet.host.profiles;
-in
-
-{
+in {
   config = mkIf (elem "gaming" profiles) {
     ooknet.gaming = {
       wine.enable = true;

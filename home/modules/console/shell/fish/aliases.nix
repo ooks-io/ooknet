@@ -1,14 +1,16 @@
-{ lib, config, osConfig, pkgs, ... }:
-
-let
+{
+  lib,
+  config,
+  osConfig,
+  pkgs,
+  ...
+}: let
   inherit (lib) mkIf getExe;
   inherit (pkgs) bat eza dust nh;
-  
+
   cfg = config.ooknet.shell.fish;
   admin = osConfig.ooknet.host.admin;
-in
-
-{
+in {
   config = mkIf (cfg.enable || admin.shell == "fish") {
     programs.fish = {
       shellAliases = {

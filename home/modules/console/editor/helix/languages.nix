@@ -1,12 +1,13 @@
-{ pkgs, lib, config, ... }: 
-
-let
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) mkIf getExe;
   cfg = config.ooknet.editor.helix;
   console = config.ooknet.console;
-in
-
-{
+in {
   config = mkIf (cfg.enable || console.editor == "helix") {
     programs.helix.languages = {
       language = let

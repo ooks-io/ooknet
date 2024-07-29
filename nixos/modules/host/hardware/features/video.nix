@@ -1,13 +1,15 @@
-{ lib, inputs, config, pkgs, ... }:
-
-let
+{
+  lib,
+  inputs,
+  config,
+  pkgs,
+  ...
+}: let
   inherit (lib) mkIf;
   inherit (builtins) elem;
   isx86Linux = pkgs: with pkgs.stdenv; hostPlatform.isLinux && hostPlatform.isx86;
   features = config.ooknet.host.hardware.features;
-in
-
-{
+in {
   config = mkIf (elem "video" features) {
     hardware = {
       opengl = {

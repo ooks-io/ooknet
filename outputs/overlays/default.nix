@@ -1,26 +1,29 @@
-{ inputs, ... }:
-{
+{inputs, ...}: {
   # For every flake input, aliases 'pkgs.inputs.${flake}' to
   # 'inputs.${flake}.packages.${pkgs.system}' or
   # 'inputs.${flake}.legacyPackages.${pkgs.system}'
   flake-inputs = final: _: {
-    inputs = builtins.mapAttrs
-      (_: flake: let
-        legacyPackages = ((flake.legacyPackages or {}).${final.system} or {});
-        packages = ((flake.packages or {}).${final.system} or {});
-      in
-        if legacyPackages != {} then legacyPackages else packages
+    inputs =
+      builtins.mapAttrs
+      (
+        _: flake: let
+          legacyPackages = (flake.legacyPackages or {}).${final.system} or {};
+          packages = (flake.packages or {}).${final.system} or {};
+        in
+          if legacyPackages != {}
+          then legacyPackages
+          else packages
       )
       inputs;
   };
 
   zjstatus = _final: prev: {
     zjstatus = inputs.zjstatus.packages.${prev.system}.default;
-  };  
+  };
 
   # waybar = final: prev: {
   #   waybar = inputs.nixpkgs-wayland.packages.${prev.system}.waybar;
   # };
 
-  additions = final: _prev: import ../pkgs { pkgs = final; };
+  additions = final: _prev: import ../pkgs {pkgs = final;};
 }

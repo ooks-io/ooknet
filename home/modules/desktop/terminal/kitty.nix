@@ -1,17 +1,17 @@
-{ config, lib, osConfig, ... }:
-
-let
+{
+  config,
+  lib,
+  osConfig,
+  ...
+}: let
   inherit (lib) mkIf;
   inherit (config.colorscheme) palette;
   fonts = config.ooknet.fonts;
   cfg = config.ooknet.terminal.kitty;
   terminal = config.ooknet.desktop.terminal;
   shell = osConfig.ooknet.host.admin.shell;
-in
-
-{
+in {
   config = mkIf (cfg.enable || terminal == "kitty") {
-
     home.sessionVariables = mkIf (terminal == "kitty") {
       TERMINAL = "kitty -1";
       TERM = "kitty -1";

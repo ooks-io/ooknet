@@ -1,12 +1,8 @@
-{ lib, ... }:
-
-let
+{lib, ...}: let
   inherit (lib) mkEnableOption;
-in
-
-{
+in {
   options.ooknet.services = {
-    nixarr.enable = mkEnableOption "";    
+    nixarr.enable = mkEnableOption "";
     gnomeServices.enable = mkEnableOption "";
     gvfs.enable = mkEnableOption "";
     dbus.enable = mkEnableOption "";

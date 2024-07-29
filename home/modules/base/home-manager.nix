@@ -1,19 +1,20 @@
-{ lib, config, osConfig, ... }:
-
-let
+{
+  lib,
+  config,
+  osConfig,
+  ...
+}: let
   inherit (lib) mkDefault;
   admin = osConfig.ooknet.host.admin;
-in
-
-{
+in {
   programs.home-manager.enable = true;
   systemd.user.startServices = "sd-switch";
-  
+
   home = {
     username = admin.name;
     homeDirectory = "/home/${config.home.username}";
     stateVersion = mkDefault "22.05";
-    sessionPath = [ "${config.home.homeDirectory}/.local/bin" ];
+    sessionPath = ["${config.home.homeDirectory}/.local/bin"];
     sessionVariables = {
       TZ = "Pacific/Auckland";
     };

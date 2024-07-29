@@ -1,12 +1,13 @@
-{ lib, config, osConfig, ... }:
-
-let
+{
+  lib,
+  config,
+  osConfig,
+  ...
+}: let
   inherit (lib) mkIf;
   admin = osConfig.ooknet.host.admin;
   cfg = config.ooknet.tools.fzf;
-in
-
-{
+in {
   config = mkIf cfg.enable {
     programs.fzf = {
       enable = true;

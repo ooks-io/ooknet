@@ -1,12 +1,12 @@
-{ config, lib, ... }:
-
-let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (lib) mkIf;
   admin = config.ooknet.host.admin;
   cfg = config.ooknet.services.nixarr;
-in
-  
-{
+in {
   config = mkIf cfg.enable {
     nixarr = {
       vpn.enable = false;

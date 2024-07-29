@@ -1,17 +1,18 @@
-{ lib, config, pkgs, inputs, ... }:
-
-let
+{
+  lib,
+  config,
+  pkgs,
+  inputs,
+  ...
+}: let
   inherit (lib) mkIf;
   wayland = config.ooknet.wayland;
-in
-
-{
+in {
   config = mkIf (wayland.compositor == "hyprland") {
-
     home.packages = with inputs; [
-    # Screenshot tool
+      # Screenshot tool
       hyprland-contrib.packages.${pkgs.system}.grimblast
-    # Screen recording tool
+      # Screen recording tool
       ooks-scripts.packages.${pkgs.system}.hyprrecord
     ];
 

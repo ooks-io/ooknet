@@ -1,11 +1,7 @@
-{ pkgs, ... }:
-
-let
-  fontPackage = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
+{pkgs, ...}: let
+  fontPackage = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
   fontPath = "/share/fonts/truetype/NerdFonts/JetBrainsMonoNerdFontMono-Regular.ttf";
-in
-
-{
+in {
   terminal = {
     font = fontPackage + fontPath;
 

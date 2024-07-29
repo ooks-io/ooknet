@@ -7,7 +7,7 @@
     ./terminal
     ./wayland
     ./productivity
-    ./gaming 
+    ./gaming
     ./security
     ./tools
     ./file-manager

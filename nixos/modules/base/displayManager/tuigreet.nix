@@ -1,10 +1,13 @@
-{ pkgs, lib, config, ... }:
-let
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) mkIf;
   tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
   host = config.ooknet.host;
-in
-{
+in {
   config = mkIf (host.type != "phone") {
     services.greetd = {
       enable = true;

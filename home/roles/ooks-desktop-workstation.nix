@@ -1,11 +1,11 @@
-{ lib, osConfig, ... }:
-
-let
+{
+  lib,
+  osConfig,
+  ...
+}: let
   inherit (lib) mkIf;
   host = osConfig.ooknet.host;
-in
-
-{
+in {
   config = mkIf (host.admin.name == "ooks" && host.type == "desktop" && host.role == "workstation") {
     ooknet = {
       theme = "minimal";

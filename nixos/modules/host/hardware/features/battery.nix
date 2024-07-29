@@ -1,15 +1,15 @@
-
-{ lib, config, pkgs, ... }:
-
-let
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   features = config.ooknet.host.hardware.features;
   cfg = config.ooknet.host.hardware.battery;
   inherit (lib) mkIf mkDefault;
   inherit (builtins) elem;
   MHz = x: x * 1000;
-in
-  
-{
+in {
   config = mkIf (elem "battery" features) {
     boot = {
       kernelModules = ["acpi_call"];

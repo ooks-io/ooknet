@@ -1,16 +1,18 @@
-{ lib, config, osConfig, ... }:
-
-let
-  inherit (lib) mkIf;
-  cfg = config.ooknet.shell.fish;
-  admin = osConfig.ooknet.host.admin;
-in
-
 {
+  lib,
+  config,
+  osConfig,
+  ...
+}: let
+  inherit (lib) mkIf;
+  inherit (osConfig.ooknet.host) admin;
+
+  cfg = config.ooknet.shell.fish;
+in {
   config = mkIf (cfg.enable || admin.shell == "fish") {
     programs.fish.functions = {
       fish_user_key_bindings = ''
-        bind --preset -M insert \cf fe
+        bind --preset -M insert \cf $EDITOR $FLAKE
         bind --preset -M insert \ec fzf_cd_widget
       '';
     };

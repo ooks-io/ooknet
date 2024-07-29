@@ -1,11 +1,11 @@
-{ lib, config, ... }: 
-
-let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) mkIf;
   cfg = config.ooknet.cursor;
-in
-
-{
+in {
   config = mkIf cfg.enable {
     home.pointerCursor = {
       package = cfg.package;
@@ -16,4 +16,3 @@ in
     };
   };
 }
-

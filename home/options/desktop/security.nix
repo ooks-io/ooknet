@@ -1,11 +1,7 @@
-{ lib, ... }:
-
-let
+{lib, ...}: let
   inherit (lib) mkOption types;
   inherit (types) nullOr enum;
-in
-
-{
+in {
   options.ooknet.security.polkit = mkOption {
     type = nullOr (enum ["gnome" "pantheon"]); # TODO: add kde agent
     default = "gnome";

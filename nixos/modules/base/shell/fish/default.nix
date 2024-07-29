@@ -1,12 +1,12 @@
-{ lib, config, ... }:
-
-let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) mkIf mkEnableOption;
   adminShell = config.ooknet.host.admin.shell;
   cfg = config.ooknet.shell.fish;
-in
-
-{
+in {
   options.ooknet.shell.fish.enable = mkEnableOption "Enable fish module";
 
   config = mkIf (adminShell == "fish" || cfg.enable) {

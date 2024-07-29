@@ -1,11 +1,11 @@
-{ lib, config, ... }:
-
-let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) mkIf;
   cfg = config.ooknet.programs.kdeconnect;
-in
-
-{
+in {
   config = mkIf cfg.enable {
     programs.kdeconnect = {
       enable = true;

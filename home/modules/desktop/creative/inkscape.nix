@@ -1,13 +1,13 @@
-{ lib, config, pkgs, ... }:
-
-let
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   inherit (lib) mkIf;
   cfg = config.ooknet.creative.inkscape;
-in
-
-{
+in {
   config = mkIf cfg.enable {
-    home.packages = [ pkgs.inkscape-with-extensions ];
+    home.packages = [pkgs.inkscape-with-extensions];
   };
 }
-

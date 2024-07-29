@@ -1,11 +1,12 @@
-{ lib, config, pkgs, ... }:
-
-let
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   inherit (lib) mkIf;
   cfg = config.ooknet.wayland;
-in
-
-{
+in {
   config = lib.mkIf cfg.enable {
     home = {
       packages = with pkgs; [
@@ -17,7 +18,7 @@ in
         wl-clipboard
       ];
     };
-    
+
     systemd.user.targets.tray = {
       Unit = {
         Description = "Home Manager System Tray";

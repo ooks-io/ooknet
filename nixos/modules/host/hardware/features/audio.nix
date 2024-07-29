@@ -1,25 +1,24 @@
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   inherit (lib) mkIf;
   inherit (lib.generators) toLua;
   inherit (lib.lists) elem optionals;
   # inherit (builtins) elem;
   features = config.ooknet.host.hardware.features;
-  hasBT = (elem "bluetooth" features);
-in
-
-{
+  hasBT = elem "bluetooth" features;
+in {
   config = mkIf (elem "audio" features) {
     hardware.pulseaudio.enable = !config.services.pipewire.enable;
     security.rtkit.enable = config.services.pipewire.enable;
-    services.pipewire = 
-    let
+    services.pipewire = let
       quantum = 64;
       rate = 48000;
       qr = "${toString quantum}/${toString rate}";
-    in
-    {
+    in {
       enable = true;
 
       alsa.enable = true;
@@ -89,14 +88,18 @@ in
             '')
           ]
           ++ optionals hasBT [
-            (pkgs.writeTextDir "share/bluetooth.lua.d/51-bluez-config.lua" /* lua */ ''
-              bluez_monitor.properties = {
-                ["bluez5.enable-sbc-xq"] = true,
-                ["bluez5.enable-msbc"] = true,
-                ["bluez5.enable-hw-volume"] = true,
-                ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
-              }
-            '')
+            (pkgs.writeTextDir "share/bluetooth.lua.d/51-bluez-config.lua"
+              /*
+              lua
+              */
+              ''
+                bluez_monitor.properties = {
+                  ["bluez5.enable-sbc-xq"] = true,
+                  ["bluez5.enable-msbc"] = true,
+                  ["bluez5.enable-hw-volume"] = true,
+                  ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
+                }
+              '')
           ];
       };
     };
@@ -106,6 +109,4 @@ in
       pipewire-pulse.wantedBy = ["default.target"];
     };
   };
-} 
-
-
+}

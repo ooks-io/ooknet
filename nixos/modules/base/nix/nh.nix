@@ -1,12 +1,13 @@
-{ pkgs, lib, config, ... }: 
-
-let
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) mkIf;
   host = config.ooknet.host;
   admin = host.admin;
-in
-
-{
+in {
   config = mkIf (host.type != "phone") {
     environment.variables.FLAKE = mkIf admin.homeManager "/home/${admin.name}/.config/ooknet/";
 

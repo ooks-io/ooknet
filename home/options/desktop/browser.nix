@@ -1,10 +1,6 @@
-{ lib, ... }:
-
-let
+{lib, ...}: let
   inherit (lib) mkEnableOption;
-in
-
-{
+in {
   options.ooknet.browser = {
     firefox.enable = mkEnableOption "";
     brave.enable = mkEnableOption "";

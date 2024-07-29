@@ -1,12 +1,15 @@
-{ config, pkgs, inputs, lib, ... }:
-
-let
-  inherit (inputs.nix-colors.lib-contrib { inherit pkgs; }) gtkThemeFromScheme;
+{
+  config,
+  pkgs,
+  inputs,
+  lib,
+  ...
+}: let
+  inherit (inputs.nix-colors.lib-contrib {inherit pkgs;}) gtkThemeFromScheme;
   inherit (lib) mkIf;
   cfg = config.ooknet.gtk;
-in
-{
-  config = mkIf cfg.enable (rec {
+in {
+  config = mkIf cfg.enable rec {
     gtk = {
       enable = true;
       font = {
@@ -15,7 +18,7 @@ in
       };
       theme = {
         name = config.colorscheme.slug;
-        package = gtkThemeFromScheme { scheme = config.colorscheme; };
+        package = gtkThemeFromScheme {scheme = config.colorscheme;};
       };
       iconTheme = {
         name = "Papirus-Dark";
@@ -30,6 +33,5 @@ in
         "Net/IconThemeName" = gtk.iconTheme.name;
       };
     };
-  });
+  };
 }
-

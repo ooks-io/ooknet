@@ -1,11 +1,12 @@
-{ lib, config, pkgs, ... }:
-
-let
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   inherit (lib) mkIf;
   cfg = config.ooknet.gaming.wine;
-in
-
-{
+in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       winetricks

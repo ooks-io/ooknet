@@ -1,10 +1,6 @@
-{ lib, ... }:
-
-let
+{lib, ...}: let
   inherit (lib) mkEnableOption;
-in
-
-{
+in {
   options.ooknet.media = {
     image = {
       imv.enable = mkEnableOption "";

@@ -1,6 +1,4 @@
-{ lib, ... }:
-
-let
+{lib, ...}: let
   mkFontOption = kind: {
     family = lib.mkOption {
       type = lib.types.str;
@@ -15,8 +13,7 @@ let
       example = "pkgs.fira-code";
     };
   };
-in
-{
+in {
   options.ooknet.fonts = {
     enable = lib.mkEnableOption "Whether to enable font profiles";
     monospace = mkFontOption "monospace";

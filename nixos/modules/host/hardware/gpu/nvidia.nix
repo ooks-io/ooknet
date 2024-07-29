@@ -1,15 +1,16 @@
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   gpu = config.ooknet.host.hardware.gpu;
   inherit (lib) mkIf mkDefault;
   inherit (builtins) elem;
   production = config.boot.kernelPackages.nvidiaPackages.production;
   # beta = config.boot.kernelPackages.nvidiaPackages.beta;
-in
-
-{
-# TODO: make option to choose nvidia package
+in {
+  # TODO: make option to choose nvidia package
   config = mkIf (elem gpu.type ["nvidia"]) {
     hardware = {
       nvidia = {
@@ -25,12 +26,11 @@ in
         };
       };
       opengl = {
-        extraPackages = with pkgs; [ nvidia-vaapi-driver ];
-        extraPackages32 = with pkgs.pkgsi686Linux; [ nvidia-vaapi-driver ];
+        extraPackages = with pkgs; [nvidia-vaapi-driver];
+        extraPackages32 = with pkgs.pkgsi686Linux; [nvidia-vaapi-driver];
       };
     };
     environment.systemPackages = with pkgs; [
-
       libva
       libva-utils
 

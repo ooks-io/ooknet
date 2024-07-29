@@ -4,4 +4,3 @@
     ./hyprlock.nix
   ];
 }
-

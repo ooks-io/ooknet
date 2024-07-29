@@ -1,7 +1,10 @@
-{ pkgs, inputs, outputs, ... }:
-
 {
-  imports = [ ./modules ];
+  pkgs,
+  inputs,
+  outputs,
+  ...
+}: {
+  imports = [./modules];
 
   environment.packages = with pkgs; [
     killall
@@ -29,7 +32,7 @@
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
   };
-  
+
   time.timeZone = "Pacific/Auckland";
 
   user = {
@@ -37,7 +40,7 @@
   };
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
+    extraSpecialArgs = {inherit inputs outputs;};
     config = import ../../../home/user/ooks/ooksphone;
   };
 }

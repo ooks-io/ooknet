@@ -1,10 +1,6 @@
-{ lib, ... }:
-
-let
+{lib, ...}: let
   inherit (lib) types mkOption;
-in
-
-{
+in {
   imports = [
     ./systemd.nix
     # ./grub

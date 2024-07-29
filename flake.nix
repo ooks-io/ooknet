@@ -2,9 +2,12 @@
   # ooknet
   description = "a nix configuration written by an orangutan";
 
-  outputs = { flake-parts, self, ... } @ inputs:
-    flake-parts.lib.mkFlake { inherit inputs; } ({withSystem, ... }: {
-
+  outputs = {
+    flake-parts,
+    self,
+    ...
+  } @ inputs:
+    flake-parts.lib.mkFlake {inherit inputs;} ({withSystem, ...}: {
       systems = import inputs.systems;
 
       imports = [
@@ -16,11 +19,13 @@
         nixosConfigurations = import ./outputs/nixos.nix {inherit self inputs withSystem;};
       };
 
+      perSystem = {pkgs, ...}: {
+        formatter = pkgs.alejandra;
+      };
     });
 
   # External inputs we depend on
   inputs = {
-  
     # unstable because why not
     nixpkgs.url = "github:Nixos/nixpkgs/nixos-unstable";
     nixpkgs-small.url = "github:Nixos/nixpkgs/nixos-unstable-small";
@@ -32,14 +37,14 @@
     systems.url = "github:nix-systems/default-linux";
     # split your flake into... parts?
     flake-parts = {
-      url = "github:hercules-ci/flake-parts"; 
+      url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
     # dotfile configuration
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs"; 
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-index-db = {
@@ -93,7 +98,7 @@
     };
 
     # neovim configured with nix
-    ookvim.url = "git+ssh://git@github.com/ooks-io/ookvim";
+    ooks-vim.url = "git+ssh://git@github.com/ooks-io/ooks-vim";
 
     # packaged firefox addons
     firefox-addons = {

@@ -1,11 +1,11 @@
-{ lib, config, ... }:
-
-let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) mkIf;
   wayland = config.ooknet.wayland;
-in
-
-{
+in {
   config = mkIf (wayland.compositor == "hyprland") {
     wayland.windowManager.hyprland.settings.gestures = {
       workspace_swipe = true;

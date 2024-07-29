@@ -1,11 +1,13 @@
-{ lib, config, pkgs, inputs, ... }:
-
-let
+{
+  lib,
+  config,
+  pkgs,
+  inputs,
+  ...
+}: let
   inherit (lib) mkIf mapAttrs mapAttrsToList;
   host = config.ooknet.host;
-in
-
-{
+in {
   imports = [
     ./nh.nix
     ./nixpkgs.nix
@@ -31,7 +33,7 @@ in
       nixPath = mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
       optimise = {
         automatic = true;
-        dates = [ "18:00" ];
+        dates = ["18:00"];
       };
       gc = {
         automatic = true;
@@ -40,9 +42,9 @@ in
       };
       settings = {
         flake-registry = "/etc/nix/registry.json";
-        allowed-users = [ "root" "@wheel" ];
-        trusted-users = [ "root" "@wheel" ];
-        experimental-features = [ "nix-command" "flakes" ];
+        allowed-users = ["root" "@wheel"];
+        trusted-users = ["root" "@wheel"];
+        experimental-features = ["nix-command" "flakes"];
         builders-use-substitutes = true;
       };
     };

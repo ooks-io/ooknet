@@ -1,11 +1,11 @@
-{ lib, config, ... }:
-
-let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) mkIf;
   cfg = config.ooknet.services.system76Scheduler;
-in
-
-{
+in {
   config = mkIf cfg.enable {
     services.system76-scheduler = {
       enable = true;

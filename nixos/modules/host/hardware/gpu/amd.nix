@@ -1,12 +1,13 @@
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   gpu = config.ooknet.host.hardware.gpu;
   inherit (lib) mkIf mkDefault;
   inherit (builtins) elem;
-in
-
-{
+in {
   config = mkIf (elem gpu.type ["amd"]) {
     hardware.opengl = {
       extraPackages = with pkgs; [
@@ -17,13 +18,13 @@ in
         # amdvlk
         mesa
       ];
-      extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
+      extraPackages32 = [pkgs.driversi686Linux.amdvlk];
     };
     boot = {
       initrd.kernelModules = ["amdgpu"];
       kernelModules = ["amdgpu"];
     };
-    environment.systemPackages = [ pkgs.nvtopPackages.amd ];
+    environment.systemPackages = [pkgs.nvtopPackages.amd];
     services.xserver.videoDrivers = mkDefault ["modesetting" "amdgpu"];
   };
 }

@@ -1,11 +1,10 @@
-
-{ lib, config, ... }:
-
-let
-  inherit (lib) mkDefault mkIf;
-in
-
 {
+  lib,
+  config,
+  ...
+}: let
+  inherit (lib) mkDefault mkIf;
+in {
   security.polkit = {
     enable = true;
     debug = mkDefault true;

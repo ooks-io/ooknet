@@ -1,11 +1,11 @@
-{ lib, config, ... }:
-
-let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) mkIf;
   host = config.ooknet.host;
-in
-
-{
+in {
   imports = [
     ./firewall.nix
     ./tools.nix

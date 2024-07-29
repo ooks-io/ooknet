@@ -1,10 +1,6 @@
-{ lib, ... }: 
-
-let
+{lib, ...}: let
   inherit (lib) mkDefault;
-in
-
-{
+in {
   i18n = {
     defaultLocale = mkDefault "en_US.UTF-8";
     supportedLocales = mkDefault [

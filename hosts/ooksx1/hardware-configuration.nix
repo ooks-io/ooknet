@@ -1,51 +1,55 @@
-{ config, lib, modulesPath, ... }:
-
 {
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  config,
+  lib,
+  modulesPath,
+  ...
+}: {
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+  ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = ["kvm-intel"];
+  boot.extraModulePackages = [];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/db84a41f-6094-46b1-b98a-26e03afc18e1";
-      fsType = "btrfs";
-      options = [ "subvol=root" ];
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/db84a41f-6094-46b1-b98a-26e03afc18e1";
+    fsType = "btrfs";
+    options = ["subvol=root"];
+  };
 
   boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/3ea21f10-f705-457c-8366-a8268f658ba6";
 
-  fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/db84a41f-6094-46b1-b98a-26e03afc18e1";
-      fsType = "btrfs";
-      options = [ "subvol=nix" ];
-    };
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-uuid/db84a41f-6094-46b1-b98a-26e03afc18e1";
+    fsType = "btrfs";
+    options = ["subvol=nix"];
+  };
 
-  fileSystems."/persist" =
-    { device = "/dev/disk/by-uuid/db84a41f-6094-46b1-b98a-26e03afc18e1";
-      fsType = "btrfs";
-      options = [ "subvol=persist" ];
-    };
+  fileSystems."/persist" = {
+    device = "/dev/disk/by-uuid/db84a41f-6094-46b1-b98a-26e03afc18e1";
+    fsType = "btrfs";
+    options = ["subvol=persist"];
+  };
 
-  fileSystems."/swap" =
-    { device = "/dev/disk/by-uuid/db84a41f-6094-46b1-b98a-26e03afc18e1";
-      fsType = "btrfs";
-      options = [ "subvol=swap" ];
-    };
+  fileSystems."/swap" = {
+    device = "/dev/disk/by-uuid/db84a41f-6094-46b1-b98a-26e03afc18e1";
+    fsType = "btrfs";
+    options = ["subvol=swap"];
+  };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/45D8-8DC3";
-      fsType = "vfat";
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/45D8-8DC3";
+    fsType = "vfat";
+  };
 
-  swapDevices = [{
-    device = "/swap/swapfile";
-    size = 8196;
-  }];
-
+  swapDevices = [
+    {
+      device = "/swap/swapfile";
+      size = 8196;
+    }
+  ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

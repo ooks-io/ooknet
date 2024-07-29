@@ -1,10 +1,6 @@
-{ lib, ... }:
-
-let
+{lib, ...}: let
   inherit (lib) mkEnableOption mkOption types;
-in
-  
-{
+in {
   options.ooknet.cursor = {
     enable = mkEnableOption "Enable cursor module";
     package = mkOption {

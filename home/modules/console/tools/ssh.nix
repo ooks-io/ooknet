@@ -1,11 +1,12 @@
-{ lib, config, osConfig, ... }:
-
-let
+{
+  lib,
+  config,
+  osConfig,
+  ...
+}: let
   inherit (lib) mkIf;
   cfg = config.ooknet.tools.ssh;
-in
-
-{
+in {
   config = mkIf cfg.enable {
     programs.ssh = {
       enable = true;

@@ -1,14 +1,15 @@
-{ lib, config, inputs, pkgs, ... }:
-
-let
+{
+  lib,
+  config,
+  inputs,
+  pkgs,
+  ...
+}: let
   inherit (lib) mkIf;
   launcher = config.ooknet.wayland.launcher;
-in
-
-
-{
+in {
   config = mkIf (launcher == "rofi") {
-    home.packages = [ inputs.ooks-scripts.packages.${pkgs.system}.powermenu ];
+    home.packages = [inputs.ooks-scripts.packages.${pkgs.system}.powermenu];
     ooknet.binds.powerMenu = "powermenu -c dmenu";
   };
 }

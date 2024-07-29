@@ -1,12 +1,13 @@
-{ pkgs, lib, config, ... }:
-
-let
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) mkIf;
   cfg = config.ooknet.media.video.jellyfinPlayer;
-in
-
-{
+in {
   config = mkIf cfg.enable {
-    home.packages = [ pkgs.jellyfin-media-player ];
+    home.packages = [pkgs.jellyfin-media-player];
   };
 }

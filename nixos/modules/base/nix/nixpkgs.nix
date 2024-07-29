@@ -1,11 +1,12 @@
-{ lib, config, inputs, ... }:
-
-let
+{
+  lib,
+  config,
+  inputs,
+  ...
+}: let
   inherit (lib) mkIf;
   host = config.ooknet.host;
-in
-
-{
+in {
   config = mkIf (host.type != "phone") {
     nixpkgs = {
       config = {

@@ -1,9 +1,7 @@
 let
   sshKeys = import ../secrets/keys.nix;
-in
-
-{
-  perSystem = { ... }: {
+in {
+  perSystem = {...}: {
     imports = [
       {
         _module.args.keys = sshKeys;

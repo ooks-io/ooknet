@@ -1,13 +1,14 @@
-{ lib, config, pkgs, ... }:
-
-let
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   inherit (lib) mkIf;
   wayland = config.ooknet.wayland;
-in
-
-{
+in {
   config = mkIf (wayland.compositor == "hyprland") {
-    home.packages = [ pkgs.hyprshade ];
+    home.packages = [pkgs.hyprshade];
     # TODO: implement hyprshade configuration
   };
 }

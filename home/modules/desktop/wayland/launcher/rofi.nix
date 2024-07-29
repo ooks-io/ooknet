@@ -1,12 +1,13 @@
-{ lib, config, pkgs, ... }:
-
-let
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   inherit (lib) mkIf;
   fonts = config.ooknet.fonts;
   wayland = config.ooknet.wayland;
-in
-
-{
+in {
   config = mkIf (wayland.launcher == "rofi") {
     programs.rofi = {
       enable = true;
@@ -14,7 +15,7 @@ in
       package = pkgs.rofi-wayland;
       terminal = "${config.home.sessionVariables.TERMINAL}";
       theme = let
-        inherit (config.colorscheme ) palette;
+        inherit (config.colorscheme) palette;
         inherit (config.lib.formats.rasi) mkLiteral;
       in {
         "*" = {

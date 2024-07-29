@@ -1,10 +1,6 @@
-{ lib, ... }:
-
-let
+{lib, ...}: let
   inherit (lib) mkEnableOption;
-in
-
-{
+in {
   options.ooknet.editor = {
     helix.enable = mkEnableOption "";
     nvim.enable = mkEnableOption "";

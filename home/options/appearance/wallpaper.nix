@@ -1,10 +1,6 @@
-{ lib, ... }:
-
-let
+{lib, ...}: let
   inherit (lib) types mkEnableOption mkOption;
-in
-
-{
+in {
   options.ooknet.wallpaper = {
     enable = mkEnableOption "";
     path = mkOption {

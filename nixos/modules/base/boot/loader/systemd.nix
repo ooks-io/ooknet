@@ -1,11 +1,11 @@
-{ lib, config, ... }:
-
-let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) mkIf;
   bootloader = config.ooknet.boot.loader;
-in
-
-{
+in {
   config = mkIf (bootloader == "systemd") {
     boot.loader = {
       systemd-boot = {

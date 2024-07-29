@@ -1,6 +1,9 @@
-{ inputs, self, withSystem, ... }:
-
-let
+{
+  inputs,
+  self,
+  withSystem,
+  ...
+}: let
   inherit (inputs.nixpkgs.lib) nixosSystem;
   inherit (self) keys;
 
@@ -19,36 +22,34 @@ let
   ];
 
   specialArgs = {inherit withSystem keys inputs self;};
-in
-
-{
+in {
   ooksdesk = nixosSystem {
     inherit specialArgs;
     system = "x86_64-linux";
-    modules = [ "${hosts}/ooksdesk" ] ++ workstation;
+    modules = ["${hosts}/ooksdesk"] ++ workstation;
   };
 
   ookst480s = nixosSystem {
     inherit specialArgs;
     system = "x86_64-linux";
-    modules = [ "${hosts}/ookst480s" ] ++ workstation;
+    modules = ["${hosts}/ookst480s"] ++ workstation;
   };
 
   ooksmedia = nixosSystem {
     inherit specialArgs;
     system = "x86_64-linux";
-    modules = [ "${hosts}/ooksmedia" nixarr ] ++ workstation;
+    modules = ["${hosts}/ooksmedia" nixarr] ++ workstation;
   };
 
   ooksmicro = nixosSystem {
     inherit specialArgs;
     system = "x86_64-linux";
-    modules = [ "${hosts}/ooksmicro" ] ++ workstation;
+    modules = ["${hosts}/ooksmicro"] ++ workstation;
   };
 
   ooksx1 = nixosSystem {
     inherit specialArgs;
     system = "x86_64-linux";
-    modules = [ "${hosts}/ooksx1" ] ++ workstation;
+    modules = ["${hosts}/ooksx1"] ++ workstation;
   };
 }

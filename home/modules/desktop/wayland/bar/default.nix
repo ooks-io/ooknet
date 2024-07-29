@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{lib, ...}: {
   imports = [
     #./eww
     # ./ags
@@ -17,5 +16,4 @@
       enable = lib.mkEnableOption "Enable waybar bar";
     };
   };
-
 }

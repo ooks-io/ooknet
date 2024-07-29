@@ -1,13 +1,13 @@
-{ lib, config, ... }:
-
-let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (config.colorscheme) palette;
   inherit (lib) mkIf;
   wayland = config.ooknet.wayland;
   fonts = config.ooknet.fonts;
-in
-
-{
+in {
   config = mkIf (wayland.locker == "hyprlock") {
     ooknet.binds.lock = "hyprlock";
     programs.hyprlock = {
@@ -29,7 +29,7 @@ in
             size = {
               width = 300;
               height = 40;
-            };      
+            };
             position = {
               x = 0;
               y = 0;
@@ -49,7 +49,7 @@ in
             text = "  ";
             position = {
               x = 0;
-              y = 80; 
+              y = 80;
             };
             color = "0xff${palette.base08}";
             font_size = 30;
@@ -60,7 +60,7 @@ in
             text = "$TIME";
             position = {
               x = 0;
-              y = -80; 
+              y = -80;
             };
             color = "0xff${palette.base0B}";
             font_size = 20;

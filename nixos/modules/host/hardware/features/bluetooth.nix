@@ -1,22 +1,24 @@
-{ config, lib, pkgs, self, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  self,
+  ...
+}: let
   features = config.ooknet.host.hardware.features;
   inherit (lib) mkIf;
   inherit (builtins) elem;
-in
-
-{
+in {
   config = mkIf (elem "bluetooth" features) {
     hardware.bluetooth = {
       enable = true;
       package = pkgs.bluez5-experimental;
     };
-  
+
     environment.systemPackages = with pkgs; [
       self.packages.${pkgs.system}.live-buds-cli
-  	  bluetuith
-  	];
+      bluetuith
+    ];
 
     # https://github.com/NixOS/nixpkgs/issues/114222
     systemd.user.services.telephony_client.enable = false;

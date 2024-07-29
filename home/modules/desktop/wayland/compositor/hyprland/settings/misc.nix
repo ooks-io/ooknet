@@ -1,11 +1,11 @@
-{ lib, config, ... }:
-
-let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) mkIf;
   wayland = config.ooknet.wayland;
-in
-
-{
+in {
   config = mkIf (wayland.compositor == "hyprland") {
     wayland.windowManager.hyprland.settings.misc = {
       mouse_move_enables_dpms = true;
@@ -19,4 +19,4 @@ in
       focus_on_activate = true;
     };
   };
-} 
+}

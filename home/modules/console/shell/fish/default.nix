@@ -1,12 +1,14 @@
-{ lib, config, osConfig, ... }:
-
-let
-  inherit (lib) mkIf;
-  cfg = config.ooknet.shell.fish;
-  admin = osConfig.ooknet.host.admin;
-in
-
 {
+  lib,
+  config,
+  osConfig,
+  ...
+}: let
+  inherit (lib) mkIf;
+  inherit (osConfig.ooknet.host) admin;
+
+  cfg = config.ooknet.shell.fish;
+in {
   imports = [
     ./plugins.nix
     ./binds.nix
@@ -27,7 +29,8 @@ in
           set fish_cursor_insert      line       blink
           set fish_cursor_replace_one underscore blink
           set fish_cursor_visual      block
-        '' +
+        ''
+        +
         # Use terminal colors
         ''
           set -U fish_color_autosuggestion      brblack
@@ -60,4 +63,3 @@ in
     };
   };
 }
- 

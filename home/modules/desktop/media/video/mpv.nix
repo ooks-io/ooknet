@@ -1,22 +1,22 @@
-{ lib, config, ... }:
-
-let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) mkIf;
   cfg = config.ooknet.media.video.mpv;
   mpvMime = {
     "audio/*" = ["mpv.desktop"];
     "video/*" = ["mpv.desktop"];
   };
-in
-
-{
+in {
   config = mkIf cfg.enable {
     programs.mpv = {
       enable = true;
     };
     xdg.mimeApps = {
       associations.added = mpvMime;
-      defaultApplications = mpvMime;      
+      defaultApplications = mpvMime;
     };
   };
 }

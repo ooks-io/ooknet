@@ -1,14 +1,14 @@
-{ lib, config, ... }:
-
-let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) mkIf;
   cfg = config.ooknet.gaming.openPorts;
-in
-
-{
+in {
   config = mkIf cfg.enable {
     networking.firewall = {
-      allowedTCPPorts = [ 3074 ];
+      allowedTCPPorts = [3074];
       allowedUDPPorts = [
         88
         500

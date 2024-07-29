@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{...}: {
   imports = [
     ../../../profile
   ];
@@ -19,4 +17,3 @@
   };
   home.sessionVariables.HN = "ookst480s";
 }
-

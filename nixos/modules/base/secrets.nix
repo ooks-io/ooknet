@@ -1,14 +1,15 @@
-{ config, lib, self, ... }:
-
-let
+{
+  config,
+  lib,
+  self,
+  ...
+}: let
   inherit (lib) mkIf;
 
   host = config.ooknet.host;
   admin = host.admin;
   tailscale = host.networking.tailscale;
-in
-
-{
+in {
   age.identityPaths = [
     "/home/${admin.name}/.ssh/id_ed25519"
   ];
