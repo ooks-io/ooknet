@@ -49,17 +49,29 @@ in {
         "SUPER,          P,             pseudo" # dwindle
         "SUPER,          S,             togglesplit" # dwindle
 
-        # Focus
+        # Focus Arrows
         "SUPER,          left,          movefocus,l"
         "SUPER,          right,         movefocus,r"
         "SUPER,          up,            movefocus,u"
         "SUPER,          down,          movefocus,d"
 
-        # Move
+        # Focus Vim
+        "SUPER,          h,             movefocus,l"
+        "SUPER,          l,             movefocus,r"
+        "SUPER,          k,             movefocus,u"
+        "SUPER,          j,             movefocus,d"
+
+        # Move Arrows
         "SUPERSHIFT,     left,          movewindow,l"
         "SUPERSHIFT,     right,         movewindow,r"
         "SUPERSHIFT,     up,            movewindow,u"
         "SUPERSHIFT,     down,          movewindow,d"
+
+        # Move Vim
+        "SUPERSHIFT,     h,             movewindow,l"
+        "SUPERSHIFT,     l,             movewindow,r"
+        "SUPERSHIFT,     k,             movewindow,u"
+        "SUPERSHIFT,     j,             movewindow,d"
 
         #Resize
         "SUPER CTRL,     left,          resizeactive,-20 0"
@@ -78,8 +90,8 @@ in {
         "SUPER,          8,             workspace,8"
         "SUPER,          9,             workspace,9"
         "SUPER,          0,             workspace,10"
-        "SUPER,          comma,         workspace,e+1"
-        "SUPER,          period,        workspace,e-1"
+        "SUPER,          period,        workspace,e+1"
+        "SUPER,          comma,         workspace,e-1"
         "SUPER,          tab,           focusCurrentOrLast"
 
         # Move workspace
