@@ -7,6 +7,8 @@
   ...
 }: let
   inherit (lib) mkIf mkMerge;
+  fonts = config.ooknet.fonts;
+  palette = config.colorscheme.palette;
 
   addons = inputs.firefox-addons.packages.${pkgs.system};
   cfg = config.ooknet.browser.firefox;
@@ -44,7 +46,7 @@ in {
             # onepassword-password-manager # cannot get this to work unfree issue.
           ];
           settings = import ./settings/ooksJs.nix;
-          userChrome = import ./theme/ooksfox.nix;
+          userChrome = import ./theme/ooksfox.nix {inherit fonts palette;};
           userContent = import ./theme/penguinFoxContent.nix;
         };
         profiles.testing = {

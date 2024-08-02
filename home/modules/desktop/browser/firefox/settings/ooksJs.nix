@@ -22,7 +22,7 @@
   "browser.newtabpage.activity-stream.default.sites" = "";
   "browser.aboutConfig.showWarning" = false;
 
-  #Disable recommendations
+  #Disable Recommendations
   "extensions.getAddons.showPane" = false;
   "extensions.htmlaboutaddons.recommendations.enabled" = false;
   "browser.discovery.enabled" = false;
