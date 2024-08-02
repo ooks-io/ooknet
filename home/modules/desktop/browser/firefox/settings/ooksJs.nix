@@ -12,6 +12,10 @@
   "browser.helperApps.deleteTempFileOnExit" = true;
   "browser.uitour.enabled" = false;
 
+  #Appearance
+  "browser.uidensity" = 1;
+  "browser.compactmode.show" = true;
+
   #Startup
   "browser.newtabpage.activity-stream.showSponsored" = false;
   "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;

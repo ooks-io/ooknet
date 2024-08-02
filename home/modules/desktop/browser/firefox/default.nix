@@ -35,6 +35,8 @@ in {
         enable = true;
         nativeMessagingHosts = [pkgs.tridactyl-native];
         profiles.${admin.name} = {
+          id = 0;
+          isDefault = true;
           extensions = with addons; [
             ublock-origin
             darkreader
@@ -42,8 +44,16 @@ in {
             # onepassword-password-manager # cannot get this to work unfree issue.
           ];
           settings = import ./settings/ooksJs.nix;
-          userChrome = import ./theme/penguinFox.nix;
+          userChrome = import ./theme/ooksfox.nix;
           userContent = import ./theme/penguinFoxContent.nix;
+        };
+        profiles.testing = {
+          id = 1;
+          extensions = with addons; [
+            ublock-origin
+            tridactyl
+            darkreader
+          ];
         };
       };
     })
