@@ -5,23 +5,23 @@
   pkgs,
   ...
 }: let
-  inherit (config.colorscheme) palette;
-  inherit (lib) mkIf;
+  inherit (osConfig.ooknet.appearance.colorscheme) slug palette;
   inherit (config.ooknet) console;
   inherit (osConfig.ooknet.host) admin;
+  inherit (lib) mkIf;
   cfg = config.ooknet.multiplexer.zellij;
 in {
   config = mkIf (cfg.enable || console.multiplexer == "zellij") {
     programs.zellij = {
       enable = true;
       settings = {
-        theme = "${config.colorscheme.slug}";
+        theme = "${slug}";
         default_shell = "${admin.shell}";
         default_layout = "default";
         pane_frames = false;
         scrollback_editor = "${console.editor}";
         themes = {
-          "${config.colorscheme.slug}" = {
+          "${slug}" = {
             fg = "#${palette.base05}";
             bg = "#${palette.base00}";
             black = "#${palette.base00}";
@@ -41,11 +41,11 @@ in {
     # Layouts
     xdg.configFile = {
       # Default layout
-      "zellij/layouts/default.kdl" = import ./layouts/defaultLayout.nix {inherit pkgs config;};
+      "zellij/layouts/default.kdl" = import ./layouts/defaultLayout.nix {inherit pkgs config osConfig;};
       # Layout for bash scripts
-      "zellij/layouts/script.kdl" = import ./layouts/scriptLayout.nix {inherit pkgs config;};
+      "zellij/layouts/script.kdl" = import ./layouts/scriptLayout.nix {inherit pkgs config osConfig;};
       # Layout for configuring my flake
-      "zellij/layouts/flake.kdl" = import ./layouts/flakeLayout.nix {inherit pkgs config;};
+      "zellij/layouts/flake.kdl" = import ./layouts/flakeLayout.nix {inherit pkgs config osConfig;};
       # Additional keybinds
       "zellij/config.kdl".text =
         # kdl

@@ -1,12 +1,12 @@
 {
   config,
+  osConfig,
   pkgs,
-  inputs,
   lib,
   ...
 }: let
-  inherit (inputs.nix-colors.lib-contrib {inherit pkgs;}) gtkThemeFromScheme;
   inherit (lib) mkIf;
+  inherit (osConfig.ooknet.appearance.colorscheme) palette;
   cfg = config.ooknet.gtk;
 in {
   config = mkIf cfg.enable rec {
@@ -17,14 +17,16 @@ in {
         size = 12;
       };
       theme = {
-        name = config.colorscheme.slug;
-        package = gtkThemeFromScheme {scheme = config.colorscheme;};
+        name = "adw-gtk3";
+        package = pkgs.adw-gtk3;
       };
       iconTheme = {
         name = "Papirus-Dark";
         package = pkgs.papirus-icon-theme;
       };
     };
+
+    #TODO: add gtk css configuration
 
     services.xsettingsd = {
       enable = true;

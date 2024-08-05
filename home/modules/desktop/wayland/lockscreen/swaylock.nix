@@ -1,20 +1,20 @@
 {
   config,
+  osConfig,
   lib,
   ...
 }: let
-  inherit (config.colorscheme) palette;
+  inherit (osConfig.ooknet.appearance) wallpaper colorscheme fonts;
+  inherit (colorscheme) palette;
+  inherit (config.ooknet) wayland;
   inherit (lib) mkIf;
-  fonts = config.ooknet.fonts;
-  wallpaperPath = config.ooknet.wallpaper.path;
-  wayland = config.ooknet.wayland;
 in {
   config = mkIf (wayland.locker == "swaylock") {
     ooknet.binds.lock = "swaylock";
     programs.swaylock = {
       enable = true;
       settings = {
-        image = "${wallpaperPath}";
+        image = "${wallpaper.path}";
         font = fonts.monospace.family;
         color = "#${palette.base01}";
         ring-color = "#${palette.base02}";

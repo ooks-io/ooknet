@@ -1,12 +1,13 @@
 {
   lib,
   config,
+  osConfig,
   ...
 }: let
-  inherit (config.colorscheme) palette;
+  inherit (osConfig.ooknet.appearance) colorscheme fonts;
+  inherit (colorscheme) palette;
+  inherit (config.ooknet) wayland;
   inherit (lib) mkIf;
-  wayland = config.ooknet.wayland;
-  fonts = config.ooknet.fonts;
 in {
   config = mkIf (wayland.locker == "hyprlock") {
     ooknet.binds.lock = "hyprlock";

@@ -1,5 +1,5 @@
 {
   imports = [
-    # ./phone.nix
+    ./minimal.nix
   ];
 }

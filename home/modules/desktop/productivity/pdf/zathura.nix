@@ -1,15 +1,16 @@
 {
   lib,
   config,
+  osConfig,
   ...
 }: let
-  inherit (config.colorscheme) palette;
+  inherit (osConfig.ooknet.appearance.colorscheme) palette;
+  inherit (osConfig.ooknet.appearance) fonts;
+  inherit (config.ooknet.desktop) pdf;
   inherit (lib) mkIf;
 
   zathura = {"application/pdf" = ["org.pwmt.zathura.desktop"];};
   cfg = config.ooknet.productivity.pdf.zathura;
-  pdf = config.ooknet.desktop.pdf;
-  fonts = config.ooknet.fonts;
 in {
   config = mkIf (cfg.enable || pdf == "zathura") {
     programs.zathura = {

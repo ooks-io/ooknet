@@ -1,20 +1,21 @@
 {
   config,
+  osConfig,
   lib,
   ...
 }: let
-  inherit (config.colorscheme) palette variant;
+  inherit (osConfig.ooknet.appearance) colorscheme fonts;
+  inherit (colorscheme) palette variant;
+  inherit (config.ooknet) wayland;
   inherit (lib) mkIf;
-  fonts = config.ooknet.fonts;
-  wayland = config.ooknet.wayland;
 in {
   config = mkIf (wayland.notification == "mako") {
     services.mako = {
       enable = true;
-      iconPath =
-        if variant == "dark"
-        then "${config.gtk.iconTheme.package}/share/icons/Papirus-Dark"
-        else "${config.gtk.iconTheme.package}/share/icons/Papirus-Light";
+      #iconPath =
+      # #if variant == "dark"
+      # #then "${config.gtk.iconTheme.package}/share/icons/Papirus-Dark"
+      # #else "${config.gtk.iconTheme.package}/share/icons/Papirus-Light";
       font = "${fonts.regular.family} 12";
       padding = "10,10";
       anchor = "top-right";

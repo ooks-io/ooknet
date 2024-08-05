@@ -7,13 +7,13 @@
   ...
 }: let
   inherit (lib) mkIf mkMerge;
-  fonts = config.ooknet.fonts;
-  palette = config.colorscheme.palette;
+  inherit (osConfig.ooknet.host) admin;
+  inherit (osConfig.ooknet.appearance) colorscheme fonts;
+  inherit (colorscheme) palette;
+  inherit (config.ooknet.desktop) browser;
 
   addons = inputs.firefox-addons.packages.${pkgs.system};
   cfg = config.ooknet.browser.firefox;
-  browser = config.ooknet.desktop.browser;
-  admin = osConfig.ooknet.host.admin;
   firefoxMime = {
     "text/html" = ["firefox.desktop"];
     "x-scheme-handler/http" = ["firefox.desktop"];

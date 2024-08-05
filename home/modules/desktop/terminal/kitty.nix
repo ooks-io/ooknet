@@ -5,11 +5,12 @@
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (config.colorscheme) palette;
-  fonts = config.ooknet.fonts;
+  inherit (osConfig.ooknet.appearance) colorscheme fonts;
+  inherit (colorscheme) palette;
+  inherit (config.ooknet) host desktop;
+  inherit (desktop) terminal;
+  inherit (host.admin) shell;
   cfg = config.ooknet.terminal.kitty;
-  terminal = config.ooknet.desktop.terminal;
-  shell = osConfig.ooknet.host.admin.shell;
 in {
   config = mkIf (cfg.enable || terminal == "kitty") {
     home.sessionVariables = mkIf (terminal == "kitty") {

@@ -2,7 +2,9 @@
   palette,
   fonts,
   ...
-}: ''
+}:
+# css
+''
   /* minimal firefox css ooks  */
 
   /* ===== Color Variables and Root Styles ===== */
@@ -106,8 +108,7 @@
   }
 
   /* Expand navigation bar on focus */
-  #nav-bar:focus-within,
-  #nav-bar:hover {
+  #nav-bar:focus-within {
     opacity: 1;
     max-height: 40px !important;
     height: 60px !important;

@@ -1,13 +1,14 @@
 {
   config,
+  osConfig,
   lib,
   pkgs,
   ...
 }: let
-  inherit (config.colorscheme) palette;
+  inherit (osConfig.ooknet.appearance.colorscheme) palette;
+  inherit (config.ooknet) console;
   inherit (lib) mkIf;
   cfg = config.ooknet.multiplexer.tmux;
-  console = config.ooknet.console;
 in {
   config = mkIf (cfg.enable || console.multiplexer == "tmux") {
     programs.tmux = {

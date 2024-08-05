@@ -5,11 +5,13 @@
   osConfig,
   ...
 }: let
-  inherit (config.colorscheme) palette;
+  inherit (osConfig.ooknet.appearance) colorscheme fonts;
+  inherit (colorscheme) palette;
+
+  inherit (osConfig.ooknet.host.hardware) monitors;
+
+  inherit (config.ooknet) wayland;
   inherit (lib) mkIf head;
-  fonts = config.ooknet.fonts;
-  wayland = config.ooknet.wayland;
-  monitors = osConfig.ooknet.host.hardware.monitors;
   monitorWidth = (head monitors).width - 20;
 in {
   config = mkIf (wayland.bar == "waybar") {

@@ -1,14 +1,15 @@
 {
   inputs,
   config,
+  osConfig,
   pkgs,
   lib,
   ...
 }: let
-  inherit (config) colorscheme;
+  inherit (osConfig.ooknet.appearance) colorscheme;
+  inherit (config.ooknet) console;
   inherit (lib) mkIf;
   cfg = config.ooknet.editor.helix;
-  console = config.ooknet.console;
 in {
   imports = [
     ./languages.nix
@@ -37,7 +38,7 @@ in {
           ];
       });
       settings = {
-        theme = colorscheme.slug;
+        theme = "base16_transparent";
         editor = {
           color-modes = true;
           middle-click-paste = false;
@@ -66,7 +67,6 @@ in {
           W = ":set whitespace.render none";
         };
       };
-      themes = import ./theme.nix {inherit colorscheme;};
     };
   };
 }

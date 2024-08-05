@@ -8,7 +8,6 @@
 in {
   config = mkIf (host.admin.name == "ooks" && host.type == "laptop" && host.role == "workstation") {
     ooknet = {
-      theme = "minimal";
       desktop = {
         environment = "hyprland";
         browser = "firefox";

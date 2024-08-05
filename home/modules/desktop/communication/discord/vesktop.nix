@@ -1,18 +1,17 @@
 {
   config,
+  osConfig,
   lib,
   pkgs,
   ...
 }: let
-  inherit (config.colorscheme) palette;
+  inherit (osConfig.ooknet.appearance) colorscheme fonts;
+  inherit (colorscheme) palette;
+  inherit (config.ooknet.desktop) discord;
   inherit (lib) mkIf mkMerge;
 
   cfg = config.ooknet.communication.discord;
-  discord = config.ooknet.desktop.discord;
-  fonts = config.ooknet.fonts;
-  vesktopMime = {
-    "x-scheme-handler/discord" = ["vesktop.desktop"];
-  };
+  vesktopMime = {"x-scheme-handler/discord" = ["vesktop.desktop"];};
 in {
   config = mkMerge [
     (mkIf (cfg.enable || discord == "vesktop") {

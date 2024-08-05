@@ -1,12 +1,15 @@
 {
   lib,
   config,
+  osConfig,
   pkgs,
   ...
 }: let
   inherit (lib) mkIf;
-  fonts = config.ooknet.fonts;
-  wayland = config.ooknet.wayland;
+  inherit (osConfig.ooknet.appearance) colorscheme fonts;
+  inherit (colorscheme) palette;
+  inherit (config.ooknet) wayland;
+  inherit (config.lib.formats.rasi) mkLiteral;
 in {
   config = mkIf (wayland.launcher == "rofi") {
     programs.rofi = {
@@ -14,10 +17,7 @@ in {
       font = "${fonts.monospace.family}";
       package = pkgs.rofi-wayland;
       terminal = "${config.home.sessionVariables.TERMINAL}";
-      theme = let
-        inherit (config.colorscheme) palette;
-        inherit (config.lib.formats.rasi) mkLiteral;
-      in {
+      theme = {
         "*" = {
           background = mkLiteral "#${palette.base00}";
           foreground = mkLiteral "#${palette.base05}";

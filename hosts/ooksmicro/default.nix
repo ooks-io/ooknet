@@ -11,7 +11,7 @@ in {
 
   ooknet.host = {
     name = "ooksmicro";
-    type = "micro";
+    type = "laptop";
     role = "workstation";
     profiles = ["console-tools"];
     admin = {

@@ -1,14 +1,14 @@
 {
   lib,
   config,
+  osConfig,
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (config.colorscheme) palette;
-
+  inherit (osConfig.ooknet.appearance) colorscheme fonts;
+  inherit (colorscheme) palette;
+  inherit (config.ooknet.desktop) browser;
   cfg = config.ooknet.browser.firefox;
-  browser = config.ooknet.desktop.browser;
-  fonts = config.ooknet.fonts;
 in {
   config = mkIf (browser == "firefox" || cfg.enable) {
     xdg.configFile = {

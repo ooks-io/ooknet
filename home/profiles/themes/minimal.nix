@@ -5,7 +5,6 @@
   inputs,
   ...
 }: let
-  inherit (inputs.nix-colors) colorSchemes;
   inherit (lib) mkIf;
   theme = config.ooknet.theme;
 in {

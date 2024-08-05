@@ -5,13 +5,13 @@
   lib,
   ...
 }: let
-  inherit (config.colorscheme) palette;
+  inherit (osConfig.ooknet.appearance.colorscheme) palette;
+  inherit (osConfig.networking) hostName;
+  inherit (config.ooknet.multiplexer) zellij;
+  inherit (config.ooknet.console) multiplexer;
+  inherit (config.ooknet) binds;
   inherit (lib) mkIf getExe;
-
   cfg = config.ooknet.media.music.tui;
-  zellij = config.ooknet.multiplexer.zellij;
-  multiplexer = config.ooknet.console.multiplexer;
-  hostName = osConfig.networking.hostName;
 in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
@@ -22,7 +22,7 @@ in {
     ];
 
     ooknet.binds.spotify = {
-      launch = "${config.ooknet.binds.terminalLaunch} spotify_player";
+      launch = "${binds.terminalLaunch} spotify_player";
       next = "spotify_player playback next";
       previous = "spotify_player playback previous";
       play = "spotify_player playback play-pause";

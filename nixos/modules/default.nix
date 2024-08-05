@@ -5,5 +5,6 @@
     ./host
     ./programs
     ./services
+    ./theme
   ];
 }

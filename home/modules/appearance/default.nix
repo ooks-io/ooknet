@@ -4,6 +4,5 @@
     ./cursor.nix
     ./gtk.nix
     ./qt.nix
-    ./wallpaper.nix
   ];
 }

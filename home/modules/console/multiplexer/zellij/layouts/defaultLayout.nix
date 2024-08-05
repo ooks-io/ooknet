@@ -1,14 +1,13 @@
 {
   pkgs,
+  osConfig,
   config,
   ...
 }: let
-  inherit (config.colorscheme) palette;
+  inherit (osConfig.ooknet.appearance.colorscheme) palette;
 in {
   text =
-    /*
-    kdl
-    */
+    # kdl
     ''
       layout {
         default_tab_template {
@@ -51,7 +50,7 @@ in {
 
               datetime        "#[fg=#${palette.base05},bold] {format} "
               datetime_format "%I:%M %p"
-              datetime_timezone "${config.home.sessionVariables.TZ}"
+              datetime_timezone "${osConfig.time.timeZone}"
             }
           }
         children

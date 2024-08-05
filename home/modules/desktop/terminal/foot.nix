@@ -1,13 +1,14 @@
 {
   config,
+  osConfig,
   lib,
   ...
 }: let
-  inherit (config.colorscheme) palette;
+  inherit (osConfig.ooknet.appearance) colorscheme fonts;
+  inherit (colorscheme) palette;
+  inherit (config.ooknet) desktop;
   inherit (lib) mkMerge mkIf;
-  fonts = config.ooknet.fonts;
   cfg = config.ooknet.terminal.foot;
-  desktop = config.ooknet.desktop;
 in {
   config = mkMerge [
     (mkIf (cfg.enable || desktop.terminal == "foot") {

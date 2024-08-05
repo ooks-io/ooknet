@@ -1,9 +1,9 @@
 {
   pkgs,
-  config,
+  osConfig,
   ...
 }: let
-  inherit (config.colorscheme) palette;
+  inherit (osConfig.ooknet.appearance.colorscheme) palette;
 in {
   text =
     /*
@@ -51,7 +51,7 @@ in {
 
                 datetime        "#[fg=#${palette.base05},bold] {format} "
                 datetime_format "%I:%M %p"
-                datetime_timezone "${config.home.sessionVariables.TZ}"
+                datetime_timezone "${osConfig.time.timeZone}"
             }
           }
           children

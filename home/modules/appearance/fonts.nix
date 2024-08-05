@@ -1,21 +1,17 @@
 {
-  lib,
-  config,
+  osConfig,
   pkgs,
   ...
 }: let
-  inherit (lib) mkIf;
-  cfg = config.ooknet.fonts;
+  inherit (osConfig.ooknet.appearance.fonts) monospace regular;
 in {
-  config = mkIf cfg.enable {
-    fonts.fontconfig.enable = true;
-    home.packages = [
-      cfg.monospace.package
-      cfg.regular.package
+  fonts.fontconfig.enable = true;
+  home.packages = [
+    monospace.package
+    regular.package
 
-      pkgs.noto-fonts
-      pkgs.noto-fonts-cjk
-      pkgs.noto-fonts-emoji
-    ];
-  };
+    pkgs.noto-fonts
+    pkgs.noto-fonts-cjk
+    pkgs.noto-fonts-emoji
+  ];
 }

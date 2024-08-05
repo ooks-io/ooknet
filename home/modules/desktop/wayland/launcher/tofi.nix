@@ -1,13 +1,14 @@
 {
   lib,
   config,
+  osConfig,
   pkgs,
   ...
 }: let
-  inherit (config.colorscheme) palette;
+  inherit (osConfig.ooknet.appearance) colorscheme fonts;
+  inherit (colorscheme) palette;
+  inherit (config.ooknet) wayland;
   inherit (lib) mkIf;
-  wayland = config.ooknet.wayland;
-  fonts = config.ooknet.fonts;
 in {
   config = mkIf (wayland.launcher == "tofi") {
     home.packages = [pkgs.tofi];

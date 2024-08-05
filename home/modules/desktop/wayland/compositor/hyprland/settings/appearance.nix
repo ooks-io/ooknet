@@ -1,11 +1,12 @@
 {
   config,
+  osConfig,
   lib,
   ...
 }: let
-  wayland = config.ooknet.wayland;
-  pointer = config.home.pointerCursor;
-  inherit (config.colorscheme) palette;
+  inherit (osConfig.ooknet.appearance) colorscheme cursor;
+  inherit (colorscheme) palette;
+  inherit (config.ooknet) wayland;
   inherit (lib) mkIf;
 in {
   config = mkIf (wayland.compositor == "hyprland") {
@@ -23,7 +24,7 @@ in {
         };
 
         exec-once = [
-          "hyprctl setcursor ${pointer.name} ${toString pointer.size}"
+          "hyprctl setcursor ${cursor.name} ${toString cursor.size}"
         ];
 
         decoration = {

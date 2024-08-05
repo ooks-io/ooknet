@@ -8,6 +8,7 @@
 in {
   config = mkIf (host.type == "desktop" && host.role == "workstation") {
     ooknet = {
+      appearance.theme = "minimal";
       services = {
         gnomeServices.enable = true;
         gvfs.enable = true;
