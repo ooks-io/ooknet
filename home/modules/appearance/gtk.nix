@@ -6,14 +6,15 @@
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (osConfig.ooknet.appearance.colorscheme) palette;
-  cfg = config.ooknet.gtk;
+  inherit (osConfig.ooknet.appearance) fonts;
+
+  gtkCss = import ./gtkCss.nix {inherit osConfig;};
 in {
-  config = mkIf cfg.enable rec {
+  config = rec {
     gtk = {
       enable = true;
       font = {
-        name = config.ooknet.fonts.regular.family;
+        name = fonts.regular.family;
         size = 12;
       };
       theme = {
@@ -21,9 +22,11 @@ in {
         package = pkgs.adw-gtk3;
       };
       iconTheme = {
-        name = "Papirus-Dark";
-        package = pkgs.papirus-icon-theme;
+        name = "Gruvbox-Plus-Dark";
+        package = pkgs.gruvbox-plus-icons;
       };
+      gtk3.extraCss = gtkCss;
+      gtk4.extraCss = gtkCss;
     };
 
     #TODO: add gtk css configuration
