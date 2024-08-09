@@ -113,6 +113,6 @@
     nixarr.url = "github:rasmus-kirk/nixarr";
 
     # personal scripts repo
-    ooks-scripts.url = "github:ooks-io/scripts";
+    ooks-scripts.url = "git+ssh://git@github.com/ooks-io/scripts";
   };
 }
