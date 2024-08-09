@@ -8,7 +8,7 @@
   cfg = config.ooknet.gaming.gamescope;
 in {
   config = mkIf cfg.enable {
-    hardware.opengl.extraPackages = [pkgs.gamescope];
+    hardware.graphics.extraPackages = [pkgs.gamescope];
     programs.gamescope = {
       enable = true;
       capSysNice = true;

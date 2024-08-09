@@ -12,9 +12,9 @@
 in {
   config = mkIf (elem "video" features) {
     hardware = {
-      opengl = {
+      graphics = {
         enable = true;
-        driSupport32Bit = isx86Linux pkgs;
+        enable32Bit = isx86Linux pkgs;
       };
     };
     xdg.portal = {

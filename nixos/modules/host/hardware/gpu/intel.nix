@@ -11,7 +11,7 @@
 in {
   config = mkIf (elem gpu.type ["intel"]) {
     services.xserver.videoDrivers = ["modesetting"];
-    hardware.opengl = {
+    hardware.graphics = {
       extraPackages = with pkgs; [
         vaapiIntel
         vaapiVdpau
@@ -29,7 +29,7 @@ in {
       ];
     };
     boot.initrd.kernelModules = ["i915"];
-    environment.variables = mkIf config.hardware.opengl.enable {
+    environment.variables = mkIf config.hardware.graphics.enable {
       VDPAU_DRIVER = "va_gl";
     };
   };

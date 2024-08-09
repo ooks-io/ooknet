@@ -9,7 +9,7 @@
   inherit (builtins) elem;
 in {
   config = mkIf (elem gpu.type ["amd"]) {
-    hardware.opengl = {
+    hardware.graphics = {
       extraPackages = with pkgs; [
         vulkan-tools
         vulkan-loader
