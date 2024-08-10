@@ -79,7 +79,7 @@
 
     # hyprland "ecosystem". hyprDE perhaps?
     hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref=refs/tags/v0.41.1";
+      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     };
     hyprlock.url = "github:hyprwm/hyprlock";
     hypridle.url = "github:hyprwm/hypridle";
@@ -113,6 +113,6 @@
     nixarr.url = "github:rasmus-kirk/nixarr";
 
     # personal scripts repo
-    ooks-scripts.url = "git+ssh://git@github.com/ooks-io/scripts";
+    ooks-scripts.url = "github:ooks-io/scripts";
   };
 }
