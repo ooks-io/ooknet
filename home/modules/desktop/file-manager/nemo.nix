@@ -6,7 +6,7 @@
 }: let
   inherit (lib) mkIf mkMerge;
   cfg = config.ooknet.fileManager.nemo;
-  fileManager = config.ooknet.desktop.fileManager;
+  inherit (config.ooknet.desktop) fileManager;
   nemoMime = {
     "inode/directory" = ["nemo.desktop"];
   };

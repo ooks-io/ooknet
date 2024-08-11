@@ -5,7 +5,7 @@
 }: let
   inherit (lib) mkIf;
   inherit (builtins) elem;
-  profiles = osConfig.ooknet.host.profiles;
+  inherit (osConfig.ooknet.host) profiles;
 in {
   config = mkIf (elem "console-tools" profiles) {
     ooknet.tools = {

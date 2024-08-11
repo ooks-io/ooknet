@@ -4,7 +4,7 @@
   ...
 }: let
   inherit (lib) mkIf;
-  host = config.ooknet.host;
+  inherit (config.ooknet) host;
 in {
   # nyx module
   config = mkIf (host.type != "phone") {

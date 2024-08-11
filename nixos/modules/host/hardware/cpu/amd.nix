@@ -6,7 +6,7 @@
 }: let
   inherit (lib) mkMerge mkIf versionAtLeast versionOlder;
   inherit (builtins) elem;
-  cpu = config.ooknet.host.hardware.cpu;
+  inherit (config.ooknet.host.hardware) cpu;
   cfg = cpu.amd;
   kernelVersion = config.boot.kernelPackages.kernel.version;
   kernelVersionAtLeast = versionAtLeast kernelVersion;

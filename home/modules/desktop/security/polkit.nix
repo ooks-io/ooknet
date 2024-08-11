@@ -5,7 +5,7 @@
   ...
 }: let
   inherit (lib) mkIf;
-  polkit = config.ooknet.security.polkit;
+  inherit (config.ooknet.security) polkit;
 in {
   config = {
     systemd.user.services = {

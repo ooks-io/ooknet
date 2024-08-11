@@ -6,7 +6,7 @@
 }: let
   inherit (lib) mkIf;
   cfg = config.ooknet.wayland;
-  gpu = osConfig.ooknet.host.hardware.gpu;
+  inherit (osConfig.ooknet.host.hardware) gpu;
 in {
   config = mkIf cfg.enable {
     home.sessionVariables =

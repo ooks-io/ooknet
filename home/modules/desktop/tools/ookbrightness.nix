@@ -6,7 +6,7 @@
 }: let
   inherit (lib) mkIf;
   inherit (builtins) elem;
-  features = osConfig.ooknet.host.hardware.features;
+  inherit (osConfig.ooknet.host.hardware) features;
   ookbrightness = pkgs.writeShellApplication {
     name = "ookbrightness";
     runtimeInputs = with pkgs; [brillo libnotify];

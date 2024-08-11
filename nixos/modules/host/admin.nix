@@ -17,7 +17,7 @@ in {
       isNormalUser = true;
       shell = pkgs.${cfg.shell};
       initialPassword = "password";
-      openssh.authorizedKeys.keys = [(keys.users."${cfg.name}")];
+      openssh.authorizedKeys.keys = [keys.users."${cfg.name}"];
       extraGroups =
         [
           "wheel"

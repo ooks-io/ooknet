@@ -6,7 +6,7 @@
 }: let
   inherit (lib) mkIf mkMerge hm;
   cfg = config.ooknet.productivity.notes.obsidian;
-  notes = config.ooknet.desktop.notes;
+  inherit (config.ooknet.desktop) notes;
   # admin = osConfig.ooknet.host.admin;
   # TODO: use admin.githubUsername
   notesRepo = "git@github.com:ooks-io/notes.git";

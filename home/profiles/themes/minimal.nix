@@ -6,7 +6,7 @@
   ...
 }: let
   inherit (lib) mkIf;
-  theme = config.ooknet.theme;
+  inherit (config.ooknet) theme;
 in {
   imports = [inputs.nix-colors.homeManagerModule];
   config = mkIf (theme == "minimal") {

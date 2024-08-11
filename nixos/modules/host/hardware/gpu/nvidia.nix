@@ -4,11 +4,11 @@
   pkgs,
   ...
 }: let
-  gpu = config.ooknet.host.hardware.gpu;
+  inherit (config.ooknet.host.hardware) gpu;
   inherit (lib) mkIf mkDefault;
   inherit (builtins) elem;
   # production = config.boot.kernelPackages.nvidiaPackages.production;
-  beta = config.boot.kernelPackages.nvidiaPackages.beta;
+  inherit (config.boot.kernelPackages.nvidiaPackages) beta;
 in {
   # TODO: make option to choose nvidia package
   config = mkIf (gpu.type == "nvidia") {

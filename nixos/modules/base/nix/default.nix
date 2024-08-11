@@ -6,7 +6,7 @@
   ...
 }: let
   inherit (lib) mkIf mapAttrs mapAttrsToList;
-  host = config.ooknet.host;
+  inherit (config.ooknet) host;
 in {
   imports = [
     ./nh.nix

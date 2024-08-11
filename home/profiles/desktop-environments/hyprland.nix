@@ -4,7 +4,7 @@
   ...
 }: let
   inherit (lib) mkIf;
-  desktop = config.ooknet.desktop;
+  inherit (config.ooknet) desktop;
 in {
   config = mkIf (desktop.environment == "hyprland") {
     ooknet.wayland = {

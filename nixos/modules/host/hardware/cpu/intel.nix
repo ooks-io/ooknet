@@ -6,7 +6,7 @@
 }: let
   inherit (lib) mkIf;
   inherit (builtins) elem;
-  cpu = config.ooknet.host.hardware.cpu;
+  inherit (config.ooknet.host.hardware) cpu;
 in {
   # TODO: put kvm/gvt behind virtualization module flag
 

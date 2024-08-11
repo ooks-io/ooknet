@@ -4,8 +4,8 @@
   ...
 }: let
   inherit (lib) mkIf;
-  wayland = config.ooknet.wayland;
-  binds = config.ooknet.binds;
+  inherit (config.ooknet) wayland;
+  inherit (config.ooknet) binds;
 in {
   config = mkIf (wayland.compositor == "hyprland") {
     wayland.windowManager.hyprland.settings = {

@@ -7,7 +7,7 @@
 }: let
   inherit (inputs.nix-colors) colorSchemes;
   inherit (lib) mkIf;
-  theme = config.ooknet.theme;
+  inherit (config.ooknet) theme;
 in {
   config = mkIf (theme == "phone") {
     colorscheme = colorSchemes.gruvbox-material-dark-soft;

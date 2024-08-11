@@ -6,7 +6,7 @@
 }: let
   inherit (lib) mkIf;
   tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
-  host = config.ooknet.host;
+  inherit (config.ooknet) host;
 in {
   config = mkIf (host.type != "phone") {
     services.greetd = {

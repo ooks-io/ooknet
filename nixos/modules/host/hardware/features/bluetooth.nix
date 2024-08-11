@@ -5,7 +5,7 @@
   self,
   ...
 }: let
-  features = config.ooknet.host.hardware.features;
+  inherit (config.ooknet.host.hardware) features;
   inherit (lib) mkIf;
   inherit (builtins) elem;
 in {

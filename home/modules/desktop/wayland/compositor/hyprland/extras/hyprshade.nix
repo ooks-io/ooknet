@@ -5,7 +5,7 @@
   ...
 }: let
   inherit (lib) mkIf;
-  wayland = config.ooknet.wayland;
+  inherit (config.ooknet) wayland;
 in {
   config = mkIf (wayland.compositor == "hyprland") {
     home.packages = [pkgs.hyprshade];

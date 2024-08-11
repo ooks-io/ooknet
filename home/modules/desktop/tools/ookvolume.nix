@@ -6,7 +6,7 @@
 }: let
   inherit (lib) mkIf;
   inherit (builtins) elem;
-  features = osConfig.ooknet.host.hardware.features;
+  inherit (osConfig.ooknet.host.hardware) features;
   ookvolume = pkgs.writeShellApplication {
     name = "ookvolume";
     runtimeInputs = with pkgs; [pamixer libnotify];

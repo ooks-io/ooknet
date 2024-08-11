@@ -5,8 +5,8 @@
   ...
 }: let
   inherit (lib) mkIf concatMap;
-  wayland = config.ooknet.wayland;
-  monitors = osConfig.ooknet.host.hardware.monitors;
+  inherit (config.ooknet) wayland;
+  inherit (osConfig.ooknet.host.hardware) monitors;
 in {
   config = mkIf (wayland.compositor == "hyprland") {
     wayland.windowManager.hyprland.settings = {

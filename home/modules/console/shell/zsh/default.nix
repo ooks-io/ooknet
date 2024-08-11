@@ -6,7 +6,7 @@
 }: let
   inherit (lib) mkIf;
   cfg = config.ooknet.shell.zsh;
-  admin = osConfig.ooknet.host.admin;
+  inherit (osConfig.ooknet.host) admin;
 in {
   imports = [
     ./plugins.nix

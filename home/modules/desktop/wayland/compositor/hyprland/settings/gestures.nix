@@ -4,7 +4,7 @@
   ...
 }: let
   inherit (lib) mkIf;
-  wayland = config.ooknet.wayland;
+  inherit (config.ooknet) wayland;
 in {
   config = mkIf (wayland.compositor == "hyprland") {
     wayland.windowManager.hyprland.settings.gestures = {

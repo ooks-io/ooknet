@@ -6,7 +6,7 @@
 }: let
   inherit (lib) mkIf getExe;
   cfg = config.ooknet.editor.helix;
-  console = config.ooknet.console;
+  inherit (config.ooknet) console;
 in {
   config = mkIf (cfg.enable || console.editor == "helix") {
     programs.helix.languages = {

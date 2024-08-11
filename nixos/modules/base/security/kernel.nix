@@ -5,7 +5,7 @@
 }: let
   inherit (lib) optionals mkForce concatLists;
   inherit (builtins) elem;
-  features = config.ooknet.host.hardware.features;
+  inherit (config.ooknet.host.hardware) features;
 in {
   security = {
     # Protects the kernel from being tampered with at runtime. prevents the ability to hibernate.

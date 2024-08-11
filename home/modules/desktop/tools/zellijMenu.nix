@@ -5,9 +5,9 @@
   ...
 }: let
   inherit (lib) mkIf;
-  multiplexer = config.ooknet.console.multiplexer;
-  launcher = config.ooknet.wayland.launcher;
-  binds = config.ooknet.binds;
+  inherit (config.ooknet.console) multiplexer;
+  inherit (config.ooknet.wayland) launcher;
+  inherit (config.ooknet) binds;
   zellijmenu = pkgs.writeShellApplication {
     name = "zellijmenu";
     runtimeInputs = with pkgs; [coreutils rofi-wayland];

@@ -7,9 +7,9 @@
   inherit (lib.types) bool enum listOf int submodule nullOr str;
   inherit (lib.lists) optionals concatLists;
 
-  admin = config.ooknet.host.admin;
-  hardware = config.ooknet.host.hardware;
-  tailscale = config.ooknet.host.networking.tailscale;
+  inherit (config.ooknet.host) admin;
+  inherit (config.ooknet.host) hardware;
+  inherit (config.ooknet.host.networking) tailscale;
 in {
   options.ooknet.host = {
     name = mkOption {

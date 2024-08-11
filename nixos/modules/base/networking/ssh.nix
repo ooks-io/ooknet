@@ -4,7 +4,7 @@
   ...
 }: let
   inherit (lib) mkIf mkDefault;
-  host = config.ooknet.host;
+  inherit (config.ooknet) host;
 in {
   config = mkIf (host.type != "phone") {
     services.openssh = {

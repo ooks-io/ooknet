@@ -6,9 +6,9 @@
 }: let
   inherit (lib) mkIf;
 
-  host = config.ooknet.host;
-  admin = host.admin;
-  tailscale = host.networking.tailscale;
+  inherit (config.ooknet) host;
+  inherit (host) admin;
+  inherit (host.networking) tailscale;
 in {
   age.identityPaths = [
     "/home/${admin.name}/.ssh/id_ed25519"

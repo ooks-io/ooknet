@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  features = config.ooknet.host.hardware.features;
+  inherit (config.ooknet.host.hardware) features;
   cfg = config.ooknet.host.hardware.battery;
   inherit (lib) mkIf mkDefault;
   inherit (builtins) elem;

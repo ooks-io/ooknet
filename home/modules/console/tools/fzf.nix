@@ -5,7 +5,7 @@
   ...
 }: let
   inherit (lib) mkIf;
-  admin = osConfig.ooknet.host.admin;
+  inherit (osConfig.ooknet.host) admin;
   cfg = config.ooknet.tools.fzf;
 in {
   config = mkIf cfg.enable {

@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  gpu = config.ooknet.host.hardware.gpu;
+  inherit (config.ooknet.host.hardware) gpu;
   inherit (lib) mkIf;
   inherit (builtins) elem;
   # vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};

@@ -5,7 +5,7 @@
   pkgs,
   ...
 }: let
-  wayland = config.ooknet.wayland;
+  inherit (config.ooknet) wayland;
   inherit (lib) mkIf;
 in {
   imports = [

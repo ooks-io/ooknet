@@ -5,7 +5,7 @@
   ...
 }: let
   inherit (lib) mkDefault;
-  admin = osConfig.ooknet.host.admin;
+  inherit (osConfig.ooknet.host) admin;
 in {
   programs.home-manager.enable = true;
   systemd.user.startServices = "sd-switch";

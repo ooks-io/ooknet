@@ -5,8 +5,8 @@
   ...
 }: let
   inherit (lib) mkIf;
-  host = config.ooknet.host;
-  admin = host.admin;
+  inherit (config.ooknet) host;
+  inherit (host) admin;
 in {
   config = mkIf (host.type != "phone") {
     environment.variables.FLAKE = mkIf admin.homeManager "/home/${admin.name}/.config/ooknet/";

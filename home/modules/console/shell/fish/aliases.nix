@@ -9,7 +9,7 @@
   inherit (pkgs) bat eza dust nh;
 
   cfg = config.ooknet.shell.fish;
-  admin = osConfig.ooknet.host.admin;
+  inherit (osConfig.ooknet.host) admin;
 in {
   config = mkIf (cfg.enable || admin.shell == "fish") {
     programs.fish = {
