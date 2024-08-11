@@ -25,7 +25,7 @@
 
   cfg = config.ooknet.appearance;
 in {
-  imports = [./palettes];
+  #  imports = [./palettes];
   options.ooknet.appearance = {
     theme = mkOption {
       type = nullOr (enum ["minimal" "phone"]);
@@ -57,7 +57,7 @@ in {
     };
     colorscheme = {
       name = mkOption {
-        type = enum ["hozen"];
+        type = enum ["hozen" "gruvbox-material-medium"];
         default = "hozen";
       };
       variant = mkOption {
@@ -70,7 +70,7 @@ in {
       };
       palette = mkOption {
         type = attrsOf (coercedTo str (removePrefix "#") hexColorType);
-        default = {};
+        default = (import ./palettes/${config.ooknet.appearance.colorscheme.slug}.nix).colorscheme.palette;
       };
     };
   };

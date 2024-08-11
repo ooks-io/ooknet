@@ -1,12 +1,5 @@
 {
-  config,
-  lib,
-  ...
-}: let
-  cfg = config.ooknet.appearance.colorscheme;
-  inherit (lib) mkIf;
-in {
-  ooknet.appearance.colorscheme = mkIf (cfg.name == "hozen" && cfg.variant == "dark") {
+  colorscheme = {
     palette = {
       crust = "2b2927";
       mantle = "33312e";

@@ -5,9 +5,9 @@ in
   #css
     ''
 
-      @define-color accent_color #${blue};
-      @define-color accent_bg_color #${dull-blue};
-      @define-color accent_fg_color #${text};
+      @define-color accent_color #${green};
+      @define-color accent_bg_color #${text};
+      @define-color accent_fg_color #${mantle};
       @define-color destructive_color #${blue};
       @define-color destructive_bg_color #${dull-blue};
       @define-color destructive_fg_color #${text};
@@ -24,6 +24,14 @@ in
       @define-color window_fg_color #${text};
       @define-color view_bg_color #${mantle};
       @define-color view_fg_color #${text};
+      @define-color sidebar_bg_color #${crust};
+      @define-color sidebar_fg_color #${text};
+      @define-color sidebar_backdrop_color @window_bg_color;
+      @define-color sidebar_shade_color rgba(0, 0, 0, 0.07);
+      @define-color secondary_sidebar_bg_color @sidebar_bg_color;
+      @define-color secondary_sidebar_fg_color @sidebar_fg_color;
+      @define-color secondary_sidebar_backdrop_color @sidebar_backdrop_color;
+      @define-color secondary_sidebar_shade_color @sidebar_shade_color;
       @define-color headerbar_bg_color #${base};
       @define-color headerbar_fg_color #${text};
       @define-color headerbar_border_color #${text};

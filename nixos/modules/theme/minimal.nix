@@ -33,7 +33,7 @@ in {
       };
 
       colorscheme = {
-        name = "hozen";
+        name = "gruvbox-material-medium";
         variant = "dark";
       };
     };
