@@ -7,8 +7,8 @@
   inherit (lib) mkIf;
   inherit (lib.generators) toLua;
   inherit (lib.lists) elem optionals;
-  # inherit (builtins) elem;
-  features = config.ooknet.host.hardware.features;
+  inherit (config.ooknet) host;
+  inherit (host.hardware) features;
   hasBT = elem "bluetooth" features;
 in {
   config = mkIf (elem "audio" features) {
@@ -65,6 +65,13 @@ in {
 
       wireplumber = {
         enable = true;
+        extraConfig = mkIf (host.type == "laptop") {
+          "10-disable-camera" = {
+            "wireplumber.profiles" = {
+              main."monitor.libcamera" = "disabled";
+            };
+          };
+        };
         configPackages = let
           matches = toLua {
             multiline = false;
