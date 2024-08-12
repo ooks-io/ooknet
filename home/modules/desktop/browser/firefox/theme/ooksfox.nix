@@ -27,7 +27,6 @@ with palette;
       menupopup > #context-sep-navigation { display: none !important; }
 
       /* Hide various toolbar buttons */
-      #back-button,
       #forward-button,
       #reload-button,
       #stop-button,
