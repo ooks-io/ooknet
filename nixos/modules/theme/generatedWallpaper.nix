@@ -1,3 +1,4 @@
+# Credit to github:misterio77/nix-colors
 {
   pkgs,
   config,

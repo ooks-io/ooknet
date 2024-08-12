@@ -55,6 +55,7 @@ in {
         default = 22;
       };
     };
+    # Credit to github:misterio77/nix-colors
     colorscheme = {
       name = mkOption {
         type = enum ["hozen" "gruvbox-material-medium"];
