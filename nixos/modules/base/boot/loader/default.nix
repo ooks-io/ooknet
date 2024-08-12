@@ -3,7 +3,6 @@
 in {
   imports = [
     ./systemd.nix
-    # ./grub
   ];
 
   options.ooknet.boot.loader = mkOption {
