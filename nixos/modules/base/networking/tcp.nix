@@ -6,7 +6,7 @@
   inherit (lib) mkIf;
   inherit (config.ooknet) host;
 in {
-  # nyx module
+  # credit github:notashelf/nyx module
   config = mkIf (host.type != "phone") {
     boot = {
       kernelModules = ["tls" "tcp_bbr"];
