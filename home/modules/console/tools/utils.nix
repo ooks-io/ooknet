@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  self,
   ...
 }: let
   cfg = config.ooknet.tools.utils;
@@ -45,6 +46,9 @@ in {
 
       # Nix tooling
       alejandra
+
+      #AI
+      self.packages.${pkgs.system}.repopack
     ];
   };
 }
