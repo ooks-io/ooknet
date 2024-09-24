@@ -13,6 +13,7 @@ in {
       protontricks
       protonup-qt
       wineWowPackages.waylandFull
+      wowup-cf
     ];
   };
 }
