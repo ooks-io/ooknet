@@ -7,7 +7,7 @@ in {
       "en_US.UTF-8/UTF-8"
     ];
   };
-  time.timeZone = mkDefault "Pacific/Auckland";
+  time.timeZone = mkDefault "Australia/Sydney";
   location.provider = "geoclue2";
   services.geoclue2.enable = true;
 }
