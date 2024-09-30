@@ -31,11 +31,11 @@
       features = ["ssd" "audio" "video"];
       monitors = [
         {
-          name = "DP-1";
+          name = "DP-3";
           primary = true;
           width = 1920;
           height = 1080;
-          refreshRate = 60;
+          refreshRate = 180;
           workspace = "1";
         }
       ];
