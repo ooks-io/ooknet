@@ -44,7 +44,7 @@ in {
         "SUPER CTRL,     backspace,     killactive"
         "SUPERSHIFT ALT, delete,        exec, hyprkillsession"
         "SUPER,          F,             fullscreen"
-        "SUPER CTRL,     F,             fakefullscreen"
+        "SUPER CTRL,     F,             fullscreenstate"
         "SUPER,          Space,         togglefloating"
         "SUPER,          P,             pseudo" # dwindle
         "SUPER,          S,             togglesplit" # dwindle
