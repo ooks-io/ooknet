@@ -13,7 +13,7 @@
 in {
   config = mkMerge [
     (mkIf (cfg.enable || fileManager == "nemo") {
-      home.packages = [pkgs.cinnamon.nemo-with-extensions];
+      home.packages = [pkgs.nemo-with-extensions];
     })
 
     (mkIf (fileManager == "nemo") {
