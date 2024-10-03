@@ -27,7 +27,13 @@ in {
       };
       gtk3.extraCss = gtkCss;
       gtk4.extraCss = gtkCss;
+
+      # Dark system theme
+      gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
+      gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
     };
+
+    dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
 
     #TODO: add gtk css configuration
 
