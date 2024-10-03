@@ -13,7 +13,7 @@ in {
         glib-networking.enable = true;
         gnome-keyring.enable = true;
       };
-      udev.packages = [pkgs.gnome.gnome-settings-daemon];
+      udev.packages = [pkgs.gnome-settings-daemon];
     };
   };
 }
