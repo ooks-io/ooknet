@@ -48,5 +48,9 @@ in {
         builders-use-substitutes = true;
       };
     };
+    system.switch = {
+      enable = false;
+      enableNg = true;
+    };
   };
 }
