@@ -1886,11 +1886,11 @@
         "systems": "systems_10"
       },
       "locked": {
-        "lastModified": 1728388519,
-        "narHash": "sha256-eQe8WyawRR7Rd7nTyQoGltoWbotWL66NiTtCAPSWVnc=",
+        "lastModified": 1728437788,
+        "narHash": "sha256-yriWnK9F5cIvIwJGHIZLwbMaZtf49Ewgb4xmdNXYUbs=",
         "ref": "refs/heads/master",
-        "rev": "c2229877bebaf01957ce97c73cbf7e0df7b47435",
-        "revCount": 19,
+        "rev": "8c9b66c555475892c819dce52d09cf546ffabbc7",
+        "revCount": 20,
         "type": "git",
         "url": "ssh://git@github.com/ooks-io/ooks-vim"
       },
