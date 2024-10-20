@@ -1,55 +1,48 @@
 {
-  inputs,
   self,
   withSystem,
+  ooknet,
   ...
 }: let
-  inherit (inputs.nixpkgs.lib) nixosSystem;
-  inherit (self) keys;
-
-  hosts = "${self}/hosts";
-
-  hm = inputs.home-manager.nixosModules.home-manager;
-  nixarr = inputs.nixarr.nixosModules.default;
-  agenix = inputs.agenix.nixosModules.default;
-
-  nixosModules = "${self}/nixos";
-
-  workstation = [
-    hm
-    agenix
-    nixosModules
-  ];
-
-  specialArgs = {inherit withSystem keys inputs self;};
+  inherit (ooknet.lib.builders) mkServer mkWorkstation;
 in {
-  ooksdesk = nixosSystem {
-    inherit specialArgs;
-    system = "x86_64-linux";
-    modules = ["${hosts}/ooksdesk"] ++ workstation;
-  };
+  flake.nixosConfigurations = {
+    ooksdesk = mkWorkstation {
+      inherit withSystem;
+      hostname = "ooksdesk";
+      system = "x86_64-linux";
+      type = "desktop";
+    };
 
-  ookst480s = nixosSystem {
-    inherit specialArgs;
-    system = "x86_64-linux";
-    modules = ["${hosts}/ookst480s"] ++ workstation;
-  };
+    ookst480s = mkWorkstation {
+      inherit withSystem;
+      system = "x86_64-linux";
+      hostname = "ookst480s";
+      type = "laptop";
+    };
 
-  ooksmedia = nixosSystem {
-    inherit specialArgs;
-    system = "x86_64-linux";
-    modules = ["${hosts}/ooksmedia" nixarr] ++ workstation;
-  };
+    ooksmedia = mkWorkstation {
+      inherit withSystem;
+      system = "x86_64-linux";
+      hostname = "ooksmedia";
+      type = "desktop";
+    };
 
-  ooksmicro = nixosSystem {
-    inherit specialArgs;
-    system = "x86_64-linux";
-    modules = ["${hosts}/ooksmicro"] ++ workstation;
-  };
+    ooksmicro = mkWorkstation {
+      inherit withSystem;
+      system = "x86_64-linux";
+      hostname = "ooksmicro";
+    };
 
-  ooksx1 = nixosSystem {
-    inherit specialArgs;
-    system = "x86_64-linux";
-    modules = ["${hosts}/ooksx1"] ++ workstation;
+    ooksx1 = mkWorkstation {
+      inherit withSystem;
+      system = "x86_64-linux";
+      hostname = "ooksx1";
+    };
+    ooknode = mkServer {
+      inherit withSystem;
+      system = "x86_64-linux";
+      hostname = "ooknode";
+    };
   };
 }

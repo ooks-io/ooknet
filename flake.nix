@@ -2,27 +2,11 @@
   # ooknet
   description = "a nix configuration written by an orangutan";
 
-  outputs = {
-    flake-parts,
-    self,
-    ...
-  } @ inputs:
-    flake-parts.lib.mkFlake {inherit inputs;} ({withSystem, ...}: {
+  outputs = {flake-parts, ...} @ inputs:
+    flake-parts.lib.mkFlake {inherit inputs;} {
       systems = import inputs.systems;
-
-      imports = [
-        ./outputs/pkgs
-        ./outputs/sshKeys.nix
-      ];
-
-      flake = {
-        nixosConfigurations = import ./outputs/nixos.nix {inherit self inputs withSystem;};
-      };
-
-      perSystem = {pkgs, ...}: {
-        formatter = pkgs.alejandra;
-      };
-    });
+      imports = [./outputs];
+    };
 
   # External inputs we depend on
   inputs = {
