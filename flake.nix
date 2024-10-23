@@ -1,102 +1,79 @@
 {
-  # ooknet
-  description = "a nix configuration written by an orangutan";
+  description = "Description for the project";
 
   outputs = {flake-parts, ...} @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
-      systems = import inputs.systems;
       imports = [./outputs];
+      systems = import inputs.systems;
     };
 
-  # External inputs we depend on
   inputs = {
-    # unstable because why not
-    nixpkgs.url = "github:Nixos/nixpkgs/nixos-unstable";
-    nixpkgs-small.url = "github:Nixos/nixpkgs/nixos-unstable-small";
-
-    # contains more up-to-date wayland related packages. no need enabling atm
-    # nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
-
-    # default system see <https://github.com/nix-systems/nix-systems>
-    systems.url = "github:nix-systems/default-linux";
-    # split your flake into... parts?
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
-    };
-
-    # dotfile configuration
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    flake-parts.url = "github:hercules-ci/flake-parts";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    agenix.url = "github:ryantm/agenix";
     nix-index-db = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    zjstatus.url = "github:dj95/zjstatus";
+    systems.url = "github:nix-systems/default-linux";
 
-    # nix shell environment on android
-    nix-on-droid = {
-      url = "github:nix-community/nix-on-droid/release-23.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
-
-    # wrapper for nix rebuild
-    nh = {
-      url = "github:viperML/nh";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # nix language server that berates me for my mistakes
-    nil = {
-      url = "github:oxalica/nil";
-      inputs.nixpkgs.follows = "nixpkgs-small";
-    };
-
-    # colorschemes library
-    nix-colors.url = "github:misterio77/nix-colors";
-
-    # secret management
-    agenix.url = "github:ryantm/agenix";
-
-    # hyprland "ecosystem". hyprDE perhaps?
-    hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    };
-    hyprlock.url = "github:hyprwm/hyprlock";
-    hypridle.url = "github:hyprwm/hypridle";
-    hyprpaper.url = "github:hyprwm/hyprpaper";
-    hyprland-contrib.url = "github:hyprwm/contrib";
-    xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
-    # hyprland-plugins = {
-    #   url = "github:hyprwm/hyprland-plugins";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
-
-    # helix because noun -> verb helps scratches my ape brain in the right spot
-    helix = {
-      url = "github:helix-editor/helix";
-      inputs.nixpkgs.follows = "nixpkgs-small";
-    };
-
-    # neovim configured with nix
-    ooks-vim.url = "git+ssh://git@github.com/ooks-io/ooks-vim";
-
-    # packaged firefox addons
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ooks-scripts = {
+      url = "git+ssh://git@github.com/ooks-io/scripts";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    # zellij status bar
-    zjstatus.url = "github:dj95/zjstatus";
+    nvf.url = "github:notashelf/nvf/v0.7";
 
-    # media server module for hosting my legally purchased linux isos
-    nixarr.url = "github:rasmus-kirk/nixarr";
+    # hypr* ecosystem
+    hyprland.url = "github:hyprwm/hyprland";
 
-    # personal scripts repo
-    ooks-scripts.url = "git+ssh://git@github.com/ooks-io/scripts";
+    hypridle = {
+      url = "github:hyprwm/hypridle";
+      inputs = {
+        hyprlang.follows = "hyprland/hyprlang";
+        hyprutils.follows = "hyprland/hyprutils";
+        nixpkgs.follows = "hyprland/nixpkgs";
+        systems.follows = "hyprland/systems";
+      };
+    };
+
+    hyprland-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "hyprland/nixpkgs";
+    };
+
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    hyprlock = {
+      url = "github:hyprwm/hyprlock";
+      inputs = {
+        hyprlang.follows = "hyprland/hyprlang";
+        hyprutils.follows = "hyprland/hyprutils";
+        nixpkgs.follows = "hyprland/nixpkgs";
+        systems.follows = "hyprland/systems";
+      };
+    };
+
+    hyprpaper = {
+      url = "github:hyprwm/hyprpaper";
+      inputs = {
+        hyprlang.follows = "hyprland/hyprlang";
+        hyprutils.follows = "hyprland/hyprutils";
+        nixpkgs.follows = "hyprland/nixpkgs";
+        systems.follows = "hyprland/systems";
+      };
+    };
   };
 }

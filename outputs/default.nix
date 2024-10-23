@@ -1,9 +1,9 @@
 {
   imports = [
-    ./nixos.nix
-    ./sshKeys.nix
-    ./formatter.nix
+    ./apps.nix
     ./lib
+    ./hosts
+    ./keys.nix
     ./pkgs
   ];
 }

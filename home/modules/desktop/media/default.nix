@@ -1,7 +1,0 @@
-{
-  imports = [
-    ./video
-    ./image
-    ./music
-  ];
-}

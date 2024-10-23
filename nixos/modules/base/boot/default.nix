@@ -1,6 +1,0 @@
-{
-  imports = [
-    ./loader
-    ./plymouth.nix
-  ];
-}

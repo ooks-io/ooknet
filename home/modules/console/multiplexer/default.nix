@@ -1,7 +1,0 @@
-{
-  imports = [
-    ./zellij
-    #./screen
-    ./tmux
-  ];
-}

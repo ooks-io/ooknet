@@ -1,0 +1,15 @@
+{
+  lib,
+  osConfig,
+  ...
+}: let
+  inherit (lib) mkIf;
+  cfg = osConfig.programs.kdeconnect;
+in {
+  config = mkIf cfg.enable {
+    services.kdeconnect = {
+      enable = true;
+      indicator = true;
+    };
+  };
+}

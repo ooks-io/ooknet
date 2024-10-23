@@ -1,3 +1,0 @@
-{
-  imports = [./hozen-dark.nix];
-}

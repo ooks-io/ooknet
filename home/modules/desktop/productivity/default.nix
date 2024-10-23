@@ -1,7 +1,0 @@
-{...}: {
-  imports = [
-    ./office
-    ./notes
-    ./pdf
-  ];
-}

@@ -1,0 +1,69 @@
+{
+  inputs,
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
+  inherit (builtins) attrValues;
+  inherit (lib) mkIf mapAttrsToList;
+  inherit (config.ooknet.host) admin;
+in {
+  environment = {
+    # disable default nix packages
+    # these packages are installed by default [ perl rsync strace ]
+    defaultPackages = [];
+    systemPackages = attrValues {
+      inherit (pkgs) git deadnix statix;
+      inherit (inputs.agenix.packages.${pkgs.system}) default;
+    };
+  };
+  nix = {
+    # package = pkgs.lix;
+    registry = {
+      nixpkgs.flake = inputs.nixpkgs;
+      default.flake = inputs.nixpkgs;
+    };
+    nixPath = mapAttrsToList (name: _: "${name}=${name}") config.nix.registry;
+    settings = {
+      trusted-users = ["@wheel" "root"];
+      experimental-features = ["nix-command" "flakes"];
+      accept-flake-config = true;
+      auto-optimise-store = true;
+      # cache
+      substituters = [
+        "https://cache.nixos.org?priority=10"
+        "https://nix-community.cachix.org"
+        "https://neovim-flake.cachix.org"
+      ];
+      trusted-public-keys = [
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "neovim-flake.cachix.org-1:iyQ6lHFhnB5UkVpxhQqLJbneWBTzM8LBYOFPLNH4qZw="
+      ];
+      # TODO: setup builders -- builders-use-substitutes = true;
+    };
+  };
+  nixpkgs = {
+    config.allowUnfree = true;
+    # why are we doing this
+    overlays = [
+      # zellij status bar plugin
+      (_final: prev: {
+        zjstatus = inputs.zjstatus.packages.${prev.system}.default;
+      })
+    ];
+  };
+
+  # nix rebuild utililty
+  programs.nh = {
+    enable = true;
+    # sets an environment variable FLAKE that nh will refer to by default
+    flake = mkIf admin.homeManager "/home/${admin.name}/.config/ooknet";
+    # garbage collect
+    clean = {
+      enable = true;
+      extraArgs = "--keep 5 --keep-since 14d";
+    };
+  };
+}

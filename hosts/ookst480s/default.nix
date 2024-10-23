@@ -2,29 +2,23 @@
   pkgs,
   lib,
   ...
-}: let
-  inherit (lib) mkDefault;
-in {
-  imports = [
-    ./hardware-configuration.nix
-  ];
-
-  ooknet.host = {
-    name = "ookst480s";
-    type = "laptop";
-    role = "workstation";
-    profiles = ["console-tools" "media"];
-    admin = {
-      name = "ooks";
-      shell = "fish";
-      homeManager = true;
-    };
-    networking = {
-      tailscale = {
-        enable = true;
-        client = true;
-        autoconnect = true;
+}: {
+  imports = [./file-system.nix];
+  ooknet = {
+    host = {
+      admin = {
+        name = "ooks";
+        shell = "fish";
+        homeManager = true;
       };
+    };
+    workstation = {
+      profiles = ["media" "gaming" "communication"];
+      environment = "hyprland";
+      theme = "minimal";
+    };
+    console = {
+      profile = "standard";
     };
     hardware = {
       cpu.type = "intel";
@@ -39,29 +33,15 @@ in {
       ];
       monitors = [
         {
+          primary = true;
           name = "eDP-1";
           width = 1920;
           height = 1080;
           workspace = "1";
-          primary = true;
         }
       ];
-      battery = {
-        powersave = {
-          minFreq = 800;
-          maxFreq = 1800;
-        };
-        performance = {
-          minFreq = 1800;
-          maxFreq = 3600;
-        };
-      };
     };
   };
-
-  boot = {
-    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-  };
-
-  system.stateVersion = mkDefault "23.11";
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+  system.stateVersion = lib.mkDefault "23.11";
 }

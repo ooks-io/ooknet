@@ -1,0 +1,48 @@
+{lib, ...}: let
+  inherit (lib) mkOption;
+  inherit (lib.types) str enum bool;
+in {
+  options.ooknet.host = {
+    name = mkOption {
+      type = str;
+      default = "ooks-generic";
+    };
+    type = mkOption {
+      type = enum ["desktop" "laptop"];
+    };
+    role = mkOption {
+      type = enum ["workstation" "server"];
+    };
+    exitNode = mkOption {
+      type = bool;
+      default = false;
+    };
+    admin = {
+      name = mkOption {
+        type = str;
+        default = "ooks";
+      };
+      shell = mkOption {
+        type = enum ["bash" "zsh" "fish"];
+        default = "fish";
+      };
+      gitName = mkOption {
+        type = str;
+        default = "ooks-io";
+      };
+      gitEmail = mkOption {
+        type = str;
+        default = "ooks@protonmail.com";
+      };
+      homeManager = mkOption {
+        type = bool;
+        default = false;
+        description = ''
+          Home-manager is enabled if ooknet.host.role == "workstation".
+          If host is not a workstation and you would like to enable home-manager
+          enable this option.
+        '';
+      };
+    };
+  };
+}

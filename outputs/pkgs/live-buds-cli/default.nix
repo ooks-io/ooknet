@@ -18,14 +18,14 @@ rustPlatform.buildRustPackage rec {
     sha256 = "A4XQiJrk4ehb6+935L2JFOeAhUJ7bdukV5mL0Jxn0sQ=";
   };
 
-  cargoSha256 = "w/dt7Q9TACw5N/+QNAKMUEngf8sAhWyGslnw3B16crQ=";
+  cargoHash = "sha256-w/dt7Q9TACw5N/+QNAKMUEngf8sAhWyGslnw3B16crQ";
 
   nativeBuildInputs = [pkg-config];
   buildInputs = [libpulseaudio bluez dbus];
 
-  meta = with lib; {
+  meta = {
     description = "A free cli tool to control your Galaxy buds live, Galaxy Buds+, Galaxy Buds Pro, Galaxy Buds 2 and Galaxy Buds 2 Pro";
-    license = licenses.gpl3;
-    platforms = platforms.unix;
+    license = lib.licenses.gpl3;
+    platforms = lib.platforms.unix;
   };
 }

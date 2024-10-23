@@ -4,47 +4,34 @@
   ...
 }: {
   imports = [
-    ./hardware-configuration.nix
+    ./file-system.nix
+    ./hardware.nix
   ];
 
-  ooknet.host = {
-    name = "ooksdesk";
-    type = "desktop";
-    role = "workstation";
-    profiles = ["gaming" "creative" "media" "console-tools"];
-    admin = {
-      name = "ooks";
-      shell = "fish";
-      homeManager = true;
-    };
-    networking = {
-      tailscale = {
-        enable = true;
-        client = true;
-        autoconnect = true;
+  ooknet = {
+    host = {
+      admin = {
+        name = "ooks";
+        shell = "fish";
+        homeManager = true;
       };
     };
-    hardware = {
-      cpu.type = "amd";
-      cpu.amd.pstate.enable = true;
-      gpu.type = "amd";
-      features = ["ssd" "audio" "video"];
-      monitors = [
-        {
-          name = "DP-3";
-          primary = true;
-          width = 1920;
-          height = 1080;
-          refreshRate = 180;
-          workspace = "1";
-        }
-      ];
+    workstation = {
+      environment = "hyprland";
+      theme = "minimal";
+      profiles = ["gaming" "media" "communication" "productivity"];
+      default = {
+        browser = "firefox";
+        terminal = "foot";
+      };
+    };
+    console = {
+      profile = "standard";
+      editor = "nvim";
+      multiplexer = "zellij";
     };
   };
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
-  boot = {
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
-  };
-
-  system.stateVersion = lib.mkDefault "23.11";
+  system.stateVersion = lib.mkDefault "24.11";
 }

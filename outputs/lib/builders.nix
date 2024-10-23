@@ -4,14 +4,23 @@
   self,
   ...
 }: let
+  inherit (inputs) nixpkgs;
   inherit (lib) singleton recursiveUpdate mkDefault;
   inherit (builtins) concatLists;
   inherit (self) keys;
   hm = inputs.home-manager.nixosModules.home-manager;
   agenix = inputs.agenix.nixosModules.default;
-  nixosModules = "${self}/nixos";
-  mkNixos = inputs.nixpkgs.lib.nixosSystem;
+  nixosModules = "${self}/modules/nixos";
+  baseModules = nixosModules + "/base";
+  hardwareModules = nixosModules + "/hardware";
+  appearanceModules = nixosModules + "/appearance";
+  consoleModules = nixosModules + "/console";
+  workstationModules = nixosModules + "/workstation";
+  serverModules = nixosModules + "/server";
+  core = [baseModules hardwareModules consoleModules appearanceModules hm agenix];
   hostModules = "${self}/hosts";
+
+  mkNixos = nixpkgs.lib.nixosSystem;
 
   mkBaseSystem = {
     withSystem,
@@ -36,7 +45,10 @@
         modules = concatLists [
           (singleton {
             networking.hostName = hostname;
-            nixpkgs.hostPlatform = mkDefault system;
+            nixpkgs = {
+              flake.source = nixpkgs.outPath;
+              hostPlatform = mkDefault system;
+            };
             ooknet.host = {
               name = hostname;
               inherit role type;
@@ -59,7 +71,8 @@
       inherit withSystem hostname system type specialArgs;
       role = "workstation";
       additionalModules = concatLists [
-        [hm agenix nixosModules]
+        core
+        [workstationModules]
         additionalModules
       ];
     };
@@ -83,6 +96,8 @@
             inherit platform services;
           };
         })
+        core
+        [serverModules]
         additionalModules
       ];
     };

@@ -1,0 +1,6 @@
+{
+  imports = [
+    ./gruvbox-material
+    ./telescope
+  ];
+}
