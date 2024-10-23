@@ -27,5 +27,10 @@ in {
       owner = "${admin.name}";
       group = "users";
     };
+    spotify_key = mkIf admin.homeManager {
+      file = "${self}/secrets/spotify_key.age";
+      owner = "${admin.name}";
+      group = "users";
+    };
   };
 }

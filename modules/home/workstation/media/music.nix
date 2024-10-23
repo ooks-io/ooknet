@@ -12,6 +12,7 @@
   inherit (osConfig.ooknet.console.tools) zellij;
   inherit (osConfig.ooknet.console) multiplexer;
   inherit (osConfig.ooknet.workstation) profiles;
+  inherit (osConfig.age.secrets) spotify_key;
   inherit (config.ooknet) binds;
 in {
   config = mkIf (elem "media" profiles) {
@@ -36,7 +37,7 @@ in {
         enable = true;
         settings = {
           theme = "default";
-          client_id = "fc4c3656d7cc4a7ea70c6080965f8b1a";
+          client_id_command = "cat ${spotify_key.path}";
           client_port = 8080;
           tracks_playback_limit = 50;
           playback_format = "{track} • {artists}\n{album}\n{metadata}";
