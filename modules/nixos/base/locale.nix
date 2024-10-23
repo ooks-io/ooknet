@@ -1,5 +1,5 @@
 {
-  time.timeZone = "Pacific/Auckland";
+  time.timeZone = "Antarctica/Macquarie";
   location.provider = "geoclue2";
   services.geoclue2.enable = true;
   i18n = {
