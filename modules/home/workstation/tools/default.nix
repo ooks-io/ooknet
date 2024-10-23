@@ -5,5 +5,6 @@
     ./ookvolume.nix
     ./kdeconnect.nix
     ./ookbrightness.nix
+    ./zellijMenu.nix
   ];
 }
