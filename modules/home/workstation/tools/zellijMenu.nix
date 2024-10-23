@@ -7,7 +7,6 @@
 }: let
   inherit (lib) mkIf;
   inherit (osConfig.ooknet.console) multiplexer;
-  inherit (config.programs) rofi;
   inherit (config.ooknet) binds;
   zellijmenu = pkgs.writeShellApplication {
     name = "zellijmenu";
@@ -233,7 +232,7 @@
       '';
   };
 in {
-  config = mkIf (multiplexer == "zellij" && rofi.enable) {
+  config = mkIf (multiplexer == "zellij") {
     home.packages = [zellijmenu];
     ooknet.binds.zellijMenu = "zellijmenu -n";
   };
