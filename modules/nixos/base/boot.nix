@@ -17,14 +17,15 @@ in {
         "xhci_pci"
         "ahci"
         "usbhid"
-        "usb_storage"
         "sd_mod"
+        "usb_storage"
       ];
       kernelModules = [
         "nvme"
         "xhci_pci"
         "btrfs"
         "sd_mod"
+        "usbhid"
       ];
     };
   };
