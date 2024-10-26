@@ -1,6 +1,7 @@
 {
   imports = [
     ./rofi.nix
+    ./hyprcapture.nix
     ./mako.nix
     ./tools.nix
     ./waybar.nix
