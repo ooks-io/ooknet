@@ -12,11 +12,13 @@ in {
   config = mkIf (default.browser == "firefox" || cfg.enable) {
     xdg.configFile = {
       "tridactyl/tridactylrc".text = ''
-        set searchurls.nix https://sourcegraph.com/search?q=context:global+lang:nix %s
+
+        sanitise tridactyllocal tridactylsync
 
         colorscheme ooknet
 
-        unbind --mode=normal t
+        set searchurls.nix https://sourcegraph.com/search?q=context:global+lang:nix %s
+
         unbind --mode=normal gt
 
         bind / fillcmdline find
@@ -24,13 +26,24 @@ in {
         bind N findnext -1
 
         bind gtr open http://192.168.1.210:9091/transmission/web/
-        bind ttr tabopen http://192.168.1.210:9091/transmission/web/
 
         bind gem open https://gmail.com
-        bind tem tabopen https://gmail.com
 
         bind gjf open http://192.168.1.210:8096
-        bind tjf tabopen http://192.168.1.210:8096
+
+        bindurl next\.duckduckgo\.com ;f hint -Jc  a.result__a
+        bindurl next\.duckduckgo\.com ;F hint -Jbc a.result__a
+
+        bindurl www\.google\.com ;f hint -Jc .rc > .yuRUbf > a
+        bindurl www\.google\.com ;F hint -Jbc .rc > .yuRUbf > a
+
+        bindurl github\.com/.*/.*/issues ;f hint -Jc a.h4
+        bindurl github\.com/.*/.*/issues ;F hint -Jbc a.h4
+        bindurl github\.com/.*/.*/commits ;f hint -Jc a.message
+        bindurl github\.com/.*/.*/commits ;F hint -Jbc a.messag
+
+        set externalclipboardcmd wl-copy
+        set yankto both
       '';
 
       # based off base16 themes
