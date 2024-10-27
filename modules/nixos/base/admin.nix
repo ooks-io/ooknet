@@ -20,6 +20,8 @@ in {
       shell = pkgs.${admin.shell};
       initialPassword = "password";
       openssh.authorizedKeys.keys = [keys.users."${admin.name}"];
+      createHome = true;
+      home = "/home/${admin.name}";
       extraGroups =
         [
           "wheel"
@@ -34,16 +36,6 @@ in {
           "streamer"
           "torrenter"
         ];
-    };
-    home-manager = mkIf (role == "workstation" || admin.homeManager) {
-      useGlobalPkgs = true;
-      useUserPackages = true;
-      backupFileExtension = "hm.old";
-      verbose = true;
-      extraSpecialArgs = {inherit inputs inputs' self self';};
-      users.${admin.name} = {
-        imports = ["${self}/modules/home/base"];
-      };
     };
   };
 }
