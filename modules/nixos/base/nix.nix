@@ -1,4 +1,5 @@
 {
+  inputs',
   inputs,
   pkgs,
   lib,
@@ -7,7 +8,7 @@
 }: let
   inherit (builtins) attrValues;
   inherit (lib) mkIf mapAttrsToList;
-  inherit (config.ooknet.host) admin;
+  inherit (config.ooknet.host) role admin;
 in {
   environment = {
     # disable default nix packages
@@ -15,11 +16,21 @@ in {
     defaultPackages = [];
     systemPackages = attrValues {
       inherit (pkgs) git deadnix statix;
-      inherit (inputs.agenix.packages.${pkgs.system}) default;
+      inherit (inputs'.agenix.packages) default;
     };
+
+    # location of the configuration flake
+    variables.FLAKE = "/home/${admin.name}/.config/ooknet";
   };
   nix = {
     # package = pkgs.lix;
+
+    # collect garbage
+    gc = {
+      automatic = true;
+      dates = "Sun *-*-* 14:00";
+      options = "--delete-older-than 14d";
+    };
     registry = {
       nixpkgs.flake = inputs.nixpkgs;
       default.flake = inputs.nixpkgs;
@@ -56,14 +67,9 @@ in {
   };
 
   # nix rebuild utililty
-  programs.nh = {
+  programs.nh = mkIf (role == "workstation") {
     enable = true;
     # sets an environment variable FLAKE that nh will refer to by default
     flake = mkIf admin.homeManager "/home/${admin.name}/.config/ooknet";
-    # garbage collect
-    clean = {
-      enable = true;
-      extraArgs = "--keep 5 --keep-since 14d";
-    };
   };
 }
