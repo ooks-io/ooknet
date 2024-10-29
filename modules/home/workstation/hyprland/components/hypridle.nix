@@ -1,13 +1,16 @@
 {
   inputs',
+  pkgs,
   osConfig,
   lib,
   config,
   ...
 }: let
-  inherit (lib) getExe mkIf;
+  inherit (lib) getExe getExe' mkIf;
   inherit (osConfig.ooknet.workstation) environment;
 
+  dpms = "${getExe' config.wayland.windowManager.hyprland.package "hyprctl"} dispatch dpms";
+  lock = "${getExe' pkgs.systemd "loginctl"} lock-session";
   hyprlock = getExe config.programs.hyprlock.package;
 in {
   config = mkIf (environment == "hyprland") {
@@ -17,12 +20,17 @@ in {
       settings = {
         general = {
           lock_cmd = hyprlock;
-          ignore_dbus_inhibit = false;
+          before_sleep_cmd = lock;
         };
         listener = [
           {
-            timout = 300;
+            timeout = 300;
             on-timeout = hyprlock;
+          }
+          {
+            timeout = 360;
+            on-timeout = "${dpms} off";
+            on-resume = "${dpms} on";
           }
         ];
       };
