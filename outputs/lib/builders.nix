@@ -17,6 +17,11 @@
   consoleModules = nixosModules + "/console";
   workstationModules = nixosModules + "/workstation";
   serverModules = nixosModules + "/server";
+  minimalCore = [
+    (baseModules + "/options.nix")
+    (baseModules + "/admin.nix")
+    (baseModules + "/ssh.nix")
+  ];
   core = [baseModules hardwareModules consoleModules appearanceModules hm agenix];
   hostModules = "${self}/hosts";
 
@@ -54,7 +59,6 @@
               inherit role type;
             };
           })
-          [(hostModules + "/${hostname}")]
           additionalModules
         ];
       });
@@ -72,6 +76,7 @@
       role = "workstation";
       additionalModules = concatLists [
         core
+        [(hostModules + "/${hostname}")]
         [workstationModules]
         additionalModules
       ];
@@ -82,7 +87,7 @@
     hostname,
     system,
     type,
-    platform,
+    profile,
     services,
     additionalModules ? [],
     specialArgs ? {},
@@ -92,15 +97,39 @@
       role = "server";
       additionalModules = concatLists [
         (singleton {
-          ooknet.host = {
-            inherit platform services;
+          ooknet.server = {
+            inherit services;
           };
         })
         core
+        [(serverModules + "/profiles/${profile}")]
         [serverModules]
         additionalModules
       ];
     };
+
+  mkImage = {
+    profile,
+    system,
+    hostname,
+    additionalModules ? [],
+    ...
+  }:
+    mkNixos {
+      specialArgs = {inherit keys inputs lib self;};
+      modules = concatLists [
+        (singleton {
+          networking.hostName = hostname;
+          nixpkgs = {
+            hostPlatform = mkDefault system;
+            flake.source = nixpkgs.outPath;
+          };
+        })
+        ["${self}/modules/server/profiles/${profile}/base"]
+        minimalCore
+        additionalModules
+      ];
+    };
 in {
-  inherit mkServer mkWorkstation;
+  inherit mkServer mkWorkstation mkImage;
 }
