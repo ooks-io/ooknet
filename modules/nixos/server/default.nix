@@ -1,7 +1,7 @@
 {
   imports = [
-    ./options
-    ./profiles
+    ./options.nix
     ./services
+    ./profiles
   ];
 }
