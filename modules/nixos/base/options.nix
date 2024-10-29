@@ -1,6 +1,10 @@
-{lib, ...}: let
+{
+  lib,
+  pkgs,
+  ...
+}: let
   inherit (lib) mkOption;
-  inherit (lib.types) str enum bool;
+  inherit (lib.types) str enum bool package;
 in {
   options.ooknet.host = {
     name = mkOption {
@@ -13,10 +17,22 @@ in {
     role = mkOption {
       type = enum ["workstation" "server"];
     };
+
+    boot = {
+      loader = mkOption {
+        type = enum ["systemd" "grub"];
+        default = "systemd";
+      };
+      kernel = mkOption {
+        type = package;
+        default = pkgs.linuxPackages_latest;
+      };
+    };
     exitNode = mkOption {
       type = bool;
       default = false;
     };
+
     admin = {
       name = mkOption {
         type = str;
