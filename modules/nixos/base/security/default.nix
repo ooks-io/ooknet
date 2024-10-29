@@ -4,7 +4,7 @@
     ./sudo.nix
     ./kernel.nix
     ./firewall.nix
-    ./auditing.nix
-    ./apparmor.nix
+    #   ./auditing.nix
+    # ./apparmor.nix
   ];
 }
