@@ -44,6 +44,7 @@ in {
             "--cmd"
             (getExe hyprland)
           ];
+          user = "greeter";
         };
       };
     };
