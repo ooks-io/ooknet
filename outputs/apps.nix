@@ -3,7 +3,7 @@
 in {
   perSystem = {config, ...}: {
     apps = {
-      ooks-vim.program = getExe config.packages.ook-vim;
+      ook-vim.program = getExe config.packages.ook-vim;
       default = config.apps.ook-vim;
     };
   };

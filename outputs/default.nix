@@ -5,5 +5,6 @@
     ./hosts
     ./keys.nix
     ./pkgs
+    ./images.nix
   ];
 }

@@ -1,5 +1,15 @@
 {
-  vim.binds.whichKey = {
-    enable = true;
+  vim = {
+    binds.whichKey = {
+      enable = true;
+    };
+    utility = {
+      preview = {
+        markdownPreview = {
+          enable = true;
+          autoStart = true;
+        };
+      };
+    };
   };
 }
