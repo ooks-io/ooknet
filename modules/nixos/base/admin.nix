@@ -2,15 +2,10 @@
   lib,
   config,
   pkgs,
-  inputs,
-  inputs',
-  self',
-  self,
   keys,
   ...
 }: let
-  inherit (lib) mkIf;
-  inherit (config.ooknet.host) role admin;
+  inherit (config.ooknet.host) admin;
 
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in {
@@ -18,7 +13,7 @@ in {
     users.users.${admin.name} = {
       isNormalUser = true;
       shell = pkgs.${admin.shell};
-      initialPassword = "password";
+      initialHashedPassword = "$y$j9T$l4Wje1zgcrPIM5G4BRAT6.$AKHmE2MvJLLiipYnwGsljxbD0QmqYtHGlKht0kLLI87";
       openssh.authorizedKeys.keys = [keys.users."${admin.name}"];
       createHome = true;
       home = "/home/${admin.name}";
