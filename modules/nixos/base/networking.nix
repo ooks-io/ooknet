@@ -1,11 +1,6 @@
 {lib, ...}: let
   inherit (lib) mkForce mkDefault;
 in {
-  imports = [
-    ./openssh.nix
-    ./tailscale.nix
-  ];
-
   networking = {
     enableIPv6 = true;
     # disable global dhcp
@@ -23,6 +18,7 @@ in {
     networkmanager = {
       enable = true;
       dns = "systemd-resolved";
+      plugins = mkForce [];
       wifi = {
         macAddress = "random";
         scanRandMacAddress = true;
@@ -37,8 +33,6 @@ in {
 
       domains = ["~."];
       fallbackDns = ["9.9.9.9"]; #quad9
-
-      #dnsovertls = "true";
     };
   };
   systemd.services.NetworkManager-wait-online.enable = false;
