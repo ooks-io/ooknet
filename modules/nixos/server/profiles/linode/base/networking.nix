@@ -8,5 +8,6 @@ in {
       tempAddress = "disabled";
       useDHCP = true;
     };
+    firewall.allowedUDPPorts = [443];
   };
 }
