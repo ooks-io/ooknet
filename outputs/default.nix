@@ -6,5 +6,6 @@
     ./keys.nix
     ./pkgs
     ./images.nix
+    ./devshells
   ];
 }
