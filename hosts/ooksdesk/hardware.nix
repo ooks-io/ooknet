@@ -3,7 +3,7 @@
     cpu.type = "amd";
     cpu.amd.pstate.enable = true;
     gpu.type = "amd";
-    features = ["ssd" "audio" "video"];
+    features = ["printing" "ssd" "audio" "video"];
     monitors = [
       {
         name = "DP-3";
