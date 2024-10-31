@@ -9,6 +9,10 @@
   inherit (builtins) attrValues;
   inherit (lib) mkIf mapAttrsToList;
   inherit (config.ooknet.host) role admin;
+  paths = {
+    FLAKE = "/home/${admin.name}/.config/ooknet";
+    WEBSITE = "${paths.FLAKE}/outputs/pkgs/website";
+  };
 in {
   environment = {
     # disable default nix packages
@@ -20,7 +24,7 @@ in {
     };
 
     # location of the configuration flake
-    variables.FLAKE = "/home/${admin.name}/.config/ooknet";
+    variables = paths;
   };
   nix = {
     # package = pkgs.lix;
@@ -37,7 +41,7 @@ in {
     };
     nixPath = mapAttrsToList (name: _: "${name}=${name}") config.nix.registry;
     settings = {
-      trusted-users = ["@wheel" "root"];
+      trusted-users = ["@wheel" "root" "builder"];
       experimental-features = ["nix-command" "flakes"];
       accept-flake-config = true;
       auto-optimise-store = true;
