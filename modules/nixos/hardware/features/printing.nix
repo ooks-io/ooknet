@@ -12,7 +12,7 @@ in {
     services = {
       printing = {
         enable = true;
-        drivers = [pkgs.hplip];
+        drivers = [pkgs.hplip pkgs.cnijfilter2];
       };
       avahi = {
         enable = true;
