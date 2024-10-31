@@ -24,7 +24,7 @@ in {
     # flags to pass to the auto-connect service
     extraUpFlags = concatLists [
       ["--ssh"]
-      (optionals (admin.name != null) ["--operator ${admin.name}"])
+      ["--operator" "${admin.name}"]
       (optionals host.exitNode ["--advertise-exit-node"])
     ];
 

@@ -17,9 +17,7 @@ in {
   age.secrets = {
     tailscale-auth = mkIf tailscale.enable {
       file = "${self}/secrets/tailscale-auth.age";
-      owner = "${admin.name}";
-      group = "users";
-      mode = "400";
+      mode = "444";
     };
     github_key = mkIf admin.homeManager {
       file = "${self}/secrets/github_key.age";
