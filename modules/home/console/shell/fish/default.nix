@@ -13,6 +13,7 @@ in {
     ./plugins.nix
     ./binds.nix
     ./aliases.nix
+    ./functions
   ];
 
   options.ooknet.home.fish.enable = mkEnableOption "";
