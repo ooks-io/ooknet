@@ -1,0 +1,38 @@
+.info-box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 10px;
+  padding: 20px;
+}
+.info-box-wrapper {
+  margin: 10px 10px;
+  padding: 10px 10px;
+  display: flex;
+  border: 1px solid var(--clr-text);
+  position: relative;
+}
+.info-box {
+  &__title {
+    z-index: 100;
+    position: absolute;
+    top: -0.8em;
+    background-color: var(--clr-mantle);
+    color: var(--clr-text);
+    padding: 0 5px;
+    display: flex;
+    align-content: center;
+    font-weight: bold;
+  }
+  &__title-text {
+    margin-left: 5px;
+    font-size: 16px;
+  }
+  &__content {
+    padding: 10px;
+    color: var(--clr-text);
+  }
+  &__list {
+  }
+  &__item {
+  }
+}

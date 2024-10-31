@@ -1,0 +1,78 @@
+@use "../abstracts" as *;
+
+body {
+  background-color: var(--clr-mantle);
+  color: $font-color-text;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  font-weight: $font-weight-regular;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $font-color-bright;
+  margin: $spacer * 2 0 0;
+}
+h1 {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bolder;
+}
+
+h2 {
+  font-size: $font-size-large;
+}
+
+h3 {
+  font-size: $font-size-medium;
+}
+
+h4 {
+  font-size: $font-size-small;
+}
+
+hr {
+  border: $horizontal-rule;
+  margin-bottom: $spacer;
+}
+
+p {
+  margin-bottom: $spacer;
+}
+
+ul {
+  margin: $spacer 0 0 $spacer;
+  list-style: square;
+}
+
+a {
+  color: $font-color-link;
+  &:hover {
+    color: $font-color-link-hover;
+    text-decoration: $font-style-link-hover;
+  }
+}
+
+table {
+  border-collapse: collapse;
+  border-color: $border-solid;
+  overflow-x: auto;
+  max-width: 100%;
+  display: block;
+  td {
+    padding: 3px 20px;
+    border: $border-solid;
+  }
+
+  thead {
+    th {
+      background-color: var(--clr-surface-1);
+      padding: 6px 13px;
+      font-weight: bold;
+      border: $border-solid;
+    }
+  }
+}

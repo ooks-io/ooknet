@@ -1,0 +1,68 @@
+<aside class="sidebar">
+  <nav role="navigation" class="s-menu tree-view">
+    <ul class="s-menu__list tree-root">
+      {% block menu -%}
+        {% set library = get_section(path="notes/_index.md") -%}
+        {% for book in library.subsections -%}
+          {% set book_section = get_section(path=book) -%}
+          {% set is_book_active = current_path is starting_with(book_section.path) %}
+          <li class="s-menu__item tree-node">
+            <div class="s-menu__link-wrapper">
+              <button class="s-menu__toggle{% if is_book_active %} s-menu__toggle--active{% else %} collapsed{% endif %}"
+                      data-toggle="collapse" 
+                      data-target="#book-{{ loop.index }}"
+                      aria-expanded="{% if is_book_active %}true{% else %}false{% endif %}">
+                <span class="sr-only">Toggle {{ book_section.title }}</span>
+              </button>
+              <a href="{{ book_section.permalink | safe }}" 
+                 class="s-menu__link s-menu__link--book{% if is_book_active %} s-menu__link--active{% endif %}">
+                {{ book_section.title }}
+              </a>
+              
+            </div>
+            {%- if book_section.subsections %}
+              <ul id="book-{{ loop.index }}" 
+                  class="s-menu__sublist tree-children collapse{% if is_book_active %} show{% endif %}">
+                {%- for chapter in book_section.subsections %}
+                  {% set chapter_section = get_section(path=chapter) -%}
+                  {% set is_chapter_active = current_path is starting_with(chapter_section.path) %}
+                  <li class="s-menu__item tree-node">
+                    <span class="tree-branch"></span>
+                    <div class="s-menu__link-wrapper">
+                      {% if chapter_section.pages %}
+                        <button class="s-menu__toggle{% if is_chapter_active %} s-menu__toggle--active{% else %} collapsed{% endif %}"
+                                data-toggle="collapse" 
+                                data-target="#chapter-{{ book_section.path | slugify }}-{{ loop.index }}"
+                                aria-expanded="{% if is_chapter_active %}true{% else %}false{% endif %}">
+                          <span class="sr-only">Toggle {{ chapter_section.title }}</span>
+                        </button>
+                      {% endif %}
+                      <a href="{{ chapter_section.permalink | safe }}" 
+                         class="s-menu__link s-menu__link--chapter{% if is_chapter_active %} s-menu__link--active{% endif %}">
+                        {{ chapter_section.title }}
+                      </a>
+                    </div>
+                    {%- if chapter_section.pages %}
+                      <ul id="chapter-{{ book_section.path | slugify }}-{{ loop.index }}" 
+                          class="s-menu__sublist tree-children collapse{% if is_chapter_active %} show{% endif %}">
+                        {%- for page in chapter_section.pages %}
+                          <li class="s-menu__item tree-node">
+                            <span class="tree-branch"></span>
+                            <a href="{{ page.permalink | safe }}" 
+                               class="s-menu__link s-menu__link--page{% if current_path == page.path %} s-menu__link--active{% endif %}">
+                              {{ page.title }}
+                            </a>
+                          </li>
+                        {%- endfor %}
+                      </ul>
+                    {%- endif %}
+                  </li>
+                {%- endfor %}
+              </ul>
+            {%- endif %}
+          </li>
+        {%- endfor %}
+      {%- endblock menu %}
+    </ul>
+  </nav>
+</aside>

@@ -14,7 +14,7 @@ in {
       description = "The server profile the host will use as a base";
     };
     services = mkOption {
-      type = listOf (enum []);
+      type = listOf (enum ["website"]);
       default = [];
       description = "List of services the server will host";
     };

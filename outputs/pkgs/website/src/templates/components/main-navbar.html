@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block main_navbar %}
+    <header>
+      <div class="site-header">
+        <nav>
+          <ul class="nav-links">
+            <li><a href="{{ config.base_url }}"> ooknet</a></li>
+            <li><a href="{{ get_url(path='library') }}"> notes</a></li>
+            <li><a href="{{ get_url(path='resume') }}">󰇮 contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+{% endblock main_navbar %}

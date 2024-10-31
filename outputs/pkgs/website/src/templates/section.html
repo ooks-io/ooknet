@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block body %} {% set page_class="notebook-layout" %} {% endblock body %}
+{% block navbar_extras %}
+  <button class="menu-toggle icon icon--large icon__menu"></button>
+{% endblock navbar_extras %}
+{% block notebook %}
+  <div class="notebook">
+    {% block notebook_menu %}
+      {% include "partials/notebook-menu.html" %}
+    {% endblock notebook_menu %}
+    {% block content %}
+    <article class="content">
+    <h1 class=content__title>{{ section.title | safe }}</h1>
+        {{ section.content | safe }}
+    {% endblock content %}
+    </article>
+  </div>
+{% endblock notebook %}
+

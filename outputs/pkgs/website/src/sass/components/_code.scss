@@ -1,0 +1,512 @@
+@use "../abstracts/" as *;
+
+code {
+  font-family: $font-family-monospace;
+  font-weight: $font-weight-bold;
+  background: var(--clr-surface-0);
+  word-wrap: break-word;
+  padding: 0 0.2rem 0 0.2rem;
+}
+
+pre code {
+  background: var(--clr-crust);
+}
+
+.z-code {
+  color: var(--clr-text);
+  border: 1px solid var(--clr-subtext-0);
+  vertical-align: middle;
+  background: var(--clr-crust);
+  font-size: $font-size-small;
+  font-family: $font-family-monospace;
+  width: 100%;
+  padding: $spacer;
+  margin-bottom: $spacer;
+  overflow-x: auto;
+}
+
+/*pre code {
+  font-family: monospace;
+  font-size: 15px;
+  line-height: 1.5;
+  max-width: 80%;
+  overflow: auto;
+  padding: 1em 1em;
+  display: block;
+  justify-content: center;
+  margin: 25px 25px;
+}*/
+
+// syntax
+
+.z-comment,
+.z-punctuation.z-definition.z-comment {
+  color: var(--clr-subtext-0);
+  font-style: italic;
+  font-weight: $font-weight-regular;
+}
+.z-variable {
+  color: var(--clr-blue);
+}
+.z-string,
+.z-constant.z-other.z-symbol {
+  color: var(--clr-green);
+}
+.z-constant.z-numeric {
+  color: var(--clr-cyan);
+}
+.z-string.z-regexp,
+.z-constant.z-character.z-escape {
+  color: var(--clr-green);
+}
+.z-constant.z-language {
+  color: var(--clr-purple);
+}
+.z-constant.z-character,
+.z-constant.z-other {
+  color: var(--clr-cyan);
+}
+.z-variable.z-member {
+  color: var(--clr-blue);
+}
+.z-keyword,
+.z-keyword.z-operator.z-word {
+  color: var(--clr-red);
+}
+.z-keyword.z-operator {
+  color: var(--clr-orange);
+}
+.z-punctuation.z-separator,
+.z-punctuation.z-terminator {
+  color: var(--clr-text);
+}
+.z-punctuation.z-section {
+  color: var(--clr-text);
+}
+.z-punctuation.z-accessor {
+  color: var(--clr-red);
+}
+.z-punctuation.z-definition.z-annotation {
+  color: var(--clr-text);
+}
+.z-variable.z-other.z-dollar.z-only.z-js,
+.z-variable.z-other.z-object.z-dollar.z-only.z-js,
+.z-variable.z-type.z-dollar.z-only.z-js,
+.z-support.z-class.z-dollar.z-only.z-js {
+  color: var(--clr-blue);
+}
+.z-storage {
+  color: var(--clr-orange);
+}
+.z-storage.z-type {
+  color: var(--clr-orange);
+}
+.z-entity.z-name.z-function {
+  color: var(--clr-blue);
+}
+.z-entity.z-name,
+.z-entity.z-name.z-tag,
+.z-entity.z-name.z-label {
+  color: var(--clr-orange);
+}
+.z-entity.z-other.z-inherited-class {
+  color: #0070b3;
+  text-decoration: underline;
+}
+.z-variable.z-parameter {
+  color: var(--clr-blue);
+}
+.z-variable.z-language {
+  color: var(--clr-blue);
+  font-style: italic;
+}
+.z-entity.z-name.z-tag,
+.z-meta.z-tag.z-sgml {
+  color: var(--clr-blue);
+}
+.z-punctuation.z-definition.z-tag.z-end,
+.z-punctuation.z-definition.z-tag.z-begin,
+.z-punctuation.z-definition.z-tag {
+  color: var(--clr-green);
+}
+.z-entity.z-other.z-attribute-name {
+  color: var(--clr-blue);
+}
+.z-variable.z-function,
+.z-variable.z-annotation {
+  color: var(--clr-blue);
+}
+.z-support.z-function,
+.z-support.z-macro {
+  color: var(--clr-cyan);
+}
+.z-support.z-constant {
+  color: var(--clr-cyan);
+  font-style: italic;
+}
+.z-support.z-type,
+.z-support.z-class {
+  color: var(--clr-blue);
+  font-style: italic;
+}
+.z-invalid {
+  color: var(--clr-red);
+}
+.z-invalid.z-deprecated {
+  color: var(--clr-bright-text);
+  background-color: var(--clr-blue);
+}
+.z-source.z-ruby .z-variable.z-other.z-readwrite {
+  color: var(--clr-blue);
+}
+.z-source.z-css .z-entity.z-name.z-tag,
+.z-source.z-sass .z-entity.z-name.z-tag,
+.z-source.z-scss .z-entity.z-name.z-tag,
+.z-source.z-less .z-entity.z-name.z-tag,
+.z-source.z-stylus .z-entity.z-name.z-tag {
+  color: var(--clr-orange);
+}
+.z-source.z-css .z-support.z-type,
+.z-source.z-sass .z-support.z-type,
+.z-source.z-scss .z-support.z-type,
+.z-source.z-less .z-support.z-type,
+.z-source.z-stylus .z-support.z-type {
+  color: var(--clr-text);
+}
+.z-support.z-type.z-property-name {
+  color: var(--clr-green);
+}
+.z-constant.z-numeric.z-line-number.z-find-in-files {
+  color: var(--clr-text);
+}
+.z-constant.z-numeric.z-line-number.z-match {
+  color: var(--clr-blue);
+}
+.z-entity.z-name.z-filename.z-find-in-files {
+  color: var(--clr-blue);
+}
+.z-message.z-error {
+  color: var(--clr-red);
+}
+.z-source.z-json
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta.z-structure.z-dictionary.z-json
+  .z-string.z-quoted.z-double.z-json,
+.z-source.z-json
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta.z-structure.z-dictionary.z-json
+  .z-punctuation.z-definition.z-string {
+  color: var(--clr-green);
+}
+.z-source.z-json
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta.z-structure.z-dictionary.z-json
+  .z-string.z-quoted.z-double.z-json,
+.z-source.z-json
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta.z-structure.z-dictionary.z-json
+  .z-punctuation.z-definition.z-string {
+  color: var(--clr-green);
+}
+.z-source.z-json
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta.z-structure.z-dictionary.z-json
+  .z-string.z-quoted.z-double.z-json,
+.z-source.z-json
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta.z-structure.z-dictionary.z-json
+  .z-punctuation.z-definition.z-string {
+  color: var(--clr-green);
+}
+.z-source.z-json
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta.z-structure.z-dictionary.z-json
+  .z-string.z-quoted.z-double.z-json,
+.z-source.z-json
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta.z-structure.z-dictionary.z-json
+  .z-punctuation.z-definition.z-string {
+  color: var(--clr-green);
+}
+.z-source.z-json
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta.z-structure.z-dictionary.z-json
+  .z-string.z-quoted.z-double.z-json,
+.z-source.z-json
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta.z-structure.z-dictionary.z-json
+  .z-punctuation.z-definition.z-string {
+  color: var(--clr-green);
+}
+.z-source.z-json
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta.z-structure.z-dictionary.z-json
+  .z-string.z-quoted.z-double.z-json,
+.z-source.z-json
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta.z-structure.z-dictionary.z-json
+  .z-punctuation.z-definition.z-string {
+  color: var(--clr-green);
+}
+.z-source.z-json
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta.z-structure.z-dictionary.z-json
+  .z-string.z-quoted.z-double.z-json,
+.z-source.z-json
+  .z-meta
+  .z-meta
+  .z-meta
+  .z-meta.z-structure.z-dictionary.z-json
+  .z-punctuation.z-definition.z-string {
+  color: var(--clr-green);
+}
+.z-source.z-json
+  .z-meta
+  .z-meta.z-structure.z-dictionary.z-json
+  .z-string.z-quoted.z-double.z-json,
+.z-source.z-json
+  .z-meta
+  .z-meta.z-structure.z-dictionary.z-json
+  .z-punctuation.z-definition.z-string {
+  color: var(--clr-green);
+}
+.z-source.z-json
+  .z-meta.z-structure.z-dictionary.z-json
+  .z-string.z-quoted.z-double.z-json,
+.z-source.z-json
+  .z-meta.z-structure.z-dictionary.z-json
+  .z-punctuation.z-definition.z-string {
+  color: var(--clr-green);
+}
+.z-markup.z-heading {
+  color: var(--clr-red);
+  font-weight: bold;
+}
+.z-string.z-other.z-link,
+.z-markup.z-underline.z-link {
+  color: var(--clr-blue);
+  text-decoration: underline;
+  font-style: italic;
+}
+.z-punctuation.z-definition.z-image {
+  color: var(--clr-orange);
+}
+.z-markup.z-italic {
+  color: var(--clr-purple);
+  font-style: italic;
+}
+.z-markup.z-bold {
+  color: var(--clr-red);
+  font-weight: bold;
+}
+.z-markup.z-italic .z-markup.z-bold,
+.z-markup.z-bold .z-markup.z-italic {
+  font-weight: bold;
+  font-style: italic;
+}
+.z-markup.z-raw {
+  background-color: var(--clr-text);
+}
+.z-markup.z-raw.z-inline {
+  background-color: var(--clr-text);
+}
+.z-meta.z-separator {
+  color: var(--clr-text);
+  background-color: var(--clr-text);
+  font-weight: bold;
+}
+.z-markup.z-quote {
+  color: var(--clr-subtext);
+  font-style: italic;
+}
+.z-markup.z-list.z-numbered.z-bullet,
+.z-markup.z-list .z-punctuation.z-definition.z-list_item {
+  color: var(--clr-orange);
+}
+.z-markup.z-inserted {
+  color: var(--clr-green);
+}
+.z-markup.z-changed {
+  color: var(--clr-green);
+}
+.z-markup.z-deleted {
+  color: var(--clr-red);
+}
+.z-markup.z-strike {
+  color: var(--clr-orange);
+}
+.z-markup.z-table {
+  color: var(--clr-blue);
+  background-color: var(--clr-mantle);
+}
+.z-text.z-html.z-markdown .z-markup.z-raw.z-inline {
+  color: var(--clr-purple);
+}
+.z-text.z-html.z-markdown .z-meta.z-dummy.z-line-break {
+  color: var(--clr-text);
+}
+.z-markup.z-raw.z-block.z-fenced.z-markdown {
+  color: var(--clr-text);
+  background-color: var(--clr-mantle);
+}
+.z-punctuation.z-definition.z-fenced.z-markdown,
+.z-variable.z-language.z-fenced.z-markdown {
+  color: var(--clr-text);
+  background-color: var(--clr-mantle);
+}
+.z-variable.z-language.z-fenced.z-markdown {
+  color: var(--clr-text);
+}
+.z-markup.z-inserted.z-git_gutter {
+  color: var(--clr-green);
+}
+.z-markup.z-changed.z-git_gutter {
+  color: var(--clr-blue);
+}
+.z-markup.z-deleted.z-git_gutter {
+  color: var(--clr-red);
+}
+.z-markup.z-ignored.z-git_gutter {
+  color: var(--clr-text);
+}
+.z-markup.z-untracked.z-git_gutter {
+  color: var(--clr-text);
+}
+.z-gutter_color {
+  color: var(--clr-bright-text);
+}
+.z-acejump.z-label.z-blue {
+  color: var(--clr-text);
+  background-color: var(--clr-blue);
+}
+.z-acejump.z-label.z-green {
+  color: var(--clr-text);
+  background-color: var(--clr-green);
+}
+.z-acejump.z-label.z-orange {
+  color: var(--clr-text);
+  background-color: var(--clr-blue);
+}
+.z-acejump.z-label.z-purple {
+  color: var(--clr-text);
+  background-color: var(--clr-purple);
+}
+.z-sublimelinter.z-mark.z-warning {
+  color: var(--clr-blue);
+}
+.z-sublimelinter.z-gutter-mark {
+  color: var(--clr-text);
+}
+.z-sublimelinter.z-mark.z-error {
+  color: var(--clr-red);
+}

@@ -1,0 +1,151 @@
+@use "../abstracts/" as *;
+
+.s-menu__link-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.s-menu__link {
+  flex-grow: 1;
+}
+
+.s-menu__toggle,
+.s-menu__toggle-placeholder {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.s-menu__toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.s-menu__toggle::after {
+  content: "▶";
+  font-size: 0.8rem;
+}
+
+.s-menu__toggle:not(.collapsed)::after {
+  transform: rotate(90deg);
+}
+
+.collapse {
+  display: none;
+}
+
+.collapse.show {
+  display: block;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.s-menu__sublist {
+  padding-left: 1.5rem;
+}
+
+.s-menu {
+  &__item {
+  }
+  &__list,
+  &__sublist {
+    margin: 0;
+  }
+}
+.tree-node {
+  margin-bottom: 0.25rem;
+}
+.sidebar {
+  background-color: var(--clr-crust);
+  border: $solid-border;
+  padding: $spacer;
+}
+
+.tree-view {
+  font-family: $font-family-monospace;
+}
+
+.tree-root {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.tree-node {
+  position: relative;
+  padding-left: 20px;
+}
+
+.tree-branch::before,
+.tree-branch::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.tree-branch::before {
+  border-left: $border-light;
+  height: 100%;
+  top: 0;
+}
+
+.tree-branch::after {
+  border-top: $border-light;
+  width: 20px;
+  top: 12px;
+}
+
+.tree-node:last-child > .tree-branch::before {
+  height: 12px;
+}
+
+.tree-children {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.s-menu {
+  &__item {
+    margin-bottom: 0;
+  }
+  &__list,
+  &__sublist {
+    margin: 0;
+  }
+}
+.s-menu__link {
+  text-decoration: none;
+  color: $font-color-text;
+}
+
+.s-menu__link:hover,
+.s-menu__link--active {
+  color: var(--clr-green);
+}
+
+.s-menu__link--book {
+  font-weight: bold;
+}
+
+.s-menu__link--chapter {
+  font-weight: $font-weight-bolder;
+}
+.s-menu__link--page {
+  font-weight: $font-weight-regular;
+  font-size: $font-size-small;
+  padding-left: 0.5rem;
+}

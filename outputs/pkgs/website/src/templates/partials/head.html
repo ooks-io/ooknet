@@ -1,0 +1,27 @@
+{% block head %}
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta content="#ffffff" name="theme-color" />
+  <meta content="#da532c" name="msapplication-TileColor" />
+  <meta name="base" content={{ config.base_url | safe }} />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="mobule-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+  {% if page %} {% if page.description %}
+  <meta name="description" content="{{ page.description }}" />
+  {% elif config.description %}
+  <meta name="description" content="{{ config.description }}" />
+  {% endif %} {% elif config.description %}
+  <meta name="description" content="{{ config.description }}" />
+  {% endif %}
+
+  <title>{% block title %}{{ config.title }}{% endblock title %}</title>
+  <!-- main css style sheet -->
+  {% block css %}
+  <link rel="stylesheet" href="{{ get_url(path="main.css") | safe }}">
+  {% endblock css %}
+{% endblock head %}

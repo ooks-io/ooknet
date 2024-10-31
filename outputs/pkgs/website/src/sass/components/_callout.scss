@@ -1,0 +1,33 @@
+@use "../abstracts/" as *;
+.callout {
+  padding: $spacer / 2 $spacer;
+  background: var(--clr-crust);
+  margin: $spacer 0;
+  border: 1px solid var(--clr-surface-0);
+
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: $spacer / 2;
+    font-weight: $font-weight-bolder;
+    margin-bottom: $spacer;
+  }
+  &--tip {
+    border-left: 5px solid var(--clr-bright-green);
+    .callout__title {
+      color: var(--clr-green);
+    }
+  }
+  &--info {
+    border-left: 5px solid var(--clr-bright-blue);
+    .callout__title {
+      color: var(--clr-blue);
+    }
+  }
+  &--warning {
+    border-left: 5px solid var(--clr-bright-gold);
+    .callout__title {
+      color: var(--clr-bright-gold);
+    }
+  }
+}

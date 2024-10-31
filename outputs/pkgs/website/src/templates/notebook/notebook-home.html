@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block notebook %}
+<h1 class="content__title">{{ section.title }}</h1>
+{{ section.content | safe }}
+
+<div class="notebook-grid">
+  {% set library = get_section(path="notes/_index.md") %}
+  {% for book in library.subsections %}
+    {% set book_section = get_section(path=book) %}
+    <div class="notebook-card">
+      <h2 class="notebook-card__title">
+        <a href="{{ book_section.permalink | safe }}" class="notebook-card__link">
+          {{ book_section.title }}
+        </a>
+      </h2>
+      {% if book_section.description %}
+        <p class="notebook-card__description">{{ book_section.description }}</p>
+      {% endif %}
+      {% if book_section.subsections %}
+        <ul class="notebook-card__chapters">
+          {% for chapter in book_section.subsections %}
+            {% set chapter_section = get_section(path=chapter) %}
+            <li class="notebook-card__chapter">
+              <a href="{{ chapter_section.permalink | safe }}" class="notebook-card__chapter-link">
+                {{ chapter_section.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
+{% endblock notebook %}

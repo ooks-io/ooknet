@@ -1,0 +1,20 @@
+@use "../abstracts" as *;
+
+.content {
+  h1,
+  h2,
+  h3,
+  h4 {
+    display: flex;
+    align-items: center;
+  }
+  &__title {
+    justify-content: center;
+  }
+  li {
+    margin-bottom: $spacer;
+  }
+  .zola-anchor {
+    margin-left: $spacer / 2;
+  }
+}

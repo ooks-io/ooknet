@@ -12,7 +12,7 @@ in {
       hostname = "ooknode";
       type = "vm";
       profile = "linode";
-      services = [];
+      services = ["website"];
     };
   };
 }

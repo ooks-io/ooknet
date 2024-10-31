@@ -1,0 +1,15 @@
+@use "../abstracts" as *;
+
+:root {
+  // Generate light theme variables (default)
+  @each $color, $value in map-get($themes, "light") {
+    --clr-#{$color}: #{$value};
+  }
+
+  // Dark theme class
+  &.dark-theme {
+    @each $color, $value in map-get($themes, "dark") {
+      --clr-#{$color}: #{$value};
+    }
+  }
+}

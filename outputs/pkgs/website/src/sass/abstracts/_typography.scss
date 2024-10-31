@@ -1,0 +1,33 @@
+$paragraph-margin-bottom: 1rem;
+
+$border-solid: 1px solid var(--clr-text);
+$border-light: 1px solid var(--clr-subtext-0);
+
+$spacer: 1rem;
+$horizontal-rule: 1px solid var(--clr-overlay-2);
+
+$font-family-monospace: "Jetbrains Mono", system-ui, monospace;
+$font-family-sans: "Geist Sans", "Geist", system-ui, sans-serif;
+$font-family-title: "Geist Sans", "Geist", system-ui, sans-serif;
+$font-family-header: "Geist Sans", "Geist", system-ui, sans-serif;
+
+$font-family-base: $font-family-sans;
+$font-family-code: $font-family-monospace;
+
+$font-size-base: 1rem;
+$font-size-small: $font-size-base * 0.875;
+$font-size-medium: $font-size-base * 1.125;
+$font-size-large: $font-size-base * 1.25;
+$font-size-xl: $font-size-base * 2;
+
+$font-weight-thin: 200;
+$font-weight-regular: 400;
+$font-weight-bold: 700;
+$font-weight-bolder: 800;
+
+$font-color-text: var(--clr-text);
+$font-color-bright: var(--clr-bright-text);
+$font-color-link: var(--clr-blue);
+$font-color-link-hover: var(--clr-bright-blue);
+
+$font-style-link-hover: underline;

@@ -1,0 +1,93 @@
+// partials/navbar.scss
+
+@use "../abstracts/" as *;
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  z-index: 1000;
+  font-family: "JetBrains Mono", monospace;
+  background-color: var(--clr-crust);
+  border-bottom: solid 1px var(--clr-text);
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  height: $navbar-height;
+
+  .switch {
+    cursor: pointer;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    position: relative;
+
+    &__input {
+      display: none;
+    }
+    &__icon {
+      position: absolute;
+      transition: opacity;
+      &.icon__moon {
+        opacity: 0;
+      }
+    }
+    &:hover .switch__icon {
+      color: var(--clr-green);
+    }
+    &__input:checked ~ .switch__icon {
+      &.icon__sun {
+        opacity: 0;
+      }
+      &.icon__moon {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__tab {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+  }
+  &__tab-item {
+    margin-right: 10px;
+    &:last-child {
+      margin-right: 0; // Remove margin from the last item
+    }
+  }
+  &__link {
+    color: var(--clr-text);
+    text-decoration: none;
+    padding: 2px 5px;
+    background-color: var(--clr-base);
+
+    &:hover {
+      background-color: var(--clr-surface-1);
+    }
+    &--notes {
+    }
+    &--home {
+    }
+    &--contact {
+    }
+  }
+  &__info {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  &__git {
+    color: var(--clr-purple);
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+  }
+}
