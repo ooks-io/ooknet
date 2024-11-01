@@ -10,9 +10,10 @@ in {
       inherit withSystem;
       system = "x86_64-linux";
       hostname = "ooknode";
+      domain = "ooknet.org";
       type = "vm";
       profile = "linode";
-      services = ["website"];
+      services = ["website" "forgejo"];
     };
   };
 }

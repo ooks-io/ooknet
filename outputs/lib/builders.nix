@@ -89,6 +89,7 @@
     type,
     profile,
     services,
+    domain ? "",
     additionalModules ? [],
     specialArgs ? {},
   }:
@@ -98,7 +99,7 @@
       additionalModules = concatLists [
         (singleton {
           ooknet.server = {
-            inherit services;
+            inherit domain services;
           };
         })
         core

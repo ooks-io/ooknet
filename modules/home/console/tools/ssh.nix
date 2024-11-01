@@ -17,6 +17,12 @@ in {
           hostname = "github.com";
           identityFile = "${osConfig.age.secrets.github_key.path}";
         };
+        "git.ooknet.org" = {
+          user = "forgejo";
+          port = 2222;
+          hostname = "git.ooknet.org";
+          identityFile = "${osConfig.age.secrets.ooknet_org.path}";
+        };
       };
     };
   };
