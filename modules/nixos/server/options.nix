@@ -1,6 +1,6 @@
 {lib, ...}: let
-  inherit (lib) mkOption;
-  inherit (lib.types) nullOr listOf enum bool;
+  inherit (lib) mkOption mkEnableOption;
+  inherit (lib.types) str nullOr listOf enum bool;
 in {
   options.ooknet.server = {
     exitNode = mkOption {
@@ -14,9 +14,20 @@ in {
       description = "The server profile the host will use as a base";
     };
     services = mkOption {
-      type = listOf (enum ["website"]);
+      type = listOf (enum ["website" "forgejo"]);
       default = [];
       description = "List of services the server will host";
+    };
+    domain = mkOption {
+      type = str;
+      default = "";
+    };
+
+    webserver = {
+      caddy.enable = mkEnableOption "";
+    };
+    database = {
+      postgresql.enable = mkEnableOption "";
     };
   };
 }

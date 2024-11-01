@@ -9,8 +9,7 @@
   inherit (self'.packages) website;
 in {
   config = mkIf (elem "website" services) {
-    users.groups.www = {};
-
+    ooknet.server.webserver.caddy.enable = true;
     systemd.tmpfiles.rules = [
       "d /var/www 0775 caddy www"
       "d /var/www/ooknet.org 0775 caddy www"
@@ -40,34 +39,29 @@ in {
     };
 
     # using caddy because it makes my life easy
-    services.caddy = {
-      enable = true;
-      group = "www";
+    services.caddy.virtualHosts = {
+      "ooknet.org".extraConfig =
+        # sh
+        ''
+          encode zstd gzip
 
-      virtualHosts = {
-        "ooknet.org".extraConfig =
-          # sh
-          ''
-            encode zstd gzip
-
-            header {
-              Strict-Transport-Security "max-age=31536000;"
-              X-XSS-Protection "1; mode=block"
-              X-Frame-Options "DENY"
-              X-Content-Type-Options "nosniff"
-              -Server
+          header {
+            Strict-Transport-Security "max-age=31536000;"
+            X-XSS-Protection "1; mode=block"
+            X-Frame-Options "DENY"
+            X-Content-Type-Options "nosniff"
+            -Server
 
 
-              Referrer-Policy: no-referrer
-            }
+            Referrer-Policy: no-referrer
+          }
 
-            root * /var/www/ooknet.org/
-            file_server
-          '';
-        "www.ooknet.org".extraConfig = ''
-          redir https://ooknet.org{uri}
+          root * /var/www/ooknet.org/
+          file_server
         '';
-      };
+      "www.ooknet.org".extraConfig = ''
+        redir https://ooknet.org{uri}
+      '';
     };
   };
 }

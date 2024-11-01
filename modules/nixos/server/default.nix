@@ -1,7 +1,9 @@
 {
   imports = [
     ./options.nix
+    ./debloat.nix
     ./services
-    ./profiles
+    ./webserver
+    ./database
   ];
 }

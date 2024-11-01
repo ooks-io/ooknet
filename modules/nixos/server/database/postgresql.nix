@@ -6,19 +6,33 @@
   inherit (lib) mkIf elem optionals;
   inherit (config.ooknet.server) services database;
 in {
-  config = mkIf database.postgresql {
+  config = mkIf database.postgresql.enable {
     services.postgresql = {
       enable = true;
+
+      checkConfig = true;
+
       ensureDatabases = optionals (elem "forgejo" services) ["forgejo"];
-      ensureUsers = optionals (elem "forgejo" services) [
-        {
-          name = "forgejo";
-          ensurePermissions = {
-            "DATABASE forgejo" = "ALL PRIVILEGES";
-          };
-        }
-      ];
+
+      ensureUsers =
+        [
+          {
+            name = "postgres";
+            ensureClauses = {
+              login = true;
+              superuser = true;
+              replication = true;
+              createdb = true;
+              createrole = true;
+            };
+          }
+        ]
+        ++ (optionals (elem "forgejo" services) [
+          {
+            name = "forgejo";
+            ensureDBOwnership = true;
+          }
+        ]);
     };
   };
 }
-

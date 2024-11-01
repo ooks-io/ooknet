@@ -1,5 +1,5 @@
 {
   imports = [
-    ./linode.nix
+    ./caddy.nix
   ];
 }
