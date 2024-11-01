@@ -25,6 +25,12 @@ in {
       owner = "${admin.name}";
       group = "users";
     };
+    ooknet_org = mkIf admin.homeManager {
+      file = "${self}/secrets/ooknet_org.age";
+      path = "/home/${admin.name}/.ssh/ooknet_org";
+      owner = "${admin.name}";
+      group = "users";
+    };
     spotify_key = mkIf admin.homeManager {
       file = "${self}/secrets/spotify_key.age";
       owner = "${admin.name}";
