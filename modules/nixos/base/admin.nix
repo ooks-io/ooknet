@@ -30,6 +30,7 @@ in {
           "libvirtd"
           "streamer"
           "torrenter"
+          "www"
         ];
     };
   };
