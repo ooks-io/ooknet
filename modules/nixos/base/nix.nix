@@ -27,7 +27,7 @@ in {
     variables = paths;
   };
   nix = {
-    # package = pkgs.lix;
+    package = pkgs.lix;
 
     # collect garbage
     gc = {
