@@ -32,7 +32,7 @@ in {
       };
 
       colorscheme = {
-        name = "gruvbox-material-medium";
+        name = "gruvbox-material";
         variant = "dark";
       };
     };

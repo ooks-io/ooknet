@@ -2,7 +2,6 @@
   lib,
   self,
   inputs,
-  pkgs,
   ...
 }: let
   # My person functions
