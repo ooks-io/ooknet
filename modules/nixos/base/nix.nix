@@ -7,8 +7,11 @@
   ...
 }: let
   inherit (builtins) attrValues;
-  inherit (lib) mkIf mapAttrsToList;
+  inherit (lib) mkIf mapAttrs mapAttrsToList filterAttrs isType;
   inherit (config.ooknet.host) role admin;
+
+  flakeInputs = filterAttrs (_: v: isType "flake" v) inputs;
+
   paths = {
     FLAKE = "/home/${admin.name}/.config/ooknet";
     WEBSITE = "${paths.FLAKE}/outputs/pkgs/website";
@@ -35,11 +38,9 @@ in {
       dates = "Sun *-*-* 14:00";
       options = "--delete-older-than 14d";
     };
-    registry = {
-      nixpkgs.flake = inputs.nixpkgs;
-      default.flake = inputs.nixpkgs;
-    };
-    nixPath = mapAttrsToList (name: _: "${name}=${name}") config.nix.registry;
+    # from github:fufexan
+    registry = mapAttrs (_: v: {flake = v;}) flakeInputs;
+    nixPath = mapAttrsToList (key: _: "${key}=flake:${key}") config.nix.registry;
     settings = {
       trusted-users = ["@wheel" "root" "builder"];
       experimental-features = ["nix-command" "flakes"];
