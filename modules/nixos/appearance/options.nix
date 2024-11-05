@@ -54,8 +54,8 @@ in {
     # Credit to github:misterio77/nix-colors
     colorscheme = {
       name = mkOption {
-        type = enum ["gruvbox-material-medium"];
-        default = "gruvbox-material-medium";
+        type = enum ["gruvbox-material"];
+        default = "gruvbox-material";
       };
       variant = mkOption {
         type = enum ["dark" "light"];
