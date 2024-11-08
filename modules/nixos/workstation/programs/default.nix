@@ -3,5 +3,6 @@
     ./1password.nix
     ./dconf.nix
     ./kdeconnect.nix
+    ./waydroid.nix
   ];
 }
