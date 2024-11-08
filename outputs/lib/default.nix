@@ -25,8 +25,7 @@
         inherit types translate;
       };
     in {
-      inherit check types translate;
-      inherit (utils) lighten darken saturate desaturate mkColorScale;
+      inherit check types translate utils;
     };
   };
 in {
