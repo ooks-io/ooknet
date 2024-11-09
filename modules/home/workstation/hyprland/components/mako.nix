@@ -28,7 +28,7 @@ in {
         height=100
         [urgency=critical]
         padding=3,3
-        width=100
+        width=300
         height=100
         anchor=top-center
         border-color=#${palette.base08}dd
