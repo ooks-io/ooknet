@@ -1,5 +1,6 @@
 {
   imports = [
+    ./virtualization.nix
     ./bat.nix
     ./btop.nix
     ./git.nix

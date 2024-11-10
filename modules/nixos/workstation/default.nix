@@ -14,6 +14,7 @@ in {
     ./programs
     ./gaming
     ./environment
+    ./virtualization
   ];
 
   home-manager.users.${admin.name} = mkIf admin.homeManager {

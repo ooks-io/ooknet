@@ -8,7 +8,7 @@ in {
       default = null;
     };
     profiles = mkOption {
-      type = listOf (enum ["gaming" "communication" "productivity" "creative" "media"]);
+      type = listOf (enum ["gaming" "communication" "productivity" "creative" "media" "virtualization"]);
       default = [];
     };
     environment = mkOption {
