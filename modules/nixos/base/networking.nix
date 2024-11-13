@@ -7,13 +7,8 @@ in {
     useDHCP = mkForce false;
     usePredictableInterfaceNames = mkDefault true;
     nameservers = [
-      #quad9 IPv6
-      "2620:fe::fe"
-      "2620:fe::9"
-
-      #quad9 IPv4
-      "9.9.9.9"
-      "149.112.112.112"
+      "8.8.8.8"
+      "8.8.4.4"
     ];
     networkmanager = {
       enable = true;
@@ -32,7 +27,7 @@ in {
       enable = true;
 
       domains = ["~."];
-      fallbackDns = ["9.9.9.9"]; #quad9
+      fallbackDns = ["8.8.8.8"]; # google dns
     };
   };
   systemd.services.NetworkManager-wait-online.enable = false;
