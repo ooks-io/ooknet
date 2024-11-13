@@ -6,5 +6,6 @@
     ./kdeconnect.nix
     ./ookbrightness.nix
     ./zellijMenu.nix
+    ./nemo.nix
   ];
 }
