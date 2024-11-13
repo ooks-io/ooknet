@@ -8,6 +8,7 @@ in {
       "SUPER,          return,        exec,     ${binds.terminal}"
       "SUPER,          e,             exec,     ${binds.terminalLaunch} $EDITOR"
       "SUPERSHIFT,     P,             exec,     ${binds.password}"
+      "SUPERCTRL,      P,             exec,     ${binds.quickpass}"
       "SUPER,          d,             exec,     ${binds.discord}"
       "SUPERSHIFT,     e,             exec,     ${binds.fileManager}"
       "SUPERSHIFT,     S,             exec,     ${binds.steam}"

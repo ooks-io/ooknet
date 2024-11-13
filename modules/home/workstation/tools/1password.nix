@@ -7,6 +7,9 @@
   cfg = osConfig.programs._1password;
 in {
   config = mkIf cfg.enable {
-    ooknet.binds.password = "1password";
+    ooknet.binds = {
+      password = "1password";
+      quickpass = "1password --quick-access";
+    };
   };
 }

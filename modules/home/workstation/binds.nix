@@ -20,6 +20,7 @@ in {
     powerMenu = mkBind "No power menu is enabled";
     lock = mkBind "No screen locker enabled";
     password = mkBind "No password manager enabled";
+    quickpass = mkBind "1Password module is not enabled";
     zellijMenu = mkBind "Zellij Menu is not enabled";
     factorio = mkBind "Gaming module is not enabled";
     volume = {
