@@ -2,7 +2,8 @@
   imports = [
     ./rofi.nix
     ./hyprcapture.nix
-    ./mako.nix
+    #  ./mako.nix
+    ./swaync.nix
     ./tools.nix
     ./waybar.nix
     ./hypridle.nix
