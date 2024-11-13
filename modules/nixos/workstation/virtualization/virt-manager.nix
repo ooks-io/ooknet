@@ -21,9 +21,8 @@ in {
         
         win-virtio
         win-spice
+        adwaita-icon-theme # virt-manager needs this
         ;
-      # virt-manager needs this
-      inherit (pkgs.gnome) adwaita-icon-theme;
     };
     # sets up dconf settins for qemu and add virt-manager to systemPackages
     programs.virt-manager = {
