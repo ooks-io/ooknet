@@ -1,6 +1,10 @@
-{osConfig, ...}: let
-  inherit (osConfig.ooknet.appearance) colorscheme cursor;
-  inherit (colorscheme) palette;
+{
+  osConfig,
+  hozen,
+  ...
+}: let
+  inherit (osConfig.ooknet.appearance) cursor;
+  inherit (hozen) color;
 in {
   wayland.windowManager.hyprland = {
     settings = {
@@ -11,8 +15,8 @@ in {
         gaps_in = 10;
         gaps_out = 10;
         border_size = 2;
-        "col.active_border" = "0xff${palette.base05}";
-        "col.inactive_border" = "0xff${palette.base02}";
+        "col.active_border" = "0xff${color.border.active}";
+        "col.inactive_border" = "0xff${color.border.inactive}";
       };
 
       exec-once = [
@@ -30,14 +34,13 @@ in {
           enabled = false;
           ignore_opacity = true;
         };
-
-        drop_shadow = true;
-        shadow_range = 12;
-        shadow_offset = "3 3";
-        "col.shadow" = "0x44000000";
-        "col.shadow_inactive" = "0x66000000";
+        shadow = {
+          range = 12;
+          offset = "3 3";
+          color = "0x44000000";
+          color_inactive = "0x66000000";
+        };
       };
-
       animations = {
         enabled = false;
       };
