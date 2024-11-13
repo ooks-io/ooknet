@@ -2,6 +2,7 @@
   imports = [
     ./virtualization.nix
     ./bat.nix
+    ./networking.nix
     ./btop.nix
     ./git.nix
     ./fzf.nix
