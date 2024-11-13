@@ -2,6 +2,7 @@
   inherit (ook.lib.color.utils) mkLightColorScheme mkDarkColorScheme;
 
   darkScheme = mkDarkColorScheme {
+    slug = "gruvbox-material-dark-medium";
     neutrals = {
       "50" = "dfd2b3";
       "100" = "d9c7a5";
@@ -17,12 +18,12 @@
       "600" = "585350";
       "650" = "4d4947";
       "700" = "3f3b3b";
-      "750" = "343232";
+      "750" = "32302f";
       "800" = "282828";
       "850" = "212121";
       "900" = "1a1a1a";
     };
-    primary = "ea6962";
+    primary = "a9b665";
     red = "ea6962";
     orange = "e78a4e";
     yellow = "d8a657";
@@ -37,6 +38,7 @@
   };
 
   lightScheme = mkLightColorScheme {
+    slug = "gruvbox-material-light-soft";
     neutrals = {
       "50" = "f7efda";
       "100" = "f4eac8";
