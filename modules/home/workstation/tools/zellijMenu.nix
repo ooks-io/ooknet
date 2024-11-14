@@ -10,7 +10,7 @@
   inherit (config.ooknet) binds;
   zellijmenu = pkgs.writeShellApplication {
     name = "zellijmenu";
-    runtimeInputs = with pkgs; [coreutils rofi-wayland];
+    runtimeInputs = with pkgs; [zellij coreutils rofi-wayland];
     text =
       /*
       bash
@@ -91,7 +91,7 @@
                 echo "No layout given"
                 continue
               fi
-              zellij_cmd -s "$session_name" --layout "$layout"
+              zellij_cmd  --layout "$layout" attach -c "$session_name"
               break
               ;;
             "select")
