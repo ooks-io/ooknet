@@ -1,37 +1,42 @@
 {
   osConfig,
+  hozen,
   lib,
   ...
 }: let
-  inherit (osConfig.ooknet.appearance) colorscheme fonts;
-  inherit (colorscheme) palette;
+  inherit (osConfig.ooknet.appearance) fonts;
   inherit (osConfig.ooknet.workstation) environment;
+  inherit (hozen) color;
   inherit (lib) mkIf;
 in {
   config = mkIf (environment == "hyprland") {
     services.mako = {
       enable = true;
+      layer = "overlay";
       font = "${fonts.regular.family} 12";
-      padding = "10,10";
       anchor = "top-right";
       width = 300;
       height = 100;
       borderSize = 2;
       defaultTimeout = 3000;
-      backgroundColor = "#${palette.base00}dd";
-      borderColor = "#${palette.base05}dd";
-      textColor = "#${palette.base05}dd";
+      backgroundColor = "#${color.layout.menu}";
+      borderColor = "#${color.border.active}";
+      textColor = "#${color.typography.text}";
       extraConfig = ''
         [app-name="system-notify"]
-        padding=3,3
+        text-alignment=center
+        font=${fonts.regular.family} 16
+        anchor=top-center
         width=100
         height=100
+        [app-name="spotify_player"]
+        border-color=#${color.green.base}
         [urgency=critical]
         padding=3,3
         width=300
         height=100
         anchor=top-center
-        border-color=#${palette.base08}dd
+        border-color=#${color.red.base}dd
       '';
     };
   };
