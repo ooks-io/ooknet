@@ -3,6 +3,7 @@
   lib,
   inputs',
   osConfig,
+  hozen,
   ...
 }: let
   inherit (lib) mkIf mkMerge;
@@ -45,7 +46,7 @@ in {
             # onepassword-password-manager # cannot get this to work unfree issue.
           ];
           settings = import ./settings/ooksJs.nix;
-          userChrome = import ./theme/ooksfox.nix {inherit fonts palette;};
+          userChrome = import ./theme/ooksfox.nix {inherit fonts hozen;};
           userContent = import ./theme/penguinFoxContent.nix;
         };
         profiles.testing = {
