@@ -19,7 +19,7 @@
     workstation = {
       environment = "hyprland";
       theme = "minimal";
-      profiles = ["virtualization" "gaming" "media" "communication" "productivity"];
+      profiles = ["creative" "virtualization" "gaming" "media" "communication" "productivity"];
       default = {
         browser = "firefox";
         terminal = "foot";
