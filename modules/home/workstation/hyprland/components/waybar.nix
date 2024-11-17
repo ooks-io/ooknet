@@ -3,10 +3,11 @@
   lib,
   pkgs,
   osConfig,
+  hozen,
   ...
 }: let
-  inherit (osConfig.ooknet.appearance) colorscheme fonts;
-  inherit (colorscheme) palette;
+  inherit (osConfig.ooknet.appearance) fonts;
+  inherit (hozen) color;
   inherit (osConfig.ooknet.hardware) monitors;
   inherit (osConfig.ooknet.workstation) environment;
   inherit (lib) mkIf head;
@@ -90,7 +91,7 @@ in {
           * {
             font-family: "${fonts.monospace.family}";
             font-size: 19px;
-            border: solid #${palette.base05};
+            border: solid #${color.border.base};
           }
 
           window#waybar {
@@ -101,32 +102,32 @@ in {
           #clock,
           #battery,
           #workspaces {
-            background-color: #${palette.base00};
+            background-color: #${color.layout.header};
             padding-right: 10px;
           }
 
           #clock {
             padding-left: 10px;
-            border: 2px solid #${palette.base05};
+            border: 2px solid #${color.border.base};
             border-right: 0px;
             border-top-left-radius: 10px;
           }
 
           #battery {
             padding-left: 10px;
-            border-top: 2px solid #${palette.base05};
-            border-bottom: 2px solid #${palette.base05};
+            border-top: 2px solid #${color.border.base};
+            border-bottom: 2px solid #${color.border.base};
             border-left: 0px;
           }
 
           #battery.good {
-            color: #${palette.base0B};
+            color: #${color.success.base};
           }
           #battery.warning {
-            color: #${palette.base0A};
+            color: #${color.warning.base};
           }
           #battery.critical {
-            color: #${palette.base08};
+            color: #${color.error.base};
           }
 
           #tray {
@@ -137,7 +138,7 @@ in {
           }
 
           #workspaces {
-            border: 2px solid #${palette.base05};
+            border: 2px solid #${color.border.base};
             border-left: 0;
             border-top-right-radius: 10px;
           }
@@ -145,15 +146,15 @@ in {
           #workspace button,
           #workspaces button.active,
           #workspaces button.visible {
-            color: #${palette.base0B};
+            color: #${color.primary.base};
           }
 
           #workspaces button.urgent {
-            color: #${palette.base08};
+            color: #${color.orange.base};
           }
 
           #custom-hyprrecord {
-            color: #${palette.base08};
+            color: #${color.red.base};
             padding-right: 20px;
           }
         '';

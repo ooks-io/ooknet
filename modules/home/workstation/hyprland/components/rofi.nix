@@ -2,13 +2,14 @@
   lib,
   config,
   osConfig,
+  hozen,
   pkgs,
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (osConfig.ooknet.appearance) colorscheme fonts;
-  inherit (colorscheme) palette;
+  inherit (osConfig.ooknet.appearance) fonts;
   inherit (osConfig.ooknet.workstation) environment;
+  inherit (hozen) color;
   inherit (config.lib.formats.rasi) mkLiteral;
 in {
   config = mkIf (environment == "hyprland") {
@@ -19,10 +20,10 @@ in {
       terminal = "${config.home.sessionVariables.TERMINAL}";
       theme = {
         "*" = {
-          background = mkLiteral "#${palette.base00}";
-          foreground = mkLiteral "#${palette.base05}";
-          selected = mkLiteral "#${palette.base0B}";
-          message = mkLiteral "#${palette.base0D}";
+          background = mkLiteral "#${color.layout.menu}";
+          foreground = mkLiteral "#${color.typography.text}";
+          selected = mkLiteral "#${color.primary.base}";
+          message = mkLiteral "#${color.blue.base}";
 
           background-color = mkLiteral "@background";
           border-color = mkLiteral "@foreground";
