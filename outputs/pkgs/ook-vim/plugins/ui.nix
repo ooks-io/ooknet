@@ -14,14 +14,12 @@
     };
     # < https://github.com/NotAShelf/nvf/tree/main/modules/plugins/visuals >
     visuals = {
-      enable = true;
-
       # icons that other plugins depend on.
-      nvimWebDevicons.enable = true;
+      nvim-web-devicons.enable = true;
       fidget-nvim.enable = true;
 
       # indent lines
-      indentBlankline = {
+      indent-blankline = {
         enable = true;
         setupOpts = {
           scope = {
