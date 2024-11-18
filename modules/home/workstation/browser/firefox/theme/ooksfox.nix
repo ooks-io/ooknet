@@ -26,13 +26,17 @@ in
       border-radius: 0 !important;
       font-family: ${fonts.monospace.family};
     }
-
     #nav-bar {
       border: var(--border) !important;
       background-color: var(--clr-menu) !important;
+      margin-top: 0px !important;
     }
     #urlbar {
       text-align: center;
+    }
+
+    .browser-toolbar {
+      padding-bottom: 1px !important;
     }
 
     #urlbar-background {
@@ -102,13 +106,13 @@ in
     }
 
     .tabbrowser-tab {
-      padding: 5px !important;
-      padding-left: 5px !important;
+      padding: 3px !important;
+      padding-left: 3px !important;
+      --tab-label-mask-size: unset !important;
     }
 
     .tabbrowser-tab[pinned] {
-      margin: 0px !important;
-      padding: 5px !important;
+      padding: 3px !important;
     }
 
     #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])[orient="horizontal"] > #tabbrowser-arrowscrollbox > .tabbrowser-tab:nth-child(1 of :not([pinned], [hidden])) {

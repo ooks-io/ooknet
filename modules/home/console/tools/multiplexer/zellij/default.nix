@@ -3,9 +3,10 @@
   config,
   lib,
   pkgs,
+  hozen,
   ...
 }: let
-  inherit (osConfig.ooknet.appearance.colorscheme) slug palette;
+  inherit (hozen) color;
   inherit (osConfig.ooknet) console;
   inherit (osConfig.ooknet.host) admin;
   inherit (lib) mkIf;
@@ -16,24 +17,24 @@ in {
     programs.zellij = {
       enable = true;
       settings = {
-        theme = "${slug}";
+        theme = "${color.slug}";
         default_shell = "${admin.shell}";
         default_layout = "default";
         pane_frames = false;
         scrollback_editor = "${console.editor}";
         themes = {
-          "${slug}" = {
-            fg = "#${palette.base05}";
-            bg = "#${palette.base00}";
-            black = "#${palette.base00}";
-            red = "#${palette.base08}";
-            green = "#${palette.base0B}";
-            yellow = "#${palette.base0A}";
-            blue = "#${palette.base0D}";
-            magenta = "#${palette.base0E}";
-            cyan = "#${palette.base0C}";
-            white = "#${palette.base05}";
-            orange = "#${palette.base09}";
+          "${color.slug}" = {
+            fg = "#${color.base05}";
+            bg = "#${color.base00}";
+            black = "#${color.base00}";
+            red = "#${color.base08}";
+            green = "#${color.base0B}";
+            yellow = "#${color.base0A}";
+            blue = "#${color.base0D}";
+            magenta = "#${color.base0E}";
+            cyan = "#${color.base0C}";
+            white = "#${color.base05}";
+            orange = "#${color.base09}";
           };
         };
       };
@@ -42,11 +43,11 @@ in {
     # Layouts
     xdg.configFile = {
       # Default layout
-      "zellij/layouts/default.kdl" = import ./layouts/defaultLayout.nix {inherit pkgs config osConfig;};
+      "zellij/layouts/default.kdl" = import ./layouts/defaultLayout.nix {inherit pkgs config osConfig hozen;};
       # Layout for bash scripts
-      "zellij/layouts/script.kdl" = import ./layouts/scriptLayout.nix {inherit pkgs config osConfig;};
+      "zellij/layouts/script.kdl" = import ./layouts/scriptLayout.nix {inherit pkgs config osConfig hozen;};
       # Layout for configuring my flake
-      "zellij/layouts/flake.kdl" = import ./layouts/flakeLayout.nix {inherit pkgs config osConfig;};
+      "zellij/layouts/flake.kdl" = import ./layouts/flakeLayout.nix {inherit pkgs config osConfig hozen;};
       # Additional keybinds
       "zellij/config.kdl".text =
         # kdl

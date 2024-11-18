@@ -1,12 +1,13 @@
 {
   lib,
   osConfig,
+  hozen,
   ...
 }: let
   inherit (lib) mkIf elem;
-  inherit (osConfig.ooknet.appearance.colorscheme) palette;
   inherit (osConfig.ooknet.appearance) fonts;
   inherit (osConfig.ooknet.workstation) profiles;
+  inherit (hozen) color;
 
   zathuraMime = {"application/pdf" = ["org.pwmt.zathura.desktop"];};
 in {
@@ -17,26 +18,26 @@ in {
         font = "${fonts.regular.family} 14";
         recolor = true;
         selection-clipboard = "clipboard";
-        default-bg = "#${palette.base00}";
-        default-fg = "#${palette.base01}";
-        statusbar-bg = "#${palette.base02}";
-        statusbar-fg = "#${palette.base04}";
-        inputbar-bg = "#${palette.base00}";
-        inputbar-fg = "#${palette.base07}";
-        notification-bg = "#${palette.base00}";
-        notification-fg = "#${palette.base07}";
-        notification-error-bg = "#${palette.base00}";
-        notification-error-fg = "#${palette.base08}";
-        notification-warning-bg = "#${palette.base00}";
-        notification-warning-fg = "#${palette.base08}";
-        highlight-color = "#${palette.base0A}";
-        highlight-active-color = "#${palette.base0D}";
-        completion-bg = "#${palette.base01}";
-        completion-fg = "#${palette.base05}";
-        completions-highlight-bg = "#${palette.base0D}";
-        completions-highlight-fg = "#${palette.base07}";
-        recolor-lightcolor = "#${palette.base00}";
-        recolor-darkcolor = "#${palette.base06}";
+        default-bg = "#${color.layout.body}";
+        default-fg = "#${color.typography.text}";
+        statusbar-bg = "#${color.layout.header}";
+        statusbar-fg = "#${color.typography.text}";
+        inputbar-bg = "#${color.layout.menu}";
+        inputbar-fg = "#${color.typography.text-bright}";
+        notification-bg = "#${color.layout.menu}";
+        notification-fg = "#${color.typography.text}";
+        notification-error-bg = "#${color.layout.menu}";
+        notification-error-fg = "#${color.error.base}";
+        notification-warning-bg = "#${color.layout.menu}";
+        notification-warning-fg = "#${color.warning.base}";
+        highlight-color = "#${color.primary.base}";
+        highlight-active-color = "#${color.primary.hard1}";
+        completion-bg = "#${color.layout.menu}";
+        completion-fg = "#${color.typography.text}";
+        completion-highlight-bg = "#${color.primary.base}";
+        completion-highlight-fg = "#${color.typography.contrast-text}";
+        recolor-lightcolor = "#${color.typography.text}";
+        recolor-darkcolor = "#${color.layout.body}";
       };
     };
     xdg.mimeApps = {

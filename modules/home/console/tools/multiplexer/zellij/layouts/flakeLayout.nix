@@ -1,9 +1,10 @@
 {
   pkgs,
+  hozen,
   osConfig,
   ...
 }: let
-  inherit (osConfig.ooknet.appearance.colorscheme) palette;
+  inherit (hozen) color;
 in {
   text =
     /*
@@ -16,40 +17,40 @@ in {
             plugin location="file:${pkgs.zjstatus}/bin/zjstatus.wasm" {
               format_left  "{mode}"
               format_right "{session} {command_git_branch} {datetime}"
-              format_center "#[fg=#${palette.base0D},bold] {tabs}"
+              format_center "#[fg=#${color.base0D},bold] {tabs}"
               format_space ""
 
               border_enabled  "true"
               border_char     "─"
-              border_format   "#[fg=#${palette.base05}]{char}"
+              border_format   "#[fg=#${color.base05}]{char}"
               border_position "bottom"
 
               hide_frame_for_single_pane "true"
 
-              mode_normal       "#[fg=#${palette.base0D}] "
-              mode_tmux         "#[fg=#${palette.base0E}] "
-              mode_pane         "#[fg=#${palette.base08}] "
-              mode_tab          "#[fg=#${palette.base08}] "
-              mode_rename_tab   "#[fg=#${palette.base08}] "
-              mode_rename_pane  "#[fg=#${palette.base08}] "
-              mode_session      "#[fg=#${palette.base08}] "
-              mode_locked       "#[fg=#${palette.base05}] "
-              mode_move         "#[fg=#${palette.base0B}] "
-              mode_resize       "#[fg=#${palette.base0B}] "
-              mode_prompt       "#[fg=#${palette.base0A}] "
-              mode_search       "#[fg=#${palette.base0A}] "
-              mode_enter_search "#[fg=#${palette.base0A}] "
+              mode_normal       "#[fg=#${color.base0D}] "
+              mode_tmux         "#[fg=#${color.base0E}] "
+              mode_pane         "#[fg=#${color.base08}] "
+              mode_tab          "#[fg=#${color.base08}] "
+              mode_rename_tab   "#[fg=#${color.base08}] "
+              mode_rename_pane  "#[fg=#${color.base08}] "
+              mode_session      "#[fg=#${color.base08}] "
+              mode_locked       "#[fg=#${color.base05}] "
+              mode_move         "#[fg=#${color.base0B}] "
+              mode_resize       "#[fg=#${color.base0B}] "
+              mode_prompt       "#[fg=#${color.base0A}] "
+              mode_search       "#[fg=#${color.base0A}] "
+              mode_enter_search "#[fg=#${color.base0A}] "
 
-              tab_normal   "#[bg=#${palette.base01}] {name} "
-              tab_active   "#[bg=#${palette.base02}] {name} "
+              tab_normal   "#[bg=#${color.base01}] {name} "
+              tab_active   "#[bg=#${color.base02}] {name} "
               tab_separator "  "
 
               command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
-              command_git_branch_format      "#[fg=#${palette.base0C}] {stdout} "
+              command_git_branch_format      "#[fg=#${color.base0C}] {stdout} "
               command_git_branch_interval    "10"
               command_git_branch_rendermode  "static"
 
-              datetime        "#[fg=#${palette.base05},bold] {format} "
+              datetime        "#[fg=#${color.base05},bold] {format} "
               datetime_format "%I:%M %p"
               datetime_timezone "${osConfig.time.timeZone}"
             }

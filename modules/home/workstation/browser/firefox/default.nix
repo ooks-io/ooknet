@@ -8,8 +8,7 @@
 }: let
   inherit (lib) mkIf mkMerge;
   inherit (osConfig.ooknet.host) admin;
-  inherit (osConfig.ooknet.appearance) colorscheme fonts;
-  inherit (colorscheme) palette;
+  inherit (osConfig.ooknet.appearance) fonts;
   inherit (osConfig.ooknet.workstation) default;
 
   addons = inputs'.firefox-addons.packages;

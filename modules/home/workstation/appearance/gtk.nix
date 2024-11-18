@@ -1,11 +1,12 @@
 {
   osConfig,
+  hozen,
   pkgs,
   ...
 }: let
   inherit (osConfig.ooknet.appearance) fonts;
 
-  gtkCss = import ./gtkCss.nix {inherit osConfig;};
+  gtkCss = import ./gtkCss.nix {inherit hozen;};
 in {
   config = rec {
     gtk = {
@@ -30,7 +31,10 @@ in {
       gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
     };
 
-    dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
+    dconf.settings = {
+      "org/gnome/desktop/interface".color-scheme = "prefer-dark";
+      "org/gtk/Settings/Debug".enable-inspector-keybinding = true;
+    };
 
     #TODO: add gtk css configuration
 

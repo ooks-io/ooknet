@@ -1,11 +1,12 @@
 {
   lib,
   osConfig,
+  hozen,
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (osConfig.ooknet.appearance) colorscheme fonts;
-  inherit (colorscheme) palette;
+  inherit (osConfig.ooknet.appearance) fonts;
+  inherit (hozen) color;
   inherit (osConfig.ooknet.workstation) default;
   cfg = osConfig.ooknet.workstation.programs.firefox;
 in {
@@ -55,17 +56,17 @@ in {
         ''
           :root {
             --font: ${fonts.monospace.family};
-            --bg: #${palette.base00};
-            --fg: #${palette.base05};
-            --red: #${palette.base08};
-            --green: #${palette.base0B};
-            --blue: #${palette.base0D};
-            --yellow: #${palette.base0A};
-            --purple: #${palette.base0E};
-            --orange: #${palette.base09};
-            --cyan: #${palette.base0C};
-            --comment: #${palette.base04};
-            --selectedline: #${palette.base02};
+            --bg: #${color.layout.menu};
+            --fg: #${color.typography.text};
+            --red: #${color.red.base};
+            --green: #${color.green.base};
+            --blue: #${color.blue.base};
+            --yellow: #${color.yellow.base};
+            --purple: #${color.purple.base};
+            --orange: #${color.orange.base};
+            --cyan: #${color.teal.base};
+            --comment: #${color.typography.subtext};
+            --selectedline: #${color.secondary.base};
 
 
             --tridactyl-fg: var(--fg);

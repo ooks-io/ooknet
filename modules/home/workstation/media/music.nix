@@ -3,17 +3,18 @@
   pkgs,
   config,
   lib,
+  hozen,
   ...
 }: let
   inherit (lib) mkIf getExe elem;
   inherit (builtins) attrValues;
-  inherit (osConfig.ooknet.appearance.colorscheme) palette;
   inherit (osConfig.networking) hostName;
   inherit (osConfig.ooknet.console.tools) zellij;
   inherit (osConfig.ooknet.console) multiplexer;
   inherit (osConfig.ooknet.workstation) profiles;
   inherit (osConfig.age.secrets) spotify_key;
   inherit (config.ooknet) binds;
+  inherit (hozen) color;
 in {
   config = mkIf (elem "media" profiles) {
     home.packages = attrValues {
@@ -78,11 +79,11 @@ in {
           color = {
             gradient = 1;
             gradient_count = 5;
-            gradient_color_1 = "'#${palette.base0A}'";
-            gradient_color_2 = "'#${palette.base0B}'";
-            gradient_color_3 = "'#${palette.base0C}'";
-            gradient_color_4 = "'#${palette.base0D}'";
-            gradient_color_5 = "'#${palette.base0E}'";
+            gradient_color_1 = "'#${color.primary.base}'";
+            gradient_color_2 = "'#${color.primary.hard1}'";
+            gradient_color_3 = "'#${color.primary.hard2}'";
+            gradient_color_4 = "'#${color.primary.hard3}'";
+            gradient_color_5 = "'#${color.primary.hard4}'";
           };
         };
       };
@@ -105,18 +106,18 @@ in {
 
                     border_enabled  "true"
                     border_char     "─"
-                    border_format   "#[fg=#${palette.base0D}]{char}"
+                    border_format   "#[fg=#${color.base0D}]{char}"
                     border_position "bottom"
 
                     hide_frame_for_single_pane "true"
 
-                    mode_normal       "#[fg=${palette.base0D}]󰝚"
+                    mode_normal       "#[fg=${color.base0D}]󰝚"
 
-                    tab_normal   "#[bg=#${palette.base01}] {name} "
-                    tab_active   "#[bg=#${palette.base02}] {name} "
+                    tab_normal   "#[bg=#${color.base01}] {name} "
+                    tab_active   "#[bg=#${color.base02}] {name} "
                     tab_separator "  "
 
-                    datetime        "#[fg=#${palette.base05},bold] {format} "
+                    datetime        "#[fg=#${color.base05},bold] {format} "
                     datetime_format "%I:%M %p"
                     datetime_timezone "${osConfig.time.timeZone}"
                 }
