@@ -2,6 +2,7 @@
   math,
   types,
   translate,
+  check,
 }: let
   # Base modification functions
   modifyHSL = hexStr: modifications: let
@@ -93,6 +94,8 @@
       if type == "dark"
       then mkDarkColorScale
       else mkLightColorScale;
+
+    validNeutrals = check.neutrals args;
 
     # Generate color scales
     colors = {
@@ -201,7 +204,7 @@
     # Common structure for both themes
     neutrals = {
       inherit
-        (args.neutrals)
+        (validNeutrals)
         "50"
         "100"
         "150"

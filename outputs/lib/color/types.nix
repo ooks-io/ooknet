@@ -1,7 +1,6 @@
 {
   check,
   math,
-  ...
 }: let
   inherit (math) round;
   hex = {
@@ -12,19 +11,19 @@
     }: let
       attrs = {inherit r g b;};
     in
-      assert check.hex.set attrs || throw "Invalid Hex values: r=${toString r}, g=${toString g}, b=${toString b}"; attrs;
+      check.hex.set attrs;
 
     string = r: g: b: let
       str = "${r}${g}${b}";
     in
-      assert check.hex.string str || throw "Invalid Hex value: ${str}"; str;
+      check.hex.string str;
   };
 
   rgb = {
     string = r: g: b: let
       str = "${toString r},${toString g},${toString b}";
     in
-      assert check.rgb.string str || throw "Invalid RBG string format: ${str}"; str;
+      check.rgb.string str;
     set = {
       r,
       g,
@@ -32,13 +31,13 @@
     }: let
       attrs = {inherit r g b;};
     in
-      assert check.rgb.set attrs || throw "Invalid RGB values: r=${toString r}, g=${toString g}, b=${toString b}"; attrs;
+      check.rgb.set attrs;
   };
   hsl = {
     string = h: s: l: let
       str = "${toString (round h)}, ${toString (round (s * 100))}%, ${toString (round (l * 100))}%";
     in
-      assert check.hsl.string str || throw "Invalid HSL values: ${str}"; str;
+      check.hsl.string str;
     set = {
       h,
       s,
@@ -46,6 +45,6 @@
     }: let
       attrs = {inherit h s l;};
     in
-      assert check.hsl.set attrs || throw "Invalid HSL values: h=${toString h}, s=${toString s}, l=${toString l}"; attrs;
+      check.hsl.set attrs;
   };
 in {inherit hex hsl rgb;}

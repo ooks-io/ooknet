@@ -22,7 +22,7 @@
       };
       utils = import ./color/utils.nix {
         inherit (ook-lib) math;
-        inherit types translate;
+        inherit check types translate;
       };
     in {
       inherit check types translate utils;
