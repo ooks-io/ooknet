@@ -1,16 +1,6 @@
-{
-  config,
-  lib,
-  ...
-}: let
-  inherit (lib) isString hasPrefix removePrefix mkOption mkOptionType;
-  inherit (lib.types) enum str nullOr package path int attrsOf coercedTo;
-  hexColorType = mkOptionType {
-    name = "hex-color";
-    descriptionClass = "noun";
-    description = "RGB color in hex format";
-    check = x: isString x && !(hasPrefix "#" x);
-  };
+{lib, ...}: let
+  inherit (lib) mkOption;
+  inherit (lib.types) str package path int;
 
   mkFontOption = {
     family = mkOption {
@@ -22,8 +12,6 @@
       default = null;
     };
   };
-
-  cfg = config.ooknet.appearance;
 in {
   #  imports = [./palettes];
   options.ooknet.appearance = {
@@ -49,25 +37,6 @@ in {
       size = mkOption {
         type = int;
         default = 22;
-      };
-    };
-    # Credit to github:misterio77/nix-colors
-    colorscheme = {
-      name = mkOption {
-        type = enum ["gruvbox-material"];
-        default = "gruvbox-material";
-      };
-      variant = mkOption {
-        type = enum ["dark" "light"];
-        default = "dark";
-      };
-      slug = mkOption {
-        type = str;
-        default = "${toString cfg.colorscheme.name}-${toString cfg.colorscheme.variant}";
-      };
-      palette = mkOption {
-        type = attrsOf (coercedTo str (removePrefix "#") hexColorType);
-        default = (import ./palettes/${config.ooknet.appearance.colorscheme.slug}.nix).colorscheme.palette;
       };
     };
   };
