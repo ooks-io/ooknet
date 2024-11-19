@@ -6,6 +6,7 @@
     ./treesitter.nix
     ./html.nix
     ./ts.nix
+    ./go.nix
   ];
 
   vim.languages = {
