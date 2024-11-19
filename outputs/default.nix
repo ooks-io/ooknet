@@ -8,5 +8,6 @@
     ./pkgs
     ./images.nix
     ./devshells
+    ./templates
   ];
 }
