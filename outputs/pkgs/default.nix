@@ -7,7 +7,6 @@
     packages = {
       repopack = callPackage ./repopack {};
       live-buds-cli = callPackage ./live-buds-cli {};
-      instawow-tsm = callPackage ./instawow/plugins/tsm.nix {};
       website = callPackage ./website {};
 
       ook-vim = mkNeovim pkgs [ook-vim-config];
