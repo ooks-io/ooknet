@@ -2,11 +2,12 @@
   config,
   lib,
   pkgs,
+  hozen,
   ...
 }: let
   inherit (lib) mkIf;
   inherit (config.ooknet.workstation) theme;
-  generatedWallpaper = import ./generated-wallpaper.nix {inherit config pkgs;} {};
+  generatedWallpaper = import ./generated-wallpaper.nix {inherit hozen config pkgs;} {};
 in {
   config = mkIf (theme == "minimal") {
     ooknet.appearance = {
@@ -29,11 +30,6 @@ in {
 
       wallpaper = {
         path = "${generatedWallpaper}";
-      };
-
-      colorscheme = {
-        name = "gruvbox-material";
-        variant = "dark";
       };
     };
   };

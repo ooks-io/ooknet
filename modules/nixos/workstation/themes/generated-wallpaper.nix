@@ -2,9 +2,10 @@
 {
   pkgs,
   config,
+  hozen,
 }: let
   inherit (config.ooknet.hardware) monitors;
-  inherit (config.ooknet.appearance) colorscheme;
+  inherit (hozen) color;
   largest = f: xs: builtins.head (builtins.sort (a: b: a > b) (map f xs));
   largestWidth = largest (x: x.width) monitors;
   largestHeight = largest (x: x.height) monitors;
@@ -13,21 +14,17 @@ in
     width ? largestWidth,
     height ? largestHeight,
     logoScale ? 4,
-    backgroundColor ? colorscheme.palette.mantle,
-    logoColor1 ? colorscheme.palette.yellow,
-    logoColor2 ? colorscheme.palette.green,
+    backgroundColor ? color.layout.body,
+    logoColor1 ? color.green.base,
+    logoColor2 ? color.yellow.base,
   }:
     pkgs.stdenv.mkDerivation {
-      name = "generated-nix-wallpaper-${colorscheme.slug}.png";
+      name = "generated-nix-wallpaper-${color.slug}.png";
       src = pkgs.writeTextFile {
         name = "template.svg";
         text = ''
-          <svg width="${toString width}" height="${
-            toString height
-          }" version="1.1" xmlns="http://www.w3.org/2000/svg">
-             <rect width="${toString width}" height="${
-            toString height
-          }" fill="#${backgroundColor}"/>
+          <svg width="${toString width}" height="${toString height}" version="1.1" xmlns="http://www.w3.org/2000/svg">
+             <rect width="${toString width}" height="${toString height}" fill="#${backgroundColor}"/>
              <svg x="${toString (width / 2 - (logoScale * 50))}" y="${
             toString (height / 2 - (logoScale * 50))
           }" version="1.1" xmlns="http://www.w3.org/2000/svg">
