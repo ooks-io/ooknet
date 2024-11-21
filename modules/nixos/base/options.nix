@@ -12,7 +12,7 @@ in {
       default = "ooks-generic";
     };
     type = mkOption {
-      type = enum ["desktop" "laptop"];
+      type = enum ["vm" "desktop" "laptop"];
     };
     role = mkOption {
       type = enum ["workstation" "server"];

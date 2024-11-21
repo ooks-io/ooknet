@@ -87,27 +87,33 @@
     hostname,
     system,
     type,
-    profile,
     services,
+    profile ? null,
     domain ? "",
     additionalModules ? [],
     specialArgs ? {},
   }:
-    mkBaseSystem {
-      inherit withSystem hostname system type specialArgs;
-      role = "server";
-      additionalModules = concatLists [
-        (singleton {
-          ooknet.server = {
-            inherit domain services;
-          };
-        })
-        core
-        [(serverModules + "/profiles/${profile}")]
-        [serverModules]
-        additionalModules
-      ];
-    };
+    assert lib.assertMsg (!(type == "vm" && profile == null))
+    "Profile must be specified for VM servers";
+      mkBaseSystem {
+        inherit withSystem hostname system type specialArgs;
+        role = "server";
+        additionalModules = concatLists [
+          (singleton {
+            ooknet.server = {
+              inherit domain services;
+            };
+          })
+          core
+          (
+            if type == "vm"
+            then [(serverModules + "/profiles/${profile}")]
+            else [(hostModules + "/${hostname}")]
+          )
+          [serverModules]
+          additionalModules
+        ];
+      };
 
   mkImage = {
     profile,

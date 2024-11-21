@@ -15,5 +15,12 @@ in {
       profile = "linode";
       services = ["website" "forgejo"];
     };
+    ookmedia = mkServer {
+      inherit withSystem;
+      system = "x86_64-linux";
+      hostname = "ooksmedia";
+      type = "desktop";
+      services = [];
+    };
   };
 }
