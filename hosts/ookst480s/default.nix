@@ -3,7 +3,11 @@
   lib,
   ...
 }: {
-  imports = [./file-system.nix];
+  imports = [
+    ./file-system.nix
+    ./hardware.nix
+  ];
+
   ooknet = {
     host = {
       admin = {
@@ -19,27 +23,6 @@
     };
     console = {
       profile = "standard";
-    };
-    hardware = {
-      cpu.type = "intel";
-      gpu.type = "intel";
-      features = [
-        "bluetooth"
-        "backlight"
-        "battery"
-        "ssd"
-        "audio"
-        "video"
-      ];
-      monitors = [
-        {
-          primary = true;
-          name = "eDP-1";
-          width = 1920;
-          height = 1080;
-          workspace = "1";
-        }
-      ];
     };
   };
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
