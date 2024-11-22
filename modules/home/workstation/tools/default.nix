@@ -1,6 +1,7 @@
 {
   imports = [
     ./ookpower.nix
+    ./live-buds-cli.nix
     ./virt-manager.nix
     ./1password.nix
     ./ookvolume.nix

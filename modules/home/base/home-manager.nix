@@ -4,7 +4,6 @@
   osConfig,
   ...
 }: let
-  inherit (lib) mkDefault;
   inherit (osConfig.ooknet.host) admin;
 in {
   programs.home-manager.enable = true;
@@ -13,7 +12,7 @@ in {
   home = {
     username = admin.name;
     homeDirectory = "/home/${config.home.username}";
-    stateVersion = mkDefault "22.05";
+    stateVersion = "22.05";
     sessionPath = ["${config.home.homeDirectory}/.local/bin"];
   };
 

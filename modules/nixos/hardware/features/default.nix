@@ -6,6 +6,6 @@
     ./battery.nix
     ./backlight.nix
     ./ssd.nix
-    #    ./bluetooth.nix
+    ./bluetooth.nix
   ];
 }

@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  self,
   ...
 }: let
   inherit (lib) mkIf;
@@ -16,7 +15,6 @@ in {
     };
 
     environment.systemPackages = attrValues {
-      #inherit (self.packages.${pkgs.system}) live-buds-cli;
       inherit (pkgs) bluetuith;
     };
 
