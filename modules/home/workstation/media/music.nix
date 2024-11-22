@@ -73,7 +73,7 @@ in {
       };
 
       cava = {
-        enable = true;
+        enable = false; # FIX ME!!!
         settings = {
           general.framerate = 60;
           color = {
@@ -131,12 +131,12 @@ in {
                     command "${getExe pkgs.spotify-player}"
                     focus true
                 }
-                pane name="Visualizer" {
-                    borderless false
-                    split_direction "horizontal"
-                    size "20%"
-                    command "${getExe pkgs.cava}"
-                }
+                //pane name="Visualizer" {
+                //    borderless false
+                //    split_direction "horizontal"
+                //    size "20%"
+                //    command "cava"
+                //}
             }
         }
       '';
