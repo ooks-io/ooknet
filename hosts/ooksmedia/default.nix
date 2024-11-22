@@ -22,6 +22,7 @@
       multiplexer = "zellij";
     };
   };
+
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
   system.stateVersion = lib.mkDefault "24.11";

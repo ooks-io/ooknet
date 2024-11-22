@@ -1,6 +1,5 @@
 {
   imports = [
-    ./virtualization.nix
     ./bat.nix
     ./networking.nix
     ./btop.nix

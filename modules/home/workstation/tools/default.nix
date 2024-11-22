@@ -1,6 +1,7 @@
 {
   imports = [
     ./ookpower.nix
+    ./virt-manager.nix
     ./1password.nix
     ./ookvolume.nix
     ./kdeconnect.nix
