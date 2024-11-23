@@ -19,8 +19,9 @@ in {
       inherit withSystem;
       system = "x86_64-linux";
       hostname = "ooksmedia";
+      domain = "ooknet.org";
       type = "desktop";
-      services = [];
+      services = ["media-server"];
     };
   };
 }
