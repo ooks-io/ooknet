@@ -11,11 +11,16 @@ in {
       groups = {
         downloader = {};
         media = {};
+        streamer = {};
       };
       users = {
         downloader = {
           isSystemUser = true;
           group = "downloader";
+        };
+        steamer = {
+          isSystemUser = true;
+          group = "streamer";
         };
       };
     };
