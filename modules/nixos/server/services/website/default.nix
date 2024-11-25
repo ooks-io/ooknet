@@ -7,13 +7,19 @@
   inherit (lib) mkIf elem;
   inherit (config.ooknet.server) services;
   inherit (self'.packages) website;
+
+  websitePermissions = {
+    group = "www";
+    user = "caddy";
+    mode = "0775";
+  };
 in {
   config = mkIf (elem "website" services) {
     ooknet.server.webserver.caddy.enable = true;
-    systemd.tmpfiles.rules = [
-      "d /var/www 0775 caddy www"
-      "d /var/www/ooknet.org 0775 caddy www"
-    ];
+    systemd.tmpfiles.settings.websiteDirs = {
+      "/var/www"."d" = websitePermissions;
+      "/var/www/ooknet.org"."d" = websitePermissions;
+    };
 
     # cursed activation script
     # need to find a better way
