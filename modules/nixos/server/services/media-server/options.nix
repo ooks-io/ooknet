@@ -36,7 +36,7 @@ in {
     storage = {
       mediaRoot = mkOption {
         type = path;
-        default = "/media";
+        default = "/jellyfin";
         description = "Root directory for all media-related storage";
       };
 
