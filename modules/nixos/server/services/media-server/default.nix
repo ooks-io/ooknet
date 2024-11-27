@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  inputs,
   ...
 }: let
   inherit (lib) mkIf elem;
@@ -13,6 +14,8 @@ in {
     ./jellyfin.nix
     ./transmission.nix
     ./file-permissions.nix
+    ./vpn.nix
+    inputs.vpn-confinement.nixosModules.default
   ];
 
   # short cut for enabling all media-server modules

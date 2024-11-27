@@ -8,7 +8,7 @@
 
   inherit (config.ooknet) host;
   inherit (host) admin;
-  inherit (config.services) tailscale;
+  inherit (config.services) tailscale transmission;
 in {
   age.identityPaths = [
     "/home/${admin.name}/.ssh/id_ed25519"
@@ -35,6 +35,9 @@ in {
       file = "${self}/secrets/spotify_key.age";
       owner = "${admin.name}";
       group = "users";
+    };
+    mullvad_wg = mkIf transmission.enable {
+      file = "${self}/secrets/mullvad_wg.age";
     };
   };
 }
