@@ -37,6 +37,9 @@
 
     nvf.url = "github:notashelf/nvf/v0.7";
 
+    # confine vpns to specific systemd services
+    vpn-confinement.url = "github:Maroka-chan/VPN-Confinement";
+
     # hypr* ecosystem
     hyprland.url = "github:hyprwm/hyprland";
 
