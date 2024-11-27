@@ -20,6 +20,9 @@ let
     hosts.ooksmicro
     hosts.ooksx1
   ];
+  servers = [
+    hosts.ooksmedia
+  ];
 in {
-  inherit users hosts workstations;
+  inherit users servers hosts workstations;
 }
