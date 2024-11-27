@@ -24,6 +24,10 @@
       device = "/dev/disk/by-uuid/B511-09E2";
       fsType = "vfat";
     };
+    "/media-server" = {
+      device = "/dev/disk/by-label/jellyfin";
+      fsType = "btrfs";
+    };
   };
   swapDevices = [];
 }

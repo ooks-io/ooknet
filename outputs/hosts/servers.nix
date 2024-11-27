@@ -15,7 +15,7 @@ in {
       profile = "linode";
       services = ["website" "forgejo"];
     };
-    ookmedia = mkServer {
+    ooksmedia = mkServer {
       inherit withSystem;
       system = "x86_64-linux";
       hostname = "ooksmedia";
