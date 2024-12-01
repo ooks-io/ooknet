@@ -1,4 +1,8 @@
-{lib, ...}: let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (builtins) isBool;
   inherit (lib) toUpper optionalAttrs mapAttrs' nameValuePair;
 
@@ -33,7 +37,7 @@
   in
     commonLabels // (processWidget widget);
 
-  mkContainerLabels = {name, ...} @ args: let
+  mkContainerLabel = {name, ...} @ args: let
     homepage = args.homepage or {};
     baseWidget = homepage.widget or {};
   in
@@ -52,16 +56,25 @@
     # homepage labels
     // (optionalAttrs (args ? homepage) (mkHomepageLabels {
       inherit name;
-      inherit (args) domain;
+      domain = "https://${args.domain}";
       group = args.homepage.group or name;
       widget =
         baseWidget
         // {
           type = name;
-          url = args.domain;
+          url = "https://${args.domain}";
           key = "{{HOMEPAGE_FILE_${toUpper name}}}";
         };
     }));
+
+  mkContainerEnvironment = user: group: {
+    PUID = toString user;
+    PGID = toString group;
+    # TODO: I dont want to hard code this
+    TZ = "Antarctica/Macquarie";
+  };
+
+  mkContainerPort = port: "${toString port}:${toString port}";
 in {
-  inherit mkContainerLabels;
+  inherit mkContainerLabel mkContainerEnvironment mkContainerPort;
 }

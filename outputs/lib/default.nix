@@ -2,6 +2,7 @@
   lib,
   self,
   inputs,
+  config,
   ...
 }: let
   # my scuffed lib
@@ -9,6 +10,7 @@
     builders = import ./builders.nix {inherit self lib inputs;};
     mkNeovim = import ./mkNeovim.nix {inherit inputs;};
     math = import ./math.nix {inherit lib;};
+    container = import ./containers.nix {inherit lib config;};
     color = let
       check = import ./color/check.nix {inherit lib;};
       types = import ./color/types.nix {
