@@ -7,7 +7,7 @@
   inherit (inputs) nixpkgs;
   inherit (lib) singleton recursiveUpdate mkDefault;
   inherit (builtins) concatLists;
-  inherit (self) hozen keys;
+  inherit (self) hozen keys ook;
   hm = inputs.home-manager.nixosModules.home-manager;
   agenix = inputs.agenix.nixosModules.default;
   nixosModules = "${self}/modules/nixos";
@@ -44,7 +44,7 @@
       mkNixos {
         specialArgs =
           recursiveUpdate {
-            inherit hozen keys lib inputs self inputs' self';
+            inherit hozen ook keys lib inputs self inputs' self';
           }
           specialArgs;
         modules = concatLists [
