@@ -24,7 +24,10 @@ in {
     };
 
     webserver = {
-      caddy.enable = mkEnableOption "";
+      caddy = {
+        enable = mkEnableOption "";
+        cloudflare.enable = mkEnableOption "";
+      };
     };
     database = {
       postgresql.enable = mkEnableOption "";
