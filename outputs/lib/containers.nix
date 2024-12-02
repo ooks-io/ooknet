@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}: let
+{lib, ...}: let
   inherit (builtins) isBool;
   inherit (lib) toUpper optionalAttrs mapAttrs' nameValuePair;
 
