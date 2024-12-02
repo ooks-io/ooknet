@@ -40,6 +40,7 @@ in {
         incomplete-dir = storage.downloads.incomplete;
         watch-dir = storage.downloads.watch;
 
+        rpc-authentication-required = false;
         # rpc settings
         # rpc is how we connect to the service remotely
         rpc-port = ports.transmission.web;
@@ -53,6 +54,8 @@ in {
           "192.168.*"
           "10.*"
         ];
+
+        rpc-bind-address = "192.168.15.1";
 
         # basic anti bruteforce protection
         anti-brute-force-enabled = true;

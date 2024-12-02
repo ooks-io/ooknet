@@ -10,9 +10,10 @@ in {
   config = mkIf media-server.jellyfin.enable {
     services.jellyfin = {
       enable = true;
-      user = users.streamer;
+      user = users.jellyfin;
       group = groups.media;
       dataDir = storage.state.jellyfin;
+      openFirewall = true;
     };
     ooknet.server.webserver.caddy.enable = true;
     services.caddy.virtualHosts."${domain.jellyfin}".extraConfig = proxy.jellyfin;

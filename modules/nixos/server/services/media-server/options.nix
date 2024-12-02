@@ -113,6 +113,10 @@ in {
           type = path;
           default = "${cfg.storage.state.root}/sonarr";
         };
+        prowlarr = mkOption {
+          type = path;
+          default = "${cfg.storage.state.root}/prowlarr";
+        };
         radarr = mkOption {
           type = path;
           default = "${cfg.storage.state.root}/radarr";
@@ -128,6 +132,10 @@ in {
       media = mkOption {
         type = str;
         default = "media";
+      };
+      sonarr = mkOption {
+        type = str;
+        default = "sonarr";
       };
       prowlarr = mkOption {
         type = str;
@@ -151,6 +159,10 @@ in {
       sonarr = mkOption {
         type = str;
         default = "sonarr";
+      };
+      radarr = mkOption {
+        type = str;
+        default = "radarr";
       };
       transmission = mkOption {
         type = str;

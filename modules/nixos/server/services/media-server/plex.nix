@@ -10,9 +10,10 @@ in {
   config = mkIf media-server.plex.enable {
     services.plex = {
       enable = true;
-      user = users.streamer;
+      user = users.plex;
       group = groups.media;
       dataDir = storage.state.plex;
+      openFirewall = true;
     };
     ooknet.server.webserver.caddy.enable = true;
     services.caddy.virtualHosts."${domain.plex}".extraConfig = proxy.plex;

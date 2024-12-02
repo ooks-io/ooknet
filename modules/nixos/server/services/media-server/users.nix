@@ -18,7 +18,7 @@ in {
           isSystemUser = true;
           group = "downloader";
         };
-        steamer = {
+        streamer = {
           isSystemUser = true;
           group = "streamer";
         };

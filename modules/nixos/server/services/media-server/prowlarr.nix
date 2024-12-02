@@ -6,7 +6,7 @@
 }: let
   inherit (lib) mkIf getExe;
   inherit (config.ooknet.server) media-server;
-  inherit (config.ooknet.server.media-server) storage users groups domain proxy;
+  inherit (config.ooknet.server.media-server) storage users groups domain proxy ports;
 in {
   config = mkIf media-server.prowlarr.enable {
     # we dont use the nixpkgs prowlarr service module because it lacks the option to
@@ -16,6 +16,8 @@ in {
     users.users.prowlarr = {
       group = groups.prowlarr;
       home = storage.state.prowlarr;
+      uid = 293;
+      isSystemUser = true;
     };
     users.groups.prowlarr = {};
 
@@ -36,12 +38,13 @@ in {
       };
       tmpfiles.settings.prowlarrDirs = {
         "${storage.state.prowlarr}"."d" = {
-          mode = "700";
+          mode = "0700";
           user = users.prowlarr;
           group = groups.prowlarr;
         };
       };
     };
+    networking.firewall.allowedTCPPorts = [ports.prowlarr];
     ooknet.server.webserver.caddy.enable = true;
     services.caddy.virtualHosts."${domain.prowlarr}".extraConfig = proxy.prowlarr;
   };

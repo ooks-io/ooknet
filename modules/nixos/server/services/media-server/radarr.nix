@@ -11,8 +11,9 @@ in {
     services.radarr = {
       enable = true;
       user = users.radarr;
-      group = groups.radarr;
-      dataDir = storage.state.radaar;
+      group = groups.media;
+      dataDir = storage.state.radarr;
+      openFirewall = true;
     };
     ooknet.server.webserver.caddy.enable = true;
     services.caddy.virtualHosts."${domain.radarr}".extraConfig = proxy.radarr;

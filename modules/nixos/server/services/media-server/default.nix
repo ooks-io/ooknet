@@ -13,6 +13,9 @@ in {
     ./options.nix
     ./jellyfin.nix
     ./transmission.nix
+    ./sonarr.nix
+    ./radarr.nix
+    ./prowlarr.nix
     ./file-permissions.nix
     ./vpn.nix
     inputs.vpn-confinement.nixosModules.default

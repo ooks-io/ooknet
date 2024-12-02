@@ -11,8 +11,9 @@ in {
     services.sonarr = {
       enable = true;
       user = users.sonarr;
-      group = groups.sonarr;
+      group = groups.media;
       dataDir = storage.state.sonarr;
+      openFirewall = true;
     };
     ooknet.server.webserver.caddy.enable = true;
     services.caddy.virtualHosts."${domain.sonarr}".extraConfig = proxy.sonarr;
