@@ -1,11 +1,12 @@
 {
   lib,
   config,
+  self,
   ...
 }: let
-  ookflixLib = import ./lib.nix {inherit lib config;};
+  ookflixLib = import ./lib.nix {inherit lib config self;};
 
-  inherit (ookflixLib) mkVolumeOption mkGroupOption mkServiceOptions;
+  inherit (ookflixLib) mkVolumeOption mkGroupOption mkServiceOptions mkBasicServiceOptions;
   inherit (lib) mkOption mkEnableOption;
   inherit (lib.types) enum;
   inherit (config.ooknet) server;
@@ -26,24 +27,25 @@ in {
     };
     volumes = {
       state.root = mkVolumeOption "root" "/var/lib/ookflix";
-      content.root = mkVolumeOption "root" "/jellyfin";
+      data.root = mkVolumeOption "root" "/jellyfin";
       downloads = {
         root = mkVolumeOption "${cfg.content.root}/downloads";
-        incomplete = mkVolumeOption "downloads" "incomplete";
-        complete = mkVolumeOption "downloads" "complete";
-        watch = mkVolumeOption "downloads" "watch";
+        tv = mkVolumeOption "downloads" "tv";
+        movies = mkVolumeOption "downloads" "movies";
+        books = mkVolumeOption "downloads" "books";
       };
 
       media = {
         root = mkVolumeOption "root" "${cfg.volumes.content.root}/media";
         movies = mkVolumeOption "media" "movies";
         tv = mkVolumeOption "media" "tv";
+        books = mkVolumeOption "media" "books";
       };
     };
     # Shared groups
     groups = {
       media = mkGroupOption "media" 992;
-      downloader = mkGroupOption "downloader" 981;
+      downloads = mkGroupOption "downloader" 981;
     };
 
     services = {
@@ -86,6 +88,10 @@ in {
         port = 8181;
         uid = 355;
         gid = 355;
+      };
+      gluetun = mkBasicServiceOptions "gluetun" {
+        uid = 356;
+        gid = 357;
       };
     };
   };

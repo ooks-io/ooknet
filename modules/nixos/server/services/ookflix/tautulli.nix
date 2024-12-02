@@ -2,14 +2,15 @@
   config,
   lib,
   ook,
+  self,
   ...
 }: let
-  ookflixLib = import ./lib.nix {inherit lib config;};
+  ookflixLib = import ./lib.nix {inherit lib config self;};
   inherit (ookflixLib) mkServiceUser mkServiceStateDir;
   inherit (lib) mkIf;
   inherit (ook.lib.container) mkContainerLabel mkContainerEnvironment mkContainerPort;
   inherit (config.ooknet.server.ookflix) groups;
-  inherit (config.ooknet.server.services) tautulli;
+  inherit (config.ooknet.server.ookflix.services) tautulli;
 in {
   config = mkIf tautulli.enable {
     users = mkServiceUser tautulli.user.name;

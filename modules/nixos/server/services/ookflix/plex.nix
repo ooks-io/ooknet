@@ -2,9 +2,10 @@
   config,
   lib,
   ook,
+  self,
   ...
 }: let
-  ookflixLib = import ./lib.nix {inherit lib config;};
+  ookflixLib = import ./lib.nix {inherit lib config self;};
   inherit (ookflixLib) mkServiceUser mkServiceStateDir;
   inherit (lib) mkIf optionalAttrs;
   inherit (ook.lib.container) mkContainerLabel mkContainerEnvironment mkContainerPort;

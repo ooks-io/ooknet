@@ -2,9 +2,10 @@
   config,
   lib,
   ook,
+  self,
   ...
 }: let
-  ookflixLib = import ./lib.nix {inherit lib config;};
+  ookflixLib = import ./lib.nix {inherit lib config self;};
   inherit (ookflixLib) mkServiceStateDir mkServiceUser;
   inherit (lib) mkIf optionalAttrs;
   inherit (ook.lib.container) mkContainerLabel mkContainerEnvironment mkContainerPort;
@@ -22,10 +23,9 @@ in {
         image = "lscr.io/linuxserver/jellyfin:latest";
         autoStart = true;
         hostname = "jellyfin";
-        ports = [(mkContainerPort jellyfin.port)];
+        ports = ["${jellyfin.port}:${jellyfin.port}"];
         volumes = [
-          "${volumes.media.movies}:/data/movies"
-          "${volumes.media.tv}:/data/tv"
+          "${volumes.media.root}:/data"
           "${jellyfin.stateDir}:/config"
         ];
         labels = mkContainerLabel {

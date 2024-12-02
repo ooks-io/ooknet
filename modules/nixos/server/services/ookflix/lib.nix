@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  self,
   ...
 }: let
   inherit (lib) mkOption mkEnableOption elem assertMsg;
@@ -87,6 +88,15 @@
     user = mkUserOption name args.uid;
     group = mkGroupOption name args.gid;
   };
+  mkBasicServiceOptions = name: {
+    gid,
+    uid,
+    ...
+  } @ args: {
+    enable = mkEnableOption "Enable ${name} container";
+    user = mkUserOption name args.uid;
+    group = mkGroupOption name args.gid;
+  };
   mkServiceUser = service: {
     users.${service} = {
       isSystemUser = true;
@@ -106,6 +116,13 @@
       group = cfg.services.${service}.group.name;
     };
   };
+  mkServiceSecret = name: service: {
+    ${name} = {
+      file = "${self}/secrets/container/${name}.age";
+      owner = cfg.services.${service}.user.name;
+      group = cfg.services.${service}.group.name;
+    };
+  };
 in {
-  inherit mkServiceOptions mkServiceStateDir mkServiceUser mkUserOption mkPortOption mkGroupOption mkVolumeOption mkSubdomainOption;
+  inherit mkServiceSecret mkBasicServiceOptions mkServiceOptions mkServiceStateDir mkServiceUser mkUserOption mkPortOption mkGroupOption mkVolumeOption mkSubdomainOption;
 }

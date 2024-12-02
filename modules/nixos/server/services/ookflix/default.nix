@@ -9,6 +9,14 @@ in {
   imports = [
     ./jellyfin.nix
     ./plex.nix
+    ./jellyseer.nix
+    ./tautulli.nix
+    ./sonarr.nix
+    ./prowlarr.nix
+    ./gluetun.nix
+    ./transmission.nix
+    ./shared.nix
+
     ./options.nix
   ];
 
@@ -18,6 +26,8 @@ in {
       services = {
         jellyfin.enable = true;
         plex.enable = true;
+        jellyseer.enable = true;
+        tautulli.enable = true;
       };
     };
   };
