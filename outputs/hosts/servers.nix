@@ -21,7 +21,7 @@ in {
       hostname = "ooksmedia";
       domain = "ooknet.org";
       type = "desktop";
-      services = ["media-server"];
+      services = ["ookflix"];
     };
   };
 }
