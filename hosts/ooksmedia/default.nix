@@ -21,6 +21,15 @@
       editor = "nvim";
       multiplexer = "zellij";
     };
+    server = {
+      ookflix = {
+        gpuAcceleration.enable = true;
+        services = {
+          plex.enable = true;
+          jellyfin.enable = true;
+        };
+      };
+    };
   };
 
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
