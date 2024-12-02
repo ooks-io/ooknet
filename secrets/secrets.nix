@@ -7,4 +7,5 @@ in {
   "spotify_key.age".publicKeys = [users.ooks] ++ workstations;
   "ooknet_org.age".publicKeys = [users.ooks] ++ workstations;
   "mullvad_wg.age".publicKeys = [users.ooks] ++ workstations ++ servers;
+  "containers/vpn_env.age".publicKeys = [users.ooks] ++ workstations ++ servers;
 }
