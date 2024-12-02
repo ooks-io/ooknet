@@ -36,7 +36,7 @@ in {
       owner = "${admin.name}";
       group = "users";
     };
-    mullvad_wg = mkIf transmission.enable {
+    "mullvad_wg.conf" = mkIf transmission.enable {
       file = "${self}/secrets/mullvad_wg.age";
     };
   };
