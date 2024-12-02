@@ -6,16 +6,19 @@
 }: let
   ookflixLib = import ./lib.nix {inherit lib config self;};
 
-  inherit (ookflixLib) mkVolumeOption mkGroupOption mkServiceOptions mkBasicServiceOptions;
-  inherit (lib) mkOption mkEnableOption;
+  inherit (ookflixLib) mkVolumeOption mkGroupOption mkServiceOptions mkBasicServiceOptions mkPortOption;
+  inherit (lib) mkOption mkEnableOption elem;
+  inherit (config.ooknet.server) services;
   inherit (lib.types) enum;
-  inherit (config.ooknet) server;
-  cfg = server.ookflix;
 in {
   options.ooknet.server.ookflix = {
-    enable = mkEnableOption "Enable ookflix a container based media server module";
+    enable =
+      mkEnableOption "Enable ookflix a container based media server module"
+      // {default = elem "ookflix" services;};
     gpuAcceleration = {
-      enable = mkEnableOption "Enable GPU acceleration for video streamers";
+      enable =
+        mkEnableOption "Enable GPU acceleration for video streamers"
+        // {default = elem "ookflix" services;};
       type = mkOption {
         type = enum ["nvidia" "intel" "amd"];
         default = config.ooknet.hardware.gpu.type;
@@ -28,15 +31,26 @@ in {
     volumes = {
       state.root = mkVolumeOption "root" "/var/lib/ookflix";
       data.root = mkVolumeOption "root" "/jellyfin";
-      downloads = {
-        root = mkVolumeOption "${cfg.content.root}/downloads";
-        tv = mkVolumeOption "downloads" "tv";
-        movies = mkVolumeOption "downloads" "movies";
-        books = mkVolumeOption "downloads" "books";
+
+      torrents = {
+        root = mkVolumeOption "data" "torrents";
+        tv = mkVolumeOption "torrents" "tv";
+        movies = mkVolumeOption "torrents" "movies";
+        books = mkVolumeOption "torrents" "books";
       };
 
+      usenet = {
+        root = mkVolumeOption "data" "usenet";
+        incomplete = mkVolumeOption "usenet" "incomplete";
+        complete = {
+          root = mkVolumeOption "usenet" "complete";
+          tv = mkVolumeOption "usenet/complete" "tv";
+          movies = mkVolumeOption "usenet/complete" "movies";
+          books = mkVolumeOption "usenet/complete" "books";
+        };
+      };
       media = {
-        root = mkVolumeOption "root" "${cfg.volumes.content.root}/media";
+        root = mkVolumeOption "data" "media";
         movies = mkVolumeOption "media" "movies";
         tv = mkVolumeOption "media" "tv";
         books = mkVolumeOption "media" "books";
@@ -74,11 +88,13 @@ in {
         uid = 982;
         gid = 987;
       };
-      transmission = mkServiceOptions "transmission" {
-        port = 9091;
-        uid = 70;
-        gid = 70;
-      };
+      qbittorrent =
+        mkServiceOptions "qbittorrent" {
+          port = 8080;
+          uid = 377;
+          gid = 377;
+        }
+        // {torrentPort = mkPortOption 58080 "Torrenting Port for qbittorrent" 58080;};
       jellyseer = mkServiceOptions "jellyseer" {
         port = 5055;
         uid = 345;

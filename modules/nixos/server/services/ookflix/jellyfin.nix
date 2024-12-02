@@ -23,7 +23,7 @@ in {
         image = "lscr.io/linuxserver/jellyfin:latest";
         autoStart = true;
         hostname = "jellyfin";
-        ports = ["${jellyfin.port}:${jellyfin.port}"];
+        ports = [(mkContainerPort jellyfin.port)];
         volumes = [
           "${volumes.media.root}:/data"
           "${jellyfin.stateDir}:/config"

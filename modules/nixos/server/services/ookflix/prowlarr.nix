@@ -22,7 +22,6 @@ in {
         hostname = "prowlarr";
         ports = [(mkContainerPort prowlarr.port)];
         volumes = ["${prowlarr.stateDir}:/config"];
-        extraOptions = ["--network" "host"];
         labels = mkContainerLabel {
           name = "prowlarr";
           inherit (prowlarr) port domain;

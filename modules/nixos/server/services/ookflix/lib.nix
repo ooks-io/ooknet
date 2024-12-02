@@ -9,6 +9,7 @@
   inherit (lib.types) int path port str;
   inherit (config.ooknet) server;
   cfg = server.ookflix;
+  ookflixEnabled = elem "ookflix" server.services;
 
   mkSubdomainOption = name: description: example:
     mkOption {
@@ -60,19 +61,25 @@
       inherit description example;
     };
 
-  mkVolumeOption = type: pathValue:
+  mkVolumeOption = rootPath: pathValue:
     mkOption {
       type = path;
       default =
-        if type == "state"
+        if rootPath == "state"
         then "${cfg.volumes.state.root}/${pathValue}"
-        else if type == "media"
+        else if rootPath == "data"
+        then "${cfg.volumes.data.root}/${pathValue}"
+        else if rootPath == "media"
         then "${cfg.volumes.media.root}/${pathValue}"
-        else if type == "downloads"
-        then "${cfg.volumes.downloads.root}/${pathValue}"
-        else if type == "root"
+        else if rootPath == "torrents"
+        then "${cfg.volumes.torrents.root}/${pathValue}"
+        else if rootPath == "usenet"
+        then "${cfg.volumes.usenet.root}/${pathValue}"
+        else if rootPath == "usenet/complete"
+        then "${cfg.volumes.usenet.complete.root}/${pathValue}"
+        else if rootPath == "root"
         then pathValue
-        else throw "Invalid VolumeOption type: ${type}. Must be one of 'state' 'media' 'downloads' 'root'";
+        else throw "Invalid VolumeOption rootPath: ${rootPath}. Must be one of 'state' 'data' 'media' 'torrents' 'usenet' 'usenet/complete' 'root'";
     };
 
   mkServiceOptions = name: {
@@ -81,7 +88,7 @@
     uid,
     ...
   } @ args: {
-    enable = mkEnableOption "Enable ${name} container";
+    enable = mkEnableOption "Enable ${name} container" // {default = ookflixEnabled;};
     port = mkPortOption args.port "Port for ${name} container." 80;
     domain = mkSubdomainOption name "Domain for ${name} container." "${name}.mydomain.com";
     stateDir = mkVolumeOption "state" name;
@@ -93,7 +100,7 @@
     uid,
     ...
   } @ args: {
-    enable = mkEnableOption "Enable ${name} container";
+    enable = mkEnableOption "Enable ${name} container" // {default = ookflixEnabled;};
     user = mkUserOption name args.uid;
     group = mkGroupOption name args.gid;
   };
@@ -118,7 +125,7 @@
   };
   mkServiceSecret = name: service: {
     ${name} = {
-      file = "${self}/secrets/container/${name}.age";
+      file = "${self}/secrets/containers/${name}.age";
       owner = cfg.services.${service}.user.name;
       group = cfg.services.${service}.group.name;
     };

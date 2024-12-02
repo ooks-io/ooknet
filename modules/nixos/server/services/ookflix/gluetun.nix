@@ -6,27 +6,24 @@
   ...
 }: let
   ookflixLib = import ./lib.nix {inherit self lib config;};
-  inherit (ookflixLib) mkServiceUser;
+  inherit (ookflixLib) mkServiceUser mkServiceSecret;
   inherit (lib) mkIf;
-  inherit (ook.lib.container) mkContainerEnvironment mkContainerPort mkServiceSecret;
-  inherit (config.ooknet.server.ookflix.services) transmission gluetun;
+  inherit (ook.lib.container) mkContainerEnvironment mkContainerPort;
+  inherit (config.ooknet.server.ookflix.services) qbittorrent gluetun;
 in {
   config = mkIf gluetun.enable {
     users = mkServiceUser gluetun.user.name;
-    age.secrets.vpn_env = mkServiceSecret "vpn_env" "gluetun";
+    age.secrets = mkServiceSecret "vpn_env" "gluetun";
     virtualisation.oci-containers.containers = {
       # vpn container
-      gluetun = mkIf {
+      gluetun = mkIf gluetun.enable {
         image = "qmcgaw/gluetun:latest";
         # should make this an option.
         environmentFiles = [config.age.secrets.vpn_env.path];
         ports = [
-          (mkContainerPort transmission.port)
+          (mkContainerPort qbittorrent.port)
         ];
-        environment = mkContainerEnvironment gluetun.user.id gluetun.group.id {
-          VPN_SERVICE_PROVIDER = gluetun.provider;
-          VPN_TYPE = "wireguard";
-        };
+        environment = mkContainerEnvironment gluetun.user.id gluetun.group.id;
         extraOptions = [
           # give network admin permissions
           "--cap-add=NET_ADMIN"

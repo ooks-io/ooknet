@@ -25,7 +25,6 @@ in {
           "${radarr.stateDir}:/config"
           "${volumes.data.root}:/data"
         ];
-        extraOptions = ["--network" "host"];
         labels = mkContainerLabel {
           name = "radarr";
           inherit (radarr) port domain;
@@ -34,7 +33,11 @@ in {
             description = "media-server movies downloader";
           };
         };
-        environment = mkContainerEnvironment radarr.user.id groups.media.id;
+        environment =
+          mkContainerEnvironment radarr.user.id groups.media.id
+          // {
+            UMASK = "002";
+          };
       };
     };
   };
