@@ -50,6 +50,10 @@ in {
         type = str;
         default = "ooks@protonmail.com";
       };
+      email = mkOption {
+        type = str;
+        default = "ooks@protonmail.com";
+      };
       homeManager = mkOption {
         type = bool;
         default = false;
