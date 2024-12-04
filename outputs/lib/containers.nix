@@ -43,7 +43,7 @@
       "traefik.http.routers.${name}.rule" = "Host(`${args.domain}`)";
       "traefik.http.routers.${name}.entrypoints" = "websecure";
       "traefik.http.routers.${name}.tls" = "true";
-      "traefik.http.routes.${name}.certresolver" = "cloudflare";
+      "traefik.http.routers.${name}.tls.certresolver" = "letsencrypt";
     })
     # traefik service labels
     // (optionalAttrs ((args ? domain) && (args ? port)) {
