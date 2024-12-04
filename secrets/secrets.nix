@@ -8,4 +8,5 @@ in {
   "ooknet_org.age".publicKeys = [users.ooks] ++ workstations;
   "mullvad_wg.age".publicKeys = [users.ooks] ++ workstations ++ servers;
   "containers/vpn_env.age".publicKeys = [users.ooks] ++ workstations ++ servers;
+  "containers/cf_creds.age".publicKeys = [users.ooks] ++ workstations ++ servers;
 }
