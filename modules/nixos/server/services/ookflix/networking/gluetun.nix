@@ -5,10 +5,10 @@
   self,
   ...
 }: let
-  ookflixLib = import ./lib.nix {inherit self lib config;};
+  ookflixLib = import ../lib.nix {inherit self lib config;};
   inherit (ookflixLib) mkServiceUser mkServiceSecret;
   inherit (lib) mkIf;
-  inherit (ook.lib.container) mkContainerEnvironment mkContainerPort;
+  inherit (ook.lib.container) mkContainerEnvironment;
   inherit (config.ooknet.server.ookflix.services) qbittorrent gluetun;
 in {
   config = mkIf gluetun.enable {
@@ -21,7 +21,7 @@ in {
         # should make this an option.
         environmentFiles = [config.age.secrets.vpn_env.path];
         ports = [
-          (mkContainerPort qbittorrent.port)
+          "${toString qbittorrent.exposedPort}:${toString qbittorrent.port}"
         ];
         environment = mkContainerEnvironment gluetun.user.id gluetun.group.id;
         extraOptions = [

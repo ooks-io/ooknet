@@ -1,15 +1,13 @@
 {
   imports = [
-    ./jellyfin.nix
-    ./plex.nix
-    ./jellyseer.nix
-    ./tautulli.nix
-    ./sonarr.nix
-    ./prowlarr.nix
-    ./gluetun.nix
-    ./qbittorrent.nix
-    ./shared.nix
+    ./streamers
+    ./monitors
+    ./networking
+    ./downloading
 
+    ./shared.nix
+    ./podman.nix
     ./options.nix
+    ./homepage.nix
   ];
 }

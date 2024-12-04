@@ -5,7 +5,7 @@
   self,
   ...
 }: let
-  ookflixLib = import ./lib.nix {inherit lib config self;};
+  ookflixLib = import ../lib.nix {inherit lib config self;};
   inherit (ookflixLib) mkServiceUser mkServiceStateDir;
   inherit (lib) mkIf;
   inherit (ook.lib.container) mkContainerLabel mkContainerEnvironment mkContainerPort;
@@ -14,7 +14,7 @@
 in {
   config = mkIf tautulli.enable {
     users = mkServiceUser tautulli.user.name;
-    systemd.tmpfiles = mkServiceStateDir "tautulli" tautulli.stateDir;
+    systemd.tmpfiles.settings.tautulliStateDir = mkServiceStateDir "tautulli";
     virtualisation.oci-containers.containers = {
       # plex monitoring service
       tautulli = {

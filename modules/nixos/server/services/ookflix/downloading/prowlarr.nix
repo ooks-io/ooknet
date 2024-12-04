@@ -5,7 +5,7 @@
   self,
   ...
 }: let
-  ookflixLib = import ./lib.nix {inherit lib config self;};
+  ookflixLib = import ../lib.nix {inherit lib config self;};
   inherit (ookflixLib) mkServiceUser mkServiceStateDir;
   inherit (lib) mkIf;
   inherit (ook.lib.container) mkContainerLabel mkContainerEnvironment mkContainerPort;
@@ -14,7 +14,7 @@
 in {
   config = mkIf prowlarr.enable {
     users = mkServiceUser prowlarr.user.name;
-    systemd.tmpfiles = mkServiceStateDir "prowlarr" prowlarr.stateDir;
+    systemd.tmpfiles.settings.prowlarrStateDir = mkServiceStateDir "prowlarr";
     virtualisation.oci-containers.containers = {
       prowlarr = {
         image = "lscr.io/linuxserver/prowlarr:latest";

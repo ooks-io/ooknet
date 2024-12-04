@@ -5,7 +5,7 @@
   self,
   ...
 }: let
-  ookflixLib = import ./lib.nix {inherit lib config self;};
+  ookflixLib = import ../lib.nix {inherit lib config self;};
   inherit (ookflixLib) mkServiceUser mkServiceStateDir;
   inherit (lib) mkIf;
   inherit (ook.lib.container) mkContainerLabel mkContainerEnvironment mkContainerPort;
@@ -14,7 +14,7 @@
 in {
   config = mkIf sonarr.enable {
     users = mkServiceUser sonarr.user.name;
-    systemd.tmpfiles = mkServiceStateDir "sonarr" sonarr.stateDir;
+    systemd.tmpfiles.settings.sonarrStateDir = mkServiceStateDir "sonarr";
     virtualisation.oci-containers.containers = {
       sonarr = {
         image = "ghcr.io/hotio/sonarr";

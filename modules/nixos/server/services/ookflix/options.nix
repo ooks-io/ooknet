@@ -94,8 +94,11 @@ in {
           uid = 377;
           gid = 377;
         }
-        // {torrentPort = mkPortOption 58080 "Torrenting Port for qbittorrent" 58080;};
-      jellyseer = mkServiceOptions "jellyseer" {
+        // {
+          torrentPort = mkPortOption 58080 "Torrenting Port for qbittorrent" 58080;
+          exposedPort = mkPortOption 8081 "Port exposed by qbittorrent" 8081;
+        };
+      jellyseerr = mkServiceOptions "jellyseerr" {
         port = 5055;
         uid = 345;
         gid = 345;
@@ -104,6 +107,16 @@ in {
         port = 8181;
         uid = 355;
         gid = 355;
+      };
+      traefik = mkServiceOptions "traefik" {
+        port = 8080;
+        uid = 389;
+        gid = 389;
+      };
+      homepage = mkServiceOptions "homepage" {
+        port = 3000;
+        uid = 400;
+        gid = 400;
       };
       gluetun = mkBasicServiceOptions "gluetun" {
         uid = 356;

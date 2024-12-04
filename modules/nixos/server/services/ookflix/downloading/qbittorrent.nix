@@ -5,7 +5,7 @@
   self,
   ...
 }: let
-  ookflixLib = import ./lib.nix {inherit lib config self;};
+  ookflixLib = import ../lib.nix {inherit lib config self;};
   inherit (ookflixLib) mkServiceUser mkServiceStateDir;
   inherit (lib) mkIf;
   inherit (ook.lib.container) mkContainerLabel mkContainerEnvironment;
@@ -14,17 +14,20 @@
 in {
   config = mkIf qbittorrent.enable {
     users = mkServiceUser qbittorrent.user.name;
-    systemd.tmpfiles = mkServiceStateDir "qbittorrent" qbittorrent.stateDir;
+    systemd.tmpfiles.settings.qbittorrentStateDir = mkServiceStateDir "qbittorrent";
     virtualisation.oci-containers.containers = {
       # Torrent client
       qbittorrent = {
+        hostname = "qbittorrent";
         image = "ghcr.io/hotio/qbittorrent";
         dependsOn = ["gluetun"];
         volumes = [
           "${qbittorrent.stateDir}:/config"
           "${volumes.torrents.root}:/data/torrents"
         ];
-        extraOptions = ["--network=container:gluetun"];
+        extraOptions = [
+          "--network=container:gluetun"
+        ];
         labels = mkContainerLabel {
           name = "qbittorrent";
           inherit (qbittorrent) port domain;
@@ -34,7 +37,7 @@ in {
           };
         };
         environment =
-          mkContainerEnvironment qbittorrent.user.id groups.downloads.id
+          mkContainerEnvironment qbittorrent.user.id groups.media.id
           // {
             UMASK = "002";
             WEBUI_PORTS = "${toString qbittorrent.port}/tcp,${toString qbittorrent.port}/udp";

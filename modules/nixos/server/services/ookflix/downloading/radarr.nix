@@ -5,22 +5,22 @@
   self,
   ...
 }: let
-  ookflixLib = import ./lib.nix {inherit lib config self;};
+  ookflixLib = import ../lib.nix {inherit lib config self;};
   inherit (ookflixLib) mkServiceUser mkServiceStateDir;
   inherit (lib) mkIf;
-  inherit (ook.lib.container) mkContainerLabel mkContainerEnvironment;
+  inherit (ook.lib.container) mkContainerLabel mkContainerPort mkContainerEnvironment;
   inherit (config.ooknet.server.ookflix) groups volumes;
   inherit (config.ooknet.server.ookflix.services) radarr;
 in {
   config = mkIf radarr.enable {
     users = mkServiceUser radarr.user.name;
-    systemd.tmpfiles = mkServiceStateDir "radarr" radarr.stateDir;
+    systemd.tmpfiles.settings.radarrStateDir = mkServiceStateDir "radarr";
     virtualisation.oci-containers.containers = {
       radarr = {
-        image = "ghcr.io/hotio/qbittorrent";
+        image = "ghcr.io/hotio/radarr";
         autoStart = true;
         hostname = "radarr";
-        ports = ["${radarr.port}:${radarr.port}"];
+        ports = [(mkContainerPort radarr.port)];
         volumes = [
           "${radarr.stateDir}:/config"
           "${volumes.data.root}:/data"

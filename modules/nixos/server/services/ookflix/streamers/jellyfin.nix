@@ -5,7 +5,7 @@
   self,
   ...
 }: let
-  ookflixLib = import ./lib.nix {inherit lib config self;};
+  ookflixLib = import ../lib.nix {inherit lib config self;};
   inherit (ookflixLib) mkServiceStateDir mkServiceUser;
   inherit (lib) mkIf optionalAttrs;
   inherit (ook.lib.container) mkContainerLabel mkContainerEnvironment mkContainerPort;
@@ -15,7 +15,7 @@ in {
   config = mkIf services.jellyfin.enable {
     hardware.nvidia-container-toolkit.enable = gpuAcceleration.enable && gpuAcceleration.type == "nvidia";
     users = mkServiceUser jellyfin.user.name;
-    systemd.tmpfiles = mkServiceStateDir "jellyfin" jellyfin.stateDir;
+    systemd.tmpfiles.settings.jellyfinStateDir = mkServiceStateDir "jellyfin";
     virtualisation.oci-containers.containers = {
       # media streaming server
       # docs: <https://docs.linuxserver.io/images/docker-jellyfin/>
@@ -36,18 +36,6 @@ in {
             description = "media-server streamer";
           };
         };
-
-        extraOptions = optionalAttrs gpuAcceleration.enable (
-          if gpuAcceleration.type == "nvidia"
-          then [
-            "--runtime=nvidia"
-          ]
-          else if gpuAcceleration.type == "intel" || "amd"
-          then [
-            "--device=/dev/dri:/dev/dri"
-          ]
-          else []
-        );
         environment =
           mkContainerEnvironment jellyfin.user.id groups.media.id
           // {JELLYFIN_PublishedServerUrl = jellyfin.domain;}

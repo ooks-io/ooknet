@@ -4,10 +4,11 @@
   self,
   ...
 }: let
-  inherit (lib) mkOption mkEnableOption elem assertMsg;
+  inherit (lib) getExe nameValuePair mkOption mkEnableOption elem assertMsg;
   inherit (builtins) attrValues;
   inherit (lib.types) int path port str;
   inherit (config.ooknet) server;
+  inherit (config.virtualisation) podman;
   cfg = server.ookflix;
   ookflixEnabled = elem "ookflix" server.services;
 
@@ -116,13 +117,21 @@
       name = service;
     };
   };
-  mkServiceStateDir = service: dir: {
-    settings."${service}StateDir".${dir}."d" = {
+  mkServiceStateDir = service: {
+    "${cfg.services.${service}.stateDir}"."d" = {
       mode = "0700";
       user = cfg.services.${service}.user.name;
       group = cfg.services.${service}.group.name;
     };
   };
+  mkServiceStateFile = service: file: {
+    "${cfg.services.${service}.stateDir}/${file}"."f" = {
+      mode = "0600";
+      user = cfg.services.${service}.user.name;
+      group = cfg.services.${service}.group.name;
+    };
+  };
+
   mkServiceSecret = name: service: {
     ${name} = {
       file = "${self}/secrets/containers/${name}.age";
@@ -130,6 +139,17 @@
       group = cfg.services.${service}.group.name;
     };
   };
+
+  mkNetworkService = name: network:
+    nameValuePair "podman-network-${name}" {
+      description = "Podman network ${name} for ookflix";
+      serviceConfig = {
+        Type = "oneshot";
+        RemainsAfterExit = true;
+        ExecStart = "${getExe podman.package} network create -d bridge ${name}";
+        ExecStop = "${getExe podman.package} network rm -f ${name}";
+      };
+    };
 in {
-  inherit mkServiceSecret mkBasicServiceOptions mkServiceOptions mkServiceStateDir mkServiceUser mkUserOption mkPortOption mkGroupOption mkVolumeOption mkSubdomainOption;
+  inherit mkServiceStateFile mkServiceSecret mkBasicServiceOptions mkServiceOptions mkServiceStateDir mkServiceUser mkUserOption mkPortOption mkGroupOption mkVolumeOption mkSubdomainOption mkNetworkService;
 }
