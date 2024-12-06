@@ -11,6 +11,7 @@
     mkNeovim = import ./mkNeovim.nix {inherit inputs;};
     math = import ./math.nix {inherit lib;};
     container = import ./containers.nix {inherit lib config;};
+    services = import ./services.nix {inherit lib;};
     color = let
       check = import ./color/check.nix {inherit lib;};
       types = import ./color/types.nix {
