@@ -35,7 +35,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nvf.url = "github:notashelf/nvf/v0.7";
+    nvf.url = "github:notashelf/nvf";
 
     # confine vpns to specific systemd services
     vpn-confinement.url = "github:Maroka-chan/VPN-Confinement";
