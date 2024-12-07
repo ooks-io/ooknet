@@ -1061,6 +1061,7 @@
         "plugin-registers": "plugin-registers",
         "plugin-rose-pine": "plugin-rose-pine",
         "plugin-rtp-nvim": "plugin-rtp-nvim",
+        "plugin-run-nvim": "plugin-run-nvim",
         "plugin-rustaceanvim": "plugin-rustaceanvim",
         "plugin-smartcolumn": "plugin-smartcolumn",
         "plugin-sqls-nvim": "plugin-sqls-nvim",
@@ -1083,16 +1084,15 @@
         "systems": "systems_4"
       },
       "locked": {
-        "lastModified": 1732835777,
-        "narHash": "sha256-srgGCL+4ZwY5Zf7jOIhSC/6S9kf32/Vu9EWMwX818io=",
+        "lastModified": 1733489853,
+        "narHash": "sha256-Ir2dsp+e3xTVSmpV+et6DjsVyoaVgctARir+D8hn7Xg=",
         "owner": "notashelf",
         "repo": "nvf",
-        "rev": "fee1b46924d34a5ba569f37dfd92a761ea373cf2",
+        "rev": "f672d3cdee3617ad1321808f51929b2d2dbb5133",
         "type": "github"
       },
       "original": {
         "owner": "notashelf",
-        "ref": "v0.7",
         "repo": "nvf",
         "type": "github"
       }
@@ -2691,6 +2691,22 @@
       "original": {
         "owner": "nvim-neorocks",
         "repo": "rtp.nvim",
+        "type": "github"
+      }
+    },
+    "plugin-run-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1732918526,
+        "narHash": "sha256-kiszNmZZDXG8tAPMQKuGJDCkqCMzsWT7BkCvkVsH2lA=",
+        "owner": "diniamo",
+        "repo": "run.nvim",
+        "rev": "d867466e01b8fa4e54a589b9ef446cf43fb966de",
+        "type": "github"
+      },
+      "original": {
+        "owner": "diniamo",
+        "repo": "run.nvim",
         "type": "github"
       }
     },
