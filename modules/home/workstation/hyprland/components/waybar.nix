@@ -23,13 +23,13 @@ in {
       settings.mainBar = {
         layer = "top";
         position = "top";
-        height = 30;
+        height = 32;
         width = monitorWidth;
         exclusive = true;
         margin-top = 10;
         margin-bottom = -12;
 
-        modules-left = ["clock" "battery" "hyprland/workspaces"];
+        modules-left = ["custom/logo" "clock" "battery" "hyprland/workspaces"];
         modules-center = [];
         modules-right = ["custom/hyprrecord" "tray"];
 
@@ -82,6 +82,11 @@ in {
           on-click = "exec hyprrecord -a --waybar screen copysave video";
           signal = 12;
         };
+        "custom/logo" = {
+          format = "    ";
+          tooltop = "false";
+          on-click = "exec notify-send 'hello!'";
+        };
       };
       style =
         /*
@@ -89,8 +94,8 @@ in {
         */
         ''
           * {
-            font-family: "${fonts.monospace.family}";
-            font-size: 19px;
+            font-family: "${fonts.monospace.family}:style=Medium";
+            font-size: ${toString fonts.monospace.size}px;
             border: solid #${color.border.base};
           }
 
@@ -151,6 +156,13 @@ in {
 
           #workspaces button.urgent {
             color: #${color.orange.base};
+          }
+
+          #custom-logo {
+            background-image: url('/home/ooks/Media/Pictures/my-art/pixel-art/info-icon.svg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 24px;
           }
 
           #custom-hyprrecord {

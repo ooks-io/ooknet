@@ -18,7 +18,7 @@
     };
     workstation = {
       environment = "hyprland";
-      theme = "minimal";
+      theme = "hozen";
       profiles = ["creative" "virtualization" "gaming" "media" "communication" "productivity"];
       default = {
         browser = "firefox";

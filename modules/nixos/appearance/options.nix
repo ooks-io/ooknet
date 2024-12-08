@@ -1,6 +1,6 @@
 {lib, ...}: let
   inherit (lib) mkOption;
-  inherit (lib.types) str package path int;
+  inherit (lib.types) str package path int bool;
 
   mkFontOption = {
     family = mkOption {
@@ -10,6 +10,28 @@
     package = mkOption {
       type = package;
       default = null;
+    };
+    size = mkOption {
+      type = int;
+      default = 18;
+    };
+    bitmap = mkOption {
+      type = bool;
+      default = false;
+    };
+    fallback = {
+      family = mkOption {
+        type = str;
+        default = "";
+      };
+      package = mkOption {
+        type = package;
+        default = null;
+      };
+      size = mkOption {
+        type = int;
+        default = null;
+      };
     };
   };
 in {

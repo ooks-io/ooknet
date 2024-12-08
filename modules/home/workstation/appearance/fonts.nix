@@ -13,5 +13,7 @@ in {
     pkgs.noto-fonts
     pkgs.noto-fonts-cjk-sans
     pkgs.noto-fonts-emoji
+    (pkgs.nerdfonts.override
+      {fonts = ["NerdFontsSymbolsOnly"];})
   ];
 }

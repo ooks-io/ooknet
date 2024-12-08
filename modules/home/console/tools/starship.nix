@@ -51,9 +51,9 @@ in {
         elixir.symbol = " ";
         elm.symbol = " ";
         gcloud.symbol = " ";
-        git_branch.symbol = " ";
+        git_branch.symbol = "";
         golang.symbol = " ";
-        hg_branch.symbol = " ";
+        hg_branch.symbol = "";
         java.symbol = " ";
         julia.symbol = " ";
         memory_usage.symbol = "󰍛 ";

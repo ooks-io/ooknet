@@ -4,7 +4,7 @@
 in {
   options.ooknet.workstation = {
     theme = mkOption {
-      type = nullOr (enum ["minimal"]);
+      type = nullOr (enum ["minimal" "hozen"]);
       default = null;
     };
     profiles = mkOption {

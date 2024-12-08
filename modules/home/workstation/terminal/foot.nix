@@ -9,6 +9,10 @@
   inherit (lib) mkMerge mkIf;
   inherit (osConfig.ooknet.workstation) default;
   cfg = osConfig.ooknet.workstation.programs.foot;
+  fontOptions = let
+    size = if fonts.monospace.bitmap then "pixelsize" else "size";
+    family = if fonts.monospace.bitmap then "${fonts.monospace.family}:style=Medium" else "${fonts.monospace.family}";
+  in "${family}:${size}${toString fonts.monospace.size}";
 in {
   config = mkMerge [
     (mkIf (cfg.enable || default.terminal == "foot") {
@@ -18,12 +22,12 @@ in {
         settings = {
           main = {
             term = "xterm-256color";
-            font = "${fonts.monospace.family}:pixelsize=18:antialias=true";
-            font-bold = "${fonts.monospace.family}:style=Bold:pixelsize=18:antialias=true";
-            font-italic = "${fonts.monospace.family}:style=Italic:pixelsize=18:antialias=true";
-            font-bold-italic = "${fonts.monospace.family}:style=Bold Italic:pixelsize=18:antialias=true";
-            dpi-aware = "yes";
-            letter-spacing = "-1px";
+            font = "${fonts.monospace.family}:style=Medium:pixelsize=${toString fonts.monospace.size}",${fonts.monospace.fallback.family};
+            font-bold = "${fonts.monospace.family}:style=Medium:pixelsize=${toString fonts.monospace.size}";
+            font-italic = "${fonts.monospace.family}:style=Medium:pixelsize=${toString fonts.monospace.size}";
+            font-bold-italic = "${fonts.monospace.family}:style=Medium:pixelsize=${toString fonts.monospace.size}";
+            dpi-aware = "no";
+            letter-spacing = "0";
             bold-text-in-bright = "palette-based";
             resize-delay-ms = "80";
             pad = "9x9 center";
