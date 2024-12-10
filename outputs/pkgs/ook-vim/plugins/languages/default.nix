@@ -7,6 +7,7 @@
     ./html.nix
     ./ts.nix
     ./go.nix
+    ./lua.nix
   ];
 
   vim.languages = {
