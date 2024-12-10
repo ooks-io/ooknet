@@ -13,12 +13,25 @@ in {
     ooknet.appearance = {
       fonts = {
         monospace = {
-          family = "JetBrainsMono Nerd Font";
           package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
+          size = 18;
+          family = "JetBrainsMono NF";
+          variants = {
+            regular = "JetBrainsMono NF:style=Regular";
+            bold = "JetBrainsMono NF:style=Bold";
+            italic = "JetBrainsMono NF:style=Italic";
+            boldItalic = "JetBrainsMono NF:style=Bold Italic";
+          };
         };
         regular = {
-          family = "Fira Sans";
           package = pkgs.fira;
+          family = "Fira Sans";
+          variants = {
+            regular = "Fira Sans:style=Regular";
+            bold = "Fira Sans:style=Bold";
+            italic = "Fira Sans:style=Italic";
+            boldItalic = "Fira Sans:style=Bold Italic";
+          };
         };
       };
 

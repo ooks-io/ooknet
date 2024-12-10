@@ -13,17 +13,36 @@ in {
     ooknet.appearance = {
       fonts = {
         monospace = {
-          family = "CozetteHiDpi";
-          package = pkgs.cozette;
-          size = 22;
+          bitmap = true;
+          package = pkgs.monocraft;
+          size = 18;
+          family = "Monocraft";
+          variants = {
+            regular = "Monocraft:style=Medium";
+            bold = "Monocraft:style=Medium";
+            italic = "Monocraft:style=Medium";
+            boldItalic = "Monocraft:style=Medium";
+          };
           fallback = {
-            family = "JetBrainsMono Nerd Font";
-            package = pkgs.nerfonts.override {fonts = ["JetBrainsMono"];};
+            family = "JetBrainsMono NFM";
+            variants = {
+              regular = "JetBrainsMono NFM:style=Regular";
+              bold = "JetBrainsMono NFM:style=Bold";
+              italic = "JetBrainsMono NFM:style=Italic";
+              boldItalic = "JetBrainsMono NFM:style=Bold Italic";
+            };
+            package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
             size = 18;
           };
         };
         regular = {
           family = "Fira Sans";
+          variants = {
+            regular = "Fira Sans:style=Regular";
+            bold = "Fira Sans:style=Bold";
+            italic = "Fira Sans:style=Italic";
+            boldItalic = "Fira Sans:style=Bold Italic";
+          };
           package = pkgs.fira;
         };
       };

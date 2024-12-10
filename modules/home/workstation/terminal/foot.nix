@@ -4,15 +4,27 @@
   hozen,
   ...
 }: let
-  inherit (osConfig.ooknet.appearance) fonts;
+  inherit (osConfig.ooknet.appearance.fonts) monospace;
   inherit (hozen) color;
   inherit (lib) mkMerge mkIf;
   inherit (osConfig.ooknet.workstation) default;
+
+  mkFontConfig = font: style: let
+    mkFont = f: let
+      sizeAttr =
+        if f.bitmap
+        then "pixelsize"
+        else "size";
+      familyStyle = f.variants.${style} or f.variants.regular;
+    in "${familyStyle}:${sizeAttr}=${toString font.size}";
+    primary = mkFont font;
+    fallback =
+      if font.fallback != null
+      then ",${mkFont font.fallback}"
+      else "";
+  in "${primary}${fallback}";
+
   cfg = osConfig.ooknet.workstation.programs.foot;
-  fontOptions = let
-    size = if fonts.monospace.bitmap then "pixelsize" else "size";
-    family = if fonts.monospace.bitmap then "${fonts.monospace.family}:style=Medium" else "${fonts.monospace.family}";
-  in "${family}:${size}${toString fonts.monospace.size}";
 in {
   config = mkMerge [
     (mkIf (cfg.enable || default.terminal == "foot") {
@@ -22,16 +34,20 @@ in {
         settings = {
           main = {
             term = "xterm-256color";
-            font = "${fonts.monospace.family}:style=Medium:pixelsize=${toString fonts.monospace.size}",${fonts.monospace.fallback.family};
-            font-bold = "${fonts.monospace.family}:style=Medium:pixelsize=${toString fonts.monospace.size}";
-            font-italic = "${fonts.monospace.family}:style=Medium:pixelsize=${toString fonts.monospace.size}";
-            font-bold-italic = "${fonts.monospace.family}:style=Medium:pixelsize=${toString fonts.monospace.size}";
-            dpi-aware = "no";
+            font = mkFontConfig monospace "regular";
+            font-bold = mkFontConfig monospace "bold";
+            font-italic = mkFontConfig monospace "italic";
+            font-bold-italic = mkFontConfig monospace "boldItalic";
+            dpi-aware =
+              if monospace.bitmap
+              then "no"
+              else "yes";
             letter-spacing = "0";
             bold-text-in-bright = "palette-based";
             resize-delay-ms = "80";
             pad = "9x9 center";
             selection-target = "clipboard";
+            font-size-adjustment = "1px";
           };
 
           tweak = {

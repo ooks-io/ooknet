@@ -94,7 +94,7 @@ in {
         */
         ''
           * {
-            font-family: "${fonts.monospace.family}:style=Medium";
+            font-family: "${fonts.monospace.family}";
             font-size: ${toString fonts.monospace.size}px;
             border: solid #${color.border.base};
           }

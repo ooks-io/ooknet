@@ -1,12 +1,32 @@
 {lib, ...}: let
   inherit (lib) mkOption;
-  inherit (lib.types) str package path int bool;
+  inherit (lib.types) str package path int bool submodule nullOr;
 
-  mkFontOption = {
+  mkVariantOption = {
+    regular = mkOption {
+      type = str;
+      default = "";
+    };
+    bold = mkOption {
+      type = str;
+      default = "";
+    };
+    italic = mkOption {
+      type = str;
+      default = "";
+    };
+    boldItalic = mkOption {
+      type = str;
+      default = "";
+    };
+  };
+
+  mkBaseFontOption = {
     family = mkOption {
       type = str;
       default = "";
     };
+    variants = mkVariantOption;
     package = mkOption {
       type = package;
       default = null;
@@ -19,21 +39,15 @@
       type = bool;
       default = false;
     };
-    fallback = {
-      family = mkOption {
-        type = str;
-        default = "";
-      };
-      package = mkOption {
-        type = package;
-        default = null;
-      };
-      size = mkOption {
-        type = int;
+  };
+  mkFontOption =
+    mkBaseFontOption
+    // {
+      fallback = mkOption {
+        type = nullOr (submodule {options = mkBaseFontOption;});
         default = null;
       };
     };
-  };
 in {
   #  imports = [./palettes];
   options.ooknet.appearance = {
