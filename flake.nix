@@ -40,6 +40,9 @@
     # confine vpns to specific systemd services
     vpn-confinement.url = "github:Maroka-chan/VPN-Confinement";
 
+    ghostty-hm.url = "github:clo4/ghostty-hm-module";
+    ghostty.url = "github:ghostty-org/ghostty";
+
     # hypr* ecosystem
     hyprland.url = "github:hyprwm/hyprland";
 
