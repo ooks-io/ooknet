@@ -10,5 +10,6 @@
     ./ookbrightness.nix
     ./zellijMenu.nix
     ./nemo.nix
+    ./qtscrcpy.nix
   ];
 }
