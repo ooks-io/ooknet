@@ -18,10 +18,10 @@ in {
         spice
         spice-protocol
         # for windows virtualization
-        
         win-virtio
         win-spice
         adwaita-icon-theme # virt-manager needs this
+        remmina # for rdp
         ;
     };
     # sets up dconf settins for qemu and add virt-manager to systemPackages
@@ -50,6 +50,8 @@ in {
             enable = true;
             packages = [pkgs.OVMFFull.fd];
           };
+          # ensure virtiofsd is accessible to all domains
+          vhostUserPackages = [pkgs.virtiofsd];
         };
       };
     };
