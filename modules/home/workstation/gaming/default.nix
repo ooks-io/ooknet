@@ -10,6 +10,7 @@ in {
     ./wow.nix
     ./wine.nix
     ./bottles.nix
+    ./emulation.nix
   ];
   config = mkIf (elem "gaming" profiles) {
     ooknet.binds = {
