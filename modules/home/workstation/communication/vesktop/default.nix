@@ -15,9 +15,7 @@ in {
   config = mkIf (elem "communication" profiles) {
     # <https://github.com/AlephNought0/Faery/blob/main/Home/Programs/Vesktop/patchedvesktop.patch>
     home.packages = [
-      (pkgs.vesktop.overrideAttrs (old: {
-        patches = (old.patches or []) ++ [./vesktop-patch.patch];
-      }))
+      pkgs.vesktop
       pkgs.equibop
     ];
 
