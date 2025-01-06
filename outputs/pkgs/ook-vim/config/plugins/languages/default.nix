@@ -8,6 +8,7 @@
     ./ts.nix
     ./go.nix
     ./lua.nix
+    ./markdown.nix
   ];
 
   vim.languages = {
