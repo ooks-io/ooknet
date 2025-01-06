@@ -18,7 +18,7 @@ in {
       enable = true;
       package = inputs'.hyprland.packages.hyprland;
       xwayland.enable = true;
-      systemd = {
+      systemd = mkIf (!osConfig.programs.uwsm.enable) {
         enable = true;
         variables = ["--all"];
       };

@@ -29,7 +29,7 @@ in {
         margin-top = 10;
         margin-bottom = -12;
 
-        modules-left = ["custom/logo" "clock" "battery" "hyprland/workspaces"];
+        modules-left = ["clock" "battery" "hyprland/workspaces"];
         modules-center = [];
         modules-right = ["custom/hyprrecord" "tray"];
 
@@ -81,11 +81,6 @@ in {
           exec-if = "pgrep wl-screenrec";
           on-click = "exec hyprrecord -a --waybar screen copysave video";
           signal = 12;
-        };
-        "custom/logo" = {
-          format = "    ";
-          tooltop = "false";
-          on-click = "exec notify-send 'hello!'";
         };
       };
       style =
@@ -156,13 +151,6 @@ in {
 
           #workspaces button.urgent {
             color: #${color.orange.base};
-          }
-
-          #custom-logo {
-            background-image: url('/home/ooks/Media/Pictures/my-art/pixel-art/info-icon.svg');
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: 24px;
           }
 
           #custom-hyprrecord {
