@@ -9,7 +9,6 @@
 in {
   # generic audio configuration
   config = mkIf (elem "audio" features) {
-    hardware.pulseaudio.enable = false;
     services = {
       pipewire = {
         enable = true;
@@ -22,6 +21,7 @@ in {
         jack.enable = true;
         wireplumber.enable = true;
       };
+      pulseaudio.enable = false;
 
       # realtime audio
       udev.extraRules = ''
