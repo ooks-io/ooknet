@@ -8,7 +8,7 @@
   inherit (hozen) color;
 in {
   wayland.windowManager.hyprland = {
-    plugins = [inputs'.hyprland-plugins.packages.borders-plus-plus];
+    #plugins = [inputs'.hyprland-plugins.packages.borders-plus-plus];
     settings = {
       # cursor = {
       #   inactive_timeout = 4;
@@ -45,15 +45,16 @@ in {
           color_inactive = "0xff${color.neutrals."850"}";
         };
       };
-      "plugin:borders-plus-plus" = {
-        enabled = true;
-        add_borders = 1;
-        "col.border_1" = "rgb(${color.neutrals."600"})";
-
-        border_size_1 = 2;
-        border_size_2 = 2;
-        natural_rounding = false;
-      };
+      # FIXME
+      #"plugin:borders-plus-plus" = {
+      #  enabled = true;
+      #  add_borders = 1;
+      #  "col.border_1" = "rgb(${color.neutrals."600"})";
+      #
+      #  border_size_1 = 2;
+      #  border_size_2 = 2;
+      #  natural_rounding = false;
+      #};
       animations = {
         enabled = false;
       };
