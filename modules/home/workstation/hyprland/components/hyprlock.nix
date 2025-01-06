@@ -51,7 +51,7 @@ in {
 
         label = {
           monitor = "";
-          text = " \ ";
+          text = "LOCKED";
           position = "0, 150";
           valign = "center";
           halign = "center";
