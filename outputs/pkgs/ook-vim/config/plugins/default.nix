@@ -11,5 +11,6 @@
     ./languages
     ./statusline.nix
     ./snippets.nix
+    ./notes.nix
   ];
 }

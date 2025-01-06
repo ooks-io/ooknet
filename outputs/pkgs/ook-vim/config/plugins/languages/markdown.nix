@@ -3,9 +3,14 @@
     languages.markdown = {
       enable = true;
       format = true;
+      extensions = {
+        render-markdown-nvim = {
+          enable = true;
+        };
+      };
     };
     utility = {
-      preview.markdownPreview = {enable = true;};
+      preview.markdownPreview = {enable = false;};
     };
   };
 }
