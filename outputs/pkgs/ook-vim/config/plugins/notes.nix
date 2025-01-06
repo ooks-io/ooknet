@@ -1,8 +1,12 @@
 {
-  vim.notes = {
-    obsidian = {
-      enable = true;
-      dir = "~/Documents/notes";
+  vim = {
+    notes = {
+      obsidian = {
+        enable = true;
+        setupOpts = {
+          dir = "~/Documents/notes";
+        };
+      };
     };
   };
 }
