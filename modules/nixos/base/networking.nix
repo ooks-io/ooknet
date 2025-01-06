@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: let
   inherit (lib) mkForce mkDefault;
@@ -42,5 +43,5 @@ in {
   };
   # sometimes causes issues with network manager service never actually starting
   # requiring me to manually start the service. fine on a workstation, not on a server
-  systemd.services.NetworkManager-wait-online.enable = host.role != "server";
+  systemd.services.NetworkManager-wait-online.serviceConfig.ExecStart = ["" "${pkgs.networkmanager}/bin/nm-online -q"];
 }
