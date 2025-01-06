@@ -14,7 +14,7 @@ in {
       fonts = {
         monospace = {
           package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
-          size = 18;
+          size = 16;
           family = "JetBrainsMono NF";
           variants = {
             regular = "JetBrainsMono NF:style=Regular";
