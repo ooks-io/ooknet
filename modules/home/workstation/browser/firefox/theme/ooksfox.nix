@@ -136,6 +136,8 @@ in
       padding: 0;
     }
 
+    /* https://github.com/MrOtherGuy/firefox-csshacks/blob/8957a709e3abb7242fa89339c684f8027e66774c/chrome/autohide_main_toolbar.css#L46 */
+
     root{
       --uc-navbar-transform: -40px;
     }
@@ -201,4 +203,6 @@ in
     }
     /* Move up the content view */
     :root[sessionrestored]:not([inFullscreen],[chromehidden~="toolbar"]) > body > #browser{ margin-top: var(--uc-navbar-transform); }
+
+
   ''
