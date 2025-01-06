@@ -124,9 +124,9 @@
             menu = args.neutrals."800";
           };
           border = {
-            base = args.neutrals."150";
-            active = args.neutrals."150";
-            inactive = args.neutrals."600";
+            base = args.neutrals."650";
+            active = args.neutrals."600";
+            inactive = args.neutrals."700";
           };
           typography = {
             text = args.neutrals."150";
