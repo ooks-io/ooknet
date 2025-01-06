@@ -8,7 +8,6 @@
   # my scuffed lib
   ook-lib = {
     builders = import ./builders.nix {inherit self lib inputs;};
-    mkNeovim = import ./mkNeovim.nix {inherit inputs;};
     math = import ./math.nix {inherit lib;};
     container = import ./containers.nix {inherit lib config;};
     services = import ./services.nix {inherit lib;};

@@ -7,7 +7,7 @@
 }: let
   inherit (lib) mkOption mkIf boolToString;
   inherit (lib.types) bool enum lines;
-  inherit (inputs.nvf.lib.nvim.dag) entryAfter;
+  inherit (lib.nvim.dag) entryAfter;
 
   cfg = config.vim.gruvbox-material;
 in {

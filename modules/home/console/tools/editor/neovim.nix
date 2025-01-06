@@ -14,4 +14,3 @@ in {
     home.sessionVariables.EDITOR = mkIf (console.editor == "nvim") "nvim";
   };
 }
-

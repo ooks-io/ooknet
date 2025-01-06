@@ -1,7 +1,9 @@
-{ook, ...}: {
+{
+  inputs,
+  lib,
+  ...
+}: {
   perSystem = {pkgs, ...}: let
-    inherit (ook.lib) mkNeovim;
-    ook-vim-config = import ./ook-vim;
     inherit (pkgs) callPackage;
   in {
     packages = {
@@ -10,7 +12,8 @@
       website = callPackage ./website {};
       caddy-with-cloudflare = callPackage ./caddy-with-cloudflare {};
 
-      ook-vim = mkNeovim pkgs [ook-vim-config];
+      #ook-vim = mkNeovim pkgs [ook-vim-config];
+      ook-vim = callPackage ./ook-vim {inherit inputs pkgs lib;};
     };
   };
 }
