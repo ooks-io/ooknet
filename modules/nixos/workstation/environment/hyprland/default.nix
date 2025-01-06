@@ -14,6 +14,7 @@ in {
       enable = true;
       package = hyprland;
       portalPackage = xdg-desktop-portal-hyprland;
+      withUWSM = false; #TODO
     };
 
     xdg.portal = {
@@ -42,7 +43,7 @@ in {
             "--time"
             "--remember"
             "--cmd"
-            (getExe hyprland)
+            "Hyprland"
           ];
           user = "greeter";
         };
