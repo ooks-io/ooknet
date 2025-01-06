@@ -13,7 +13,7 @@ in {
     ooknet.appearance = {
       fonts = {
         monospace = {
-          package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
+          package = pkgs.nerd-fonts.jetbrains-mono;
           size = 16;
           family = "JetBrainsMono NF";
           variants = {

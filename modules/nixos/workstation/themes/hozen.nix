@@ -31,7 +31,7 @@ in {
               italic = "JetBrainsMono NFM:style=Italic";
               boldItalic = "JetBrainsMono NFM:style=Bold Italic";
             };
-            package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
+            package = pkgs.nerd-fonts.jetbrains-mono;
             size = 18;
           };
         };
