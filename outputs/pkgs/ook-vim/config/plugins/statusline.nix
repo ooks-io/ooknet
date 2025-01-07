@@ -28,7 +28,18 @@
           }
         ''
       ];
-      c = ["filename"];
+      c = [
+        #lua
+        ''
+          "%=",
+            {
+              "filename",
+              symbols = {modified = ' ', readonly = ' '},
+              separator = {right = ' '},
+              path = 1,
+            }
+        ''
+      ];
       x = [
         # lua
         ''
@@ -44,6 +55,61 @@
                 color_warn = { fg = 'yellow' },
                 color_info = { fg = 'cyan' },
               }
+          }
+        ''
+      ];
+      y = [
+        #lua
+        ''
+          {
+            "",
+            draw_empty = true,
+            separator = { left = ' ', right = ' ' }
+          }
+        ''
+        ''
+          {
+            'searchcount',
+            maxcount = 999,
+            timeout = 120,
+            separator = {left = ' '}
+          }
+        ''
+        ''
+          {
+            "branch",
+            icon = ' •',
+            separator = {left = ' '}
+          }
+        ''
+      ];
+      z = [
+        #lua
+        ''
+          {
+            "",
+            draw_empty = true,
+            separator = { left = ' ', right = ' ' }
+          }
+        ''
+        ''
+          {
+            "progress",
+            separator = {left = ' '}
+          }
+        ''
+        ''
+          {"location"}
+        ''
+        ''
+          {
+            "fileformat",
+            color = {fg='black'},
+            symbols = {
+              unix = '', -- e712
+              dos = '',  -- e70f
+              mac = '',  -- e711
+            }
           }
         ''
       ];
