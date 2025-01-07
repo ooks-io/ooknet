@@ -3,11 +3,13 @@
   pkgs,
   ...
 }: let
-  configuration = import ./config;
   ooks-vim = inputs.nvf.lib.neovimConfiguration {
     inherit pkgs;
     extraSpecialArgs = {inherit inputs;};
-    modules = [configuration];
+    modules = [
+      ./config
+      ./modules
+    ];
   };
 in
   ooks-vim.neovim

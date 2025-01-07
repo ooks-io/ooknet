@@ -5,6 +5,5 @@
     ./theme.nix
     ./keymaps.nix
     ./plugins
-    ./modules
   ];
 }
