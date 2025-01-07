@@ -13,10 +13,11 @@ in {
       lst = "${getExe eza} -T -L 5 --icons --group-directories-first";
       du = "${getExe dust}";
       gitroot = "cd (git rev-parse --show-toplevel)";
+      gitedit = "cd (git rev-parse --show-toplevel); nvim -c 'Telescope find_files'; cd -";
     };
     shellAbbrs = {
       f = "cd $FLAKE";
-      fe = "$EDITOR $FLAKE";
+      fe = "$EDITOR (git rev-parse --show-toplevel) -c 'Telescope find_files'";
 
       nswitch = "${getExe nh} os switch";
     };
