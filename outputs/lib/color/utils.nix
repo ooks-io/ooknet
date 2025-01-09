@@ -122,6 +122,8 @@
             header = args.neutrals."800";
             footer = args.neutrals."800";
             menu = args.neutrals."800";
+            selection = args.neutrals."650";
+            dimmed = args.neutrals."850";
           };
           border = {
             base = args.neutrals."650";
@@ -164,6 +166,8 @@
             header = args.neutrals."150";
             footer = args.neutrals."150";
             menu = args.neutrals."150";
+            selection = args.neutrals."300";
+            dimmed = args.neutrals."200";
           };
           border = {
             base = args.neutrals."800";

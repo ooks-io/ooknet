@@ -2,6 +2,7 @@
   vim.statusline.lualine = {
     enable = true;
     activeSection = {
+      # most of this are the default values provided by nvf
       a = [
         #lua
         ''
