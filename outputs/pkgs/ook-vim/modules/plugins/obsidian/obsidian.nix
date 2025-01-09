@@ -5,8 +5,9 @@
 }: let
   inherit (lib.options) mkOption mkEnableOption;
   inherit (lib.types) str nullOr bool enum;
+  inherit (lib.generators) mkLuaInline;
   inherit (lib.nvim.binds) mkMappingOption;
-  inherit (lib.nvim.types) mkPluginSetupOption;
+  inherit (lib.nvim.types) mkPluginSetupOption luaInline;
 in {
   options.vim.notes.obsidianExtended = {
     enable = mkEnableOption "Complementary neovim plugin for Obsidian editor";
@@ -71,6 +72,20 @@ in {
           Either "wiki" or "markdown"
         '';
       };
+      note_id_func = mkOption {
+        type = nullOr luaInline;
+        default =
+          mkLuaInline
+          # lua
+          ''
+            function(title)
+              return title
+            end
+          '';
+        description = ''
+          Customize how a note ID is generated given an optional title
+        '';
+      };
       ui = {
         enable = mkOption {
           type = nullOr bool;
@@ -85,6 +100,7 @@ in {
     mappings = {
       openNote = mkMappingOption "Open note in obsidian" "<leader>oo";
       findNote = mkMappingOption "Open finder in obsidian vault" "<leader>of";
+      newNote = mkMappingOption "Create new note" "<leader>on";
     };
   };
 }

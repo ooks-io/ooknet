@@ -31,6 +31,7 @@ in {
       keymaps = [
         (mkKeymap "n" keys.openNote "<cmd>ObsidianOpen<CR>" {desc = mappings.openNote.description;})
         (mkKeymap "n" keys.findNote "<cmd>ObsidianQuickSwitch<CR>" {desc = mappings.findNote.description;})
+        (mkKeymap "n" keys.newNote "<cmd>ObsidianNewFromTemplate<CR>" {desc = mappings.newNote.description;})
       ];
     };
   };
