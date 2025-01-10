@@ -1,5 +1,6 @@
 {
   fpp-config,
+  userDir ? "/home/ooks/.config/project-plus",
   fpp-sd,
   fpp-launcher,
   lib,
@@ -9,7 +10,6 @@
   pkg-config,
   wrapQtAppsHook,
   fetchpatch,
-  makeDesktopItem,
   copyDesktopItems,
   alsa-lib,
   bluez,
@@ -61,16 +61,16 @@ in
     src = fetchFromGitHub {
       owner = "jlambert360";
       repo = "Ishiiruka";
-      hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+      hash = "sha256-UmIaOBHMRsl9FnfowAQGBjB83wpVRhoO0gzLed09lmk";
       inherit rev;
     };
 
     patches = [
-      fetchpatch
-      {
-        url = "https://github.com/dolphin-emu/dolphin/commit/3da2e15e6b95f02f66df461e87c8b896e450fdab.patch";
-        hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-      }
+      (fetchpatch
+        {
+          url = "https://github.com/dolphin-emu/dolphin/commit/3da2e15e6b95f02f66df461e87c8b896e450fdab.patch";
+          hash = "sha256-+8yGF412wQUYbyEuYWd41pgOgEbhCaezexxcI5CNehc=";
+        })
     ];
 
     strictDeps = true;
@@ -121,6 +121,7 @@ in
       gtk2
       gtk3
       xorg.libXinerama
+      xorg.libXxf86vm
     ];
 
     cmakeFlags = [
@@ -137,6 +138,8 @@ in
     qtWrapperArgs = [
       "--prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [vulkan-loader]}"
       "--set QT_QPA_PLATFORM xcb"
+      "--add-flags -u"
+      "--add-flags ${toString userDir}"
     ];
 
     patchPhase = ''
@@ -151,37 +154,15 @@ in
     installPhase = ''
       runHook preInstall
 
-      cp -rf ${fpp-config}/Binaries/* Binaries/
+      cp -rf ${fpp-config}/Binaries/Sys Binaries/
       chmod -R 755 Binaries/
-      rm Binaries/portable.txt
 
-      cp -rf ${fpp-launcher}/Launcher/* Binaries/Launcher
-      mkdir -p Binaries/User/Wii
-      install -D -m 755 ${fpp-sd}/sd.raw Binaries/User/Wii
       mkdir -p $out
       cp Binaries/ $out/ -r
 
-      sed -i 's|ISOPaths = 2|ISOPaths = 1|g' $out/Binaries/User/Config/Dolphin.ini
-      sed -i 's|WiiSDCardPath = ./User/Wii/sd.raw|WiiSDCardPath = '$out'/User/Wii/sd.raw|g' $out/Binaries/User/Config/Dolphin.ini
-      sed -i 's|ISOPath0 = ./Launcher|ISOPath0 = '$out'/Launcher|g' $out/Binaries/User/Config/Dolphin.ini
-      sed -i '\|ISOPath1 = ./Games|d' $out/Binaries/User/Config/Dolphin.ini
-
       mkdir -p $out/bin
-      ln -s $out/Binaries/ishiiruka $out/bin/faster-project-plus
+      ln -s $out/Binaries/ishiiruka $out/bin/project-plus
 
       runHook postInstall
     '';
-
-    desktopItems = [
-      (makeDesktopItem {
-        name = "project-plus";
-        exec = "project-plus";
-        icon = "ishiiruka";
-        desktopName = "Project+";
-        comment = "Ishiiruka fork for SSBPM";
-        type = "Application";
-        categories = ["Emulator" "Game"];
-        keywords = ["ProjectM" "Project M" "ProjectPlus" "Project Plus" "Project+"];
-      })
-    ];
   }

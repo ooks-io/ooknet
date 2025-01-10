@@ -5,7 +5,7 @@
   ...
 }: {
   perSystem = {pkgs, ...}: let
-    inherit (pkgs) callPackage;
+    inherit (pkgs) callPackage qt6Packages;
   in {
     packages = {
       repopack = callPackage ./repopack {};
@@ -22,8 +22,8 @@
         fpp-launcher = callPackage ./project-plus/fpp-launcher.nix {};
         fpp-sd = callPackage ./project-plus/fpp-sd.nix {};
       in
-        callPackage ./project-plus {
-          inherit fpp-config fpp-launcher fpp-sd;
+        qt6Packages.callPackage ./project-plus {
+          inherit fpp-launcher fpp-sd fpp-config;
         };
     };
   };
