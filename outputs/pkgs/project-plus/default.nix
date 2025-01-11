@@ -1,8 +1,6 @@
 {
   fpp-config,
   userDir ? "/home/ooks/.config/project-plus",
-  fpp-sd,
-  fpp-launcher,
   lib,
   stdenv,
   fetchFromGitHub,
@@ -161,7 +159,7 @@ in
       cp Binaries/ $out/ -r
 
       mkdir -p $out/bin
-      ln -s $out/Binaries/ishiiruka $out/bin/project-plus
+      ln -s $out/Binaries/ishiiruka $out/bin/faster-project-plus
 
       runHook postInstall
     '';
