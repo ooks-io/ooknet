@@ -11,6 +11,7 @@ in {
     ./wine.nix
     ./bottles.nix
     ./emulation.nix
+    ./project-plus
   ];
   config = mkIf (elem "gaming" profiles) {
     ooknet.binds = {

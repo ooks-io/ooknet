@@ -2,6 +2,7 @@
   lib,
   osConfig,
   pkgs,
+  self',
   ...
 }: let
   inherit (lib) mkIf elem;
@@ -14,6 +15,14 @@ in {
         (pkgs)
         ryujinx
         ;
+      inherit
+        (self'.packages)
+        wii-u-gc-adapter
+        ;
+    };
+    ooknet.gaming.project-plus = {
+      enable = true;
+      netplay.nickname = "ooks";
     };
   };
 }
