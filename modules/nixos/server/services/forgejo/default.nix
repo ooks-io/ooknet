@@ -1,10 +1,11 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   inherit (config.ooknet.server) services domain;
-  inherit (lib) mkIf elem;
+  inherit (lib) mkIf elem getExe;
 in {
   config = mkIf (elem "forgejo" services) {
     networking.firewall.allowedTCPPorts = [2222];
@@ -62,5 +63,24 @@ in {
         '';
       };
     };
+    # credit to TLATER
+    # https://discourse.nixos.org/t/how-to-access-forgejo-cli/45370
+    environment.systemPackages = let
+      cfg = config.services.forgejo;
+      forgejo-cli = pkgs.writeScriptBin "forgejo-cli" ''
+        #!${pkgs.runtimeShell}
+        cd ${cfg.stateDir}
+        sudo=exec
+        if [[ "$USER" != forgejo ]]; then
+          sudo='exec /run/wrappers/bin/sudo -u ${cfg.user} -g ${cfg.group} --preserve-env=GITEA_WORK_DIR --preserve-env=GITEA_CUSTOM'
+        fi
+        # Note that these variable names will change
+        export GITEA_WORK_DIR=${cfg.stateDir}
+        export GITEA_CUSTOM=${cfg.customDir}
+        $sudo ${getExe cfg.package} "$@"
+      '';
+    in [
+      forgejo-cli
+    ];
   };
 }
