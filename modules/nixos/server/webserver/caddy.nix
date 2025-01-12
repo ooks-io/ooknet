@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  self',
+  pkgs,
   ...
 }: let
   inherit (lib) mkIf mkMerge;
@@ -16,7 +16,13 @@ in {
       }
 
       (mkIf caddy.cloudflare.enable {
-        package = self'.packages.caddy-with-cloudflare;
+        package = pkgs.caddy.withPlugins {
+          plugins = [
+            "github.com/caddy-dns/cloudflare@v0.0.0-20240703190432-89f16b99c18e"
+            "github.com/WeidiDeng/caddy-cloudflare-ip@v0.0.0-20231130002422-f53b62aa13cb"
+          ];
+          hash = "sha256-X3SNPfianAWLXnE0hpQpgaaCqIqHm0jgyp1clnQKmUg=";
+        };
         globalConfig = ''
           servers {
             metrics

@@ -35,7 +35,7 @@ caddy.override {
           installPhase = ''
             cp -r --reflink=auto . $out
           '';
-          outputHash = "sha256-O3QWqgQtLOifsibyB0/UKricEGAx/3NhSjGbgu8+qgY=";
+          outputHash = "sha256-7FlCaHLuyESq+0YAkud7y83hY4oow7omJPTVVweEnJI=";
           outputHashMode = "recursive";
         };
         subPackages = ["."];
@@ -43,4 +43,3 @@ caddy.override {
         vendorHash = null;
       });
 }
-
