@@ -1,6 +1,7 @@
 {
   imports = [
     ./nix.nix
+    ./distributed-builds.nix
     ./home-manager.nix
     ./boot.nix
     ./admin.nix

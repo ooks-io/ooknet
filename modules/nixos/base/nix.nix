@@ -44,8 +44,9 @@ in {
     settings = {
       trusted-users = ["@wheel" "root" "builder"];
       experimental-features = ["nix-command" "flakes"];
-      accept-flake-config = true;
+      accept-flake-config = false;
       auto-optimise-store = true;
+      warn-dirty = false;
       # cache
       substituters = [
         "https://cache.nixos.org?priority=10"
@@ -57,7 +58,6 @@ in {
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "neovim-flake.cachix.org-1:iyQ6lHFhnB5UkVpxhQqLJbneWBTzM8LBYOFPLNH4qZw="
       ];
-      # TODO: setup builders -- builders-use-substitutes = true;
     };
   };
   nixpkgs = {
