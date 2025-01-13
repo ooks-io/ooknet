@@ -14,7 +14,6 @@
         width = 2560;
         height = 1440;
         refreshRate = 144;
-        workspace = "1";
         x = 1920;
         y = 100;
       }

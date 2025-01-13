@@ -10,7 +10,6 @@
         width = 1920;
         height = 1080;
         refreshRate = 180;
-        workspace = "1";
       }
     ];
   };

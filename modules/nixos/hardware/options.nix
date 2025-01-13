@@ -3,9 +3,14 @@
   config,
   ...
 }: let
+  inherit (builtins) filter length head;
   inherit (lib) mkOption mkEnableOption;
   inherit (lib.types) nullOr enum bool submodule listOf int str;
-  inherit (config.ooknet) hardware;
+
+  cfg = config.ooknet.hardware;
+  hasMonitors = length cfg.monitors != 0;
+  primaryAttr = filter (m: m.primary or false) cfg.monitors;
+  primaryCount = length primaryAttr;
 in {
   options.ooknet.hardware = {
     gpu = {
@@ -21,9 +26,13 @@ in {
         default = null;
       };
       amd.pstate.enable = mkEnableOption "";
-      cores = {
+      cores = mkOption {
         type = int;
         description = "Number of Physical CPU cores the system has";
+      };
+      threads = mkOption {
+        type = int;
+        description = "Number of cpu threads the cpu has";
       };
     };
 
@@ -43,6 +52,15 @@ in {
 
     # monitor module inspired by misterio77
     # includes the addition of transform option
+    primaryMonitor = mkOption {
+      type = nullOr str;
+      default =
+        if !hasMonitors
+        then null
+        else (head primaryAttr).name;
+      description = "Name of the primary monitor, derived from the monitors list";
+      readOnly = true;
+    };
     monitors = mkOption {
       type = listOf (submodule {
         options = {
@@ -82,10 +100,6 @@ in {
             type = bool;
             default = true;
           };
-          workspace = mkOption {
-            type = nullOr str;
-            default = null;
-          };
         };
       });
       default = [];
@@ -95,10 +109,8 @@ in {
   config = {
     assertions = [
       {
-        assertion =
-          ((lib.length hardware.monitors) != 0)
-          -> ((lib.length (lib.filter (m: m.primary) hardware.monitors)) == 1);
-        message = "At least 1 primary monitor is required";
+        assertion = hasMonitors -> primaryCount == 1;
+        message = "Error: config.ooknet.hardware.monitors. When monitors are configured, exactly one monitor must be designated as primary (found ${toString primaryCount} primary monitors)";
       }
     ];
   };
