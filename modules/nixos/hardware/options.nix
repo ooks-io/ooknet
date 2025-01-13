@@ -21,6 +21,10 @@ in {
         default = null;
       };
       amd.pstate.enable = mkEnableOption "";
+      cores = {
+        type = int;
+        description = "Number of Physical CPU cores the system has";
+      };
     };
 
     features = mkOption {

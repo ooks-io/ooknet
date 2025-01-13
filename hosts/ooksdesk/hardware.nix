@@ -1,7 +1,10 @@
 {
   ooknet.hardware = {
-    cpu.type = "amd";
-    cpu.amd.pstate.enable = true;
+    cpu = {
+      type = "amd";
+      amd.pstate.enable = true;
+      cores = 16;
+    };
     gpu.type = "amd";
     features = ["printing" "ssd" "audio" "video"];
     monitors = [
