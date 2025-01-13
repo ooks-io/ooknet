@@ -14,11 +14,11 @@
     speedFactor,
     systems ? ["x86_64-linux"],
     supportedFeatures ? ["big-parallel" "kvm" "nixos-test"],
+    maxJobs,
   }: {
-    inherit speedFactor systems supportedFeatures;
+    inherit speedFactor systems supportedFeatures maxJobs;
     hostName = host;
-    maxJobs = self.nixosConfigurations.${host}.config.nix.settings.max-jobs or "auto";
-    protocol = "ssh";
+    protocol = "ssh-ng";
     sshKey = "/home/${admin.name}/.ssh/builder";
   };
 
@@ -26,10 +26,12 @@
     ooksdesk = mkBuilderMachine {
       host = "ooksdesk";
       speedFactor = 16;
+      maxJobs = 4;
     };
     ooksmedia = mkBuilderMachine {
       host = "ooksmedia";
       speedFactor = 8;
+      maxJobs = 1;
     };
   };
 in {
