@@ -7,7 +7,7 @@
       preview = {
         markdownPreview = {
           enable = true;
-          autoStart = true;
+          autoStart = false;
         };
       };
     };
