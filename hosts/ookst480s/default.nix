@@ -17,7 +17,7 @@
       };
     };
     workstation = {
-      profiles = ["media" "gaming" "communication"];
+      profiles = ["media" "communication"];
       environment = "hyprland";
       theme = "minimal";
     };
