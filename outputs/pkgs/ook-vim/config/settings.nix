@@ -7,6 +7,7 @@
     useSystemClipboard = true;
     autopairs.nvim-autopairs.enable = true;
     hideSearchHighlight = true;
+    spellcheck.enable = true;
     theme = {
       enable = false;
     };
