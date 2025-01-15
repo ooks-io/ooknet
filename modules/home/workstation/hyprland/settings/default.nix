@@ -8,5 +8,7 @@
     ./monitor.nix
     ./gestures.nix
     ./appearance.nix
+    ./workspaces.nix
+    ./options
   ];
 }
