@@ -67,6 +67,7 @@
       title = mkRuleOption str "Window title matcher";
       initialClass = mkRuleOption str "Initial window class matcher";
       initialTitle = mkRuleOption str "Initial window title matcher";
+      tag = mkRuleOption str "Window tag matcher";
       xwayland = mkRuleOption bool "Match XWayland windows";
       floating = mkRuleOption bool "Match floating windows";
       fullscreen = mkRuleOption bool "Match fullscreen windows";
@@ -137,4 +138,3 @@ in {
       flatten (map formatWindowRule cfg.windowRules);
   };
 }
-

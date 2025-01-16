@@ -230,6 +230,10 @@
         name = "minsize";
         regex = ["${patterns.int} ${patterns.int}"];
       };
+      animation = mkRegexTarget {
+        name = "animation";
+        regex = ["(slide)( (left|right|up|down|top|bottom))?|(popin)( ([0-9]+%))?"];
+      };
     }
     // toggleTargets;
 in {
