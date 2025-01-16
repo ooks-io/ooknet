@@ -62,6 +62,12 @@ in {
       };
     };
 
+    analytics = {
+      enable = mkEnableOption "Enable anaylytics";
+    };
+
+    startFullscreen = mkEnableOption "Start emulated game fullscreen";
+
     gamesDir = mkOption {
       type = str;
       default = "./Games";
@@ -94,19 +100,24 @@ in {
           Core = {
             DefaultISO = "${cfg.userDir}/Games/brawl.iso";
           };
-          Netplay =
-            {
-              SelectedHostGame = "Project+ Netplay Launcher.dol";
-              BufferSize = cfg.netplay.buffer;
-              Nickname = cfg.netplay.nickname;
-              MusicOff = cfg.netplay.disableMusic;
-              ListenPort = "0x0a42";
-              HostPort = "0x0a42";
-              ConnectPort = "0x0a42";
-              HostCode = 00000000;
-              TraversalChoice = "traversal";
-            }
-            // cfg.extraSettings;
+          Netplay = {
+            SelectedHostGame = "Project+ Netplay Launcher.dol";
+            BufferSize = cfg.netplay.buffer;
+            Nickname = cfg.netplay.nickname;
+            MusicOff = cfg.netplay.disableMusic;
+            ListenPort = "0x0a42";
+            HostPort = "0x0a42";
+            ConnectPort = "0x0a42";
+            HostCode = 00000000;
+            TraversalChoice = "traversal";
+          };
+          Analytics = {
+            Enabled = cfg.analytics.enable;
+            PermissionAsked = true;
+          };
+          Display = {
+            Fullscreen = cfg.startFullscreen;
+          };
         };
       };
       # Copy dolphin GameSettings configuration from faster-project-plus config

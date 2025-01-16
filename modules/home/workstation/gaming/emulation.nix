@@ -22,6 +22,7 @@ in {
     };
     ooknet.gaming.project-plus = {
       enable = true;
+      startFullscreen = true;
       netplay.nickname = "ooks";
     };
   };
