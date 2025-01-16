@@ -2,10 +2,12 @@
   inherit (config.ooknet) binds;
 in {
   wayland.windowManager.hyprland.settings = {
+    # TODO: build better binds interface
     bind = [
       # Program Launch
       "SUPER,          b,             exec,     ${binds.browser}"
       "SUPER,          return,        exec,     ${binds.terminal}"
+      "SUPERSHIFT,     return,        exec,     ${binds.terminal} --title foot-dropdown"
       "SUPER,          e,             exec,     ${binds.terminalLaunch} $EDITOR"
       "SUPERSHIFT,     P,             exec,     ${binds.password}"
       "SUPERCTRL,      P,             exec,     ${binds.quickpass}"
