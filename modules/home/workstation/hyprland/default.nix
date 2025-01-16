@@ -28,7 +28,7 @@ in {
         CLUTTER_BACKEND = "wayland";
         NIXOS_OZONE_WL = "1";
         GDK_BACKEND = "wayland";
-        QT_QPA_PLATFORM = "wayland";
+        QT_QPA_PLATFORM = "wayland;xcb";
         QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
         DISABLE_QT5_COMPAT = "0";
         QT_AUTO_SCREEN_SCALE_FACTOR = "1";

@@ -1,6 +1,6 @@
 {
   imports = [
-    ./qt.nix
+    ./qt
     ./gtk.nix
     ./fonts.nix
     ./cursor.nix
