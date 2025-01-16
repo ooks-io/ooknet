@@ -38,10 +38,7 @@ in {
             font-bold = mkFontConfig monospace "bold";
             font-italic = mkFontConfig monospace "italic";
             font-bold-italic = mkFontConfig monospace "boldItalic";
-            dpi-aware =
-              if monospace.bitmap
-              then "no"
-              else "yes";
+            dpi-aware = false;
             letter-spacing = "0";
             bold-text-in-bright = "palette-based";
             resize-delay-ms = "80";
