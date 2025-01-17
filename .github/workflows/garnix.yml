@@ -1,0 +1,15 @@
+name: Garnix
+on:
+  push:
+    branches:
+      - main 
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: garnix-io/check-flake@v2
