@@ -8,7 +8,7 @@ in {
   xdg.configFile."kdeglobals".text = lib.generators.toINI {} {
     "ColorEffects:Disabled" = {
       Color = "#${color.layout.menu}";
-      ColorAmount = 0.30000000000000004;
+      ColorAmount = "0.30000000000000004";
       ColorEffect = 2;
       ContrastAmount = 0.1;
       ContrastEffect = 0;
