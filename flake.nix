@@ -34,6 +34,14 @@
       url = "git+ssh://git@github.com/ooks-io/website";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    secrets = {
+      url = "git+ssh://git@github.com/ooks-io/kunzen";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        systems.follows = "systems";
+      };
+    };
 
     nvf = {
       url = "github:notashelf/nvf";

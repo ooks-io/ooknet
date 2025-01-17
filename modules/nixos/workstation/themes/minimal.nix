@@ -3,6 +3,7 @@
   lib,
   pkgs,
   hozen,
+  inputs',
   ...
 }: let
   inherit (lib) mkIf;
@@ -13,14 +14,14 @@ in {
     ooknet.appearance = {
       fonts = {
         monospace = {
-          package = pkgs.nerd-fonts.jetbrains-mono;
+          package = inputs'.secrets.packages.berkeley-nerd-mono;
           size = 16;
-          family = "JetBrainsMono NF";
+          family = "BerkeleyMono Nerd Font";
           variants = {
-            regular = "JetBrainsMono NF:style=Regular";
-            bold = "JetBrainsMono NF:style=Bold";
-            italic = "JetBrainsMono NF:style=Italic";
-            boldItalic = "JetBrainsMono NF:style=Bold Italic";
+            regular = "BerkeleyMono Nerd Font:style=Regular";
+            bold = "BerkeleyMono Nerd Font:style=Bold";
+            italic = "BerkeleyMono Nerd Font:style=Italic";
+            boldItalic = "BerkeleyMono Nerd Font:style=Bold Italic";
           };
         };
         regular = {

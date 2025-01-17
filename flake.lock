@@ -3286,6 +3286,7 @@
         "nvf": "nvf",
         "ooknet-website": "ooknet-website",
         "ooks-scripts": "ooks-scripts",
+        "secrets": "secrets",
         "systems": "systems_7",
         "vpn-confinement": "vpn-confinement",
         "zjstatus": "zjstatus"
@@ -3332,6 +3333,32 @@
         "owner": "oxalica",
         "repo": "rust-overlay",
         "type": "github"
+      }
+    },
+    "secrets": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "systems": [
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1737094724,
+        "narHash": "sha256-PeNJWuk+zNrqCsrSbElfFmMP+R5E0uFaAgW9tWG03ag=",
+        "ref": "refs/heads/master",
+        "rev": "dbbf390c798a14bb316681e62fe56355d9ea88f6",
+        "revCount": 4,
+        "type": "git",
+        "url": "ssh://git@github.com/ooks-io/kunzen"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/ooks-io/kunzen"
       }
     },
     "systems": {
