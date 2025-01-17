@@ -136,6 +136,8 @@ in
     qtWrapperArgs = [
       "--prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [vulkan-loader]}"
       "--set QT_QPA_PLATFORM xcb"
+      "--set QT_QPA_PLATFROMTHEME qt5ct"
+      "--set QT_STYLE_OVERRIDE kvantum"
       "--add-flags -u"
       "--add-flags ${toString userDir}"
     ];
