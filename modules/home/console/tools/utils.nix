@@ -15,32 +15,26 @@ in {
       inherit
         (pkgs)
         bc # Calculator
-        
+
         # file utility
-        
         duf
         du-dust
         fd
         ripgrep
         # archive
-        
         zip
         unzip
         unrar
         # file transfer
-        
         rsync
         wget
         httpie # Better curl
-        
+
         # resource manager
-        
         powertop
         #shell scripting
-        
         gum
         # audio ctrl
-        
         pamixer
         diffsitter # Better diff
         jq # JSON pretty printer and manipulator
@@ -49,15 +43,13 @@ in {
         killall
         acpi
         # Notifications
-        
         libnotify
         # Nix tooling
-        
         alejandra
         ;
 
       #AI
-      inherit (self'.packages) repopack;
+      inherit (self'.packages) repomix;
     };
   };
 }

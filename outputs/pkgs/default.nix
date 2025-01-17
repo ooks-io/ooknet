@@ -17,7 +17,7 @@
     };
   in {
     packages = {
-      repopack = callPackage ./repopack {};
+      repomix = callPackage ./repomix {};
       live-buds-cli = callPackage ./live-buds-cli {};
       website = callPackage ./website {};
       caddy-with-cloudflare = callPackage ./caddy-with-cloudflare {};
