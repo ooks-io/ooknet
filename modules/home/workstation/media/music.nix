@@ -4,6 +4,7 @@
   config,
   lib,
   hozen,
+  self',
   ...
 }: let
   inherit (lib) mkIf getExe elem;
@@ -36,6 +37,7 @@ in {
     programs = {
       spotify-player = {
         enable = true;
+        package = self'.packages.spotify-player;
         settings = {
           theme = "default";
           client_id_command = "cat ${spotify_key.path}";

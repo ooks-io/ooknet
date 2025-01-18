@@ -26,7 +26,10 @@
 
       inherit (projectPlus) fpp-config fpp-launcher fpp-sd;
       project-plus = projectPlus.package;
-      spotify-player = pkgs.spotify-player.override {withImage = false;};
+      spotify-player = pkgs.spotify-player.override {
+        withImage = false;
+        withSixel = false;
+      };
     };
   };
 }
