@@ -53,11 +53,13 @@ in {
         "https://cache.nixos.org?priority=10"
         "https://nix-community.cachix.org"
         "https://neovim-flake.cachix.org"
+        "https://ooknet.cachix.org"
       ];
       trusted-public-keys = [
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "neovim-flake.cachix.org-1:iyQ6lHFhnB5UkVpxhQqLJbneWBTzM8LBYOFPLNH4qZw="
+        "ooknet.cachix.org-1:mtr4ue+8ux58b8mgTGRAG/txxHBnZvgX7Gi3amno+zs="
       ];
     };
   };
