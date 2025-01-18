@@ -64,7 +64,7 @@ in {
           device = {
             name = "${hostName}";
             device_type = "speaker";
-            volume = 100;
+            volume = 60;
             bitrate = 320;
             audio_cache = false;
             normalization = false;
