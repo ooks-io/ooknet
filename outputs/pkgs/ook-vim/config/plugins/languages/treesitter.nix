@@ -6,6 +6,7 @@
       kdl
       regex
       fish
+      yaml
     ];
   };
 }
