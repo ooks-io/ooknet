@@ -1,7 +1,8 @@
 name: Build Packages
 on:
   push:
-    paths: - "outputs/pkgs/*"
+    paths: 
+      - "outputs/pkgs/**"
     branches:
       - main
 jobs:
