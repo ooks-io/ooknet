@@ -1,0 +1,24 @@
+name: "Nix Flake Check"
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - outputs/pkgs/**
+      - .github/**
+concurrency:
+  group: ooknet-check-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  nix-flake-check:
+    name: Evaluate Flake
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Nix
+        uses: DeterminateSystems/nix-installer-action@main
+      - name: Magic Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
+      - name: Nix Flake
+        run: nix flake check

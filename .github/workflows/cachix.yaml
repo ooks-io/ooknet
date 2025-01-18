@@ -1,30 +1,45 @@
-name: Build Packages
+name: "Build packages and push to cache"
 on:
   push:
     paths: 
-      - "outputs/pkgs/**"
+      - outputs/pkgs/**
     branches:
       - main
+concurrency:
+  group: ooknet-cache-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package:
+          - ook-vim
+          - live-buds-cli
+          - caddy-with-cloudflare
+          - fpp-config
+          - fpp-launcher
+          - fpp-sd
+          - project-plus
+          - repomix
+          - website
+          - wii-u-gc-adapter
+          - spotify-player
     steps:
-    - uses: actions/checkout@v4
-    - uses: cachix/install-nix-action@v25
-    - uses: cachix/cachix-action@v14
-      with:
-        name: ooknet
-        authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - name: Build packages
-      run: | 
-        nix build \
-          .#ook-vim \
-          .#live-buds-cli \
-          .#caddy-with-cloudflare \
-          .#fpp-config \
-          .#fpp-launcher \
-          .#fpp-sd \
-          .#project-plus \
-          .#repomix \
-          .#website \
-          .#wii-u-gc-adapter
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Nix
+        uses: DeterminateSystems/nix-installer-action@main
+      - name: Magic Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
+      - name: Setup Cachix
+        uses: cachix/cachix-action@v15
+        with:
+          name: ooknet
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+          extraPullNames: nix-community
+      - name: Check Flake
+        run: nix flake check
+      - name: Build packages
+        run: nix build .#${{ matrix.package }} --print-build-logs
+        continue-on-error: true
