@@ -46,6 +46,7 @@ in {
         libnotify
         # Nix tooling
         alejandra
+        cachix
         ;
 
       #AI
