@@ -9,27 +9,48 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    flake-parts.url = "github:hercules-ci/flake-parts";
+
+    systems.url = "github:nix-systems/default-linux";
+
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs.systems.follows = "systems";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    agenix.url = "github:ryantm/agenix";
+
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+        home-manager.follows = "home-manager";
+      };
+    };
+
     nix-index-db = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    zjstatus.url = "github:dj95/zjstatus";
-    systems.url = "github:nix-systems/default-linux";
+
+    zjstatus = {
+      url = "github:dj95/zjstatus";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    ooks-scripts = {
-      url = "git+ssh://git@github.com/ooks-io/scripts";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
     secrets = {
       url = "git+ssh://git@github.com/ooks-io/kunzen";
       inputs = {
@@ -41,17 +62,20 @@
 
     nvf = {
       url = "github:notashelf/nvf";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        systems.follows = "systems";
+
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        flake-utils.follows = "flake-utils";
+      };
     };
 
-    # confine vpns to specific systemd services
-    vpn-confinement.url = "github:Maroka-chan/VPN-Confinement";
-
-    ghostty-hm.url = "github:clo4/ghostty-hm-module";
-    ghostty.url = "github:ghostty-org/ghostty";
-
     # hypr* ecosystem
-    hyprland.url = "github:hyprwm/hyprland";
+    hyprland = {
+      url = "github:hyprwm/hyprland";
+      inputs.systems.follows = "systems";
+    };
 
     hypridle = {
       url = "github:hyprwm/hypridle";

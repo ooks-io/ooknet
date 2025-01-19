@@ -1,14 +1,177 @@
 {
   lib,
   config,
-  inputs',
+  pkgs,
   ...
 }: let
   inherit (lib) mkIf;
   inherit (config.programs) rofi;
+
+  powermenu = pkgs.writeShellApplication {
+    name = "powermenu";
+    runtimeInputs = [pkgs.rofi-wayland];
+    text =
+      # bash
+      ''
+
+        pid_file="/tmp/my_countdown.pid"
+
+        DRY=
+        COUNTDOWN=
+
+        while [ $# -gt 0 ]; do
+          key="$1"
+          case $key in
+          -c | --countdown)
+            COUNTDOWN=true
+            shift
+            ;;
+          -d | --dry)
+            DRY=true
+            shift
+            ;;
+          *)
+            break
+            ;;
+          esac
+        done
+
+        notify() {
+          notify-send -u critical -a system-notify -t 1000 -h string:x-canonical-private-synchronous:anything "$@"
+        }
+
+        # Used for development, instead of running command, notifies if command was successful and exits.
+        dry_success() {
+          if [ "$DRY" == "true" ]; then
+            TITLE="Action Successful:"
+            notify "$TITLE" "$1"
+            exit 0
+          fi
+        }
+
+        cancel() {
+          if [ -f "$pid_file" ]; then
+            # Read the process ID from the file and kill the process
+            kill "$(cat "$pid_file")" &>/dev/null
+            notify-send "Action canceled"
+            rm -f "$pid_file"
+          else
+            echo "No countdown to cancel."
+          fi
+        }
+
+        countdown() {
+          if [ "$COUNTDOWN" == "true" ]; then
+            msg="''${1:-doing something}"
+            echo $$ >"$pid_file"
+            for i in {5..1}; do
+              notify-send "$msg in $i" -h string:x-canonical-private-synchronous:anything
+              sleep 1
+            done
+            echo "Countdown done"
+            rm -f "$pid_file"
+          fi
+        }
+
+        action_logout() {
+          countdown "Logging out"
+          dry_success "Logged out"
+          PROCESS="Hyprland|\.Hyprland-wrapp"
+          if pgrep -x $PROCESS >/dev/null; then
+            hyprctl dispatch exit 0
+            sleep 2
+            if pgrep -x $PROCESS; then
+              pkill -9 $PROCESS
+            fi
+          fi
+
+        }
+
+        action_poweroff() {
+          countdown "Shutting down"
+          dry_success "Shutdown"
+          poweroff
+        }
+
+        action_lock() {
+          dry_success "Screen Locked"
+          hyprlock
+        }
+
+        action_reboot() {
+          countdown "Rebooting"
+          dry_success "Reboot"
+          reboot
+        }
+
+        action_suspend() {
+          countdown "Suspending"
+          dry_success "Suspend"
+          suspend
+        }
+
+        action_dmenu() {
+          selection=$(echo -e " Reboot\n Lock\n󰍃 Logout\n󰐥 Shutdown\n󰒲 Suspend" | rofi -dmenu -i)
+
+          case "$selection" in
+          "󰐥 Shutdown") action_poweroff ;;
+          " Reboot") action_reboot ;;
+          " Lock") action_lock ;;
+          "󰍃 Logout") action_logout ;;
+          "󰒲 Suspend") action_suspend ;;
+          *)
+            echo "ERROR" "Invalid option"
+            exit 1
+            ;;
+          esac
+        }
+        # Check if the script is already running and decide to cancel or start countdown
+        if [ -f "$pid_file" ]; then
+          cancel
+        else
+          ACTION=''${1:-usage}
+          case "$ACTION" in
+          logout)
+            action_logout
+            ;;
+          poweroff)
+            action_poweroff
+            ;;
+          reboot)
+            action_reboot
+            ;;
+          lock)
+            action_lock
+            ;;
+          usage)
+            echo " Usage: powermenu [OPTION]... [ACTION usage|dmenu|logout|poweroff|reboot|lock]"
+            echo ""
+            echo "Options:"
+            echo "  -c, --countdown       Enable 5 seconds countdown before action is performed"
+            echo "  -d, --dry             Print instead of perform action debug/development"
+            echo ""
+            echo "Actions:"
+            echo "  usage                 Print help information"
+            echo "  dmenu                 Open menu with rofi for selecting action"
+            echo "  logout                Kills current active Hyprland session"
+            echo "  poweroff              Shut down current host"
+            echo "  reboot                Restart current host"
+            echo "  lock                  Locks current session with hyprlock"
+            echo ""
+            ;;
+          dmenu)
+            action_dmenu
+            ;;
+          *)
+            echo "Invalid action: $ACTION (expecting: usage|logout|poweroff|reboot|lock)"
+            ;;
+          esac
+        fi
+      '';
+  };
 in {
   config = mkIf rofi.enable {
-    home.packages = [inputs'.ooks-scripts.packages.powermenu];
+    home.packages = [powermenu];
     ooknet.binds.powerMenu = "powermenu -c dmenu";
   };
 }
