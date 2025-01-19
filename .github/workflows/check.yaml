@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   nix-flake-check:
-    name: Evaluate Flake
+    name: Check Flake
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -21,8 +21,8 @@ jobs:
           submodules: true
       - name: Configure Git
         run: |
-          git config --global url."https://${{ secrets.GH_TOKEN }}@github.com/".insteadOf git@github.com:
-          git config --global url."https://${{ secrets.GH_TOKEN }}@github.com/".insteadOf ssh://git@github.com/
+          git config --global url."https://${{ secrets.KUNZEN_TOKEN }}@github.com/".insteadOf git@github.com:
+          git config --global url."https://${{ secrets.KUNZEN_TOKEN }}@github.com/".insteadOf ssh://git@github.com/
       - name: Setup Nix
         uses: DeterminateSystems/nix-installer-action@main
       - name: Magic Nix Cache
