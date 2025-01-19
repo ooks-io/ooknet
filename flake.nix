@@ -30,10 +30,6 @@
       url = "git+ssh://git@github.com/ooks-io/scripts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    ooknet-website = {
-      url = "git+ssh://git@github.com/ooks-io/website";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     secrets = {
       url = "git+ssh://git@github.com/ooks-io/kunzen";
       inputs = {
