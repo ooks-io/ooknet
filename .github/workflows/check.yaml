@@ -16,11 +16,24 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Generate GitHub App Token
+        id: generate-token
+        uses: actions/create-github-app-token@v1 
+        with:
+          app_id: ${{ vars.APP_ID }}
+          private_key: ${{ secrets.APP_PRIVATE_KEY }}
+          repositories: 
+
+      - name: Setup Git Config
+        run: |
+          git config --global url."https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/".insteadOf "git+ssh://git@github.com/"
+
       - name: Setup Nix
         uses: DeterminateSystems/nix-installer-action@main
-        with:
-          github-token: ${{ secrets.KUNZEN_TOKEN }}
+
       - name: Magic Nix Cache
         uses: DeterminateSystems/magic-nix-cache-action@main
+
       - name: Nix Flake
         run: nix flake check

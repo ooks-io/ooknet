@@ -51,8 +51,7 @@
     };
 
     secrets = {
-      url = "git+https://git@github.com/ooks-io/kunzen";
-      allRefs = true;
+      url = "git+ssh://git@github.com/ooks-io/kunzen";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
