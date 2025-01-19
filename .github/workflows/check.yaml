@@ -21,13 +21,13 @@ jobs:
         id: generate-token
         uses: actions/create-github-app-token@v1 
         with:
-          app_id: ${{ vars.APP_ID }}
-          private_key: ${{ secrets.APP_PRIVATE_KEY }}
+          app-id: ${{ vars.APP_ID }}  # Updated input name
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}  # Updated input name
           repositories: 
 
       - name: Setup Git Config
         run: |
-          git config --global url."https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/".insteadOf "git+ssh://git@github.com/"
+          git config --global url."https://x-access-token:${{ steps.generate-token.outputs.token }}@github.com/".insteadOf "git+ssh://git@github.com/"
 
       - name: Setup Nix
         uses: DeterminateSystems/nix-installer-action@main
