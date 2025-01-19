@@ -27,8 +27,13 @@ jobs:
 
       - name: Setup Git Config
         run: |
+          git config --global url."https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/".insteadOf "git@github.com:"
+          git config --global url."https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/".insteadOf "ssh://git@github.com/"
           git config --global url."https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/".insteadOf "git+ssh://git@github.com/"
 
+          git config --global --list
+
+          git ls-remote https://github.com/ooks-io/kunzen.git
       - name: Setup Nix
         uses: DeterminateSystems/nix-installer-action@main
 
