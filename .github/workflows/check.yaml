@@ -16,15 +16,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.KUNZEN_TOKEN }}
-          submodules: true
-      - name: Configure Git
-        run: |
-          git config --global url."https://${{ secrets.KUNZEN_TOKEN }}@github.com/".insteadOf git@github.com:
-          git config --global url."https://${{ secrets.KUNZEN_TOKEN }}@github.com/".insteadOf ssh://git@github.com/
       - name: Setup Nix
         uses: DeterminateSystems/nix-installer-action@main
+        with:
+          github-token: ${{ secrets.KUNZEN_TOKEN }}
       - name: Magic Nix Cache
         uses: DeterminateSystems/magic-nix-cache-action@main
       - name: Nix Flake
