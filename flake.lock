@@ -3093,11 +3093,11 @@
         "rev": "dbbf390c798a14bb316681e62fe56355d9ea88f6",
         "revCount": 4,
         "type": "git",
-        "url": "ssh://git@github.com/ooks-io/kunzen"
+        "url": "https://git@github.com/ooks-io/kunzen"
       },
       "original": {
         "type": "git",
-        "url": "ssh://git@github.com/ooks-io/kunzen"
+        "url": "https://git@github.com/ooks-io/kunzen"
       }
     },
     "systems": {

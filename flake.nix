@@ -14,7 +14,6 @@
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     flake-utils = {
@@ -52,7 +51,7 @@
     };
 
     secrets = {
-      url = "git+ssh://git@github.com/ooks-io/kunzen";
+      url = "git+https://git@github.com/ooks-io/kunzen";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
