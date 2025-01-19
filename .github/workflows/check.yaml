@@ -24,6 +24,7 @@ jobs:
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
           owner: ooks-io
+          repositories: kunzen
 
       - name: Setup Git Config
         run: |
