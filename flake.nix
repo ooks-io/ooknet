@@ -52,6 +52,7 @@
 
     secrets = {
       url = "git+https://git@github.com/ooks-io/kunzen";
+      allRefs = true;
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
