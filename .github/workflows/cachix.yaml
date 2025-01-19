@@ -1,5 +1,6 @@
 name: "Build packages and push to cache"
 on:
+  workflow_dispatch:
   push:
     paths: 
       - outputs/pkgs/**
