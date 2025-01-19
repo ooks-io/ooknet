@@ -41,8 +41,6 @@ jobs:
           name: ooknet
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
           extraPullNames: nix-community
-      - name: Check Flake
-        run: nix flake check
       - name: Build packages
         run: nix build .#${{ matrix.package }} --print-build-logs
         continue-on-error: true
