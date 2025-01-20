@@ -132,14 +132,6 @@
     };
   };
 
-  mkServiceSecret = name: service: {
-    ${name} = {
-      file = "${self}/secrets/containers/${name}.age";
-      owner = cfg.services.${service}.user.name;
-      group = cfg.services.${service}.group.name;
-    };
-  };
-
   mkNetworkService = name: _network:
     nameValuePair "podman-network-${name}" {
       description = "Podman network ${name} for ookflix";
@@ -151,5 +143,5 @@
       };
     };
 in {
-  inherit mkServiceStateFile mkServiceSecret mkBasicServiceOptions mkServiceOptions mkServiceStateDir mkServiceUser mkUserOption mkPortOption mkGroupOption mkVolumeOption mkSubdomainOption mkNetworkService;
+  inherit mkServiceStateFile mkBasicServiceOptions mkServiceOptions mkServiceStateDir mkServiceUser mkUserOption mkPortOption mkGroupOption mkVolumeOption mkSubdomainOption mkNetworkService;
 }

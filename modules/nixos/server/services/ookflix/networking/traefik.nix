@@ -6,7 +6,7 @@
   ...
 }: let
   ookflixLib = import ../lib.nix {inherit self lib config;};
-  inherit (ookflixLib) mkServiceUser mkServiceSecret mkServiceStateDir mkServiceStateFile;
+  inherit (ookflixLib) mkServiceUser mkServiceStateDir mkServiceStateFile;
   inherit (lib) mkIf;
   inherit (ook.lib.container) mkContainerEnvironment mkContainerLabel mkContainerPort;
   inherit (config.ooknet) server;
@@ -19,7 +19,6 @@ in {
       traefikStateDir = mkServiceStateDir "traefik";
       traefikAcmeFile = mkServiceStateFile "traefik" "acme.json";
     };
-    age.secrets = mkServiceSecret "cf_creds" "traefik";
     virtualisation.oci-containers.containers = {
       # vpn container
       traefik = mkIf traefik.enable {

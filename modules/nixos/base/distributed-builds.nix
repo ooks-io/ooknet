@@ -1,5 +1,4 @@
 {
-  keys,
   config,
   lib,
   ...
@@ -7,6 +6,7 @@
   inherit (lib) mkIf;
   inherit (config.ooknet.host) admin;
   inherit (config.networking) hostName;
+  inherit (config.ooknet.secrets) keys;
 
   mkBuilderMachine = {
     host,

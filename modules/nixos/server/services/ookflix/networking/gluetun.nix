@@ -6,14 +6,13 @@
   ...
 }: let
   ookflixLib = import ../lib.nix {inherit self lib config;};
-  inherit (ookflixLib) mkServiceUser mkServiceSecret;
+  inherit (ookflixLib) mkServiceUser;
   inherit (lib) mkIf;
   inherit (ook.lib.container) mkContainerEnvironment;
   inherit (config.ooknet.server.ookflix.services) qbittorrent gluetun;
 in {
   config = mkIf gluetun.enable {
     users = mkServiceUser gluetun.user.name;
-    age.secrets = mkServiceSecret "vpn_env" "gluetun";
     virtualisation.oci-containers.containers = {
       # vpn container
       gluetun = mkIf gluetun.enable {

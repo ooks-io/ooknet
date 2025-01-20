@@ -4,7 +4,6 @@
     ./lib
     ./hozen
     ./hosts
-    ./keys.nix
     ./pkgs
     ./images.nix
     ./devshells

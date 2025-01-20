@@ -23,7 +23,6 @@ in {
     defaultPackages = [];
     systemPackages = attrValues {
       inherit (pkgs) git deadnix statix;
-      inherit (inputs'.agenix.packages) default;
     };
 
     # location of the configuration flake

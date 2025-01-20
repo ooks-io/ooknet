@@ -7,7 +7,6 @@
     ./admin.nix
     ./locale.nix
     ./options.nix
-    ./secrets.nix
     ./openssh.nix
     ./tailscale.nix
     ./networking.nix

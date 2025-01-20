@@ -7,9 +7,9 @@
   inherit (inputs) nixpkgs;
   inherit (lib) singleton recursiveUpdate mkDefault;
   inherit (builtins) concatLists;
-  inherit (self) hozen keys ook;
+  inherit (self) hozen ook;
+  inherit (inputs.secrets.nixosModules) secrets;
   hm = inputs.home-manager.nixosModules.home-manager;
-  agenix = inputs.agenix.nixosModules.default;
   nixosModules = "${self}/modules/nixos";
   baseModules = nixosModules + "/base";
   hardwareModules = nixosModules + "/hardware";
@@ -22,7 +22,7 @@
     (baseModules + "/admin.nix")
     (baseModules + "/ssh.nix")
   ];
-  core = [baseModules hardwareModules consoleModules appearanceModules hm agenix];
+  core = [baseModules hardwareModules consoleModules appearanceModules hm secrets];
   hostModules = "${self}/hosts";
 
   mkNixos = nixpkgs.lib.nixosSystem;
@@ -44,7 +44,7 @@
       mkNixos {
         specialArgs =
           recursiveUpdate {
-            inherit hozen ook keys lib inputs self inputs' self';
+            inherit hozen ook lib inputs self inputs' self';
           }
           specialArgs;
         modules = concatLists [
@@ -123,7 +123,7 @@
     ...
   }:
     mkNixos {
-      specialArgs = {inherit keys inputs lib self;};
+      specialArgs = {inherit inputs lib self;};
       modules = concatLists [
         (singleton {
           networking.hostName = hostname;
