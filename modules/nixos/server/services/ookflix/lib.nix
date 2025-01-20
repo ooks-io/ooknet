@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  self,
   ...
 }: let
   inherit (lib) getExe nameValuePair mkOption mkEnableOption elem assertMsg;
