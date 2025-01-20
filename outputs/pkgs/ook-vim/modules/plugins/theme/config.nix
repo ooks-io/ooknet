@@ -5,7 +5,6 @@
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (lib.nvim.dag) entryBefore;
   inherit (lib.nvim.lua) toLuaObject;
 
   cfg = config.vim.theme.custom;

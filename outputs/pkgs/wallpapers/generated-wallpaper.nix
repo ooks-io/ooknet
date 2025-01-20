@@ -11,10 +11,6 @@ in
   {
     width ? largestWidth,
     height ? largestHeight,
-    logoScale ? 4,
-    backgroundColor ? colorscheme.palette.mantle,
-    logoColor1 ? colorscheme.palette.yellow,
-    logoColor2 ? colorscheme.palette.green,
   }:
     pkgs.stdenv.mkDerivation {
       name = "generated-nix-wallpaper-${colorscheme.slug}.png";

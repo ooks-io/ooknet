@@ -140,7 +140,7 @@
     };
   };
 
-  mkNetworkService = name: network:
+  mkNetworkService = name: _network:
     nameValuePair "podman-network-${name}" {
       description = "Podman network ${name} for ookflix";
       serviceConfig = {

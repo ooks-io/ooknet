@@ -2,7 +2,6 @@
   keys,
   config,
   lib,
-  self,
   ...
 }: let
   inherit (lib) mkIf;

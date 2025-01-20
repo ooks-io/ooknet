@@ -1,7 +1,6 @@
 {
   osConfig,
   hozen,
-  inputs',
   ...
 }: let
   inherit (osConfig.ooknet.appearance) cursor;

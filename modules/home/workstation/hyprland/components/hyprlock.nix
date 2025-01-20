@@ -5,8 +5,7 @@
   hozen,
   ...
 }: let
-  inherit (osConfig.ooknet.appearance) colorscheme fonts;
-  inherit (colorscheme) palette;
+  inherit (osConfig.ooknet.appearance) fonts;
   inherit (osConfig.ooknet.workstation) environment;
   inherit (hozen) color;
   inherit (lib) mkIf;
