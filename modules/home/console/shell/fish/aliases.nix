@@ -17,6 +17,7 @@ in {
     };
     shellAbbrs = {
       f = "cd $FLAKE";
+      s = "cd $KUNZEN";
       fe = "$EDITOR (git rev-parse --show-toplevel) -c 'Telescope find_files'";
 
       nswitch = "${getExe nh} os switch";

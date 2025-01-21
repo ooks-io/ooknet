@@ -14,6 +14,7 @@
   paths = {
     FLAKE = "/home/${admin.name}/.config/ooknet";
     WEBSITE = "${paths.FLAKE}/outputs/pkgs/website";
+    KUNZEN = "/home/${admin.name}/.config/kunzen";
   };
 in {
   environment = {
