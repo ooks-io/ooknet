@@ -26,6 +26,9 @@
 
       inherit (projectPlus) fpp-config fpp-launcher fpp-sd;
       project-plus = projectPlus.package;
+
+      # disable spotify-player images due to jank with zellij
+      # put it here so it gets cached
       spotify-player = pkgs.spotify-player.override {
         withImage = false;
         withSixel = false;
