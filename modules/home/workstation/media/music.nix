@@ -75,7 +75,7 @@ in {
       };
 
       cava = {
-        enable = false; # FIX ME!!!
+        enable = true;
         settings = {
           general.framerate = 60;
           color = {
@@ -91,57 +91,26 @@ in {
       };
     };
 
-    xdg.configFile."zellij/layouts/music.kdl".text =
-      mkIf (zellij.enable || multiplexer == "zellij")
-      /*
-      kdl
-      */
-      ''
-        layout {
-        default_tab_template {
-            pane size=2 borderless=true {
-                plugin location="file:${pkgs.zjstatus}/bin/zjstatus.wasm" {
-                    format_left   "{mode}"
-                    format_right  "{session} {datetime}"
-                    format_center "#[fg=#89B4FA,bold] {tabs}"
-                    format_space  ""
-
-                    border_enabled  "true"
-                    border_char     "─"
-                    border_format   "#[fg=#${color.base0D}]{char}"
-                    border_position "bottom"
-
-                    hide_frame_for_single_pane "true"
-
-                    mode_normal       "#[fg=${color.base0D}]󰝚"
-
-                    tab_normal   "#[bg=#${color.base01}] {name} "
-                    tab_active   "#[bg=#${color.base02}] {name} "
-                    tab_separator "  "
-
-                    datetime        "#[fg=#${color.base05},bold] {format} "
-                    datetime_format "%I:%M %p"
-                    datetime_timezone "${osConfig.time.timeZone}"
-                }
+    programs.zellij.layouts.music = {
+      icon = "󰝚";
+      tabs =
+        # kdl
+        ''
+          tab name="spotify" focus=true {
+            pane name="spotify" {
+              borderless true
+              command "${getExe self'.packages.spotify-player}"
+              focus true
             }
-            children
-        }
-
-            tab name="spotify" focus=true {
-                pane name="spotify" {
-                    borderless true
-                    command "${getExe pkgs.spotify-player}"
-                    focus true
-                }
-                //pane name="Visualizer" {
-                //    borderless false
-                //    split_direction "horizontal"
-                //    size "20%"
-                //    command "cava"
-                //}
+            pane name="Visualizer" {
+              borderless false
+              split_direction "horizontal"
+              size "20%"
+              command "${getExe pkgs.cava}"
             }
-        }
-      '';
+          }
+        '';
+    };
 
     home.shellAliases = mkIf (zellij.enable || multiplexer == "zellij") {
       zjm = "zellij --layout music";

@@ -1,8 +1,6 @@
 {
   osConfig,
-  config,
   lib,
-  pkgs,
   hozen,
   ...
 }: let
@@ -13,6 +11,7 @@
 
   cfg = osConfig.ooknet.console.tools.zellij;
 in {
+  imports = [./options.nix];
   config = mkIf (cfg.enable || console.multiplexer == "zellij") {
     programs.zellij = {
       enable = true;
@@ -38,18 +37,37 @@ in {
           };
         };
       };
-    };
 
-    # Layouts
-    xdg.configFile = {
-      # Default layout
-      "zellij/layouts/default.kdl" = import ./layouts/defaultLayout.nix {inherit pkgs config osConfig hozen;};
-      # Layout for bash scripts
-      "zellij/layouts/script.kdl" = import ./layouts/scriptLayout.nix {inherit pkgs config osConfig hozen;};
-      # Layout for configuring my flake
-      "zellij/layouts/flake.kdl" = import ./layouts/flakeLayout.nix {inherit pkgs config osConfig hozen;};
-      # Additional keybinds
-      "zellij/config.kdl".text =
+      # layout configurations
+      layouts = {
+        default = {
+          tabs =
+            #kdl
+            ''
+              tab name="terminal" focus=true {
+                pane name="term" focus=true
+              }
+            '';
+        };
+        flake = {
+          tabs =
+            # kdl
+            ''
+              tab name="terminal" focus=true {
+                pane name="term" cwd="$FLAKE" focus=true
+              }
+              tab name="editor" {
+                pane name="edit" edit="$FLAKE"
+              }
+              tab name="git" {
+                pane name="git" cwd="$FLAKE" command="lazygit"
+              }
+            '';
+        };
+      };
+
+      # keybind configuration
+      extraSettings =
         # kdl
         ''
           keybinds clear-defaults=true {
@@ -57,7 +75,7 @@ in {
                   bind "Alt 1" { GoToTab 1; }
                   bind "Alt 2" { GoToTab 2; }
                   bind "Alt 3" { GoToTab 3; }
-                  bind "Alt 4" { GoToTab 4; }
+              bind "Alt 4" { GoToTab 4; }
                   bind "Alt 5" { GoToTab 5; }
                   bind "Alt 6" { GoToTab 6; }
                   bind "Alt 7" { GoToTab 7; }

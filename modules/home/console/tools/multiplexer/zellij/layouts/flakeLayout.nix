@@ -2,11 +2,28 @@
   pkgs,
   hozen,
   osConfig,
+  ook,
   ...
 }: let
   inherit (hozen) color;
+  inherit (ook.lib.generators) mkZellijLayout;
 in {
-  text =
+  text = mkZellijLayout {
+    zjstatusFile = "${inputs'.zjstatus.packages.default}/bin/zjstatus.wasm";
+    icon = "";
+    timeZone = "${osConfig.time.timeZone}";
+    tabs = ''
+      tab name="terminal" focus=true {
+        pane name="term" cwd="$FLAKE" focus=true
+      }
+      tab name="editor" {
+        pane name="edit" edit="$FLAKE"
+      }
+      tab name="git" {
+        pane name="git" cwd="$FLAKE" command="lazygit"
+      }
+    '';
+  };
     /*
     kdl
     */
