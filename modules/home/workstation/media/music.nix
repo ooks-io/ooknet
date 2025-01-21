@@ -10,8 +10,6 @@
   inherit (lib) mkIf getExe elem;
   inherit (builtins) attrValues;
   inherit (osConfig.networking) hostName;
-  inherit (osConfig.ooknet.console.tools) zellij;
-  inherit (osConfig.ooknet.console) multiplexer;
   inherit (osConfig.ooknet.workstation) profiles;
   inherit (osConfig.age.secrets) spotify_key;
   inherit (config.ooknet) binds;
@@ -110,10 +108,6 @@ in {
             }
           }
         '';
-    };
-
-    home.shellAliases = mkIf (zellij.enable || multiplexer == "zellij") {
-      zjm = "zellij --layout music";
     };
   };
 }
