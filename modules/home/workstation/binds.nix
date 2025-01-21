@@ -13,6 +13,8 @@ in {
     browser = mkBind "No browser is enabled";
     terminal = mkBind "No terminal is enabled";
     terminalLaunch = mkBind "Failed to launch tui";
+    terminalDropdown = mkBind "Terminal Dropdown not enabled";
+    btop = mkBind "Btop binding not set";
     fileManager = mkBind "No file manager is enabled.";
     notes = mkBind "No Notes app is enabled";
     discord = mkBind "No Discord app is enabled";

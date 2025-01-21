@@ -58,7 +58,7 @@ in {
       rules = ["center 1" "float" "size 50%"];
     }
     {
-      matches = {initialTitle = "foot-dropdown";};
+      matches = {initialTitle = "dropdown";};
       rules = [
         "monitor 0"
         "animation slide down"

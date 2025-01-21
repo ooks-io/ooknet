@@ -7,7 +7,7 @@ in {
       # Program Launch
       "SUPER,          b,             exec,     ${binds.browser}"
       "SUPER,          return,        exec,     ${binds.terminal}"
-      "SUPERSHIFT,     return,        exec,     ${binds.terminal} --title foot-dropdown"
+      "SUPERSHIFT,     return,        exec,     ${binds.terminal} --title=dropdown"
       "SUPER,          e,             exec,     ${binds.terminalLaunch} $EDITOR"
       "SUPERSHIFT,     P,             exec,     ${binds.password}"
       "SUPERCTRL,      P,             exec,     ${binds.quickpass}"
@@ -15,7 +15,7 @@ in {
       "SUPERSHIFT,     e,             exec,     ${binds.fileManager}"
       "SUPERSHIFT,     S,             exec,     ${binds.steam}"
       "SUPERSHIFT,     n,             exec,     ${binds.notes}"
-      "SUPER,          escape,        exec,     ${binds.terminalLaunch} --title=BTOP btop"
+      "SUPER,          escape,        exec,     ${binds.btop}"
       "SUPER CTRL,     return,        exec,     ${binds.zellijMenu}"
       "SUPER,          delete,        exec,     ${binds.powerMenu}"
       "SUPERSHIFT,     F,             exec,     ${binds.factorio}"

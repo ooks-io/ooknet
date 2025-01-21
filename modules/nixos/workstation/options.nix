@@ -21,13 +21,14 @@ in {
         default = "firefox";
       };
       terminal = mkOption {
-        type = enum ["foot"];
-        default = "foot";
+        type = enum ["foot" "ghostty"];
+        default = "ghostty";
       };
     };
     programs = {
       firefox.enable = mkEnableOption "";
       foot.enable = mkEnableOption "";
+      ghostty.enable = mkEnableOption "";
     };
   };
 }
