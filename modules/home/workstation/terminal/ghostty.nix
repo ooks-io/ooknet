@@ -11,6 +11,8 @@
   inherit (osConfig.ooknet.appearance.fonts) monospace;
   inherit (osConfig.ooknet.workstation) default;
 
+  # getShader = shader: "${self'.packages.ghostty-shaders}/${shader}.glsl";
+
   cfg = osConfig.ooknet.workstation.programs.ghostty;
 in {
   config = mkMerge [
@@ -18,6 +20,7 @@ in {
       programs.ghostty = {
         enable = true;
         enableFishIntegration = admin.shell == "fish";
+        clearDefaultKeybinds = true;
         settings = {
           # defined below
           theme = "hozen";
@@ -36,9 +39,10 @@ in {
           # box drawing glyph thickness
           adjust-box-thickness = -10; # why where they so thick?
 
-          # disable the window decorations
+          # disable the decorations
           gtk-titlebar = false;
           window-decoration = false;
+          resize-overlay = "never";
 
           # disable close terminal prompt
           confirm-close-surface = false;

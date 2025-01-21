@@ -22,6 +22,7 @@
       website = callPackage ./website {};
       caddy-with-cloudflare = callPackage ./caddy-with-cloudflare {};
       wii-u-gc-adapter = callPackage ./wii-u-gc-adapter {};
+      ghostty-shaders = callPackage ./ghostty-shaders {};
       ook-vim = callPackage ./ook-vim {inherit inputs pkgs lib hozen;};
 
       inherit (projectPlus) fpp-config fpp-launcher fpp-sd;
