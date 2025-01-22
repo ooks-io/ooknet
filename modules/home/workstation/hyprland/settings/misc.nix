@@ -8,7 +8,7 @@
     enable_swallow = true;
 
     # TODO: use terminal/file-explorer module
-    swallow_regex = "foot|nemo";
+    swallow_regex = "foot|nemo|com.mitchellh.ghostty";
 
     focus_on_activate = true;
   };

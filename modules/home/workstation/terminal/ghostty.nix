@@ -28,9 +28,6 @@ in {
           # font config
           font-size = monospace.size;
           font-family = monospace.family;
-          font-family-bold = "${monospace.family} Bold";
-          font-family-italic = "${monospace.family} Italic";
-          font-family-bold-italic = "${monospace.family} Bold Italic";
 
           # padding
           window-padding-x = 9;
@@ -46,6 +43,14 @@ in {
 
           # disable close terminal prompt
           confirm-close-surface = false;
+
+          keybind = [
+            "ctrl+equal=increase_font_size:1"
+            "ctrl+minus=decrease_font_size:1"
+            "ctrl+zero=reset_font_size"
+            "ctrl+shift+v=paste_from_clipboard"
+            "ctrl+shift+c=copy_to_clipboard"
+          ];
         };
         themes.hozen = {
           background = "${color.base00}";
