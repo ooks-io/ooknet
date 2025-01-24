@@ -2,7 +2,8 @@
   imports = [
     ./gruvbox-material
     ./telescope
-    ./obsidian
     ./theme
+    ./notes
+    ./languages
   ];
 }
