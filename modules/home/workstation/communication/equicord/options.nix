@@ -706,11 +706,5 @@ in {
   config = mkIf cfg.enable {
     # test file until module is complete
     xdg.configFile."equibop/test.json".text = builtins.toJSON cfg.settings;
-
-    ooknet.equicord = {
-      plugins = {
-        CommandPallete.enabled = true;
-      };
-    };
   };
 }

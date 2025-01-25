@@ -1,4 +1,4 @@
 {
-  imports = [./options.nix];
-  programs.equicord.enable = true;
+  #imports = [./options.nix];
+  #programs.equicord.enable = true;
 }
