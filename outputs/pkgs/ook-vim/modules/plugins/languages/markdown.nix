@@ -120,6 +120,7 @@ in {
             cmd = {"${cfg.ltex.package}/bin/ltex-ls"},
             capabilities = capabilities;
             on_attach = default_on_attach;
+            flags = { debounce_text_changes = 300 },
             settings = {
               ltex = {
                 language = "${cfg.ltex.language}",
