@@ -44,8 +44,8 @@ Below are all the hosts I currently maintain within this flake:
 I like to experiment with different ideas a lot. Due to that, much of this is
 subject to change. I will try to keep this readme as up to date as possible.
 
-I won't go too indepth here, as everything is subject to change. But here is the
-high-level.
+I won't go too in-depth here, as everything is subject to change. But here is
+the high-level.
 
 One of the main goals of this project was to allow for easy bootstrapping of new
 hosts while maintaining fine-grained configuration on a per-host basis. This is
@@ -116,10 +116,38 @@ ooknet.server.services = ["ookflix"];
 
 ## Desktop environment
 
-All workstations run a minimal hyprland configuration made from a few
+<img src=".github/assets/2025-01-26T21:52:48,481278761+11:00.png" />
+All workstations currently run a minimal wayland configuration made from a few
 components:
 
-- Hyprland
-- Hypr* ware (hypridle, hyprlock, hyprpaper)
-- Waybar (status bar)
-- Mako (notifications)
+- [Hyprland](https://github.com/hyprwm/Hyprland)
+- Hypr* ware ([hypridle](https://github.com/hyprwm/hypridle),
+  [hyprlock](https://github.com/hyprwm/hyprlock),
+  [hyprpaper](https://github.com/hyprwm/hyprpaper))
+- [Waybar](https://github.com/Alexays/Waybar)
+- [Mako](https://github.com/emersion/mako)
+- [Gruvbox extended](https://github.com/ooks-io/ooknet/blob/main/outputs/hozen/default.nix)
+
+## Appreciation
+
+I want to give some appreciation to the many people/resources who have helped in
+some way to build this project.
+
+#### People
+
+- [ghuntley](https://github.com/ghuntley)
+- [NobbZ](https://github.com/NobbZ)
+- [notashelf](https://github.com/NotAShelf)
+- [mic92](https://github.com/Mic92)
+- [fabaff](https://github.com/fabaff)
+- [gerg-l](https://github.com/Gerg-L)
+- [viperML](https://github.com/viperML)
+- [colemickens](https://github.com/colemickens)
+- [fufexan](https://github.com/fufexan)
+- [max-privatevoid](https://github.com/max-privatevoid)
+
+### Resources
+
+- [nix.dev](https://nix.dev/)
+- [noogle](https://noogle.dev/)
+- [nix-pills](https://nixos.org/guides/nix-pills/)
