@@ -4,6 +4,7 @@ on:
   push:
     paths: 
       - outputs/pkgs/**
+      - flake.lock
     branches:
       - main
 concurrency:
