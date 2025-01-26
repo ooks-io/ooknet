@@ -6,6 +6,10 @@ on:
       - main
     paths-ignore:
       - .github/**
+      - README.md
+      - .repomixignore
+      - repomix.config.json
+      - .gitignore
 concurrency:
   group: ooknet-check-${{ github.ref }}
   cancel-in-progress: true
