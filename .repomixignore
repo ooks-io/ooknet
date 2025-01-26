@@ -1,0 +1,5 @@
+*.lock
+**/equicord/options.nix
+**/gruv.nix
+.repomixignore
+repomix*
