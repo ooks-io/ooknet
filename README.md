@@ -5,14 +5,15 @@
 
 This repository serves two main purposes:
 
-1. Centralized location for all my personal computing infrastructure.
-2. A place to experiment and learn about networking, administration, security,
-   unix, design and programming.
+1. To serve as a centralized location for all my personal computing
+   infrastructure
+2. To provide a place to experiment and learn about networking, administration,
+   security, unix, design, and programming
 
 > [!WARNING]
 > This repository is not intended to be used by anyone but myself. It is highly
 > personalized and likely doesn't fit anyone else's needs. I leave this
-> repository public to serve as a reference for anyone else building a something
+> repository public to serve as a reference for anyone else building something
 > similar.
 
 ## Features
@@ -41,11 +42,9 @@ Below are all the hosts I currently maintain within this flake:
 
 ## Architecture
 
-I like to experiment with different ideas a lot. Due to that, much of this is
-subject to change. I will try to keep this readme as up to date as possible.
-
-I won't go too in-depth here, as everything is subject to change. But here is
-the high-level.
+As this project serves as a learning environment, its architecture changes
+frequently. While I'll try to keep this documentation current, what follows is a
+high-level overview of the current design.
 
 One of the main goals of this project was to allow for easy bootstrapping of new
 hosts while maintaining fine-grained configuration on a per-host basis. This is
@@ -133,7 +132,7 @@ components:
 I want to give some appreciation to the many people/resources who have helped in
 some way to build this project.
 
-#### People
+### People
 
 - [ghuntley](https://github.com/ghuntley)
 - [NobbZ](https://github.com/NobbZ)
