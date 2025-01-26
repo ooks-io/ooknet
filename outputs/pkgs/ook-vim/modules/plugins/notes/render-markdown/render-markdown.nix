@@ -1,10 +1,6 @@
-{
-  lib,
-  config,
-  ...
-}: let
+{lib, ...}: let
   inherit (lib) mkOption mkEnableOption;
-  inherit (lib.types) str nullOr bool enum listOf int float attrsOf submodule;
+  inherit (lib.types) str nullOr bool enum listOf int float attrsOf submodule either;
   inherit (lib.nvim.types) mkPluginSetupOption luaInline;
 
   # All possible Neovim modes
@@ -425,4 +421,3 @@ in {
     };
   };
 }
-

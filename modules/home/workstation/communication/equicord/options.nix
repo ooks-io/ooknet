@@ -5,7 +5,7 @@
   ...
 }: let
   inherit (lib) mkIf mkOption mkEnableOption mkPackageOption;
-  inherit (lib.types) listOf str int enum numbers oneOf nullOr attrsOf submodule bool strMatching;
+  inherit (lib.types) listOf str int enum numbers oneOf bool strMatching;
   mkBoolOption = default: description:
     mkOption {
       type = bool;
