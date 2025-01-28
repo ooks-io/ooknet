@@ -5,10 +5,13 @@
 }: let
   cfg = osConfig.ooknet.console.tools.starship;
   inherit (lib) concatStrings mkIf;
+  inherit (osConfig.ooknet.host) admin;
 in {
   config = mkIf cfg.enable {
     programs.starship = {
       enable = true;
+      enableTransience = admin.shell == "fish";
+      enableInteractive = false;
       settings = {
         format = concatStrings [
           "$username"
@@ -27,6 +30,14 @@ in {
         directory = {
           truncation_length = 0;
           truncate_to_repo = true;
+          substitutions = {
+            "Documents" = " Documents";
+            "Downloads" = "  Downloads";
+            "Music" = "  Music";
+            "Pictures" = "  Picures";
+            "Screenshots" = "󰹑  Screenshots";
+            "Summit" = " ";
+          };
         };
 
         fill = {
