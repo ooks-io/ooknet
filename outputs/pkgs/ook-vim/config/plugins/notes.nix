@@ -4,12 +4,12 @@
       obsidianExtended = {
         enable = true;
         setupOpts = {
-          dir = "~/Documents/notes";
+          dir = "~/Summit/notes";
           daily_notes = {
-            folder = "~/Documents/notes/dailies";
+            folder = "~/Summit/notes/dailies";
           };
           templates = {
-            folder = "~/Documents/notes/templates";
+            folder = "~/Summit/notes/templates";
           };
           ui.enable = false;
         };

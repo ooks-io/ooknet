@@ -6,18 +6,21 @@
     dataHome = "${config.home.homeDirectory}/.local/share";
     stateHome = "${config.home.homeDirectory}/.local/state";
 
-    userDirs = {
+    userDirs = let
+      summit = "${config.home.homeDirectory}/Summit";
+    in {
       enable = true;
       createDirectories = true;
       desktop = "${config.home.homeDirectory}/Desktop";
-      documents = "${config.home.homeDirectory}/Documents";
-      music = "${config.home.homeDirectory}/Media/Music";
-      videos = "${config.home.homeDirectory}/Media/Videos";
-      pictures = "${config.home.homeDirectory}/Media/Pictures";
+      documents = "${summit}/Documents";
+      music = "${summit}/Media/Music";
+      videos = "${summit}/Media/Videos";
+      pictures = "${summit}/Media/Pictures";
       extraConfig = {
         XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
-        XDG_CODE_DIR = "${config.home.homeDirectory}/Code";
+        XDG_CODE_DIR = "${summit}/code";
         XDG_RECORDINGS_DIR = "${config.xdg.userDirs.videos}/Recordings";
+        XDG_NOTES_DIR = "${summit}/notes";
       };
     };
   };
