@@ -11,5 +11,6 @@
     ./tailscale.nix
     ./networking.nix
     ./security
+    ./syncthing.nix
   ];
 }

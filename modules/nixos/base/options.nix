@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkOption;
+  inherit (lib) mkEnableOption mkOption;
   inherit (lib.types) str enum bool package;
 in {
   options.ooknet.host = {
@@ -16,6 +16,10 @@ in {
     };
     role = mkOption {
       type = enum ["workstation" "server"];
+    };
+
+    syncthing = {
+      enable = mkEnableOption "Enable syncthing";
     };
 
     boot = {

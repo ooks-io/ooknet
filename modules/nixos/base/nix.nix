@@ -12,9 +12,9 @@
   flakeInputs = filterAttrs (_: v: isType "flake" v) inputs;
 
   paths = {
-    FLAKE = "/home/${admin.name}/.config/ooknet";
+    FLAKE = "/home/${admin.name}/Summit/ooknet";
     WEBSITE = "${paths.FLAKE}/outputs/pkgs/website";
-    KUNZEN = "/home/${admin.name}/.config/kunzen";
+    KUNZEN = "/home/${admin.name}/Summit/kunzen";
   };
 in {
   environment = {
@@ -76,7 +76,5 @@ in {
   # nix rebuild utililty
   programs.nh = mkIf (role == "workstation") {
     enable = true;
-    # sets an environment variable FLAKE that nh will refer to by default
-    flake = mkIf admin.homeManager "/home/${admin.name}/.config/ooknet";
   };
 }

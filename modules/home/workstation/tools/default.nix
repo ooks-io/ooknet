@@ -9,6 +9,7 @@
     ./kdeconnect.nix
     ./ookbrightness.nix
     ./zellijMenu.nix
+    ./syncthing-applet.nix
     ./nemo.nix
     ./qtscrcpy.nix
   ];
