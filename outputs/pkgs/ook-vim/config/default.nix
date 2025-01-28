@@ -3,7 +3,7 @@
     ./settings.nix
     ./opts.nix
     ./theme.nix
-    ./keymaps.nix
+    ./globals.nix
     ./plugins
   ];
 }
