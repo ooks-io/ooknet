@@ -79,7 +79,6 @@ in {
     (mkIf (default.terminal == "ghostty") {
       home.sessionVariables = {
         TERMINAL = "ghostty";
-        TERM = "ghostty";
       };
       ooknet.binds = {
         terminal = "ghostty";

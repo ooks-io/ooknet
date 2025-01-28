@@ -91,7 +91,6 @@ in {
     (mkIf (default.terminal == "foot") {
       home.sessionVariables = {
         TERMINAL = "foot";
-        TERM = "foot";
       };
       ooknet.binds.terminal = "foot";
       ooknet.binds.terminalLaunch = "foot";
