@@ -6,6 +6,10 @@ in {
   wayland.windowManager.hyprland.windowRules = [
     # TODO tag games for immediate
     {
+      matches = {initialTitle = "Syncthing Tray";};
+      rules = ["float" "center 1" "size 50%"];
+    }
+    {
       matches = {class = "factorio";};
       rules = ["tag +games"];
     }

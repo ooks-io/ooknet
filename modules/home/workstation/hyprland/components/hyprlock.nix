@@ -7,6 +7,7 @@
 }: let
   inherit (osConfig.ooknet.appearance) fonts;
   inherit (osConfig.ooknet.workstation) environment;
+  inherit (osConfig.ooknet.hardware) primaryMonitor;
   inherit (hozen) color;
   inherit (lib) mkIf;
 in {
@@ -34,6 +35,7 @@ in {
         };
 
         input-field = {
+          monitor = primaryMonitor;
           size = "200, 30";
 
           position = "0, 0";
@@ -49,7 +51,7 @@ in {
         };
 
         label = {
-          monitor = "";
+          monitor = primaryMonitor;
           text = "LOCKED";
           position = "0, 150";
           valign = "center";
