@@ -1042,11 +1042,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1737746512,
-        "narHash": "sha256-nU6AezEX4EuahTO1YopzueAXfjFfmCHylYEFCagduHU=",
+        "lastModified": 1737885589,
+        "narHash": "sha256-Zf0hSrtzaM1DEz8//+Xs51k/wdSajticVrATqDrfQjg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "825479c345a7f806485b7f00dbe3abb50641b083",
+        "rev": "852ff1d9e153d8875a83602e03fdef8a63f0ecf8",
         "type": "github"
       },
       "original": {
@@ -4036,11 +4036,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1738040410,
-        "narHash": "sha256-0qjZ451IaL7douYhOvUJ2vWDw/0Bom0RsovJ76ml3Jk=",
+        "lastModified": 1738128696,
+        "narHash": "sha256-SY+UKbuhfHrAbAqVpCi3+Z4zSZ7cLJ5z6WXO8JcDmd0=",
         "ref": "refs/heads/master",
-        "rev": "182b972f57e906c6cf2c4f38ac8587f6af702feb",
-        "revCount": 32,
+        "rev": "f88c11c910405e489716ca02c9d993aa50572e64",
+        "revCount": 34,
         "type": "git",
         "url": "ssh://git@github.com/ooks-io/kunzen"
       },
