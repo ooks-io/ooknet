@@ -8,5 +8,6 @@
     ./images.nix
     ./devshells
     ./templates
+    ./modules
   ];
 }

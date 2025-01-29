@@ -1,6 +1,7 @@
 {
   imports = [
     ./bat.nix
+    ./vale.nix
     ./networking.nix
     ./btop.nix
     ./git.nix
