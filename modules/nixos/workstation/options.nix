@@ -29,6 +29,7 @@ in {
       firefox.enable = mkEnableOption "";
       foot.enable = mkEnableOption "";
       ghostty.enable = mkEnableOption "";
+      ollama.enable = mkEnableOption "";
     };
   };
 }

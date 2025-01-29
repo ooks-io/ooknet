@@ -25,6 +25,8 @@
         browser = "firefox";
         terminal = "ghostty";
       };
+      # FIXME
+      programs.ollama.enable = false;
     };
     console = {
       profile = "standard";
