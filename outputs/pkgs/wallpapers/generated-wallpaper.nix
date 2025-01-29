@@ -12,6 +12,7 @@ in
     width ? largestWidth,
     height ? largestHeight,
   }:
+  # Credit to misterio77
     pkgs.stdenv.mkDerivation {
       name = "generated-nix-wallpaper-${colorscheme.slug}.png";
       src = pkgs.writeTextFile {
