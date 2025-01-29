@@ -9,6 +9,13 @@
   inherit (builtins) attrValues;
 in {
   config = mkIf (gpu.type == "amd") {
+    hardware.amdgpu = {
+      amdvlk = {
+        enable = true;
+        support32Bit.enable = true;
+      };
+      opencl.enable = true;
+    };
     hardware.graphics = {
       extraPackages = attrValues {
         inherit
