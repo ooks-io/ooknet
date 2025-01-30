@@ -10,7 +10,7 @@ in {
     # FIXME:
     # https://github.com/NixOS/nixpkgs/issues/376930
     services.ollama = {
-      enable = true;
+      enable = false;
       acceleration = "rocm";
       rocmOverrideGfx = "10.1.0";
       environmentVariables = {

@@ -26,7 +26,7 @@
         terminal = "ghostty";
       };
       # FIXME
-      programs.ollama.enable = false;
+      programs.ollama.enable = true;
     };
     console = {
       profile = "standard";
