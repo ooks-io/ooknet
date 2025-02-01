@@ -3,23 +3,17 @@
 
 ## Overview
 
-This repository serves two main purposes:
-
-1. To serve as a centralized location for all my personal computing
-   infrastructure
-2. To provide a place to experiment and learn about networking, administration,
-   security, unix, design, and programming
+The goals of this repository are:
+1. To maintain a centralized location for all my personal computing infrastructure
+2. To provide a place to experiment and learn about networking, administration, security, unix, design, and programming
 
 > [!WARNING]
-> This repository is not intended to be used by anyone but myself. It is highly
-> personalized and likely doesn't fit anyone else's needs. I leave this
-> repository public to serve as a reference for anyone else building something
-> similar.
+> This repository is not intended to be used by anyone but myself. It is highly personalized and likely doesn't fit anyone else's needs. I maintain this repository publicly as a reference for anyone building something similar.
 
 ## Features
 
 - NixOS configurations for all my hosts
-- Home-manager configuration for my workstations
+- Home-Manager configuration for my workstations
 - Custom packages
 - Development environments
 - Declarative secrets with agenix
@@ -46,12 +40,10 @@ As this project serves as a learning environment, its architecture changes
 frequently. While I'll try to keep this documentation current, what follows is a
 high-level overview of the current design.
 
-One of the main goals of this project was to allow for easy bootstrapping of new
-hosts while maintaining fine-grained configuration on a per-host basis. This is
-accomplished using a roles and profiles pattern (similar to
-[Puppet's roles and profiles method](https://www.puppet.com/docs/puppet/7/the_roles_and_profiles_method.html)).
+The current architecture enables straightfoward bootstrapping of new hosts while maintaining fine-grained configuration on a per-host basis. This is accomplished using a roles and profiles pattern (similar to [Puppet's roles and profiles method](https://www.puppet.com/docs/puppet/7/the_roles_and_profiles_method.html)).
 
-#### Roles
+
+### Roles
 
 - **Workstation**: Desktop/laptop systems with GUI environment
 - **Server**: Headless systems running specific services
@@ -85,7 +77,7 @@ flake.nixosConfigurations = {
 };
 ```
 
-#### Profiles
+### Profiles
 
 Profiles are collections of related software and configurations that can be
 enabled on a per-host basis. Here are some example profiles for workstations:
@@ -97,7 +89,7 @@ enabled on a per-host basis. Here are some example profiles for workstations:
 - `media`: Audio/video playback and management
 - `virtualization`: Virtual machine support
 
-Example configuration:
+Example:
 
 ```nix
 ooknet.workstation.profiles = ["gaming" "creative" "media"];
@@ -116,16 +108,17 @@ ooknet.server.services = ["ookflix"];
 ## Desktop environment
 
 <img src=".github/assets/2025-01-26T21:52:48,481278761+11:00.png" />
-All workstations currently run a minimal wayland configuration made from a few
+All workstations use a minimal wayland configuration made from the following
 components:
 
-- [Hyprland](https://github.com/hyprwm/Hyprland)
-- Hypr* ware ([hypridle](https://github.com/hyprwm/hypridle),
-  [hyprlock](https://github.com/hyprwm/hyprlock),
-  [hyprpaper](https://github.com/hyprwm/hyprpaper))
-- [Waybar](https://github.com/Alexays/Waybar)
-- [Mako](https://github.com/emersion/mako)
-- [Gruvbox extended](https://github.com/ooks-io/ooknet/blob/main/outputs/hozen/default.nix)
+- **Compositor**: [Hyprland](https://github.com/hyprwm/Hyprland)
+- **Utilities**:
+   - **Idle**: [hypridle](https://github.com/hyprwm/hypridle)
+   - **Screen locker**: [hyprlock](https://github.com/hyprwm/hyprlock)
+   - **Wallpaper**: [hyprpaper](https://github.com/hyprwm/hyprpaper)
+   - **Bar**: [Waybar](https://github.com/Alexays/Waybar)
+   - **Notifications**: [Mako](https://github.com/emersion/mako)
+- **Colorscheme**: [Gruvbox extended](https://github.com/ooks-io/ooknet/blob/main/outputs/hozen/default.nix)
 
 ## Appreciation
 
