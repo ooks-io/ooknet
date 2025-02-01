@@ -4,8 +4,14 @@
   pkgs,
   ...
 }: let
-  inherit (config.ooknet.server) services domain;
   inherit (lib) mkIf elem getExe;
+
+  inherit (config.ooknet.server) services domain;
+  inherit (config.services) fail2ban;
+
+  settingsFormat = lib.generators.toINI {
+    mkKeyValue = lib.generators.mkKeyValueDefault {} " = ";
+  };
 in {
   config = mkIf (elem "forgejo" services) {
     networking.firewall.allowedTCPPorts = [2222];
@@ -62,25 +68,43 @@ in {
           }
         '';
       };
+
+      fail2ban.jails.forgejo.settings = {
+        filter = "forgejo";
+        mode = "aggressive";
+        action = "nftables-multiport";
+        maxretry = 5;
+        findTime = "24h";
+        bantime = "48h";
+      };
     };
-    # credit to TLATER
-    # https://discourse.nixos.org/t/how-to-access-forgejo-cli/45370
-    environment.systemPackages = let
-      cfg = config.services.forgejo;
-      forgejo-cli = pkgs.writeScriptBin "forgejo-cli" ''
-        #!${pkgs.runtimeShell}
-        cd ${cfg.stateDir}
-        sudo=exec
-        if [[ "$USER" != forgejo ]]; then
-          sudo='exec /run/wrappers/bin/sudo -u ${cfg.user} -g ${cfg.group} --preserve-env=GITEA_WORK_DIR --preserve-env=GITEA_CUSTOM'
-        fi
-        # Note that these variable names will change
-        export GITEA_WORK_DIR=${cfg.stateDir}
-        export GITEA_CUSTOM=${cfg.customDir}
-        $sudo ${getExe cfg.package} "$@"
-      '';
-    in [
-      forgejo-cli
-    ];
+    environment = {
+      etc."fail2ban/filter.d/forgejo.conf".text = mkIf fail2ban.enable (settingsFormat {
+        Definitions = {
+          failregex = "^.*(Failed authentication attempt|invalid credentials|Attempted access of unknown user).";
+          journalmatch = "_SYSTEMD_UNIT=forgejo.service";
+        };
+      });
+
+      # credit to TLATER
+      # https://discourse.nixos.org/t/how-to-access-forgejo-cli/45370
+      systemPackages = let
+        cfg = config.services.forgejo;
+        forgejo-cli = pkgs.writeScriptBin "forgejo-cli" ''
+          #!${pkgs.runtimeShell}
+          cd ${cfg.stateDir}
+          sudo=exec
+          if [[ "$USER" != forgejo ]]; then
+            sudo='exec /run/wrappers/bin/sudo -u ${cfg.user} -g ${cfg.group} --preserve-env=GITEA_WORK_DIR --preserve-env=GITEA_CUSTOM'
+          fi
+          # Note that these variable names will change
+          export GITEA_WORK_DIR=${cfg.stateDir}
+          export GITEA_CUSTOM=${cfg.customDir}
+          $sudo ${getExe cfg.package} "$@"
+        '';
+      in [
+        forgejo-cli
+      ];
+    };
   };
 }

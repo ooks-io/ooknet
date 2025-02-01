@@ -4,11 +4,16 @@
 ## Overview
 
 The goals of this repository are:
-1. To maintain a centralized location for all my personal computing infrastructure
-2. To provide a place to experiment and learn about networking, administration, security, unix, design, and programming
+
+1. To maintain a centralized location for all my personal computing
+   infrastructure
+2. To provide a place to experiment and learn about networking, administration,
+   security, unix, design, and programming
 
 > [!WARNING]
-> This repository is not intended to be used by anyone but myself. It is highly personalized and likely doesn't fit anyone else's needs. I maintain this repository publicly as a reference for anyone building something similar.
+> This repository isn't intended to be used by anyone but myself. It's highly
+> personalized and likely doesn't fit anyone else's needs. I maintain this
+> repository publicly as a reference for anyone building something similar.
 
 ## Features
 
@@ -40,8 +45,10 @@ As this project serves as a learning environment, its architecture changes
 frequently. While I'll try to keep this documentation current, what follows is a
 high-level overview of the current design.
 
-The current architecture enables straightfoward bootstrapping of new hosts while maintaining fine-grained configuration on a per-host basis. This is accomplished using a roles and profiles pattern (similar to [Puppet's roles and profiles method](https://www.puppet.com/docs/puppet/7/the_roles_and_profiles_method.html)).
-
+The current architecture enables straightforward bootstrapping of new hosts
+while maintaining fine-grained configuration on a per-host basis. This is
+accomplished using a roles and profiles pattern (similar to
+[Puppet's roles and profiles method](https://www.puppet.com/docs/puppet/7/the_roles_and_profiles_method.html)).
 
 ### Roles
 
@@ -49,7 +56,7 @@ The current architecture enables straightfoward bootstrapping of new hosts while
 - **Server**: Headless systems running specific services
 
 Roles are declared via their own respective helper functions `mkWorkstation` and
-`mkServer`. Both being simple wrappers of
+`mkServer`. Both being thin wrappers of
 [`lib.nixosSystem`](https://github.com/NixOS/nixpkgs/blob/e5db80ae487b59b4e9f950d68983ffb0575e26c6/flake.nix#L21)
 (also see [`lib.evalModules`](https://noogle.dev/f/lib/evalModules)). These
 functions serve to abstract the boilerplate, leaving a simple interface for
@@ -113,12 +120,13 @@ components:
 
 - **Compositor**: [Hyprland](https://github.com/hyprwm/Hyprland)
 - **Utilities**:
-   - **Idle**: [hypridle](https://github.com/hyprwm/hypridle)
-   - **Screen locker**: [hyprlock](https://github.com/hyprwm/hyprlock)
-   - **Wallpaper**: [hyprpaper](https://github.com/hyprwm/hyprpaper)
-   - **Bar**: [Waybar](https://github.com/Alexays/Waybar)
-   - **Notifications**: [Mako](https://github.com/emersion/mako)
-- **Colorscheme**: [Gruvbox extended](https://github.com/ooks-io/ooknet/blob/main/outputs/hozen/default.nix)
+  - **Idle**: [hypridle](https://github.com/hyprwm/hypridle)
+  - **Screen locker**: [hyprlock](https://github.com/hyprwm/hyprlock)
+  - **Wallpaper**: [hyprpaper](https://github.com/hyprwm/hyprpaper)
+  - **Bar**: [Waybar](https://github.com/Alexays/Waybar)
+  - **Notifications**: [Mako](https://github.com/emersion/mako)
+- **Color Palette**:
+  [Gruvbox extended](https://github.com/ooks-io/ooknet/blob/main/outputs/hozen/default.nix)
 
 ## Appreciation
 
