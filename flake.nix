@@ -106,5 +106,13 @@
         systems.follows = "hyprland/systems";
       };
     };
+    nix-minecraft = {
+      url = "github:Infinidoge/nix-minecraft";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+
+        flake-utils.follows = "flake-utils";
+      };
+    };
   };
 }

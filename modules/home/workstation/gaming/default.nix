@@ -12,6 +12,7 @@ in {
     ./bottles.nix
     ./emulation.nix
     ./project-plus
+    ./minecraft.nix
   ];
   config = mkIf (elem "gaming" profiles) {
     ooknet.binds = {

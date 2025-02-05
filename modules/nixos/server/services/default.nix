@@ -3,5 +3,6 @@
     ./website
     ./forgejo
     ./ookflix
+    ./minecraft
   ];
 }
