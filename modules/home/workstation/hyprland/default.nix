@@ -2,11 +2,12 @@
   inputs',
   lib,
   osConfig,
+  pkgs,
   ...
 }: let
   inherit (osConfig.ooknet.workstation) environment;
   inherit (osConfig.ooknet.hardware) gpu;
-  inherit (lib) mkIf;
+  inherit (lib) optionalAttrs mkIf;
 in {
   imports = [
     ./settings
@@ -25,8 +26,8 @@ in {
     };
     home.sessionVariables =
       {
-        CLUTTER_BACKEND = "wayland";
         NIXOS_OZONE_WL = "1";
+        CLUTTER_BACKEND = "wayland";
         GDK_BACKEND = "wayland";
         QT_QPA_PLATFORM = "wayland;xcb";
         QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
@@ -39,7 +40,7 @@ in {
         XDG_SESSION_DESKTOP = "Hyprland";
         XDG_CURRENT_DESKTOP = "Hyprland";
       }
-      // mkIf (gpu.type == "nvidia") {
+      // optionalAttrs (gpu.type == "nvidia") {
         LIBVA_DRIVER_NAME = "nvidia";
         GBM_BACKEND = "nvidia-drm";
         __GLX_VENDOR_LIBRARY_NAME = "nvidia";
