@@ -5,8 +5,9 @@
   pkgs,
   ...
 }: let
-  inherit (lib) concatStringsSep getExe mkIf;
+  inherit (lib) optionalAttrs mkIf;
   inherit (config.ooknet.workstation) environment;
+  inherit (config.ooknet.hardware) gpu;
   inherit (inputs'.hyprland.packages) xdg-desktop-portal-hyprland hyprland;
 in {
   config = mkIf (environment == "hyprland") {
@@ -32,34 +33,6 @@ in {
 
     # required for wayland screen lockers to work
     security.pam.services.hyprlock.text = "auth include login";
-
-    services.greetd = {
-      enable = true;
-      vt = 2;
-      settings = {
-        default_session = {
-          command = concatStringsSep " " [
-            (getExe pkgs.greetd.tuigreet)
-            "--time"
-            "--remember"
-            "--cmd"
-            "Hyprland"
-          ];
-          user = "greeter";
-        };
-      };
-    };
-
-    systemd.services.greetd.serviceConfig = {
-      Type = "idle";
-      StandardInput = "tty";
-      StandardOutput = "tty";
-      StandardError = "journal"; # Without this errors will spam on screen
-      # Without these bootlogs will spam on screen
-      TTYReset = true;
-      TTYVHangup = true;
-      TTYVTDisallocate = true;
-    };
 
     nix.settings = {
       substituters = ["https://hyprland.cachix.org"];
