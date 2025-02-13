@@ -19,7 +19,6 @@ in {
     home.packages = attrValues {
       inherit
         (pkgs)
-        termusic
         alsa-utils
         mpv
         ;
