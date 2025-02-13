@@ -13,6 +13,7 @@ in {
       inherit
         (pkgs)
         lunar-client
+        prismlauncher
         ;
     };
   };
