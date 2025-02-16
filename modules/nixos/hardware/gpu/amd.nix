@@ -11,10 +11,10 @@ in {
   config = mkIf (gpu.type == "amd") {
     hardware.amdgpu = {
       amdvlk = {
-        enable = true;
+        enable = false;
         support32Bit.enable = true;
       };
-      opencl.enable = true;
+      opencl.enable = false;
     };
     hardware.graphics = {
       extraPackages = attrValues {
