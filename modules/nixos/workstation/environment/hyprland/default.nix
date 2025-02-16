@@ -5,9 +5,8 @@
   pkgs,
   ...
 }: let
-  inherit (lib) optionalAttrs mkIf;
+  inherit (lib) mkIf;
   inherit (config.ooknet.workstation) environment;
-  inherit (config.ooknet.hardware) gpu;
   inherit (inputs'.hyprland.packages) xdg-desktop-portal-hyprland hyprland;
 in {
   config = mkIf (environment == "hyprland") {

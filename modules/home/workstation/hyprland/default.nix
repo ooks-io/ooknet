@@ -2,7 +2,6 @@
   inputs',
   lib,
   osConfig,
-  pkgs,
   ...
 }: let
   inherit (osConfig.ooknet.workstation) environment;

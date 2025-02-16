@@ -19,7 +19,7 @@
       filterAttrs
       (_: isNonNull)
       (mapAttrs (
-          name: value:
+          _name: value:
             if builtins.isAttrs value
             then filterNullRec value
             else value
