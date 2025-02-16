@@ -1,5 +1,6 @@
 +++
 title = "Primitive Data Types"
+template = "notebook/note.html"
 +++
 
 ## References:

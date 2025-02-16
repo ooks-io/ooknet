@@ -1,5 +1,6 @@
 +++
 title = "Name-value Pairs"
+template = "notebook/note.html"
 +++
 
 ## References:
@@ -14,7 +15,8 @@ In [[Nix]], [[key-value-pair|key-value-pairs]] go by _name-value-pairs_.
 
 - **Key**: The key in [[Nix]] doesn't have to be a string.
 - **Separator**: Values are assigned to a value with an equal sign (`=`).
-- **Value**: Values can be any [[primitive-data-types|primitive data types]], [[functions]], or [[attribute-sets|attribute sets]], or [[lists]].
+- **Value**: Values can be any [[primitive-data-types|primitive data types]],
+  [[functions]], or [[attribute-sets|attribute sets]], or [[lists]].
 - **Delimiter**: name-value-pairs in a set are delimited by a semicolon (`;`)
 
 _example structure_

@@ -8,7 +8,5 @@ in {
   shellHook = ''
     echo "Entering website devshell";
     cd $WEBSITE/src
-    echo "Serving website"
-    zola serve
   '';
 }

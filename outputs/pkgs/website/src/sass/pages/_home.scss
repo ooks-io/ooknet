@@ -1,0 +1,64 @@
+@use "../abstracts/" as *;
+html {
+  scroll-padding-top: $navbar-height;
+}
+.notebook {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  margin-top: $navbar-height;
+  min-height: 100vh;
+  padding: 12px;
+
+  .sidebar {
+    width: 100%;
+    display: none;
+    flex-shrink: 0;
+    height: auto;
+  }
+
+  .content {
+    width: 100%;
+    flex-grow: 1;
+    overflow-y: auto;
+  }
+
+  &--menu-toggled .sidebar {
+    display: block;
+  }
+}
+
+@media (min-width: 800px) {
+  .notebook {
+    overflow: hidden;
+    .sidebar {
+      position: fixed;
+      display: flex;
+      top: calc($navbar-height + 10px);
+      left: 10px;
+      align-self: start;
+      height: calc(100vh - 70px);
+      width: $sidebar-width;
+      overflow-y: auto;
+    }
+
+    .content {
+      flex: 1;
+      margin-left: calc($sidebar-width + 10px);
+      padding: $spacer 10%;
+      max-width: calc(100% - $sidebar-width);
+      align-items: center;
+    }
+
+    &--menu-toggled {
+      .content {
+        margin-left: 0;
+        max-width: 100%;
+        padding: 10px 10%;
+      }
+      .sidebar {
+        display: none;
+      }
+    }
+  }
+}

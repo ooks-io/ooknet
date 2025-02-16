@@ -8,24 +8,24 @@
   <body class="{{ page_class }}">
     <header class="navbar-wrapper">
       <nav class="navbar">
-      <div>{% block navbar_extras %} {% endblock navbar_extras %}</div>
-      <ul class="navbar__tab">
-        <li class="navbar__tab-item">
-          <a class="navbar__link navbar__link--home" href="{{ config.base_url }}"
-            >home</a
-          >
-        </li>
-        <li class="navbar__tab-item">
-          <a
-            class="navbar__link navbar__link--notes"
-            href="{{ get_url(path='notes') }}"
-            >notes</a
-          >
-        </li>
-        <li class="navbar__tab-item">
-          <a class="navbar__link navbar__link--contact" href="#">contact</a>
-        </li>
-      </ul>
+        <div>{% block navbar_extras %} <a class="navbar__link"href="{{ config.base_url }}"> ooknet </a>{% endblock navbar_extras %}</div>
+      <!--<ul class="navbar__tab">-->
+      <!--  <li class="navbar__tab-item">-->
+      <!--    <a class="navbar__link navbar__link--home" href="{{ config.base_url }}"-->
+      <!--      >home</a-->
+      <!--    >-->
+      <!--  </li>-->
+        <!--<li class="navbar__tab-item">-->
+        <!--  <a-->
+        <!--    class="navbar__link navbar__link--notes"-->
+        <!--    href="{{ get_url(path='notes') }}"-->
+        <!--    >notes</a-->
+        <!--  >-->
+        <!--</li>-->
+        <!--<li class="navbar__tab-item">-->
+        <!--  <a class="navbar__link navbar__link--contact" href="#">contact</a>-->
+        <!--</li>-->
+      <!--</ul>-->
       <label class="switch">
         <input class="switch__input" type="checkbox" name="theme-switch" />
         <span class="icon icon--medium icon__moon switch__icon"></span>
@@ -36,7 +36,7 @@
     {% block home %} {% endblock home %}
     {% block notebook %}{% endblock notebook %}
     {% block js_body %}
-      <script type="text/javascript" src="{{ get_url(path="notebook_menu.js") | safe }}"></script>
+    {% block extrajs %} {% endblock extrajs %}
       <script type="text/javascript" src="{{ get_url(path="theme_switch.js") | safe }}"></script>
       <script type="text/javascript" src="{{ get_url(path="callouts.js") | safe }}"></script>
     {% endblock js_body %}

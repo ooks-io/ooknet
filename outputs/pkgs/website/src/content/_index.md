@@ -4,4 +4,4 @@ description = "ooknet is a personal website, a monorepo, a place to store my not
 template = "home.html"
 +++
 
-# Still very much under construction
+# ooknet

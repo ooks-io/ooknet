@@ -12,3 +12,7 @@
   </main>
 </div>
 {% endblock notebook %}
+{% block extrajs %}
+  <script type="text/javascript" src="{{ get_url(path="notebook_menu.js") | safe }}"></script>
+{% endblock extrajs %}
+
