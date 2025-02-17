@@ -12,7 +12,6 @@ in {
     home.packages = attrValues {
       inherit
         (pkgs)
-        lunar-client
         prismlauncher
         ;
     };
