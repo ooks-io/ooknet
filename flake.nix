@@ -51,7 +51,12 @@
     };
 
     ookscraft = {
-      url = "git+file:/home/ooks/Summit/gaming/minecraft/ookscraft";
+      url = "github:ooks-io/ookscraft";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        nix-minecraft.follows = "nix-minecraft";
+      };
     };
 
     nix-minecraft = {
