@@ -16,5 +16,9 @@ in {
         endpoint = "ooksmedia.taila3ca6.ts.net";
       };
     };
+    systemd.services.haproxy = {
+      after = ["tailscaled.service"];
+      requires = ["tailscaled.service"];
+    };
   };
 }
