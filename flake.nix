@@ -50,6 +50,10 @@
       };
     };
 
+    ookscraft = {
+      url = "git+file:/home/ooks/Summit/gaming/minecraft/ookscraft";
+    };
+
     nvf = {
       url = "github:notashelf/nvf";
       inputs = {
@@ -104,14 +108,6 @@
         hyprutils.follows = "hyprland/hyprutils";
         nixpkgs.follows = "hyprland/nixpkgs";
         systems.follows = "hyprland/systems";
-      };
-    };
-    nix-minecraft = {
-      url = "github:Infinidoge/nix-minecraft";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-
-        flake-utils.follows = "flake-utils";
       };
     };
   };

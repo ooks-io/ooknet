@@ -9,11 +9,8 @@
   inherit (osConfig.ooknet.workstation) profiles;
 in {
   config = mkIf (elem "gaming" profiles) {
-    home.packages = attrValues {
-      inherit
-        (pkgs)
-        prismlauncher
-        ;
-    };
+    home.packages = [
+      pkgs.prismlauncher
+    ];
   };
 }
