@@ -54,6 +54,14 @@
       url = "git+file:/home/ooks/Summit/gaming/minecraft/ookscraft";
     };
 
+    nix-minecraft = {
+      url = "github:Infinidoge/nix-minecraft";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
+
     nvf = {
       url = "github:notashelf/nvf";
       inputs = {
