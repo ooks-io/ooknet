@@ -21,7 +21,7 @@ in {
       };
       iconTheme = {
         name = "Gruvbox-Plus-Dark";
-        package = pkgs.gruvbox-plus-icons;
+        package = pkgs.gruvbox-dark-icons-gtk;
       };
       gtk3.extraCss = gtkCss;
       gtk4.extraCss = gtkCss;
