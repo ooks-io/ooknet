@@ -2,6 +2,22 @@
 html {
   scroll-padding-top: $navbar-height;
 }
+.home {
+  margin: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  .home--ascii {
+    font: $font-family-monospace;
+    font-size: 10px;
+    line-height: 1;
+    background: var(--clr-crust);
+    border: $solid-border;
+    margin: 50px;
+    padding: 10px;
+  }
+}
 .notebook {
   display: flex;
   flex-direction: column;
