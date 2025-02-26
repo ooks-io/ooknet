@@ -1,5 +1,4 @@
 {
-  inputs',
   lib,
   osConfig,
   ...
@@ -16,9 +15,9 @@ in {
   config = mkIf (environment == "hyprland") {
     wayland.windowManager.hyprland = {
       enable = true;
-      package = inputs'.hyprland.packages.hyprland;
+      package = null;
       xwayland.enable = true;
-      systemd = mkIf (!osConfig.programs.uwsm.enable) {
+      systemd = {
         enable = true;
         variables = ["--all"];
       };

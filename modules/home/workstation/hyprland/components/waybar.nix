@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   pkgs,
   osConfig,
@@ -34,7 +33,7 @@ in {
         modules-right = ["custom/hyprrecord" "tray"];
 
         "hyprland/workspaces" = let
-          hyprctl = config.wayland.windowManager.hyprland.package + "/bin/hyprctl";
+          hyprctl = osConfig.programs.hyprland.package + "/bin/hyprctl";
         in {
           on-click = "activate";
           on-scroll-up = "${hyprctl} dispatch workspace m+1";

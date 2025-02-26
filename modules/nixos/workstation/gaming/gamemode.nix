@@ -2,13 +2,12 @@
   lib,
   config,
   pkgs,
-  inputs',
   ...
 }: let
   inherit (lib) optionalString elem getExe getExe' mkIf;
   inherit (config.ooknet.workstation) profiles environment;
 
-  hyprctl = "${getExe' inputs'.hyprland.packages.hyprland "hyprctl"} -i 0";
+  hyprctl = "${getExe' config.programs.hyprland.package "hyprctl"} -i 0";
   notify-send = getExe pkgs.libnotify;
   powerprofilectl = getExe pkgs.power-profiles-daemon;
 

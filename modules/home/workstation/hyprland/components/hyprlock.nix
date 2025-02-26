@@ -1,7 +1,6 @@
 {
   lib,
   osConfig,
-  inputs',
   hozen,
   ...
 }: let
@@ -16,7 +15,6 @@ in {
 
     programs.hyprlock = {
       enable = true;
-      package = inputs'.hyprlock.packages.default;
 
       settings = {
         enable = true;

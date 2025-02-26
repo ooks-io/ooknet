@@ -1,5 +1,4 @@
 {
-  inputs',
   config,
   lib,
   pkgs,
@@ -7,21 +6,16 @@
 }: let
   inherit (lib) mkIf;
   inherit (config.ooknet.workstation) environment;
-  inherit (inputs'.hyprland.packages) xdg-desktop-portal-hyprland hyprland;
 in {
   config = mkIf (environment == "hyprland") {
     programs.hyprland = {
       enable = true;
-      package = hyprland;
-      portalPackage = xdg-desktop-portal-hyprland;
-      withUWSM = false; #TODO
     };
 
     xdg.portal = {
       enable = true;
       extraPortals = [
         pkgs.xdg-desktop-portal-gtk
-        xdg-desktop-portal-hyprland
       ];
       config.common = {
         default = ["gtk"];
