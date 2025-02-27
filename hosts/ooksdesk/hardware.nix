@@ -5,7 +5,10 @@
       amd.pstate.enable = true;
       cores = 16;
     };
-    gpu.type = "amd";
+    gpu = {
+      type = "amd";
+      lact.enable = true;
+    };
     features = ["printing" "ssd" "audio" "video"];
     monitors = [
       {

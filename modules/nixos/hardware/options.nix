@@ -18,6 +18,7 @@ in {
         type = nullOr (enum ["intel" "amd" "nvidia"]);
         default = null;
       };
+      lact.enable = mkEnableOption "Enable amd tuning software lact";
     };
 
     cpu = {
