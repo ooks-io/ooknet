@@ -5,6 +5,30 @@
 }: let
   inherit (lib) mkEnableOption mkOption;
   inherit (lib.types) str enum bool package;
+
+  userOptions = {
+    name = mkOption {
+      type = str;
+      default = "ooks";
+    };
+    shell = mkOption {
+      type = enum ["bash" "zsh" "fish"];
+      default = "fish";
+    };
+    email = mkOption {
+      type = str;
+      default = "ooks@protonmail.com";
+    };
+    homeManager = mkOption {
+      type = bool;
+      default = false;
+      description = ''
+        Home-manager is enabled if ooknet.host.role == "workstation".
+        If host is not a workstation and you would like to enable home-manager
+        enable this option.
+      '';
+    };
+  };
 in {
   options.ooknet.host = {
     name = mkOption {
@@ -37,36 +61,22 @@ in {
       default = false;
     };
 
-    admin = {
-      name = mkOption {
-        type = str;
-        default = "ooks";
+    admin =
+      userOptions
+      // {
+        gitName = mkOption {
+          type = str;
+          default = "ooks-io";
+        };
+        gitEmail = mkOption {
+          type = str;
+          default = "ooks@protonmail.com";
+        };
       };
-      shell = mkOption {
-        type = enum ["bash" "zsh" "fish"];
-        default = "fish";
+    guest =
+      userOptions
+      // {
+        enable = mkEnableOption "Enable guest user";
       };
-      gitName = mkOption {
-        type = str;
-        default = "ooks-io";
-      };
-      gitEmail = mkOption {
-        type = str;
-        default = "ooks@protonmail.com";
-      };
-      email = mkOption {
-        type = str;
-        default = "ooks@protonmail.com";
-      };
-      homeManager = mkOption {
-        type = bool;
-        default = false;
-        description = ''
-          Home-manager is enabled if ooknet.host.role == "workstation".
-          If host is not a workstation and you would like to enable home-manager
-          enable this option.
-        '';
-      };
-    };
   };
 }
