@@ -87,26 +87,5 @@ in {
         };
       };
     };
-
-    programs.zellij.layouts.music = {
-      icon = "󰝚";
-      tabs =
-        # kdl
-        ''
-          tab name="spotify" focus=true {
-            pane name="spotify" {
-              borderless true
-              command "${getExe self'.packages.spotify-player}"
-              focus true
-            }
-            pane name="Visualizer" {
-              borderless false
-              split_direction "horizontal"
-              size "20%"
-              command "${getExe pkgs.cava}"
-            }
-          }
-        '';
-    };
   };
 }

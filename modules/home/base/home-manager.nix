@@ -1,16 +1,8 @@
-{
-  config,
-  osConfig,
-  ...
-}: let
-  inherit (osConfig.ooknet.host) admin;
-in {
+{config, ...}: {
   programs.home-manager.enable = true;
   systemd.user.startServices = "sd-switch";
 
   home = {
-    username = admin.name;
-    homeDirectory = "/home/${config.home.username}";
     stateVersion = "22.05";
     sessionPath = ["${config.home.homeDirectory}/.local/bin"];
   };

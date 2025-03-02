@@ -32,7 +32,7 @@ in {
         hitori
         iagno
         tali
-        atmoix
+        atomix
         ;
     };
   };

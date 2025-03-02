@@ -1,13 +1,16 @@
 {
   osConfig,
+  config,
   lib,
   hozen,
+  self',
+  pkgs,
   ...
 }: let
   inherit (hozen) color;
   inherit (osConfig.ooknet) console;
   inherit (osConfig.ooknet.host) admin;
-  inherit (lib) mkIf;
+  inherit (lib) getExe mkIf;
 
   cfg = osConfig.ooknet.console.tools.zellij;
 in {
@@ -61,6 +64,26 @@ in {
               }
               tab name="git" {
                 pane name="git" cwd="$FLAKE" command="lazygit"
+              }
+            '';
+        };
+        music = mkIf config.programs.spotify-player.enable {
+          icon = "󰝚";
+          tabs =
+            # kdl
+            ''
+              tab name="spotify" focus=true {
+                pane name="spotify" {
+                  borderless true
+                  command "${getExe self'.packages.spotify-player}"
+                  focus true
+                }
+                pane name="Visualizer" {
+                  borderless false
+                  split_direction "horizontal"
+                  size "20%"
+                  command "${getExe pkgs.cava}"
+                }
               }
             '';
         };

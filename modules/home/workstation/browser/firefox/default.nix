@@ -2,12 +2,12 @@
   pkgs,
   lib,
   inputs',
+  config,
   osConfig,
   hozen,
   ...
 }: let
   inherit (lib) mkIf mkMerge;
-  inherit (osConfig.ooknet.host) admin;
   inherit (osConfig.ooknet.appearance) fonts;
   inherit (osConfig.ooknet.workstation) default;
 
@@ -35,7 +35,7 @@ in {
       programs.firefox = {
         enable = true;
         nativeMessagingHosts = [pkgs.tridactyl-native];
-        profiles.${admin.name} = {
+        profiles.${config.home.username} = {
           id = 0;
           isDefault = true;
           extensions = with addons; [

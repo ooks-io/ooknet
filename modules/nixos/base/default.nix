@@ -12,5 +12,6 @@
     ./networking.nix
     ./security
     ./syncthing.nix
+    ./guest.nix
   ];
 }

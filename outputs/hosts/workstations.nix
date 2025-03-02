@@ -12,6 +12,12 @@ in {
       hostname = "ookst480s";
       type = "laptop";
     };
+    ooksx1 = mkWorkstation {
+      inherit withSystem;
+      system = "x86_64-linux";
+      hostname = "ooksx1";
+      type = "laptop";
+    };
     ooksdesk = mkWorkstation {
       inherit withSystem;
       system = "x86_64-linux";

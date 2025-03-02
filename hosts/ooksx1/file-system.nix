@@ -1,39 +1,17 @@
 {
-  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/b5d09a8b-54a9-4f72-828c-5cceea2ec287";
   fileSystems = {
     "/" = {
-      device = "/dev/disk/by-uuid/629a7421-24a0-45e6-87af-031574d9d46d";
-      fsType = "btrfs";
-      options = ["subvol=root"];
-    };
-
-    "/nix" = {
-      device = "/dev/disk/by-uuid/629a7421-24a0-45e6-87af-031574d9d46d";
-      fsType = "btrfs";
-      options = ["subvol=nix"];
-    };
-
-    "/persist" = {
-      device = "/dev/disk/by-uuid/629a7421-24a0-45e6-87af-031574d9d46d";
-      fsType = "btrfs";
-      options = ["subvol=persist"];
-    };
-
-    "/swap" = {
-      device = "/dev/disk/by-uuid/629a7421-24a0-45e6-87af-031574d9d46d";
-      fsType = "btrfs";
-      options = ["subvol=swap"];
+      device = "/dev/disk/by-uuid/5220a8c9-8a58-48d1-9119-9336a67542e2";
+      fsType = "ext4";
     };
 
     "/boot" = {
-      device = "/dev/disk/by-uuid/1D01-7040";
+      device = "/dev/disk/by-uuid/29FF-35B3";
       fsType = "vfat";
+      options = ["fmask=0077" "dmask=0077"];
     };
   };
   swapDevices = [
-    {
-      device = "/swap/swapfile";
-      size = 8 * 1024;
-    }
+    {device = "/dev/disk/by-uuid/69bd9dce-c7df-4a33-add7-97d4886a3bc0";}
   ];
 }

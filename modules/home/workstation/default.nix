@@ -11,5 +11,6 @@
     ./creative
     ./binds.nix
     ./gaming
+    ./userDirs.nix
   ];
 }

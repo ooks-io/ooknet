@@ -12,12 +12,12 @@ in {
       default = [];
     };
     environment = mkOption {
-      type = nullOr (enum ["hyprland"]);
+      type = nullOr (enum ["hyprland" "gnome"]);
       default = "hyprland";
     };
     default = {
       browser = mkOption {
-        type = nullOr (enum ["firefox"]);
+        type = nullOr (enum ["firefox" "chromium"]);
         default = "firefox";
       };
       terminal = mkOption {
@@ -27,6 +27,7 @@ in {
     };
     programs = {
       firefox.enable = mkEnableOption "";
+      chromium.enable = mkEnableOption "";
       foot.enable = mkEnableOption "";
       ghostty.enable = mkEnableOption "";
       ollama.enable = mkEnableOption "";

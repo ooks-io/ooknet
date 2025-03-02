@@ -13,9 +13,9 @@ in {
         enable = true;
       };
     })
-    (mkIf default.browser
-      == "chromium" {
-        home.sessionVariables.BROWSER = "chromium";
-      })
+    (mkIf (default.browser
+      == "chromium") {
+      home.sessionVariables.BROWSER = "chromium";
+    })
   ];
 }

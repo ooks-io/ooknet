@@ -11,7 +11,8 @@ in {
   config = mkIf (elem "battery" features) {
     services = {
       # cpu power usage optimizer
-      auto-cpufreq = {enable = true;};
+      auto-cpufreq.enable = true;
+      power-profiles-daemon.enable = false;
 
       # application interface for power management
       upower = {

@@ -13,7 +13,9 @@ in {
     ./options.nix
   ];
 
-  home-manager.users.${admin.name} = mkIf admin.homeManager {
-    imports = ["${self}/modules/home/console"];
+  home-manager.users = mkIf admin.homeManager {
+    "${admin.name}" = {
+      imports = ["${self}/modules/home/console"];
+    };
   };
 }

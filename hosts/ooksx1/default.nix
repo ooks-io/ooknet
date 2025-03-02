@@ -25,9 +25,8 @@
     workstation = {
       environment = "gnome";
       theme = "minimal";
-      profiles = ["media" "communication" "productivity"];
       default = {
-        browser = "chrome";
+        browser = "chromium";
         terminal = "ghostty";
       };
     };
@@ -37,7 +36,7 @@
       multiplexer = "zellij";
     };
   };
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
 
   system.stateVersion = lib.mkDefault "24.11";
 }

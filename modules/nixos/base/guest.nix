@@ -1,14 +1,16 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: let
+  inherit (lib) mkIf;
   inherit (config.ooknet.host) guest;
   inherit (config.ooknet.secrets) keys;
 
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in {
-  config = {
+  config = mkIf guest.enable {
     users.users.${guest.name} = {
       isNormalUser = true;
       shell = pkgs.${guest.shell};

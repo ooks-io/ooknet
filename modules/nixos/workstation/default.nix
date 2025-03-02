@@ -4,8 +4,8 @@
   lib,
   ...
 }: let
-  inherit (lib) mkIf;
-  inherit (config.ooknet.host) admin;
+  inherit (lib) optionalAttrs;
+  inherit (config.ooknet.host) admin guest;
 in {
   imports = [
     ./options.nix
@@ -17,7 +17,15 @@ in {
     ./virtualization
   ];
 
-  home-manager.users.${admin.name} = mkIf admin.homeManager {
-    imports = ["${self}/modules/home/workstation"];
-  };
+  home-manager.users =
+    (optionalAttrs admin.homeManager {
+      "${admin.name}" = {
+        imports = ["${self}/modules/home/workstation"];
+      };
+    })
+    // (optionalAttrs guest.homeManager {
+      "${guest.name}" = {
+        imports = ["${self}/modules/home/workstation"];
+      };
+    });
 }
