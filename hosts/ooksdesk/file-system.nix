@@ -4,25 +4,25 @@
     "/" = {
       device = "/dev/disk/by-uuid/629a7421-24a0-45e6-87af-031574d9d46d";
       fsType = "btrfs";
-      options = ["subvol=root"];
+      options = ["subvol=root" "compress=zstd" "noatime"];
     };
 
     "/nix" = {
       device = "/dev/disk/by-uuid/629a7421-24a0-45e6-87af-031574d9d46d";
       fsType = "btrfs";
-      options = ["subvol=nix"];
+      options = ["subvol=nix" "compress=zstd" "noatime"];
     };
 
     "/persist" = {
       device = "/dev/disk/by-uuid/629a7421-24a0-45e6-87af-031574d9d46d";
       fsType = "btrfs";
-      options = ["subvol=persist"];
+      options = ["subvol=persist" "compress=zstd"];
     };
 
     "/swap" = {
       device = "/dev/disk/by-uuid/629a7421-24a0-45e6-87af-031574d9d46d";
       fsType = "btrfs";
-      options = ["subvol=swap"];
+      options = ["subvol=swap" "noatime"];
     };
 
     "/boot" = {
