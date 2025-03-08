@@ -1098,11 +1098,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1740393420,
-        "narHash": "sha256-Bt/UKwUmr7vBlX88DQxXtd84r/Jv3k5ENAm2DZ+ak98=",
+        "lastModified": 1741240379,
+        "narHash": "sha256-UwLBBy5Nl0luurALWQAYEjxcR1xfNf/wRYUWT2RJKTc=",
         "owner": "ooks-io",
         "repo": "ookscraft",
-        "rev": "831636ddac7b58e1c3b6ca19b4c8060adcaec227",
+        "rev": "ed860999356f06b52682471b1cc5a7f32fc3a769",
         "type": "github"
       },
       "original": {
