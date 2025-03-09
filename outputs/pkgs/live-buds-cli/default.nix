@@ -18,7 +18,8 @@ rustPlatform.buildRustPackage rec {
     sha256 = "A4XQiJrk4ehb6+935L2JFOeAhUJ7bdukV5mL0Jxn0sQ=";
   };
 
-  cargoHash = "sha256-D7kS8frUFHQOn0awCe6aLeE5nCJWchmoa0iqnOM36MM";
+  useFetchCargoVendor = true;
+  cargoHash = "sha256-bgzd0gcY17pH+CmThEHUz75XbjzMzDdZHzzkEaCEkFU=";
 
   nativeBuildInputs = [pkg-config];
   buildInputs = [libpulseaudio bluez dbus];
