@@ -39,7 +39,7 @@ in {
       type = enum ["vm" "desktop" "laptop"];
     };
     role = mkOption {
-      type = enum ["workstation" "server"];
+      type = enum ["workstation" "server" "installer"];
     };
 
     syncthing = {

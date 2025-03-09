@@ -20,10 +20,15 @@
   minimalCore = [
     (baseModules + "/options.nix")
     (baseModules + "/admin.nix")
-    (baseModules + "/ssh.nix")
+    (baseModules + "/openssh.nix")
   ];
   core = [baseModules hardwareModules consoleModules appearanceModules hm secrets];
   hostModules = "${self}/hosts";
+  installModules = [
+    "${nixpkgs}/nixos/modules/installer/cd-dvd/iso-image.nix"
+    "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
+    "${nixpkgs}/nixos/modules/profiles/all-hardware.nix"
+  ];
 
   mkNixos = nixpkgs.lib.nixosSystem;
 
@@ -116,9 +121,10 @@
       };
 
   mkImage = {
-    profile,
+    profile ? null,
     system,
     hostname,
+    installer ? false,
     additionalModules ? [],
     ...
   }:
@@ -132,9 +138,19 @@
             flake.source = nixpkgs.outPath;
           };
         })
-        ["${self}/modules/server/profiles/${profile}/base"]
         minimalCore
         additionalModules
+        [secrets]
+        (
+          if installer
+          then installModules
+          else []
+        )
+        (
+          if profile != null
+          then ["${self}/modules/server/profiles/${profile}/base"]
+          else [(hostModules + "/${hostname}")]
+        )
       ];
     };
 in {
