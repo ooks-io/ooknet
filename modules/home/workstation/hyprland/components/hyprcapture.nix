@@ -24,8 +24,8 @@ in {
 
     wayland.windowManager.hyprland.settings.bind = [
       # Screenshot binds
-      ",               Print,         exec,     grimblast --notify --cursor copysave area"
-      "SUPER,          Print,         exec,     grimblast --notify --cursor copysave screen"
+      ",               Print,         exec,     grimblast --notify copysave area"
+      "SUPER,          Print,         exec,     grimblast --notify copysave screen"
       # Recording binds
       "SUPER,          r,             exec,     hyprrecord -a -w video screen copysave"
       "SUPER CTRL,     r,             exec,     hyprrecord -a -w video area copysave"

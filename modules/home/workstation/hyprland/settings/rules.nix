@@ -14,10 +14,6 @@ in {
       rules = ["tag +games"];
     }
     {
-      matches = {initialTitle = "World of Warcraft";};
-      rules = ["tag +games"];
-    }
-    {
       matches = {title = "TEKKEN™8";};
       rules = ["tag +games"];
     }
