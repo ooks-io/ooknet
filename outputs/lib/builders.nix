@@ -5,7 +5,7 @@
   ...
 }: let
   inherit (inputs) nixpkgs;
-  inherit (lib) singleton recursiveUpdate mkDefault;
+  inherit (lib) assertMsg singleton recursiveUpdate mkDefault;
   inherit (builtins) concatLists;
   inherit (self) hozen ook;
   inherit (inputs.secrets.nixosModules) secrets;
@@ -17,6 +17,8 @@
   consoleModules = nixosModules + "/console";
   workstationModules = nixosModules + "/workstation";
   serverModules = nixosModules + "/server";
+  imageModules = nixosModules + "/image";
+
   minimalCore = [
     (baseModules + "/options.nix")
     (baseModules + "/admin.nix")
@@ -24,10 +26,13 @@
   ];
   core = [baseModules hardwareModules consoleModules appearanceModules hm secrets];
   hostModules = "${self}/hosts";
-  installModules = [
-    "${nixpkgs}/nixos/modules/installer/cd-dvd/iso-image.nix"
-    "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
-    "${nixpkgs}/nixos/modules/profiles/all-hardware.nix"
+  isoModules = [
+    secrets
+    (imageModules + "/isoImage.nix")
+    (baseModules + "/networking.nix")
+    (baseModules + "/nix.nix")
+    (baseModules + "/tailscale.nix")
+    (baseModules + "/security/sudo.nix")
   ];
 
   mkNixos = nixpkgs.lib.nixosSystem;
@@ -98,7 +103,7 @@
     additionalModules ? [],
     specialArgs ? {},
   }:
-    assert lib.assertMsg (!(type == "vm" && profile == null))
+    assert assertMsg (!(type == "vm" && profile == null))
     "Profile must be specified for VM servers";
       mkBaseSystem {
         inherit withSystem hostname system type specialArgs;
@@ -121,29 +126,28 @@
       };
 
   mkImage = {
+    withSystem,
     profile ? null,
-    system,
     hostname,
-    installer ? false,
+    system,
+    type,
+    role,
     additionalModules ? [],
-    ...
+    specialArgs ? {},
   }:
-    mkNixos {
-      specialArgs = {inherit inputs lib self;};
-      modules = concatLists [
-        (singleton {
-          networking.hostName = hostname;
-          nixpkgs = {
-            hostPlatform = mkDefault system;
-            flake.source = nixpkgs.outPath;
-          };
-        })
+    mkBaseSystem {
+      inherit withSystem role hostname system type specialArgs;
+      additionalModules = concatLists [
         minimalCore
         additionalModules
-        [secrets]
         (
-          if installer
-          then installModules
+          if type == "iso"
+          then isoModules
+          else []
+        )
+        (
+          if role == "installer"
+          then [(imageModules + "/installer.nix")]
           else []
         )
         (
