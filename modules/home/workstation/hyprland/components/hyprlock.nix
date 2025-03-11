@@ -50,12 +50,12 @@ in {
 
         label = {
           monitor = primaryMonitor;
-          text = "LOCKED";
-          position = "0, 150";
+          text = "password";
+          position = "-165, 0";
           valign = "center";
           halign = "center";
-          color = "0xff${color.red.base}";
-          font_size = 30;
+          color = "0xff${color.primary.base}";
+          font_size = 16;
           font_family = "${fonts.monospace.family}";
         };
       };
