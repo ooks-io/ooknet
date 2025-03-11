@@ -1,17 +1,22 @@
 {
-  system.switch.enable = false;
-  ooknet.host = {
-    role = "installer";
-    admin = {
-      name = "ooks";
-      shell = "bash";
+  ooknet = {
+    host = {
+      admin = {
+        name = "ooks";
+        shell = "bash";
+      };
     };
   };
 
-  isoImage = {
-    makeEfiBootable = true;
-    makeUsbBootable = true;
-    edition = "ooknet";
+  services.getty = {
+    autologinUser = "ooks";
+    helpLine = ''
+      Welcome to the ooknet installer
+
+      To get started, authenticate with tailscale.
+
+      For access to a graphical environment use the command Hyprland
+    '';
   };
 
   system.stateVersion = "25.05";
