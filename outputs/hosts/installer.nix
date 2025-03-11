@@ -10,7 +10,8 @@ in {
       inherit withSystem;
       system = "x86_64-linux";
       hostname = "ooksinstall";
-      installer = true;
+      type = "iso";
+      role = "installer";
     };
   };
 }

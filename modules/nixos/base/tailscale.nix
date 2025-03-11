@@ -3,6 +3,7 @@
   lib,
   ...
 }: let
+  inherit (lib) mkIf;
   inherit (lib.lists) concatLists optionals;
   inherit (config.ooknet) host;
   inherit (config.ooknet.host) admin;
@@ -19,7 +20,7 @@ in {
     permitCertUid = "root";
 
     # authentication key for auto connect service
-    authKeyFile = config.age.secrets.tailscale-auth.path;
+    authKeyFile = mkIf (host.role != "installer") config.age.secrets.tailscale-auth.path;
 
     # flags to pass to the auto-connect service
     extraUpFlags = concatLists [

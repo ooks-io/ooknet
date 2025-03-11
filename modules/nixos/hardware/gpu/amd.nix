@@ -5,7 +5,7 @@
   ...
 }: let
   inherit (config.ooknet.hardware) gpu;
-  inherit (lib) getExe mkMerge mkIf mkDefault;
+  inherit (lib) mkMerge mkIf mkDefault;
   inherit (builtins) attrValues;
 in {
   config = mkIf (gpu.type == "amd") (mkMerge [

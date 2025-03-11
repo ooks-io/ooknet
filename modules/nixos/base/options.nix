@@ -36,10 +36,10 @@ in {
       default = "ooks-generic";
     };
     type = mkOption {
-      type = enum ["vm" "desktop" "laptop"];
+      type = enum ["vm" "desktop" "laptop" "iso"];
     };
     role = mkOption {
-      type = enum ["workstation" "server" "installer"];
+      type = enum ["workstation" "server" "installer" "live"];
     };
 
     syncthing = {

@@ -65,7 +65,7 @@ in {
   nixpkgs = {
     config.allowUnfree = true;
     # why are we doing this
-    overlays = [
+    overlays = mkIf (role == "workstation") [
       # zellij status bar plugin
       (_final: prev: {
         zjstatus = inputs.zjstatus.packages.${prev.system}.default;
