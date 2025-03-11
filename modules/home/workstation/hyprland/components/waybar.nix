@@ -9,9 +9,15 @@
   inherit (hozen) color;
   inherit (osConfig.ooknet.hardware) monitors;
   inherit (osConfig.ooknet.workstation) environment;
-  inherit (lib) mkIf head;
+  inherit (lib) mkIf head elem;
 
-  monitorWidth = (head monitors).width - 20;
+  primaryMonitor = head monitors;
+
+  isVertical = elem primaryMonitor.transform [1 3];
+  width =
+    if isVertical
+    then primaryMonitor.height - 20
+    else primaryMonitor.width - 20;
 in {
   config = mkIf (environment == "hyprland") {
     programs.waybar = {
@@ -20,10 +26,10 @@ in {
       package = pkgs.waybar;
 
       settings.mainBar = {
+        inherit width;
         layer = "top";
         position = "top";
         height = 32;
-        width = monitorWidth;
         exclusive = true;
         margin-top = 10;
         margin-bottom = -12;

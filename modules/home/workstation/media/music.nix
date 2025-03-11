@@ -7,7 +7,7 @@
   self',
   ...
 }: let
-  inherit (lib) mkIf getExe elem;
+  inherit (lib) mkIf elem;
   inherit (builtins) attrValues;
   inherit (osConfig.networking) hostName;
   inherit (osConfig.ooknet.workstation) profiles;
