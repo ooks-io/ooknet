@@ -92,8 +92,11 @@ in {
       home.sessionVariables = {
         TERMINAL = "foot";
       };
-      ooknet.binds.terminal = "foot";
-      ooknet.binds.terminalLaunch = "foot";
+      ooknet.binds = {
+        terminal = "foot";
+        terminalLaunch = "foot";
+        btop = "foot --title BTOP btop";
+      };
     })
   ];
 }
