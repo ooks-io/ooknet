@@ -23,7 +23,7 @@
       profiles = ["creative" "virtualization" "gaming" "media" "communication" "productivity"];
       default = {
         browser = "firefox";
-        terminal = "ghostty";
+        terminal = "foot";
       };
     };
     console = {
