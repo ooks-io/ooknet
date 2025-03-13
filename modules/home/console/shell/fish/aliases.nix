@@ -19,6 +19,7 @@ in {
       f = "cd $FLAKE";
       s = "cd $KUNZEN";
       fe = "$EDITOR (git rev-parse --show-toplevel) -c 'Telescope find_files'";
+      repl = "nix repl --expr 'import <nixpkgs> {}'";
 
       nswitch = "${getExe nh} os switch";
     };
