@@ -1,5 +1,8 @@
 {
   vim = {
+    notify.nvim-notify = {
+      enable = true;
+    };
     ui = {
       borders = {
         enable = true;
@@ -16,7 +19,6 @@
     visuals = {
       # icons that other plugins depend on.
       nvim-web-devicons.enable = true;
-      fidget-nvim.enable = true;
 
       # indent lines
       indent-blankline = {

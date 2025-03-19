@@ -127,6 +127,7 @@ in {
                 additionalRules = {
                   languageModel = "${cfg.ltex.modelPath}",
                 },
+                checkFrequency = "save",
               },
             },
           }
