@@ -35,7 +35,7 @@ Below are all the hosts I currently maintain within this flake:
 | ookst480s | T480s / i5-8350U / 24 GB DDR4         | Workstation | Primary mobile workstation        | x86_64-linux | UP     |
 | ooksmicro | GPD Micro PC / N8100 / 8 GB LPDR3     | Workstation | Pocket workstation                | x86_64-linux | UP     |
 | ooksmedia | i3-10100 / 1650 Super / 8 GB DDR4     | Server      | Homelab/Media server              | x86_64-linux | UP     |
-| ooksx1    | X1 Carbon G4 / i5 6200U / 8 GB LPDDR3 | Workstation | Alternative mobile workstation    | x86_64-linux | DOWN   |
+| ooksx1    | X1 Carbon G4 / i5 6200U / 8 GB LPDDR3 | Workstation | Guest laptop                      | x86_64-linux | UP     |
 | ooknode   | Linode Nanode                         | Server      | VPS for website                   | x86_64-linux | UP     |
 | ooksphone | Termux                                | Workstation | Nix environment for android phone | x86_64-linux | DOWN   |
 
