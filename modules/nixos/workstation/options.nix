@@ -22,7 +22,7 @@ in {
       };
       terminal = mkOption {
         type = enum ["foot" "ghostty"];
-        default = "ghostty";
+        default = "foot";
       };
     };
     programs = {
