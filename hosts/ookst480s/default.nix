@@ -10,6 +10,7 @@
 
   ooknet = {
     host = {
+      syncthing.enable = true;
       admin = {
         name = "ooks";
         shell = "fish";

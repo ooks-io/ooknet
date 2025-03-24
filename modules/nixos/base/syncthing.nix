@@ -25,12 +25,18 @@ in {
 
       settings = {
         # obfuscating device ids is not necessary, but i do it anyway
+
+        # to generate a new device id run:
+        # syncthing generate
         devices = {
           "ooksdesk" = {
             inherit (devices.ooksdesk) id addresses;
           };
           "ooksmedia" = {
             inherit (devices.ooksmedia) id addresses;
+          };
+          "ookst480s" = {
+            inherit (devices.ookst480s) id addresses;
           };
         };
         folders = {
