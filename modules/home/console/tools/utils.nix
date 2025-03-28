@@ -50,7 +50,11 @@ in {
         ;
 
       #AI
-      inherit (self'.packages) repomix;
+      inherit
+        (self'.packages)
+        repomix
+        goki
+        ;
     };
   };
 }

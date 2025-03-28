@@ -17,6 +17,7 @@
     };
   in {
     packages = {
+      goki = callPackage ./goki {};
       repomix = callPackage ./repomix {};
       live-buds-cli = callPackage ./live-buds-cli {};
       website = callPackage ./website {};

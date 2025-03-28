@@ -870,22 +870,6 @@
         "type": "github"
       }
     },
-    "nmd": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1705050560,
-        "narHash": "sha256-x3zzcdvhJpodsmdjqB4t5mkVW22V3wqHLOun0KRBzUI=",
-        "owner": "~rycee",
-        "repo": "nmd",
-        "rev": "66d9334933119c36f91a78d565c152a4fdc8d3d3",
-        "type": "sourcehut"
-      },
-      "original": {
-        "owner": "~rycee",
-        "repo": "nmd",
-        "type": "sourcehut"
-      }
-    },
     "nvf": {
       "inputs": {
         "flake-parts": [
@@ -899,17 +883,16 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "nmd": "nmd",
         "systems": [
           "systems"
         ]
       },
       "locked": {
-        "lastModified": 1742471089,
-        "narHash": "sha256-wiGkhJcDdg2/wy4QxaudNsU98y7CzzZpB6pnjUrNNDQ=",
+        "lastModified": 1743075992,
+        "narHash": "sha256-cFr6HFG3wiVu1EzuDtwWUOjoVWrYAc5IC4FFrhk0uJI=",
         "owner": "notashelf",
         "repo": "nvf",
-        "rev": "3a28d05684f7f4e314eb4e56a5af624b648ab278",
+        "rev": "aed996eb33bf37d5cf19bc224e56612321c0eaac",
         "type": "github"
       },
       "original": {
@@ -932,11 +915,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1741240379,
-        "narHash": "sha256-UwLBBy5Nl0luurALWQAYEjxcR1xfNf/wRYUWT2RJKTc=",
+        "lastModified": 1742893221,
+        "narHash": "sha256-p0LcrRZCsONjgUR4edYQ1mxNv8lgKUlYmoXVkSH9JUs=",
         "owner": "ooks-io",
         "repo": "ookscraft",
-        "rev": "ed860999356f06b52682471b1cc5a7f32fc3a769",
+        "rev": "1e1fde723776d909e78c940c300be208b39f8e01",
         "type": "github"
       },
       "original": {
