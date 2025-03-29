@@ -33,7 +33,7 @@ in {
         server.enable = true;
         settings = {
           main = {
-            term = "xterm-256color";
+            term = "tmux-256color";
             font = mkFontConfig monospace "regular";
             font-bold = mkFontConfig monospace "bold";
             font-italic = mkFontConfig monospace "italic";
