@@ -81,7 +81,7 @@ in {
       enable = mkEnableOption "Enable ltex-ls";
       package = mkOption {
         type = package;
-        default = pkgs.ltex-ls;
+        default = pkgs.ltex-ls-plus;
       };
       language = mkOption {
         type = enum languages;
@@ -117,7 +117,7 @@ in {
         # lua
         ''
           lspconfig.ltex.setup{
-            cmd = {"${cfg.ltex.package}/bin/ltex-ls"},
+            cmd = {"${cfg.ltex.package}/bin/ltex-ls-plus"},
             capabilities = capabilities;
             on_attach = default_on_attach;
             flags = { debounce_text_changes = 300 },
