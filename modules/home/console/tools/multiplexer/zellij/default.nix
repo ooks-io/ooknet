@@ -74,7 +74,7 @@ in {
             ''
               tab name="spotify" focus=true {
                 pane name="spotify" {
-                  borderless true
+                  borderless false
                   command "${getExe self'.packages.spotify-player}"
                   focus true
                 }
