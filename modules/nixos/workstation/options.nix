@@ -17,7 +17,7 @@ in {
     };
     default = {
       browser = mkOption {
-        type = nullOr (enum ["firefox" "chromium"]);
+        type = nullOr (enum ["firefox" "chromium" "zen"]);
         default = "firefox";
       };
       terminal = mkOption {
@@ -31,6 +31,7 @@ in {
       foot.enable = mkEnableOption "";
       ghostty.enable = mkEnableOption "";
       ollama.enable = mkEnableOption "";
+      zen.enable = mkEnableOption "";
     };
   };
 }
