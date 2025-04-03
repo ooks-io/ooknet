@@ -13,7 +13,8 @@ in {
     home.packages = attrValues {
       inherit
         (pkgs)
-        ryujinx
+        # ryujinx
+        ryubing
         ;
       inherit
         (self'.packages)

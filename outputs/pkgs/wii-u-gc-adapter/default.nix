@@ -11,10 +11,10 @@ stdenv.mkDerivation {
   version = "unstable-2020-01-20";
 
   src = fetchFromGitHub {
-    owner = "ToadKing";
+    owner = "krisutofu";
     repo = "wii-u-gc-adapter";
-    rev = "fa098efa7f6b34f8cd82e2c249c81c629901976c";
-    hash = "sha256-wm0vDU7QckFvpgI50PG4/elgPEkfr8xTmroz8kE6QMo";
+    rev = "1caf1052d8d7888555a5d37e9e96f6a5c505f445";
+    hash = "sha256-0V6iNnm2qcYrbZpeVcxeNtudUNOgZkV9s4ufFVmX9hc=";
   };
 
   nativeBuildInputs = [
