@@ -10,6 +10,9 @@
           autoStart = false;
         };
       };
+      surround = {
+        enable = true;
+      };
       images.image-nvim = {
         enable = true;
         setupOpts = {
