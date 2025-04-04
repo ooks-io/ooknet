@@ -17,7 +17,7 @@ in {
     };
     default = {
       browser = mkOption {
-        type = nullOr (enum ["firefox" "chromium" "zen"]);
+        type = nullOr (enum ["firefox" "chromium"]);
         default = "firefox";
       };
       terminal = mkOption {
