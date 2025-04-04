@@ -61,17 +61,12 @@ in
           margin: 0px !important;
         }
 
-
-        #identity-icon {
-          color: red !important;
-        }
-
         #forward-button,
         #stop-button,
         #star-button-box,
         #translations-button,
         #reload-button,
-        #identity-box,
+        #identity-icon,
         #tracking-protection-icon-container,
         #save-to-pocket-button,
         .urlbar-page-action,
