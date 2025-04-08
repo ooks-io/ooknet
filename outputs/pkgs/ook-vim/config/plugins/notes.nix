@@ -6,10 +6,10 @@
         setupOpts = {
           dir = "~/Summit/notes";
           daily_notes = {
-            folder = "~/Summit/notes/dailies";
+            folder = "dailies";
           };
           templates = {
-            folder = "~/Summit/notes/templates";
+            folder = "templates";
           };
           ui.enable = false;
         };
