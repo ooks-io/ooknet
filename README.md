@@ -31,13 +31,13 @@ Below are all the hosts I currently maintain within this flake:
 
 | host      | spec                                  | role        | description                       | architecture | status |
 | --------- | ------------------------------------- | ----------- | --------------------------------- | ------------ | ------ |
-| ooksdesk  | 7500F / RX5700XT / 32 GB DDR5         | Workstation | Primary desktop workstation       | x86_64-linux | UP     |
-| ookst480s | T480s / i5-8350U / 24 GB DDR4         | Workstation | Primary mobile workstation        | x86_64-linux | UP     |
-| ooksmicro | GPD Micro PC / N8100 / 8 GB LPDR3     | Workstation | Pocket workstation                | x86_64-linux | UP     |
-| ooksmedia | i3-10100 / 1650 Super / 8 GB DDR4     | Server      | Homelab/Media server              | x86_64-linux | UP     |
-| ooksx1    | X1 Carbon G4 / i5 6200U / 8 GB LPDDR3 | Workstation | Guest laptop                      | x86_64-linux | UP     |
-| ooknode   | Linode Nanode                         | Server      | VPS for website                   | x86_64-linux | UP     |
-| ooksphone | Termux                                | Workstation | Nix environment for android phone | x86_64-linux | DOWN   |
+| ooksdesk  | 7500F / RX5700XT / 32 GB DDR5         | Workstation | Primary desktop workstation       | x86_64       | UP     |
+| ookst480s | T480s / i5-8350U / 24 GB DDR4         | Workstation | Primary mobile workstation        | x86_64       | UP     |
+| ooksmicro | GPD Micro PC / N8100 / 8 GB LPDR3     | Workstation | Pocket workstation                | x86_64       | UP     |
+| ooksmedia | i3-10100 / 1650 Super / 64 GB DDR4    | Server      | Homelab/Media server              | x86_64       | UP     |
+| ooksx1    | X1 Carbon G4 / i5 6200U / 8 GB LPDDR3 | Workstation | Guest laptop                      | x86_64       | UP     |
+| ooknode   | Linode Nanode                         | Server      | VPS for website                   | x86_64       | UP     |
+| ooksphone | Termux                                | Workstation | Nix environment for android phone | aarch64      | DOWN   |
 
 ## Architecture
 
