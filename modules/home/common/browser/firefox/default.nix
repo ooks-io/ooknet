@@ -38,7 +38,7 @@ in {
         profiles.${config.home.username} = {
           id = 0;
           isDefault = true;
-          extensions = with addons; [
+          extensions.packages = with addons; [
             ublock-origin
             darkreader
             tridactyl
@@ -50,7 +50,7 @@ in {
         };
         profiles.testing = {
           id = 1;
-          extensions = with addons; [
+          extensions.packages = with addons; [
             ublock-origin
             tridactyl
             darkreader

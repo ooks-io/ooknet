@@ -7,20 +7,27 @@
   config,
   hozen,
   ook,
+  pkgs,
   ...
 }: let
   inherit (lib) optionalAttrs mkIf;
   inherit (config.ooknet.host) guest admin;
+  inherit (pkgs.stdenv) isLinux;
 
   mkHomeUser = name: {
-    "${name}" = {
+    "${name}" = let
+      homeDir =
+        if isLinux
+        then "/home"
+        else "/Users";
+    in {
       programs.home-manager.enable = true;
       systemd.user.startServices = "sd-switch";
       home = {
         username = name;
-        homeDirectory = "/home/${name}";
+        homeDirectory = "${homeDir}/${name}";
         stateVersion = "22.05";
-        sessionPath = ["/home/${name}/.local/bin"];
+        sessionPath = ["${homeDir}/${name}/.local/bin"];
       };
       manual = {
         html.enable = false;

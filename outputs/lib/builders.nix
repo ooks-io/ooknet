@@ -9,33 +9,64 @@
   inherit (builtins) concatLists;
   inherit (self) hozen ook;
   inherit (inputs.secrets.nixosModules) secrets;
-  hm = inputs.home-manager.nixosModules.home-manager;
-  nixosModules = "${self}/modules/nixos";
-  baseModules = nixosModules + "/base";
-  hardwareModules = nixosModules + "/hardware";
-  appearanceModules = nixosModules + "/appearance";
-  consoleModules = nixosModules + "/console";
-  workstationModules = nixosModules + "/workstation";
-  serverModules = nixosModules + "/server";
-  imageModules = nixosModules + "/image";
+  inherit (inputs.home-manager.nixosModules) home-manager;
 
-  minimalCore = [
-    (baseModules + "/options.nix")
-    (baseModules + "/admin.nix")
-    (baseModules + "/openssh.nix")
-  ];
-  core = [baseModules hardwareModules consoleModules appearanceModules hm secrets];
+  nixosModules = "${self}/modules/nixos";
+  commonModules = "${self}/modules/common";
   hostModules = "${self}/hosts";
+
+  nixos = {
+    base = nixosModules + "/base";
+    hardware = nixosModules + "/hardware";
+    server = nixosModules + "/server";
+    image = nixosModules + "/image";
+    workstation = nixosModules + "/workstation";
+  };
+  common = {
+    base = commonModules + "/base";
+    appearance = commonModules + "/appearance";
+    console = commonModules + "/console";
+  };
+  darwin = "${self}/modules/darwin";
+
+  nixosMinimal = [
+    (common.base + "/options.nix")
+    (common.base + "/admin.nix")
+    (nixos.base + "/openssh.nix")
+  ];
+
+  core = [
+    common.base
+    common.appearance
+    common.console
+    secrets
+    home-manager
+  ];
+
+  nixosCore =
+    core
+    ++ [
+      nixos.base
+      nixos.hardware
+    ];
+
+  darwinCore =
+    core
+    ++ [
+      darwin
+
+      # TODO: this is jank please make better... actually this whole thing is jank
+      (nixos.workstaion + "options.nix")
+    ];
+
   isoModules = [
     secrets
-    (imageModules + "/isoImage.nix")
-    (baseModules + "/networking.nix")
-    (baseModules + "/nix.nix")
-    (baseModules + "/tailscale.nix")
-    (baseModules + "/security/sudo.nix")
+    (nixos.image + "/isoImage.nix")
+    (nixos.base + "/networking.nix")
+    (nixos.base + "/tailscale.nix")
+    (common.base + "/nix.nix")
+    (common.base + "/sudo.nix")
   ];
-
-  mkNixos = nixpkgs.lib.nixosSystem;
 
   mkBaseSystem = {
     withSystem,
@@ -50,8 +81,13 @@
       inputs',
       self',
       ...
-    }:
-      mkNixos {
+    }: let
+      mkSystem =
+        if system == "aarch64-darwin"
+        then inputs.nix-darwin.lib.darwinSystem
+        else nixpkgs.lib.nixosSystem;
+    in
+      mkSystem {
         specialArgs =
           recursiveUpdate {
             inherit hozen ook lib inputs self inputs' self';
@@ -84,12 +120,17 @@
     mkBaseSystem {
       inherit withSystem hostname system type specialArgs;
       role = "workstation";
-      additionalModules = concatLists [
-        core
-        [(hostModules + "/${hostname}")]
-        [workstationModules]
-        additionalModules
-      ];
+      additionalModules = let
+        platformModules =
+          if (system == "aarch64-darwin")
+          then darwinCore
+          else nixosCore ++ [nixos.workstation];
+      in
+        concatLists [
+          platformModules
+          [(hostModules + "/${hostname}")]
+          additionalModules
+        ];
     };
 
   mkServer = {
@@ -114,13 +155,13 @@
               inherit domain services;
             };
           })
-          core
+          nixosCore
           (
             if type == "vm"
-            then [(serverModules + "/profiles/${profile}")]
+            then [(nixos.server + "/profiles/${profile}")]
             else [(hostModules + "/${hostname}")]
           )
-          [serverModules]
+          [nixos.server]
           additionalModules
         ];
       };
@@ -138,7 +179,7 @@
     mkBaseSystem {
       inherit withSystem role hostname system type specialArgs;
       additionalModules = concatLists [
-        minimalCore
+        nixosMinimal
         additionalModules
         (
           if type == "iso"
@@ -147,7 +188,7 @@
         )
         (
           if role == "installer"
-          then [(imageModules + "/installer.nix")]
+          then [(nixos.image + "/installer.nix")]
           else []
         )
         (

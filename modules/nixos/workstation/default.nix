@@ -6,6 +6,11 @@
 }: let
   inherit (lib) optionalAttrs;
   inherit (config.ooknet.host) admin guest;
+
+  workstationModules = [
+    "${self}/modules/home/nixos"
+    "${self}/modules/home/common"
+  ];
 in {
   imports = [
     ./options.nix
@@ -20,12 +25,12 @@ in {
   home-manager.users =
     (optionalAttrs admin.homeManager {
       "${admin.name}" = {
-        imports = ["${self}/modules/home/workstation"];
+        imports = workstationModules;
       };
     })
     // (optionalAttrs guest.homeManager {
       "${guest.name}" = {
-        imports = ["${self}/modules/home/workstation"];
+        imports = workstationModules;
       };
     });
 }

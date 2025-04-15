@@ -8,19 +8,24 @@
   inherit (builtins) attrValues;
   inherit (lib) mkIf mapAttrs mapAttrsToList filterAttrs isType;
   inherit (config.ooknet.host) role admin;
+  inherit (pkgs.stdenv) isLinux;
 
   flakeInputs = filterAttrs (_: v: isType "flake" v) inputs;
 
+  homeDir = config.users.users.${admin.name}.home;
   paths = {
-    FLAKE = "/home/${admin.name}/Summit/ooknet";
+    FLAKE = "${homeDir}/Summit/ooknet";
     WEBSITE = "${paths.FLAKE}/outputs/pkgs/website";
-    KUNZEN = "/home/${admin.name}/Summit/kunzen";
+    KUNZEN = "${homeDir}/Summit/kunzen";
   };
 in {
   environment = {
     # disable default nix packages
     # these packages are installed by default [ perl rsync strace ]
+    # nixos module option -- not darwin option
     defaultPackages = [];
+
+    # should just move these to the flakes dedicated shell
     systemPackages = attrValues {
       inherit (pkgs) git deadnix statix;
     };
@@ -34,14 +39,21 @@ in {
     # collect garbage
     gc = {
       automatic = true;
-      dates = "Sun *-*-* 14:00";
       options = "--delete-older-than 14d";
     };
     # from github:fufexan
     registry = mapAttrs (_: v: {flake = v;}) flakeInputs;
     nixPath = mapAttrsToList (key: _: "${key}=flake:${key}") config.nix.registry;
     settings = {
-      trusted-users = ["@wheel" "root" "builder"];
+      trusted-users =
+        ["root" "builder"]
+        ++ (
+          if isLinux
+          # linux uses wheel
+          then ["@wheel"]
+          # macos uses admin
+          else ["@admin"]
+        );
       experimental-features = ["nix-command" "flakes"];
       accept-flake-config = false;
       auto-optimise-store = true;
@@ -74,7 +86,7 @@ in {
   };
 
   # nix rebuild utililty
-  programs.nh = mkIf (role == "workstation") {
+  programs.nh = mkIf (role == "workstation" && isLinux) {
     enable = true;
   };
 }
