@@ -37,6 +37,7 @@ in {
         inherit withSystem;
         system = "aarch64-darwin";
         hostname = "ooksair";
+        type = "laptop";
       };
     };
   };
