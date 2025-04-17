@@ -41,7 +41,6 @@ in {
         tldr # Community maintained help pages
         progress
         killall
-        acpi
         # Notifications
         libnotify
         # Nix tooling
