@@ -5,55 +5,64 @@
   self',
   ...
 }: let
-  inherit (lib) mkIf;
+  inherit (lib) optionals mkIf;
   inherit (builtins) attrValues;
-
+  inherit (pkgs.stdenv) isLinux isDarwin;
   cfg = osConfig.ooknet.console.tools.utils;
+
+  # common packages for all platforms
+  commonPackages = attrValues {
+    inherit
+      (pkgs)
+      bc
+      duf
+      du-dust
+      fd
+      ripgrep
+      zip
+      unzip
+      rsync
+      wget
+      httpie
+      diffsitter
+      jq
+      tldr
+      progress
+      killall
+      libnotify
+      alejandra
+      cachix
+      gum
+      ;
+
+    # AI tools
+    inherit
+      (self'.packages)
+      repomix
+      goki
+      ;
+  };
+
+  # linux-specific packages
+  linuxPackages = attrValues {
+    inherit
+      (pkgs)
+      pamixer
+      acpi
+      powertop
+      unrar
+      ;
+  };
+
+  # darwin-specific packages, if needed
+  darwinPackages =
+    attrValues {
+    };
 in {
   config = mkIf cfg.enable {
-    home.packages = attrValues {
-      inherit
-        (pkgs)
-        bc # Calculator
-
-        # file utility
-        duf
-        du-dust
-        fd
-        ripgrep
-        # archive
-        zip
-        unzip
-        unrar
-        # file transfer
-        rsync
-        wget
-        httpie # Better curl
-
-        # resource manager
-        powertop
-        #shell scripting
-        gum
-        # audio ctrl
-        pamixer
-        diffsitter # Better diff
-        jq # JSON pretty printer and manipulator
-        tldr # Community maintained help pages
-        progress
-        killall
-        # Notifications
-        libnotify
-        # Nix tooling
-        alejandra
-        cachix
-        ;
-
-      #AI
-      inherit
-        (self'.packages)
-        repomix
-        goki
-        ;
-    };
+    home.packages =
+      commonPackages
+      ++ (optionals isLinux linuxPackages)
+      ++ (optionals isDarwin darwinPackages);
   };
 }
