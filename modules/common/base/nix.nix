@@ -84,9 +84,4 @@ in {
       })
     ];
   };
-
-  # nix rebuild utililty
-  programs.nh = mkIf (role == "workstation" && isLinux) {
-    enable = true;
-  };
 }

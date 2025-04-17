@@ -1,8 +1,12 @@
-{config, ...}: let
-  inherit (config.ooknet.host) admin;
+{
+  lib,
+  config,
+  ...
+}: let
+  inherit (config.ooknet.host) role;
+  inherit (lib) mkIf;
 in {
-  programs.nh = {
+  programs.nh = mkIf (role == "workstation") {
     enable = true;
-    flake = "/home/${admin.name}/.config/ooknet";
   };
 }

@@ -6,5 +6,6 @@
     ./networking.nix
     ./security
     ./syncthing.nix
+    ./locale
   ];
 }
