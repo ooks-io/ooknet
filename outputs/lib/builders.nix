@@ -8,7 +8,8 @@
   inherit (lib) assertMsg singleton recursiveUpdate mkDefault;
   inherit (builtins) concatLists;
   inherit (self) hozen ook;
-  inherit (inputs.secrets.nixosModules) secrets;
+  inherit (inputs.secrets.nixosModules) nixosSecrets;
+  inherit (inputs.secrets.nixosModules) darwinSecrets;
 
   nixosModules = "${self}/modules/nixos";
   commonModules = "${self}/modules/common";
@@ -41,7 +42,6 @@
     common.base
     common.appearance
     common.console
-    secrets
   ];
 
   nixosCore =
@@ -50,6 +50,7 @@
       nixos.base
       nixos.hardware
       nixos-hm
+      nixosSecrets
     ];
 
   darwinCore =
@@ -57,13 +58,14 @@
     ++ [
       darwin
       darwin-hm
+      darwinSecrets
 
       # TODO: this is jank please make better... actually this whole thing is jank
       (nixos.workstation + "/options.nix")
     ];
 
   isoModules = [
-    secrets
+    nixosSecrets
     (nixos.image + "/isoImage.nix")
     (nixos.base + "/networking.nix")
     (nixos.base + "/tailscale.nix")
