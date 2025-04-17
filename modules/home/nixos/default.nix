@@ -6,7 +6,6 @@
     ./media
     ./productivity
     ./creative
-    ./binds.nix
     ./gaming
     ./userDirs.nix
   ];
