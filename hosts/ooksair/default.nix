@@ -20,4 +20,5 @@
       multiplexer = "zellij";
     };
   };
+  system.stateVersion = 6;
 }

@@ -31,6 +31,8 @@ in {
   nix = {
     package = pkgs.lix;
 
+    optimise.automatic = true;
+
     # collect garbage
     gc = {
       automatic = true;
@@ -51,7 +53,6 @@ in {
         );
       experimental-features = ["nix-command" "flakes"];
       accept-flake-config = false;
-      auto-optimise-store = true;
       warn-dirty = false;
       # cache
       builders-use-substitutes = true;
