@@ -3,9 +3,11 @@
   hozen,
   osConfig,
   config,
+  pkgs,
   ...
 }: let
   inherit (lib) mkIf mkMerge;
+  inherit (pkgs.stdenv) isDarwin;
   inherit (hozen) color;
   inherit (osConfig.ooknet.host) admin;
   inherit (osConfig.ooknet.appearance.fonts) monospace;
@@ -19,6 +21,10 @@ in {
     (mkIf (cfg.enable || default.terminal == "ghostty") {
       programs.ghostty = {
         enable = true;
+        package =
+          if isDarwin
+          then null
+          else pkgs.ghostty;
         enableFishIntegration = admin.shell == "fish";
         clearDefaultKeybinds = true;
         settings = {
