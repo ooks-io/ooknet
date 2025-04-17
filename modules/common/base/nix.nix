@@ -20,11 +20,6 @@
   };
 in {
   environment = {
-    # disable default nix packages
-    # these packages are installed by default [ perl rsync strace ]
-    # nixos module option -- not darwin option
-    defaultPackages = [];
-
     # should just move these to the flakes dedicated shell
     systemPackages = attrValues {
       inherit (pkgs) git deadnix statix;
