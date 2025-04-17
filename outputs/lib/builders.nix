@@ -9,11 +9,13 @@
   inherit (builtins) concatLists;
   inherit (self) hozen ook;
   inherit (inputs.secrets.nixosModules) secrets;
-  inherit (inputs.home-manager.nixosModules) home-manager;
 
   nixosModules = "${self}/modules/nixos";
   commonModules = "${self}/modules/common";
   hostModules = "${self}/hosts";
+
+  nixos-hm = inputs.home-manager.nixosModules.home-manager;
+  darwin-hm = inputs.home-manager.darwinModules.home-manager;
 
   nixos = {
     base = nixosModules + "/base";
@@ -40,7 +42,6 @@
     common.appearance
     common.console
     secrets
-    home-manager
   ];
 
   nixosCore =
@@ -48,12 +49,14 @@
     ++ [
       nixos.base
       nixos.hardware
+      nixos-hm
     ];
 
   darwinCore =
     core
     ++ [
       darwin
+      darwin-hm
 
       # TODO: this is jank please make better... actually this whole thing is jank
       (nixos.workstation + "/options.nix")
