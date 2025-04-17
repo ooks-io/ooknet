@@ -4,7 +4,7 @@ in {
   home.packages = attrValues {
     inherit
       (pkgs)
-      traceroute
+      # traceroute
       mtr
       dig
       nmap
