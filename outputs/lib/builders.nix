@@ -56,7 +56,7 @@
       darwin
 
       # TODO: this is jank please make better... actually this whole thing is jank
-      (nixos.workstaion + "options.nix")
+      (nixos.workstation + "options.nix")
     ];
 
   isoModules = [
