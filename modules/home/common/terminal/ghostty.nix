@@ -57,6 +57,7 @@ in {
             "ctrl+shift+v=paste_from_clipboard"
             "ctrl+shift+c=copy_to_clipboard"
           ];
+          macos-option-as-alt = isDarwin;
         };
         themes.hozen = {
           background = "${color.base00}";

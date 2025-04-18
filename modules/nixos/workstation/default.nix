@@ -14,7 +14,6 @@
 in {
   imports = [
     ./options.nix
-    ./themes
     ./services
     ./programs
     ./gaming

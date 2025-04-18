@@ -9,6 +9,11 @@
 in {
   imports = [
     ./system.nix
+    ./window-manager.nix
+    ./environment.nix
+    ./networking.nix
+    ./security.nix
+    ./homebrew.nix
   ];
   home-manager.users =
     (optionalAttrs admin.homeManager {

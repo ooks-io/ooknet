@@ -10,6 +10,7 @@
   inherit (lib) mkIf mkMerge;
   inherit (osConfig.ooknet.appearance) fonts;
   inherit (osConfig.ooknet.workstation) default;
+  inherit (pkgs.stdenv) isDarwin;
 
   addons = inputs'.firefox-addons.packages;
   cfg = osConfig.ooknet.workstation.programs.firefox;
@@ -34,6 +35,10 @@ in {
     (mkIf (cfg.enable || default.browser == "firefox") {
       programs.firefox = {
         enable = true;
+        package =
+          if isDarwin
+          then null
+          else pkgs.firefox;
         nativeMessagingHosts = [pkgs.tridactyl-native];
         profiles.${config.home.username} = {
           id = 0;

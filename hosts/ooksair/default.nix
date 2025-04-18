@@ -10,7 +10,7 @@
     workstation = {
       theme = "minimal";
       default = {
-        browser = "firefox";
+        browser = "zen";
         terminal = "ghostty";
       };
     };

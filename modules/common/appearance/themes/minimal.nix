@@ -7,6 +7,7 @@
   ...
 }: let
   inherit (lib) mkIf;
+  inherit (pkgs.stdenv) isLinux;
   inherit (config.ooknet.workstation) theme;
   generatedWallpaper = import ./generated-wallpaper.nix {inherit hozen config pkgs;} {};
 in {
@@ -43,7 +44,7 @@ in {
       };
 
       wallpaper = {
-        path = "${generatedWallpaper}";
+        path = mkIf isLinux "${generatedWallpaper}";
       };
     };
   };
