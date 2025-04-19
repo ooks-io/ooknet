@@ -71,7 +71,7 @@ in {
       };
     };
     sketchybar = {
-      enable = true;
+      enable = false;
       config = ''
         bar_config=(
           color="${color.layout.header}"
@@ -85,10 +85,14 @@ in {
     };
     jankyborders = {
       enable = true;
-      order = "above";
       active_color = "0xff${color.border.active}";
       inactive_color = "0xff${color.border.inactive}";
       width = 5.0;
+      order = "above";
+      whitelist = [
+        "ghostty"
+        "zen"
+      ];
     };
   };
   fonts.packages = [

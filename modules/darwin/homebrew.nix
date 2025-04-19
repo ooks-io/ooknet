@@ -21,5 +21,8 @@ in {
       ++ optionals (default.terminal == "ghostty" || programs.ghostty.enable) ["ghostty"]
       ++ optionals (default.browser == "firefox" || programs.firefox.enable) ["firefox"]
       ++ optionals (default.browser == "zen" || programs.zen.enable) ["zen-browser"];
+    masApps = {
+      "Tailscale" = 1475387142;
+    };
   };
 }
