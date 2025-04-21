@@ -1,6 +1,13 @@
-{lib, ...}: let
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   inherit (lib) mkEnableOption mkOption;
   inherit (lib.types) nullOr enum listOf;
+  inherit (pkgs.stdenv) isDarwin;
+  cfg = config.ooknet.workstation;
 in {
   options.ooknet.workstation = {
     theme = mkOption {
@@ -12,7 +19,7 @@ in {
       default = [];
     };
     environment = mkOption {
-      type = nullOr (enum ["hyprland" "gnome"]);
+      type = nullOr (enum ["hyprland" "gnome" "aerospace"]);
       default = "hyprland";
     };
     default = {
@@ -34,4 +41,10 @@ in {
       zen.enable = mkEnableOption "";
     };
   };
+  config.assertions = [
+    {
+      assertion = !(cfg.environment == "aerospace" && !isDarwin);
+      message = "The aerospace environment is for nix-darwin only";
+    }
+  ];
 }

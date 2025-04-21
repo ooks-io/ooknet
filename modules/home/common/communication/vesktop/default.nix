@@ -16,7 +16,7 @@ in {
     # <https://github.com/AlephNought0/Faery/blob/main/Home/Programs/Vesktop/patchedvesktop.patch>
     home.packages = [
       pkgs.vesktop
-      pkgs.equibop
+      #      pkgs.equibop
     ];
 
     xdg.configFile."vesktop/themes/nix.css".text =

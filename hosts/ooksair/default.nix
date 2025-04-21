@@ -9,6 +9,8 @@
     };
     workstation = {
       theme = "minimal";
+      environment = "aerospace";
+      profiles = ["communication"];
       default = {
         browser = "zen";
         terminal = "ghostty";

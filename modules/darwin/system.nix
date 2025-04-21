@@ -1,4 +1,10 @@
 {
+  config,
+  pkgs,
+  ...
+}: let
+  inherit (config.ooknet.host) admin;
+in {
   system = {
     keyboard = {
       enableKeyMapping = true;
@@ -45,4 +51,5 @@
       '';
     };
   };
+  environment.shells = [pkgs.${admin.shell}];
 }
