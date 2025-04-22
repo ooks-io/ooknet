@@ -11,7 +11,7 @@ in {
     ./system.nix
     ./networking.nix
     ./security.nix
-    ./homebrew.nix
+    ./packages.nix
     ./fonts.nix
     ./environment
   ];

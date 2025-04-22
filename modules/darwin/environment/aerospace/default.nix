@@ -8,7 +8,9 @@
   padding = 16;
 in {
   imports = [
+    ./options.nix
     ./binds.nix
+    ./rules.nix
   ];
   config = mkIf (environment == "aerospace") {
     services.aerospace = {

@@ -1,10 +1,12 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   inherit (config.ooknet.workstation) default programs;
   inherit (lib) optionals;
+  inherit (builtins) attrValues;
 in {
   homebrew = {
     enable = true;
@@ -17,6 +19,7 @@ in {
     };
     casks =
       [
+        "raycast"
       ]
       ++ optionals (default.terminal == "ghostty" || programs.ghostty.enable) ["ghostty"]
       ++ optionals (default.browser == "firefox" || programs.firefox.enable) ["firefox"]
