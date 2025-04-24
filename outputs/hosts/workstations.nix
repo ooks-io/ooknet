@@ -3,7 +3,7 @@
   ook,
   ...
 }: let
-  inherit (ook.lib.builders) mkWorkstation mkDarwin;
+  inherit (ook.lib.builders) mkWorkstation;
 in {
   flake = {
     nixosConfigurations = {

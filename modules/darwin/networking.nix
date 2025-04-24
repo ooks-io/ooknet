@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}: let
+{config, ...}: let
   inherit (config.ooknet) host;
 in {
   networking = {
