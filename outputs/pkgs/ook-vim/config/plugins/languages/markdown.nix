@@ -3,7 +3,7 @@
     languages.markdown = {
       enable = true;
       vale.enable = false;
-      ltex.enable = true;
+      ltex.enable = false;
       extensions = {
         render-markdown-nvim = {
           enable = true;
