@@ -40,6 +40,9 @@ in {
         NSWindowResizeTime = 0.0;
         NSUseAnimatedFocusRing = false;
         _HIHideMenuBar = true;
+
+        # enable window dragging with cmd-crtl
+        NSWindowShouldDragOnGesture = true;
       };
     };
     activationScripts = {

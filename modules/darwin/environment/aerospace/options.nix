@@ -48,6 +48,11 @@
         default = null;
         description = "Workspace to move the window to (can be a number or name like 'Browser1')";
       };
+      checkFurtherCallbacks = mkOption {
+        type = bool;
+        default = false;
+        description = "Override callback behaviour";
+      };
     };
   };
 
@@ -55,11 +60,12 @@
     "if" = filterAttrs (_: v: v != null) {
       inherit (rule.conditions) title name;
       app-id = rule.conditions.id;
-      during-startup =
+      during-aerospace-startup =
         if rule.conditions.duringStartup
         then true
         else null;
     };
+    "check-further-callbacks" = rule.checkFurtherCallbacks;
     run = remove null [
       (
         if rule.float

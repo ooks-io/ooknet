@@ -15,6 +15,10 @@ in {
       conditions.id = "com.apple.finder";
       float = true;
     }
+    # {
+    #   conditions.id = "com.anthropic.claudefordesktop";
+    #   workspace = "ai";
+    # }
     (optionals (default.browser == "zen") {
       conditions.id = "app.zen-browser.zen";
       workspace = 2;
