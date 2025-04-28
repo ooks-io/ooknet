@@ -33,6 +33,8 @@
       alejandra
       cachix
       gum
+      nvd
+      nix-output-monitor
       ;
 
     # AI tools
