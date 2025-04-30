@@ -10,6 +10,10 @@
 
   ooknet = {
     host = {
+      deployment = {
+        enable = true;
+        remoteBuild = true;
+      };
       syncthing.enable = true;
       admin = {
         name = "ooks";
@@ -22,9 +26,10 @@
       theme = "minimal";
       profiles = ["creative" "virtualization" "gaming" "media" "communication" "productivity"];
       default = {
-        browser = "firefox";
+        browser = "zen";
         terminal = "foot";
       };
+      programs.firefox.enable = true;
     };
     console = {
       profile = "standard";
