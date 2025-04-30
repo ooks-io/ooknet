@@ -1,10 +1,13 @@
 {
   lib,
   pkgs,
+  config,
   ...
 }: let
   inherit (lib) mkEnableOption mkOption;
   inherit (lib.types) str enum bool package;
+
+  cfg = config.ooknet.host;
 
   userOptions = {
     name = mkOption {
@@ -42,8 +45,26 @@ in {
       type = enum ["workstation" "server" "installer" "live"];
     };
 
+    system = mkOption {
+      type = str;
+      default = pkgs.stdenv.system;
+      readOnly = true;
+    };
+
     syncthing = {
       enable = mkEnableOption "Enable syncthing";
+    };
+
+    # mapping deploy-rs options
+    deployment = {
+      enable = mkEnableOption "Enable remote deployment";
+      remoteBuild = mkEnableOption "Build the system on the target machine";
+      fastConnection = mkEnableOption "Copy whole closrure instead of lettting node substitute";
+      sshUser = mkOption {
+        type = str;
+        default = cfg.admin.name;
+        description = "User that deploy-rs will use when connecting";
+      };
     };
 
     boot = {

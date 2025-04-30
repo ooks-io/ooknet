@@ -6,6 +6,7 @@
     ./hosts
     ./pkgs
     ./images.nix
+    ./deploy.nix
     ./devshells
     ./templates
     ./modules

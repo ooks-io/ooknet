@@ -31,6 +31,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        utils.follows = "flake-utils";
+      };
+    };
+
     nix-index-db = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -70,6 +78,11 @@
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
       };
+    };
+
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nvf = {
