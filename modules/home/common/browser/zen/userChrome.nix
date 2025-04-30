@@ -160,6 +160,21 @@
       border-radius: 0px !important;
       font-family: var(--font-base) !important;
     }
+
+    #zen-media-main-vbox {
+      border-radius: 0 !important;
+      background-color: var(--clr-menu) !important;
+      border: var(--border-active) !important;
+    }
+    #zen-media-controls-toolbar {
+      .toolbarbutton-1 {
+        border-radius: 0 !important;
+
+      }
+    }
+    toolbaritem {
+      background: var(--clr-menu) !important;
+    }
   }
 
 ''
