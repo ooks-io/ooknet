@@ -8,5 +8,6 @@
     ./creative
     ./gaming
     ./userDirs.nix
+    ./mimeApps.nix
   ];
 }
