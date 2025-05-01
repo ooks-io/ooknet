@@ -5,6 +5,7 @@
   ...
 }: let
   inherit (config.ooknet.hardware) gpu;
+  inherit (config.ooknet.host) role;
   inherit (lib) mkIf mkDefault;
   inherit (builtins) attrValues;
   # production = config.boot.kernelPackages.nvidiaPackages.production;
@@ -19,7 +20,7 @@ in {
         package = beta;
         forceFullCompositionPipeline = true;
         nvidiaSettings = false;
-        nvidiaPersistenced = true;
+        nvidiaPersistenced = role == "server";
         modesetting.enable = true;
         powerManagement = {
           enable = mkDefault false;
