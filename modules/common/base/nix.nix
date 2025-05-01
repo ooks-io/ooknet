@@ -57,7 +57,7 @@ in {
       # cache
       builders-use-substitutes = true;
       substituters = [
-        "https://cache.nixos.org?priority=10"
+        "https://cache.nixos.org"
         "https://nix-community.cachix.org"
         "https://neovim-flake.cachix.org"
         "https://ooknet.cachix.org"
