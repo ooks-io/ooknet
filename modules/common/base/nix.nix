@@ -14,6 +14,7 @@
 
   homeDir = config.users.users.${admin.name}.home;
   paths = {
+    NH_FLAKE = "${homeDir}/Summit/ooknet}";
     FLAKE = "${homeDir}/Summit/ooknet";
     WEBSITE = "${paths.FLAKE}/outputs/pkgs/website";
     KUNZEN = "${homeDir}/Summit/kunzen";
