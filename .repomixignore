@@ -3,3 +3,6 @@
 **/gruv.nix
 .repomixignore
 repomix*
+**/qt/*
+**/render-markdown.nix
+**/_code.scss
