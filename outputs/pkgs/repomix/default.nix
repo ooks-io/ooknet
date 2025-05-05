@@ -4,16 +4,16 @@
 }:
 buildNpmPackage rec {
   pname = "repomix";
-  version = "0.2.20";
+  version = "0.3.3";
 
   src = fetchFromGitHub {
     owner = "yamadashy";
     repo = "repomix";
     rev = "v${version}";
-    hash = "sha256-ZfkaopnftD6wJ0KAScE1q2u3/jM36QVwx6CgPiS1nWY";
+    hash = "sha256-VVTI9dmSHVsXttDPoxRkPYVC8VU/678spLlyoyZGvpI=";
   };
 
-  npmDepsHash = "sha256-/ocQ5vp67w5U6Gx+1LgJzcObsvKeTVN9BOEKXSb6oU0";
+  npmDepsHash = "sha256-VY2YjpOKimgX90ieu4jjZ6YVJYQqq3l3k/iDfsTMZmI=";
 
   meta = {
     description = ''
