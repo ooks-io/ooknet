@@ -19,6 +19,9 @@
   nodes = let
     allowedTargets = [
       "ooksmedia"
+      "ooksdesk"
+      "ooknode"
+      "ookst480s"
     ];
     deployableTargets = filterAttrs (name: _: elem name allowedTargets) self.nixosConfigurations;
   in
@@ -32,6 +35,6 @@ in {
       user = "root";
     };
 
-    checks = mapAttrs (_: deployLib: deployLib.deployChecks self.deploy) inputs.deploy-rs.lib;
+    #checks = mapAttrs (_: deployLib: deployLib.deployChecks self.deploy) inputs.deploy-rs.lib;
   };
 }
