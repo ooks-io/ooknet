@@ -71,5 +71,10 @@ in {
         defaultApplications = zenMime;
       };
     })
+    (mkIf (default.browser == "zen" && isDarwin) {
+      home.file."Library/Application Support/zen/profiles/ooks/chrome/userChrome.css" = {
+        text = import ./userChrome.nix {inherit color fonts;};
+      };
+    })
   ];
 }
