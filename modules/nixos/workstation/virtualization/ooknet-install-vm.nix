@@ -223,6 +223,12 @@ in {
             log info "VM successfully removed..."
           }
 
+          destroyHostKey() {
+            log info "Cleaning up old host keys..."
+            ssh-keygen -R ${cfg.ipAddress} >2/dev/null || true
+            ssh-keygen -R ${cfg.name} >2/dev/null || true
+          }
+
           startVM() {
             local vm_state
             vm_state=$(virsh domstate "$NAME" 2>/dev/null || echo "unknown")
@@ -256,10 +262,12 @@ in {
               "Delete")
                 destroyVM
                 destroyNetwork
+                destroyHostKey
                 ;;
               "Build New")
                 destroyVM
                 destroyNetwork
+                destroyHostKey
                 buildVM
                 ;;
               "Start")
