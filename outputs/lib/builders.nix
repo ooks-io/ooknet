@@ -24,6 +24,7 @@
     server = nixosModules + "/server";
     image = nixosModules + "/image";
     workstation = nixosModules + "/workstation";
+    virtualization = nixosModules + "/virtualization";
   };
   common = {
     base = commonModules + "/base";
@@ -49,6 +50,7 @@
     ++ [
       nixos.base
       nixos.hardware
+      nixos.virtualization
       nixos-hm
       nixosSecrets
     ];

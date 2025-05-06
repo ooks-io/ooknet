@@ -1,34 +1,13 @@
 {
-  config,
   lib,
+  config,
   pkgs,
   ...
 }: let
-  inherit (builtins) attrValues;
-  inherit (lib) mkIf elem;
-  inherit (config.ooknet.workstation) profiles;
+  inherit (lib) mkIf;
+  cfg = config.ooknet.virtualization.host;
 in {
-  config = mkIf (elem "virtualization" profiles) {
-    environment.systemPackages = attrValues {
-      inherit
-        (pkgs)
-        virt-viewer
-        qemu_kvm
-        qemu
-        spice
-        spice-protocol
-        # for windows virtualization
-        win-virtio
-        win-spice
-        adwaita-icon-theme # virt-manager needs this
-        remmina # for rdp
-        ;
-    };
-    # sets up dconf settins for qemu and add virt-manager to systemPackages
-    programs.virt-manager = {
-      enable = true;
-      package = pkgs.virt-manager;
-    };
+  config = mkIf cfg.enable {
     virtualisation = {
       # allow unprivileged users to pass usb devices to vm
       spiceUSBRedirection.enable = true;

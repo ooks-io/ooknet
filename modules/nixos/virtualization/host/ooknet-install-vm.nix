@@ -2,15 +2,10 @@
   pkgs,
   lib,
   config,
-  self,
   ...
 }: let
   inherit (builtins) toFile;
-  inherit (lib) mkIf mkEnableOption mkOption;
-  inherit (lib.types) path str int;
-  inherit (self.nixosConfigurations.ooksinstall.config.image) filePath;
-  inherit (config.ooknet.host) admin;
-  iso = self.images.ooksinstall;
+  inherit (lib) mkIf;
   checkSudo =
     if config.virtualisation.libvirtd.qemu.runAsRoot
     then ''
@@ -35,80 +30,6 @@
   '';
   cfg = config.ooknet.virtualization.ooknet-install-vm;
 in {
-  options.ooknet.virtualization = {
-    ooknet-install-vm = {
-      enable = mkEnableOption "Enable virtual installation testing environment";
-      isoPath = mkOption {
-        type = path;
-        default = "${iso}/${filePath}";
-        description = "Path to iso to use";
-      };
-      name = mkOption {
-        type = str;
-        default = "ooknet-install-test";
-        description = "Name of virtual machine";
-      };
-      user = mkOption {
-        type = str;
-        default = admin.name;
-        description = "SSH user to connect to virtual machine";
-        example = "root";
-      };
-      macAddress = mkOption {
-        type = str;
-        default = "52:55:00:11:22:33";
-      };
-      ipAddress = mkOption {
-        type = str;
-        default = cfg.network.ipRange.start;
-        description = "IP address to assign to the virtual machine";
-      };
-      ram = mkOption {
-        type = int;
-        default = 2048;
-        description = "Amount of RAM to assign to the virtual machine";
-        example = 2048;
-      };
-      vcpus = mkOption {
-        type = int;
-        default = 2;
-        description = "Amount of cores to assign to the virtual machine";
-        example = 4;
-      };
-      storage = mkOption {
-        type = int;
-        default = 10;
-        description = "Amount in GB of storage to assign to the virtual machine";
-        example = 10;
-      };
-      network = {
-        name = mkOption {
-          type = str;
-          default = "ooknet-install-network";
-          description = "Name of virtual network";
-        };
-        bridgeName = mkOption {
-          type = str;
-          default = "virbr1";
-          description = "Name of virtual network bridge";
-        };
-        ip = mkOption {
-          type = str;
-          default = "192.168.150.1";
-        };
-        ipRange = {
-          start = mkOption {
-            type = str;
-            default = "192.168.150.2";
-          };
-          end = mkOption {
-            type = str;
-            default = "192.168.150.2";
-          };
-        };
-      };
-    };
-  };
   config = mkIf cfg.enable {
     environment.systemPackages = [
       (pkgs.writeShellApplication {

@@ -9,7 +9,7 @@ in {
       description = "Whether the server will act as a tailscale exit node or not";
     };
     profile = mkOption {
-      type = nullOr (enum ["linode"]);
+      type = nullOr (enum ["linode" "ookstest"]);
       default = null;
       description = "The server profile the host will use as a base";
     };

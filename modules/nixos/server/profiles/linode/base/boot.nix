@@ -5,6 +5,7 @@
 }: let
   inherit (lib) mkForce getExe';
 in {
+  ooknet.virtualization.guest.type = "qemu";
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = [];
@@ -19,20 +20,6 @@ in {
         "virtio_scsi"
         "ahci"
         "sd_mod"
-
-        # qemu guest modules
-        "virtio_net"
-        "virtio_mmio"
-        "virtio_blk"
-        "virtio_scsi"
-        "9p"
-        "9pnet_virtio"
-      ];
-      kernelModules = [
-        "virtio_balloon"
-        "virtio_console"
-        "virtio_rng"
-        "virtio_gpu"
       ];
     };
     loader = {
