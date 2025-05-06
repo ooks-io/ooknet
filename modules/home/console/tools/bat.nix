@@ -1,11 +1,9 @@
 {
   lib,
   osConfig,
-  pkgs,
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (builtins) attrValues;
   cfg = osConfig.ooknet.console.tools.bat;
 in {
   config = mkIf cfg.enable {

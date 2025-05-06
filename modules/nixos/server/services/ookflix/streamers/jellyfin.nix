@@ -7,7 +7,7 @@
 }: let
   ookflixLib = import ../lib.nix {inherit lib config self;};
   inherit (ookflixLib) mkServiceStateDir mkServiceUser;
-  inherit (lib) optional mkIf optionalAttrs;
+  inherit (lib) mkIf optionalAttrs;
   inherit (ook.lib.container) mkContainerLabel mkContainerEnvironment mkContainerPort;
   inherit (config.ooknet.server.ookflix) volumes services groups gpuAcceleration;
   inherit (config.ooknet.server.ookflix.services) jellyfin;
