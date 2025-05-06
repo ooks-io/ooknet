@@ -11,15 +11,15 @@ in {
   config = mkIf cfg.enable {
     programs.bat = {
       enable = true;
-      extraPackages = attrValues {
-        inherit
-          (pkgs.bat-extras)
-          batgrep
-          prettybat
-          batwatch
-          batman
-          ;
-      };
+      # extraPackages = attrValues {
+      #   inherit
+      #     (pkgs.bat-extras)
+      #     batgrep
+      #     prettybat
+      #     batwatch
+      #     batman
+      #     ;
+      # };
       config = {
         # TODO: custom theme
         theme = "base16";
