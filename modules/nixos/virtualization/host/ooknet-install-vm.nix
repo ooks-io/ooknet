@@ -28,7 +28,7 @@
       </ip>
     </network>
   '';
-  cfg = config.ooknet.virtualization.ooknet-install-vm;
+  cfg = config.ooknet.virtualization.host.ooknet-install-vm;
 in {
   config = mkIf cfg.enable {
     environment.systemPackages = [

@@ -4,7 +4,7 @@
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (config.ooknet.virtualiazation) guest;
+  inherit (config.ooknet.virtualization) guest;
 in {
   config = mkIf (guest.enable && guest.type == "qemu") {
     services.qemuGuest.enable = true;

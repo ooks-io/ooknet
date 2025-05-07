@@ -18,7 +18,6 @@ in {
     ./programs
     ./gaming
     ./environment
-    ./virtualization
   ];
 
   home-manager.users =

@@ -4,8 +4,8 @@
   self,
   ...
 }: let
-  inherit (lib) mkOption mkEnableOption;
-  inherit (lib.types) path int str bool nullOr elem enum;
+  inherit (lib) mkOption mkEnableOption elem;
+  inherit (lib.types) path int str bool nullOr enum;
   inherit (config.ooknet) host;
   inherit (config.ooknet) workstation;
   inherit (config.ooknet.host) admin;

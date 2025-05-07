@@ -37,7 +37,9 @@
       multiplexer = "zellij";
     };
     virtualization = {
-      ooknet-install-vm.enable = true;
+      host = {
+        ooknet-install-vm.enable = true;
+      };
     };
   };
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
