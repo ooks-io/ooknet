@@ -10,6 +10,7 @@
   inherit (self) hozen ook;
   inherit (inputs.secrets.nixosModules) nixosSecrets;
   inherit (inputs.secrets.nixosModules) darwinSecrets;
+  inherit (inputs.disko.nixosModules) disko;
 
   nixosModules = "${self}/modules/nixos";
   commonModules = "${self}/modules/common";
@@ -53,6 +54,7 @@
       nixos.virtualization
       nixos-hm
       nixosSecrets
+      disko
     ];
 
   darwinCore =

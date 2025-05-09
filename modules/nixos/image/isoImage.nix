@@ -7,6 +7,7 @@
   inherit (inputs) nixpkgs;
   inherit (lib) mkIf;
   inherit (config.ooknet.host) type;
+  inherit (config.ooknet.secrets) keys;
 in {
   imports = [
     "${nixpkgs}/nixos/modules/installer/cd-dvd/iso-image.nix"
@@ -26,6 +27,8 @@ in {
       enableAllHardware = true;
       enableRedistributableFirmware = true;
     };
+
+    users.users.root.openssh.authorizedKeys.keys = [keys.hosts.ooksinstall];
 
     boot.loader.grub.memtest86.enable = true;
     system.switch.enable = false;

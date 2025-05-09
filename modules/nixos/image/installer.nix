@@ -1,5 +1,6 @@
 {
   inputs,
+  inputs',
   config,
   lib,
   pkgs,
@@ -29,6 +30,9 @@ in {
         "cifs"
       ];
     };
+    environment.systemPackages = [
+      inputs'.disko.packages.disko
+    ];
     isoImage = {
       appendToMenuLabel = " ooknet installer";
       contents = [
