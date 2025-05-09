@@ -23,5 +23,14 @@ in {
       type = "desktop";
       services = ["ookflix"];
     };
+    ookstest = mkServer {
+      inherit withSystem;
+      system = "x86_64-linux";
+      hostname = "ookstest";
+      domain = "ooknet.org";
+      type = "vm";
+      services = [];
+      profile = "ookstest";
+    };
   };
 }

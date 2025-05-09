@@ -70,9 +70,10 @@ in {
               --ram=${toString cfg.ram} \
               --vcpus=${toString cfg.vcpus} \
               --disk path="$IMAGE_PATH",bus=virtio,size=${toString cfg.storage} \
-              --graphics none \
               --cdrom ${cfg.isoPath} \
               --network network=${cfg.network.name},mac=${cfg.macAddress} \
+              --os-variant="nixos-unstable" \
+              --boot uefi \
               --noautoconsole
             log info "VM successfully created"
             log info "Connect with: ssh ${cfg.user}@${cfg.ipAddress}"
@@ -146,8 +147,8 @@ in {
 
           destroyHostKey() {
             log info "Cleaning up old host keys..."
-            ssh-keygen -R ${cfg.ipAddress} >2/dev/null || true
-            ssh-keygen -R ${cfg.name} >2/dev/null || true
+            ssh-keygen -R ${cfg.ipAddress} 2>/dev/null || true
+            ssh-keygen -R ${cfg.name} 2>/dev/null || true
           }
 
           startVM() {

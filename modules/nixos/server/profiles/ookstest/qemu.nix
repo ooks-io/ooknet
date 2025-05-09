@@ -1,3 +1,3 @@
 {
-  ooknet.virtualization.qemu.enable = true;
+  ooknet.virtualization.guest.type = "qemu";
 }

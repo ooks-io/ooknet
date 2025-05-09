@@ -38,6 +38,7 @@
     };
     virtualization = {
       host = {
+        enable = true;
         ooknet-install-vm.enable = true;
         virt-manager.enable = true;
       };

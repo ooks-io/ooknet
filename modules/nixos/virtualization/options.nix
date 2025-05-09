@@ -7,7 +7,6 @@
   inherit (lib) mkOption mkEnableOption elem;
   inherit (lib.types) path int str bool nullOr enum;
   inherit (config.ooknet) host;
-  inherit (config.ooknet) workstation;
   inherit (config.ooknet.host) admin;
   cfg = config.ooknet.virtualization;
 in {
@@ -28,7 +27,7 @@ in {
     host = {
       enable = mkOption {
         type = bool;
-        default = elem "virtualization" workstation.profiles;
+        default = false;
         description = "Enable ooknet vm module";
       };
       virt-manager.enable = mkEnableOption "Enable libvirtd graphical front end virt-manager";
