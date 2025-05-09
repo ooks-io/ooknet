@@ -1,4 +1,4 @@
-let
+{config, ...}: let
   # restict key exchange, cipher, and MAC algorithms, as per <https://www.ssh-audit.com>
   KexAlgorithms = [
     "sntrup761x25519-sha512@openssh.com"
@@ -21,6 +21,7 @@ let
     "hmac-sha2-256-etm@openssh.com"
     "umac-128-etm@openssh.com"
   ];
+  inherit (config.ooknet.host) role;
 in {
   services = {
     openssh = {
@@ -31,7 +32,10 @@ in {
         inherit KexAlgorithms Ciphers Macs;
         UseDns = true;
         PubkeyAuthentication = "yes";
-        PermitRootLogin = "no";
+        PermitRootLogin =
+          if (role == "installer")
+          then "prohibit-password"
+          else "no";
         PermitEmptyPasswords = "no";
         PasswordAuthentication = false;
 
