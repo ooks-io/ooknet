@@ -15,7 +15,7 @@ in {
       default = null;
     };
     profiles = mkOption {
-      type = listOf (enum ["gaming" "communication" "productivity" "creative" "media" "virtualization"]);
+      type = listOf (enum ["gaming" "communication" "productivity" "creative" "media" "virtualization" "infra"]);
       default = [];
     };
     environment = mkOption {

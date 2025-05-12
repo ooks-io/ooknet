@@ -128,7 +128,7 @@ in {
               fi
 
               log warn "Deleting VM..."
-              if ! virsh undefine "$NAME" --remove-all-storage >/dev/null 2>&1; then
+              if ! virsh undefine "$NAME" --nvram --remove-all-storage >/dev/null 2>&1; then
                 log warn "Standard undefine failed, removing manually..."
 
                 virsh undefine "$NAME" >/dev/null 2>&1 || true

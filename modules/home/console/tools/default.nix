@@ -15,5 +15,6 @@
     ./nixIndex.nix
     ./multiplexer
     ./editor
+    ./infra
   ];
 }
