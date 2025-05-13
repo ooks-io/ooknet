@@ -5,6 +5,7 @@ deployment of an ooknet system.
 
 ## Manual install
 
+<details>
 **Assumptions**:
 
 - We are starting fresh with no current installation of NixOS available
@@ -199,18 +200,20 @@ Following that, you can run:
 
 `sudo nixos-rebuild --flake github:ooks-io/ooknet#<hostname>`
 
+</details>
+
 ## Remote installation
 
 In most circumstances, provisioning a new host will be done remotely. These are
-the leverage a number of tools for remote provisioning:
+the tools we leverage for remote provisioning:
 
-- Disko
-  - declarative disk partitioning/formatting)
-- nixos-anywhere
-  - script that manages, ssh connection, building/copying the system closure to
-    remote host,and installing NixOS
-- 1Password
-  - for fetching keys required for decrypting secrets
+- [**Disko**](https://github.com/nix-community/disko/tree/master): declarative
+  disk partitioning/formatting)
+- [**nixos-anywhere**](https://github.com/nix-community/nixos-anywhere/): script
+  that manages, ssh connection, building/copying the system closure to remote
+  host,and installing NixOS
+- [1Password](https://developer.1password.com/): for fetching keys required for
+  decrypting secrets
 
 ### Pre-requisites
 
