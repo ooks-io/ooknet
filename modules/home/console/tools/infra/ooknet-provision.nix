@@ -5,11 +5,11 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkIf elem;
+  inherit (lib) mkIf;
   inherit (builtins) attrValues;
-  inherit (osConfig.ooknet.workstation) profiles;
+  cfg = osConfig.ooknet.console.tools.ooknet-infra;
 in {
-  config = mkIf (elem "infra" profiles) {
+  config = mkIf cfg.enable {
     home.packages = [
       (pkgs.writeShellApplication {
         name = "ooknet-provision";

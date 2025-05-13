@@ -34,6 +34,7 @@ in {
       ssh.enable = mkEnableOption "";
       zellij.enable = mkEnableOption "";
       nvim.enable = mkEnableOption "";
+      ooknet-infra.enable = mkEnableOption "";
     };
   };
 }
