@@ -17,6 +17,7 @@ in {
     };
     casks =
       [
+        "1password-cli"
         "raycast"
         "claude"
       ]
