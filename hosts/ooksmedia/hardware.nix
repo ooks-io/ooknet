@@ -1,6 +1,9 @@
 {
   ooknet.hardware = {
-    cpu.type = "intel";
+    cpu = {
+      cores = 8;
+      type = "intel";
+    };
     gpu.type = "nvidia";
     features = ["ssd" "audio" "video" "bluetooth"];
     monitors = [

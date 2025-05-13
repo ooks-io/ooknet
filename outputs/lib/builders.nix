@@ -29,7 +29,7 @@
   };
   common = {
     base = commonModules + "/base";
-    appearance = commonModules + "/appearance";
+    workstation = commonModules + "/workstation";
     console = commonModules + "/console";
   };
   darwin = "${self}/modules/darwin";
@@ -42,7 +42,6 @@
 
   core = [
     common.base
-    common.appearance
     common.console
   ];
 
@@ -132,8 +131,8 @@
       additionalModules = let
         platformModules =
           if (system == "aarch64-darwin")
-          then darwinCore
-          else nixosCore ++ [nixos.workstation];
+          then darwinCore ++ [common.workstation]
+          else nixosCore ++ [nixos.workstation common.workstation];
       in
         concatLists [
           platformModules
@@ -167,7 +166,7 @@
           nixosCore
           (
             if type == "vm"
-            then [(nixos.server + "/profiles/${profile}")]
+            then [(hostModules + "/${profile}")]
             else [(hostModules + "/${hostname}")]
           )
           [nixos.server]
@@ -202,7 +201,7 @@
         )
         (
           if profile != null
-          then ["${self}/modules/server/profiles/${profile}/base"]
+          then [(hostModules + "/${profile}")]
           else [(hostModules + "/${hostname}")]
         )
       ];
