@@ -21,22 +21,6 @@ in {
       lact.enable = mkEnableOption "Enable amd tuning software lact";
     };
 
-    cpu = {
-      type = mkOption {
-        type = nullOr (enum ["intel" "amd"]);
-        default = null;
-      };
-      amd.pstate.enable = mkEnableOption "";
-      cores = mkOption {
-        type = int;
-        description = "Number of Physical CPU cores the system has";
-      };
-      threads = mkOption {
-        type = int;
-        description = "Number of cpu threads the cpu has";
-      };
-    };
-
     features = mkOption {
       type = listOf (enum [
         "audio"
