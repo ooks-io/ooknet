@@ -91,6 +91,33 @@ in {
       readOnly = true;
     };
 
+    cache = {
+      l1i = mkOption {
+        type = nullOr int;
+        default = null;
+        description = "Size of L1 instruction cache in KiB";
+        example = 192;
+      };
+      l1d = mkOption {
+        type = nullOr int;
+        default = null;
+        description = "Size of L1 data cache in KiB";
+        example = 192;
+      };
+      l2 = mkOption {
+        type = nullOr int;
+        default = null;
+        description = "Size of L2 cache in MiB";
+        example = 6;
+      };
+      l3 = mkOption {
+        type = nullOr int;
+        default = null;
+        description = "Size of L3 cache in MiB";
+        example = 32;
+      };
+    };
+
     microArchitecture = mkOption {
       type = str;
       default = lookupMicroArch cfg;
