@@ -3,7 +3,6 @@
     package = pkgs.neovim-unwrapped;
     searchCase = "smart";
     enableLuaLoader = true;
-    useSystemClipboard = true;
     autopairs.nvim-autopairs.enable = true;
     hideSearchHighlight = true;
     theme = {
@@ -11,6 +10,10 @@
     };
     spellcheck = {
       enable = true;
+    };
+    clipboard = {
+      enable = true;
+      registers = "unnamedplus";
     };
   };
 }
