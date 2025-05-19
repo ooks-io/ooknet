@@ -17,7 +17,7 @@ in {
   };
   environment.etc."1password/custom_allowed_browsers" = mkIf (zen.enable || browser == "zen") {
     text = ''
-      .zen-wrapped
+      .zen-beta-bin-unwrapped
     '';
     mode = "0755";
   };

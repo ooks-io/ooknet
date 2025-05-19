@@ -1,6 +1,5 @@
 {
   color,
-  fonts,
   ...
 }:
 # css
