@@ -22,13 +22,6 @@ in {
         wireplumber.enable = true;
       };
       pulseaudio.enable = false;
-
-      # realtime audio
-      udev.extraRules = ''
-        KERNEL=="cpu_dma_latency", GROUP="audio"
-        KERNEL=="rtc0", GROUP="audio"
-        KERNEL=="hpet", GROUP="audio"
-      '';
     };
 
     security = {
