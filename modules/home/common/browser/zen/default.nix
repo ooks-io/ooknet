@@ -57,6 +57,10 @@ in {
             "zen.view.compact.hide-toolbar" = true;
             "zen.view.experimental-rounded-view" = false;
             "zen.workspace.show-workspace-indicator" = false;
+
+            # enable browser toolbox
+            "devtools.debugger.enabled" = true;
+            "devtools.chrome.enabled" = true;
           };
           userChrome = import ./userChrome.nix {inherit color fonts;};
         };

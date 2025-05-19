@@ -6,6 +6,8 @@
 # css
 ''
     @media (prefers-color-scheme: dark) {
+
+    * { border-radius: 0px !important; }
     :root {
 
       --clr-menu: #${color.layout.menu};
@@ -16,11 +18,12 @@
       --clr-border-inactive: #${color.border.inactive};
       --clr-secondary: #${color.secondary.base};
       --clr-primary: #${color.primary.base};
+      --clr-orange: #${color.orange.base}
 
       --border-active: 1px var(--clr-border-active) solid;
       --border-inactive: 1px var(--clr-border-inactive) solid;
 
-      --font-base: ${fonts.monospace.family};
+      --font-base: BerkeleyMono Nerd Font;
 
       --zen-colors-primary: var(--clr-menu) !important;
       --zen-primary-color: var(--clr-primary) !important;
@@ -42,10 +45,11 @@
       --arrowpanel-background: var(--clr-menu) !important;
 
 
-      --sidebar-text-color: yellow !important;
-      --lwt-sidebar-text-color: purple!important;
-      --lwt-sidebar-background-color: green !important;
-      --toolbar-bgcolor: green !important;
+      --sidebar-text-color: var(--clr-primary) !important;
+      --sidebar-background-color: var(--clr-menu) !important;
+      --lwt-sidebar-text-color: var(--clr-fg) !important;
+      --lwt-sidebar-background-color: var(--clr--menu) !important;
+      --toolbar-bgcolor: var(--clr-menu) !important;
       --newtab-background-color: var(--clr-menu) !important;
       --zen-themed-toolbar-bg: var(--clr-menu) !important;
 
@@ -62,9 +66,26 @@
       --zen-webview-border-radius 0px !important;
       --zen-native-inner-radius: 0px !important;
 
+      --zen-branding-paper: var(--clr-fg) !important;
+      --zen-branding-dark: var(--clr-menu) !important;
+      --zen-branding-coral: var(--clr-orange) !important;
+
+      --button-background-color-primary: var(--clr-primary) !important;
+      --button-text-color-primary: var(--clr-menu) !important;
+      --in-content-primary-button-background: var(--clr-primary) !important;
+      --in-content-page-color: var(--clr-fg) !important;
+      --in-content-info-background: red !important;
+      --in-content-table-background: red !important;
+
+      --input-color: var(--clr-fg) !important;
+      --urlbarView-highlight-color: var(--clr-fg) !important;
+      --focus-outline-color: var(--clr-fg) !important;
+      --background-color-box: var(--clr-bg) !important;
       font-family: var(--font-base) !important;
       border-radius: 0px !important;
     }
+
+
 
     .dialogBox {
 
@@ -83,15 +104,22 @@
       border: var(--border-inactive) !important;
       font-family: var(--font-base) !important;
       margin: 10px !important;
-    }
-    .urlbarView-row[selected] {
-      background-color: var(--clr-bg) !important;
-      border: var(--border-active) !important;
-    }
-
-    .urlbarView-row:hover:not([selected]) {
-      background-color: var(--clr-bg) !important;
-      border: var(--border-active) !important;
+      &[selected] {
+        background-color: var(--clr-bg) !important;
+        color: red !important;
+        border: var(--border-active) !important;
+        & *,
+        & .urlbarView-title-seperator::before {
+          color: var(--clr-fg) !important;
+        }
+        & .urlbarView-favicon {
+          background-color: transparent !important;
+        }
+      }
+      &:hover:not([selected]) {
+        background-color: var(--clr-bg) !important;
+        border: var(--border-active) !important;
+      }
     }
 
     .urlbar-input {
@@ -136,6 +164,16 @@
     }
 
 
+      /*
+      hide the workspace indicator, I dont want it.
+      potential regression? about:config zen.workspace.show-workspace-indicator = false no longer works.
+      */
+      #zen-current-workspace-indicator-container {
+        display: none !important;
+      }
+
+    /* if I want the indicator, make it look how I want it */
+
     .zen-current-workspace-indicator::before {
       border-radius: 0px !important;
       background-color: var(--clr-menu) !important;
@@ -148,7 +186,6 @@
       border: var(--border-active) !important;
       background-color: var(--clr-menu) !important;
     }
-
 
     .zen-current-workspace-indicator-name {
       border-radius: 0px !important;
@@ -174,7 +211,16 @@
     }
     toolbaritem {
       background: var(--clr-menu) !important;
+      border-radius: 0px !important;
+      box-shadow: 0px 0px 0px 0px transparent !important;
     }
-  }
 
+      #sidebar-box {
+        border: var(--border-active) !important;
+      }
+
+      #titleText {
+        color: var(--clr-fg) !important;
+      }
+  }
 ''
