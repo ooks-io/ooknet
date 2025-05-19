@@ -15,7 +15,7 @@
   in
     microArchMapping.${vendor}.${family}.${model} or null;
 in {
-  cpu = {
+  options.ooknet.hardware.cpu = {
     type = mkOption {
       type = nullOr (enum ["intel" "amd"]);
       default = null;

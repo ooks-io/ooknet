@@ -19,6 +19,7 @@ in {
         default = null;
       };
       lact.enable = mkEnableOption "Enable amd tuning software lact";
+      benchmark.enable = mkEnableOption "Enable benchmarking tools";
     };
 
     features = mkOption {
