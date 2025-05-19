@@ -39,14 +39,7 @@ in {
     }
     (mkIf gpu.lact.enable {
       boot.kernelParams = ["amdgpu.ppfeaturemask=0xfffd7fff"];
-      environment.systemPackages = attrValues {
-        inherit
-          (pkgs)
-          lact
-          unigine-heaven
-          unigine-superposition
-          ;
-      };
+      environment.systemPackages = [pkgs.lact];
 
       systemd = {
         packages = [pkgs.lact];
