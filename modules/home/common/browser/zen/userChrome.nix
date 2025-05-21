@@ -1,7 +1,4 @@
-{
-  color,
-  ...
-}:
+{color, ...}:
 # css
 ''
     @media (prefers-color-scheme: dark) {
