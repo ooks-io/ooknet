@@ -1,0 +1,14 @@
+{% extends "base.html" %} 
+{% block notebook %}
+<div class="notebook">
+  <div class="notebook__main-area">
+    <div class="binder-edge"></div>
+    <main class="content">
+      {% block content %}
+      <h1 class="content__title">{{ page.title | safe }}</h1>
+      {{ page.content | safe }} {% endblock content %}
+    </main>
+  </div>
+</div>
+{% endblock notebook %}
+

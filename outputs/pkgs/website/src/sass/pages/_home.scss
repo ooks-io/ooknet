@@ -3,7 +3,7 @@ html {
   scroll-padding-top: $navbar-height;
 }
 .home {
-  margin: 50px;
+  margin: 0px;
   display: flex;
   flex-wrap: wrap;
   align-content: center;
@@ -20,60 +20,112 @@ html {
 }
 .notebook {
   display: flex;
-  flex-direction: column;
-  width: 100vw;
-  margin-top: $navbar-height;
-  min-height: 100vh;
-  padding: 12px;
-
-  .sidebar {
-    width: 100%;
-    display: none;
-    flex-shrink: 0;
-    height: auto;
-  }
-
-  .content {
-    width: 100%;
-    flex-grow: 1;
-    overflow-y: auto;
-  }
-
-  &--menu-toggled .sidebar {
-    display: block;
-  }
+  flex-direction: column; // Stacks .notebook__main-area and .sidebar vertically
+  width: 100%; // Or 100vw if you want full viewport width strictly
+  min-height: 100vh; // Ensures it tries to fill viewport height
+  margin-top: $navbar-height; // Top margin for the whole notebook
+  padding: 0px; // Padding for the whole notebook (children are inside this)
+  box-sizing: border-box; // Good practice with padding and width: 100%
 }
 
+// Wrapper for binder edge and main content, sits inside .notebook
+.notebook__main-area {
+  display: flex;
+  flex-direction: row;   // Lays out .binder-edge and .content side-by-side
+  flex-grow: 1;          // This area takes up available vertical space within .notebook
+  width: 100%;           // Takes full width available within .notebook's padding
+  // min-height: 0;      // Sometimes helpful for nested flex containers to prevent them from expanding parent
+}
+
+// The binder edge itself
+.binder-edge {
+  width: 50px;
+  flex-shrink: 0; // Prevents it from shrinking
+  background-color: var(--clr-mantle);
+  border-right: 1px dashed var(--clr-text);
+
+  --hole-diameter: 10px;
+  --hole-radius: calc(var(--hole-diameter) / 2);
+  --hole-border-width: 1px; // Keep this as the INTENDED border width
+  --hole-full-radius: calc(var(--hole-radius) + var(--hole-border-width));
+
+  // NEW: Define a tiny unit for smoothing, can be less than 1px for subtle effect
+  --smooth-unit: 0.3px; // Or 1px, experiment with this value
+
+  --hole-bg-color: var(--clr-mantle);
+  --hole-border-color: var(--clr-text);
+  --hole-spacing: 50px;
+  --hole-offset-top: 40px;
+
+  background-image: radial-gradient(
+    circle at center,
+    var(--hole-bg-color) 0,                                                     // Start of hole fill
+    var(--hole-bg-color) var(--hole-radius),                                    // End of hole fill (sharp stop)
+
+    // Transition from hole-fill to hole-border
+    var(--hole-border-color) calc(var(--hole-radius) + var(--smooth-unit)),      // Start of hole border, slightly offset
+
+    var(--hole-border-color) var(--hole-full-radius),                           // End of hole border (sharp stop)
+
+    // Transition from hole-border to transparent
+    transparent calc(var(--hole-full-radius) + var(--smooth-unit))              // Start of transparency, slightly offset
+  );
+
+  background-repeat: repeat-y;
+  // The background-size should still be based on the *visual* size you want
+  background-size: 100% var(--hole-spacing);
+  background-position: 50% var(--hole-offset-top);
+
+  // CRITICAL: Ensure image-rendering is not pixelated
+}  
+
+// Main content area, sits next to binder-edge
+// Targets .content when it's a direct child of .notebook__main-area
+.notebook__main-area > .content {
+  flex-grow: 1;     // Takes up remaining horizontal space
+  overflow-y: auto; // Allows content to scroll vertically if it overflows
+  min-width: 0;     // Important for flex items to prevent issues with long content
+  padding: 20px;    // Inner padding for the text content block (adjust as needed)
+                    // This is separate from .notebook's overall padding
+}
+
+// Sidebar styles (assuming sidebar is a direct child of .notebook)
+.notebook .sidebar {
+  width: 100%; // Or a fixed width like 250px if it's a vertical sidebar
+  display: none; // Hidden by default
+  flex-shrink: 0;
+  // height: auto; // Not usually needed if content determines height
+}
+
+// Toggle sidebar visibility (if .notebook--menu-toggled is on the .notebook div)
+.notebook--menu-toggled .sidebar {
+  display: block;
+}
+
+// --- Responsive Adjustments ---
 @media (min-width: 800px) {
   .notebook {
-    overflow: hidden;
-    .sidebar {
-      position: fixed;
-      display: flex;
-      top: calc($navbar-height + 10px);
-      left: 10px;
-      align-self: start;
-      height: calc(100vh - 70px);
-      width: $sidebar-width;
-      overflow-y: auto;
+    // overflow: hidden; // Only if you specifically need to clip content at .notebook level
+
+    // Adjust .content padding on larger screens
+    // Original selector: .notebook .content
+    // New more specific selector:
+    .notebook__main-area > .content {
+      padding: $spacer 10%; // Your desired padding for larger screens
     }
 
-    .content {
-      flex: 1;
-      margin-left: calc($sidebar-width + 10px);
-      padding: $spacer 10%;
-      max-width: calc(100% - $sidebar-width);
-      align-items: center;
-    }
-
-    &--menu-toggled {
-      .content {
-        margin-left: 0;
-        max-width: 100%;
-        padding: 10px 10%;
+    // Styles for when menu is toggled on larger screens
+    &--menu-toggled { // This means .notebook.notebook--menu-toggled
+      // Original selector: .notebook--menu-toggled .content
+      .notebook__main-area > .content {
+        margin-left: 0; // Adjust if sidebar normally pushes content
+        max-width: 100%; // Ensure it can take full width
+        padding: 10px 10%; // Specific padding for this state
       }
+
+      // Original selector: .notebook--menu-toggled .sidebar
       .sidebar {
-        display: none;
+        display: none; // Hide sidebar if that's the intent on large screens when toggled
       }
     }
   }

@@ -8,9 +8,11 @@
     ./projects.nix
     ./utility.nix
     ./ui.nix
-    ./languages
     ./statusline.nix
     ./snippets.nix
     ./notes.nix
+    ./lsp.nix
+    ./treesitter.nix
+    ./languages.nix
   ];
 }
