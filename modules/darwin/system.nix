@@ -6,6 +6,7 @@
   inherit (config.ooknet.host) admin;
 in {
   system = {
+    primaryUser = admin.name;
     keyboard = {
       enableKeyMapping = true;
     };
@@ -49,7 +50,7 @@ in {
       # not sure this is still necessary at this point
       # meant to avoid the need to logout/restart
       # for changes to take effect
-      postUserActivation.text = ''
+      postActivation.text = ''
         /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
       '';
     };
