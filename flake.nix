@@ -10,11 +10,12 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    nixpkgs-darwin.url = "github:NixOS/nixpkgs/063dece00c5a77e4a0ea24e5e5a5bd75232806f8";
     systems.url = "github:nix-systems/default";
 
     nix-darwin = {
-      url = "github:nix-darwin/nix-darwin/master";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
+      inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
 
     flake-parts = {
