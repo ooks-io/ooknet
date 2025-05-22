@@ -52,7 +52,7 @@ in {
           # macos uses admin
           else ["@admin"]
         );
-      experimental-features = ["nix-command" "flakes"];
+      experimental-features = ["nix-command" "flakes" "repl-flake"];
       accept-flake-config = false;
       warn-dirty = false;
       # cache
