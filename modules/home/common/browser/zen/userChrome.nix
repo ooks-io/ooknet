@@ -164,7 +164,7 @@
       hide the workspace indicator, I dont want it.
       potential regression? about:config zen.workspace.show-workspace-indicator = false no longer works.
       */
-      #zen-current-workspace-indicator-container {
+      .zen-current-workspace-indicator {
         display: none !important;
       }
 
