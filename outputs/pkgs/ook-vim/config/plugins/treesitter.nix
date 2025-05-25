@@ -14,6 +14,6 @@
     ];
     highlight.enable = true;
     indent.enable = true;
-    context.enable = true;
+    context.enable = false;
   };
 }
