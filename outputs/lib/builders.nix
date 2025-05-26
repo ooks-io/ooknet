@@ -96,11 +96,9 @@
         else nixpkgs.lib.nixosSystem;
     in
       mkSystem {
-        specialArgs =
-          recursiveUpdate {
-            inherit hozen ook lib inputs self inputs' self';
-          }
-          specialArgs;
+        specialArgs = {
+          inherit hozen ook inputs self inputs' self';
+        };
         modules = concatLists [
           (singleton {
             networking.hostName = hostname;
