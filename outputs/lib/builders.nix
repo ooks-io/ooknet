@@ -5,7 +5,7 @@
   ...
 }: let
   inherit (inputs) nixpkgs;
-  inherit (lib) assertMsg singleton recursiveUpdate mkDefault;
+  inherit (lib) assertMsg singleton mkDefault;
   inherit (builtins) concatLists;
   inherit (self) hozen ook;
   inherit (inputs.secrets.nixosModules) nixosSecrets;
@@ -174,9 +174,9 @@
 
   mkImage = {
     withSystem,
-    profile ? null,
     hostname,
     system,
+    profile ? null,
     type,
     role,
     additionalModules ? [],
