@@ -20,6 +20,7 @@
       enable = true;
       vale.enable = false;
       ltex.enable = false;
+      format.enable = true;
       extensions = {
         render-markdown-nvim = {
           enable = true;

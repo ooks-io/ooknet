@@ -3,8 +3,8 @@
     enable = true;
     friendly-snippets.enable = true;
     sourcePlugins = {
-      emoji.enable = true;
-      spell.enable = true;
+      emoji.enable = false;
+      spell.enable = false;
       ripgrep.enable = true;
     };
     setupOpts = {
@@ -15,11 +15,9 @@
           "path"
           "buffer"
           "snippets"
-          "emoji"
         ];
       };
       snippets.preset = "luasnip";
-      cmdline.sources = [];
     };
   };
 }
