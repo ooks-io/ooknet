@@ -43,7 +43,7 @@ in {
       group = "builder";
       openssh.authorizedKeys.keys = [
         ''
-          command="nix-daemon --stdio",no-agent-forwarding,no-port-forwarding,no-pty,no-user-rc,no-X11-forwarding ${keys.users.${admin.name}}
+          command="nix-daemon --stdio",no-agent-forwarding,no-port-forwarding,no-pty,no-user-rc,no-X11-forwarding ${keys.users.builder}
         ''
       ];
     };

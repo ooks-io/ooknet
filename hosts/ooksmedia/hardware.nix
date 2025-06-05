@@ -1,7 +1,6 @@
 {
   ooknet.hardware = {
     cpu = {
-      cores = 8;
       type = "intel";
     };
     gpu.type = "nvidia";

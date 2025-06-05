@@ -16,6 +16,12 @@
         shell = "fish";
         homeManager = true;
       };
+      # Enable deployment settings
+      deployment = {
+        enable = true;
+        remoteBuild = true;
+        fastConnection = true;
+      };
     };
     console = {
       profile = "standard";
