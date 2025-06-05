@@ -14,6 +14,7 @@
   commonPackages = attrValues {
     inherit
       (pkgs)
+      claude-code
       bc
       duf
       du-dust
