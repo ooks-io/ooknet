@@ -100,5 +100,10 @@
       lsp.enable = true;
       dap.enable = true;
     };
+    yaml = {
+      enable = true;
+      treesitter.enable = true;
+      lsp.enable = true;
+    };
   };
 }
