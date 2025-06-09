@@ -39,6 +39,8 @@ in {
             "streamer"
             "torrenter"
             "www"
+            "podman"
+            "docker"
           ];
       })
     ];

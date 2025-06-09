@@ -31,6 +31,7 @@ in {
         description = "Enable ooknet vm module";
       };
       virt-manager.enable = mkEnableOption "Enable libvirtd graphical front end virt-manager";
+      containers.enable = mkEnableOption "Enable podman container support";
 
       ooknet-install-vm = let
         inherit (self.nixosConfigurations.ooksinstall.config.image) filePath;

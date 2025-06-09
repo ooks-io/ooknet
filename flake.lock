@@ -1146,11 +1146,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1746932183,
-        "narHash": "sha256-zsnqyTKPnzBN5Ch93OHWuR8eRDF5Ray3f2azdULN7e0=",
+        "lastModified": 1749435630,
+        "narHash": "sha256-3PUmjZ7fJBReknteCrQWg6Oor7T5u3925cvYX0nZmsA=",
         "ref": "refs/heads/master",
-        "rev": "99622fb8d989fe5211d39ee88ec2589c86f388e2",
-        "revCount": 52,
+        "rev": "adf4c347a5cb24368768411731983336fa093c49",
+        "revCount": 53,
         "type": "git",
         "url": "ssh://git@github.com/ooks-io/kunzen"
       },
