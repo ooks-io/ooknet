@@ -27,7 +27,11 @@
     mkOption {
       type = int;
       default =
-        config.ids.${idType}.${name}
+        config.ids.${
+          idType
+        }.${
+          name
+        }
         or (
           assert assertMsg (!fallbackConflict)
           "Fallback ${idType} ${toString fallback} for ${name} conflicts with NixOS static allocation"; fallback

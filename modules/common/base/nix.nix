@@ -6,8 +6,8 @@
   ...
 }: let
   inherit (builtins) attrValues;
-  inherit (lib) mkIf mapAttrs mapAttrsToList filterAttrs isType;
-  inherit (config.ooknet.host) role admin;
+  inherit (lib) mapAttrs mapAttrsToList filterAttrs isType;
+  inherit (config.ooknet.host) admin;
   inherit (pkgs.stdenv) isLinux;
 
   flakeInputs = filterAttrs (_: v: isType "flake" v) inputs;
