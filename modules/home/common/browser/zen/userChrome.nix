@@ -81,7 +81,9 @@
       border-radius: 0px !important;
     }
 
-
+    arrowscrollbox {
+      color: var(--clr-fg) !important;
+    }
 
     .dialogBox {
 
