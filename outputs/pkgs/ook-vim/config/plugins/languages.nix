@@ -3,7 +3,9 @@
     astro = {
       enable = true;
       extraDiagnostics.enable = true;
-      format.enable = true;
+      format = {
+        enable = true;
+      };
       lsp.enable = true;
       treesitter.enable = true;
     };
@@ -32,6 +34,22 @@
             };
           };
         };
+      };
+    };
+
+    typst = {
+      enable = true;
+      treesitter.enable = true;
+      lsp = {
+        enable = true;
+        server = "tinymist";
+      };
+      format = {
+        enable = true;
+        type = "typstyle";
+      };
+      extensions.typst-preview-nvim = {
+        enable = true;
       };
     };
 
