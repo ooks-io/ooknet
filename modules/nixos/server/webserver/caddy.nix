@@ -18,10 +18,10 @@ in {
       (mkIf caddy.cloudflare.enable {
         package = pkgs.caddy.withPlugins {
           plugins = [
-            "github.com/caddy-dns/cloudflare@v0.0.0-20240703190432-89f16b99c18e"
+            "github.com/caddy-dns/cloudflare@v0.2.1"
             "github.com/WeidiDeng/caddy-cloudflare-ip@v0.0.0-20231130002422-f53b62aa13cb"
           ];
-          hash = "sha256-TPKNr1vzD9a1fvQM7nGYwey/i+SKGmDr/9yC+Iosd6A";
+          hash = "sha256-u1vthRVXRbsD8FnlzfX39Yn/uzHzvYfipu4NNp7uJLE=";
         };
         globalConfig = ''
           servers {
