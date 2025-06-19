@@ -101,6 +101,13 @@
       treesitter.enable = true;
     };
 
+    python = {
+      enable = true;
+      treesitter.enable = true;
+      lsp.enable = true;
+      format.enable = true;
+    };
+
     ts = {
       enable = true;
       extraDiagnostics.enable = true;
