@@ -29,7 +29,10 @@
         browser = "zen";
         terminal = "foot";
       };
-      programs.firefox.enable = true;
+      programs = {
+        firefox.enable = true;
+        chromium.enable = true;
+      };
     };
     console = {
       profile = "standard";
