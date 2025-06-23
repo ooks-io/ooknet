@@ -59,7 +59,7 @@ in {
 
         clock = {
           format = "{:%I:%M %p}";
-          format-alt = "{:%Y-%m-%d}";
+          format-alt = "{:%d-%m-%Y}";
         };
         battery = {
           states = {
