@@ -18,6 +18,9 @@ in {
       type = listOf (enum ["gaming" "communication" "productivity" "creative" "media" "virtualization" "infra"]);
       default = [];
     };
+    silentBoot = {
+      enable = mkEnableOption "Enable silent boot with plymouth";
+    };
     environment = mkOption {
       type = nullOr (enum ["hyprland" "gnome" "aerospace"]);
       default = "hyprland";

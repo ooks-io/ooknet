@@ -18,6 +18,7 @@ in {
     ./programs
     ./gaming
     ./environment
+    ./silent-boot.nix
   ];
 
   home-manager.users =

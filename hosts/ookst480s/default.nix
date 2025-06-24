@@ -18,6 +18,7 @@
       };
     };
     workstation = {
+      silentBoot.enable = true;
       profiles = ["media" "communication"];
       environment = "hyprland";
       theme = "minimal";
