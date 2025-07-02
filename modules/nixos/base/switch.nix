@@ -1,7 +1,6 @@
 {
   system.switch = {
-    enable = false;
+    enable = true;
     # use switch-to-configuration-ng
-    enableNg = true;
   };
 }
