@@ -4,20 +4,23 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf mkForce;
   inherit (builtins) attrValues;
   inherit (config.ooknet.workstation) environment;
 in {
   config = mkIf (environment == "gnome") {
-    services.xserver = {
-      enable = true;
-      displayManager.gdm = {
+    services = {
+      xserver = {
         enable = true;
-      };
-      desktopManager.gnome = {
-        enable = true;
+        displayManager.gdm = {
+          enable = true;
+        };
+        desktopManager.gnome = {
+          enable = true;
+        };
       };
     };
+    programs.ssh.startAgent = mkForce false;
     environment.gnome.excludePackages = attrValues {
       inherit
         (pkgs)
