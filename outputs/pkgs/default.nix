@@ -18,6 +18,7 @@
   in {
     packages = {
       goki = callPackage ./goki {};
+      wowup = callPackage ./wowup {};
       repomix = callPackage ./repomix {};
       live-buds-cli = callPackage ./live-buds-cli {};
       website = callPackage ./website {};

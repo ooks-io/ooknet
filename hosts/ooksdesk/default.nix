@@ -42,7 +42,7 @@
     virtualization = {
       host = {
         enable = true;
-        ooknet-install-vm.enable = true;
+        ooknet-install-vm.enable = false;
         virt-manager.enable = true;
         containers.enable = true;
       };
