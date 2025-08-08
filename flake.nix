@@ -70,7 +70,7 @@
     };
 
     ookscraft = {
-      url = "github:ooks-io/ookscraft";
+      url = "git+ssh://git@github.com/ooks-io/ookscraft";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
