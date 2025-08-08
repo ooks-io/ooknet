@@ -5,7 +5,7 @@
     sourcePlugins = {
       emoji.enable = false;
       spell.enable = false;
-      ripgrep.enable = true;
+      ripgrep.enable = false;
     };
     setupOpts = {
       signature.enabled = true;

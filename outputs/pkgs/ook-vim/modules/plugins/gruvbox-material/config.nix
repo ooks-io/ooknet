@@ -171,7 +171,7 @@ in {
               background_color = nil,
             },
             signs = {
-              highlight = ${boolToString cfg.signsHighlight},
+              force_background = ${boolToString cfg.signsHighlight},
             },
           }
 
