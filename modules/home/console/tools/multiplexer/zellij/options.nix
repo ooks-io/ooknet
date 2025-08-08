@@ -96,7 +96,7 @@ in {
       default = null;
       description = "Additional settings in KDL format";
     };
-    layouts = mkOption {
+    _layouts = mkOption {
       type = attrsOf layoutModule;
       description = "Zellij layouts with zjstatus";
     };

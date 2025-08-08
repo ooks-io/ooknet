@@ -42,7 +42,7 @@ in {
       };
 
       # layout configurations
-      layouts = {
+      _layouts = {
         default = {
           tabs =
             #kdl
