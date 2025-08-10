@@ -107,7 +107,7 @@ in {
         nameValuePair "zellij/layouts/${name}.kdl" {
           text = mkZellijLayout layout;
         })
-      cfg.layouts
+      cfg._layouts
       // optionalAttrs (cfg.extraSettings != null) {
         "zellij/config.kdl".text = cfg.extraSettings;
       };
