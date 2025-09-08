@@ -12,5 +12,6 @@
     ./syncthing-applet.nix
     ./nemo.nix
     ./qtscrcpy.nix
+    ./discordify.nix
   ];
 }
