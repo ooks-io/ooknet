@@ -12,7 +12,6 @@
   };
 in {
   config = mkIf (elem "media" profiles) {
-    home.packages = [pkgs.jellyfin-media-player];
     programs.mpv = {
       enable = true;
     };
