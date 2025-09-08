@@ -7,7 +7,7 @@
   inherit (lib) mkIf;
   cfg = osConfig.ooknet.console.tools.nixIndex;
 in {
-  imports = [inputs.nix-index-db.hmModules.nix-index];
+  imports = [inputs.nix-index-db.homeModules.nix-index];
   config = mkIf cfg.enable {
     programs = {
       nix-index = {

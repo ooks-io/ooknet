@@ -1,5 +1,6 @@
 {
   imports = [
+    ./codex.nix
     ./bat.nix
     ./vale.nix
     ./networking.nix
