@@ -21,6 +21,7 @@ in {
       fish.enable = mkEnableOption "";
     };
     tools = {
+      codex.enable = mkEnableOption "";
       bat.enable = mkEnableOption "";
       btop.enable = mkEnableOption "";
       direnv.enable = mkEnableOption "";

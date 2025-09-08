@@ -11,6 +11,7 @@ in {
       editor = "nvim";
       multiplexer = "zellij";
       tools = {
+        codex.enable = true;
         bat.enable = true;
         btop.enable = true;
         direnv.enable = true;
