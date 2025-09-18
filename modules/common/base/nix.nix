@@ -1,5 +1,6 @@
 {
   inputs,
+  inputs',
   pkgs,
   lib,
   config,
@@ -30,7 +31,8 @@ in {
     variables = paths;
   };
   nix = {
-    package = pkgs.lix;
+    # FIXME: https://git.lix.systems/lix-project/lix/issues/977
+    package = inputs'.nixpkgs-small.legacyPackages.lixPackageSets.stable.lix;
 
     optimise.automatic = true;
 
