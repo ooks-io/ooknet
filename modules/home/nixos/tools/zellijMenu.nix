@@ -10,7 +10,7 @@
   inherit (config.ooknet) binds;
   zellijmenu = pkgs.writeShellApplication {
     name = "zellijmenu";
-    runtimeInputs = with pkgs; [zellij coreutils rofi-wayland];
+    runtimeInputs = with pkgs; [zellij coreutils rofi];
     text =
       /*
       bash

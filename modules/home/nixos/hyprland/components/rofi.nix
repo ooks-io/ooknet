@@ -16,7 +16,7 @@ in {
     programs.rofi = {
       enable = true;
       font = "${fonts.monospace.family}";
-      package = pkgs.rofi-wayland;
+      package = pkgs.rofi;
       terminal = "${config.home.sessionVariables.TERMINAL}";
       theme = {
         "*" = {

@@ -9,7 +9,7 @@
 
   powermenu = pkgs.writeShellApplication {
     name = "powermenu";
-    runtimeInputs = [pkgs.rofi-wayland];
+    runtimeInputs = [pkgs.rofi];
     text =
       # bash
       ''
