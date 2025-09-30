@@ -11,6 +11,7 @@ in {
     programs.steam = {
       enable = true;
       package = pkgs.steam-small;
+      protontricks.enable = true;
       extraCompatPackages = [pkgs.proton-ge-bin];
     };
   };

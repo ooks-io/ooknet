@@ -13,6 +13,7 @@ in {
     ./emulation.nix
     ./project-plus
     ./minecraft.nix
+    ./lutris.nix
   ];
   config = mkIf (elem "gaming" profiles) {
     ooknet.binds = {
