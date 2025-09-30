@@ -6,7 +6,7 @@
     ./binds.nix
     ./rules.nix
     ./monitor.nix
-    ./gestures.nix
+    # ./gestures.nix
     ./appearance.nix
     ./workspaces.nix
     ./options
