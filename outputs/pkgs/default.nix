@@ -22,7 +22,7 @@
       repomix = callPackage ./repomix {};
       live-buds-cli = callPackage ./live-buds-cli {};
       website = callPackage ./website {};
-      caddy-with-cloudflare = callPackage ./caddy-with-cloudflare {};
+      #caddy-with-cloudflare = callPackage ./caddy-with-cloudflare {};
       wii-u-gc-adapter = callPackage ./wii-u-gc-adapter {};
       ghostty-shaders = callPackage ./ghostty-shaders {};
       ook-vim = callPackage ./ook-vim {inherit inputs pkgs lib hozen;};
