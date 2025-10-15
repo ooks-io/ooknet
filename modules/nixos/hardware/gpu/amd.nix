@@ -11,10 +11,6 @@ in {
   config = mkIf (gpu.type == "amd") (mkMerge [
     {
       hardware.amdgpu = {
-        amdvlk = {
-          enable = false;
-          support32Bit.enable = true;
-        };
         opencl.enable = false;
       };
       hardware.graphics = {
@@ -28,7 +24,6 @@ in {
             mesa
             ;
         };
-        extraPackages32 = [pkgs.driversi686Linux.amdvlk];
       };
       boot = {
         initrd.kernelModules = ["amdgpu"];
