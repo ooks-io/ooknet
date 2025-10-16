@@ -99,7 +99,6 @@
 
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
-        flake-utils.follows = "flake-utils";
       };
     };
 
