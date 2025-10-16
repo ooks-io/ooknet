@@ -24,11 +24,6 @@ in {
           # for emulating TPM
           swtpm.enable = true;
 
-          # UEFI secure boot
-          ovmf = {
-            enable = true;
-            packages = [pkgs.OVMFFull.fd];
-          };
           # ensure virtiofsd is accessible to all domains
           vhostUserPackages = [pkgs.virtiofsd];
         };
