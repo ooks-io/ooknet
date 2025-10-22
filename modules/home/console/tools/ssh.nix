@@ -9,9 +9,12 @@ in {
   config = mkIf cfg.enable {
     programs.ssh = {
       enable = true;
-      compression = true;
-      hashKnownHosts = true;
+      enableDefaultConfig = false;
       matchBlocks = {
+        "*" = {
+          compression = true;
+          hashKnownHosts = true;
+        };
         "github.com" = {
           user = "git";
           hostname = "github.com";
