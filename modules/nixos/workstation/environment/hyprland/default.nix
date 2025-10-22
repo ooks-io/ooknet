@@ -17,10 +17,16 @@ in {
       extraPortals = [
         pkgs.xdg-desktop-portal-gtk
       ];
-      config.common = {
-        default = ["gtk"];
-        "org.freedesktop.impl.portal.Screencast" = "hyprland";
-        "org.freedesktop.impl.portal.Screenshot" = "hyprland";
+      config = {
+        hyprland.default = [
+          "gtk"
+          "hyprland"
+        ];
+        common = {
+          default = ["gtk"];
+          "org.freedesktop.impl.portal.Screencast" = "hyprland";
+          "org.freedesktop.impl.portal.Screenshot" = "hyprland";
+        };
       };
     };
 
