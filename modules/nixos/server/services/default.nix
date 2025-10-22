@@ -3,6 +3,9 @@
     ./website
     ./forgejo
     ./ookflix
-    ./minecraft
+    ./copyparty
+    ./monitoring
+    ./auth
+    # ./minecraft
   ];
 }
