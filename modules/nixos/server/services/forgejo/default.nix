@@ -58,6 +58,15 @@ in {
             Referrer-Policy "no-referrer"
           }
 
+          # rate limiting: 30 requests per minute per IP
+          rate_limit {
+            zone git {
+              key {remote_host}
+              events 30
+              window 1m
+            }
+          }
+
           # Handle proxying
           handle_path /* {
             reverse_proxy localhost:3000 {

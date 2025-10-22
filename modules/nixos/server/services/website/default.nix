@@ -66,6 +66,15 @@ in {
               Referrer-Policy "no-referrer"
             }
 
+            # rate limiting: 100 requests per minute per IP
+            rate_limit {
+              zone static {
+                key {remote_host}
+                events 100
+                window 1m
+              }
+            }
+
             root * /var/www/ooknet.org/
             file_server
           '';
