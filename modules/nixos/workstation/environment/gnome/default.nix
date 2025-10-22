@@ -10,14 +10,12 @@
 in {
   config = mkIf (environment == "gnome") {
     services = {
-      xserver = {
+      xserver.enable = true;
+      displayManager.gdm = {
         enable = true;
-        displayManager.gdm = {
-          enable = true;
-        };
-        desktopManager.gnome = {
-          enable = true;
-        };
+      };
+      desktopManager.gnome = {
+        enable = true;
       };
     };
     programs.ssh.startAgent = mkForce false;
