@@ -70,14 +70,14 @@
       };
     };
 
-    ookscraft = {
-      url = "git+ssh://git@github.com/ooks-io/ookscraft";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-        nix-minecraft.follows = "nix-minecraft";
-      };
-    };
+    # ookscraft = {
+    #   url = "git+ssh://git@github.com/ooks-io/ookscraft";
+    #   inputs = {
+    #     nixpkgs.follows = "nixpkgs";
+    #     flake-parts.follows = "flake-parts";
+    #     nix-minecraft.follows = "nix-minecraft";
+    #   };
+    # };
 
     nix-minecraft = {
       url = "github:Infinidoge/nix-minecraft";
@@ -85,6 +85,11 @@
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
       };
+    };
+
+    copyparty = {
+      url = "github:9001/copyparty";
+      inputs.flake-utils.follows = "flake-utils";
     };
 
     zen-browser = {

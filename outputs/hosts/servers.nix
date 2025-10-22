@@ -13,7 +13,7 @@ in {
       domain = "ooknet.org";
       type = "vm";
       profile = "linode";
-      services = ["website" "forgejo" "minecraft-proxy"];
+      services = ["website" "forgejo" "authelia"];
     };
     ooksmedia = mkServer {
       inherit withSystem;
@@ -21,7 +21,7 @@ in {
       hostname = "ooksmedia";
       domain = "ooknet.org";
       type = "desktop";
-      services = ["ookflix"];
+      services = ["ookflix" "monitoring"];
     };
     ookstest = mkServer {
       inherit withSystem;

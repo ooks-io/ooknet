@@ -34,7 +34,6 @@
   libXrandr,
   lz4,
   lzo,
-  mbedtls_2,
   miniupnpc,
   minizip-ng,
   openal,
@@ -96,7 +95,6 @@ in
       lz4
       lzo
       libusb1
-      mbedtls_2
       miniupnpc
       minizip-ng
       openal
