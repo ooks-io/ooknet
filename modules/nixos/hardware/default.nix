@@ -4,6 +4,5 @@
     ./gpu
     ./features
     ./common.nix
-    ./options.nix
   ];
 }

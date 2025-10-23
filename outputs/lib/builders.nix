@@ -15,6 +15,7 @@
   nixosModules = "${self}/modules/nixos";
   commonModules = "${self}/modules/common";
   hostModules = "${self}/hosts";
+  options = "${self}/modules/options";
 
   nixos-hm = inputs.home-manager.nixosModules.home-manager;
   darwin-hm = inputs.home-manager.darwinModules.home-manager;
@@ -35,12 +36,13 @@
   darwin = "${self}/modules/darwin";
 
   nixosMinimal = [
-    (common.base + "/options.nix")
+    options
     (common.base + "/admin.nix")
     (nixos.base + "/openssh.nix")
   ];
 
   core = [
+    options
     common.base
     common.console
   ];
@@ -62,9 +64,6 @@
       darwin
       darwin-hm
       darwinSecrets
-
-      # TODO: this is jank please make better... actually this whole thing is jank
-      (nixos.workstation + "/options.nix")
     ];
 
   isoModules = [

@@ -7,6 +7,5 @@
     ./home-manager.nix
     ./locale.nix
     ./nix.nix
-    ./options.nix
   ];
 }

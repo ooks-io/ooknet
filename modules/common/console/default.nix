@@ -10,7 +10,6 @@ in {
   imports = [
     ./shell
     ./profile
-    ./options.nix
   ];
 
   home-manager.users = mkIf admin.homeManager {

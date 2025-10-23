@@ -14,7 +14,7 @@ in {
       description = "The server profile the host will use as a base";
     };
     services = mkOption {
-      type = listOf (enum ["media-server" "website" "forgejo" "ookflix" "minecraft" "minecraft-proxy" "copyparty" "monitoring" "authelia"]);
+      type = listOf (enum ["media-server" "website" "forgejo" "ookflix" "minecraft" "minecraft-proxy" "copyparty" "monitoring" "authelia" "authentik"]);
       default = [];
       description = "List of services the server will host";
     };

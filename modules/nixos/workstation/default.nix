@@ -13,7 +13,6 @@
   ];
 in {
   imports = [
-    ./options.nix
     ./services
     ./programs
     ./gaming
