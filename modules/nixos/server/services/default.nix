@@ -6,6 +6,7 @@
     ./copyparty
     ./monitoring
     ./auth
+    ./authentik
     # ./minecraft
   ];
 }
