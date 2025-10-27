@@ -1,44 +1,24 @@
 {
-  withSystem,
-  ook,
-  ...
-}: let
-  inherit (ook.lib.builders) mkWorkstation;
-in {
-  flake = {
-    nixosConfigurations = {
-      ookst480s = mkWorkstation {
-        inherit withSystem;
-        system = "x86_64-linux";
-        hostname = "ookst480s";
-        type = "laptop";
-      };
-      ooksmicro = mkWorkstation {
-        inherit withSystem;
-        system = "x86_64-linux";
-        hostname = "ooksmicro";
-        type = "laptop";
-      };
-      ooksx1 = mkWorkstation {
-        inherit withSystem;
-        system = "x86_64-linux";
-        hostname = "ooksx1";
-        type = "laptop";
-      };
-      ooksdesk = mkWorkstation {
-        inherit withSystem;
-        system = "x86_64-linux";
-        hostname = "ooksdesk";
-        type = "desktop";
-      };
+  flake.ooknet.workstations = {
+    ookst480s = {
+      system = "x86_64-linux";
+      type = "laptop";
     };
-    darwinConfigurations = {
-      ooksair = mkWorkstation {
-        inherit withSystem;
-        system = "aarch64-darwin";
-        hostname = "ooksair";
-        type = "laptop";
-      };
+    ooksmicro = {
+      system = "x86_64-linux";
+      type = "laptop";
+    };
+    ooksx1 = {
+      system = "x86_64-linux";
+      type = "laptop";
+    };
+    ooksdesk = {
+      system = "x86_64-linux";
+      type = "desktop";
+    };
+    ooksair = {
+      system = "aarch64-darwin";
+      type = "laptop";
     };
   };
 }

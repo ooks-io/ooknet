@@ -1,36 +1,24 @@
-{
-  withSystem,
-  ook,
-  ...
-}: let
-  inherit (ook.lib.builders) mkServer;
-in {
-  flake.nixosConfigurations = {
-    ooknode = mkServer {
-      inherit withSystem;
+{...}: {
+  flake.ooknet.servers = {
+    ooknode = {
       system = "x86_64-linux";
-      hostname = "ooknode";
-      domain = "ooknet.org";
       type = "vm";
       profile = "linode";
+      domain = "ooknet.org";
       services = ["website" "forgejo"];
     };
-    ooksmedia = mkServer {
-      inherit withSystem;
+    ooksmedia = {
       system = "x86_64-linux";
-      hostname = "ooksmedia";
-      domain = "ooknet.org";
       type = "desktop";
+      domain = "ooknet.org";
       services = ["ookflix" "monitoring" "authentik"];
     };
-    ookstest = mkServer {
-      inherit withSystem;
+    ookstest = {
       system = "x86_64-linux";
-      hostname = "ookstest";
-      domain = "ooknet.org";
       type = "vm";
-      services = [];
       profile = "ookstest";
+      domain = "ooknet.org";
+      services = [];
     };
   };
 }

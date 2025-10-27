@@ -1,15 +1,7 @@
-{
-  withSystem,
-  ook,
-  ...
-}: let
-  inherit (ook.lib.builders) mkImage;
-in {
-  flake.nixosConfigurations = {
-    ooksinstall = mkImage {
-      inherit withSystem;
+{...}: {
+  flake.ooknet.images = {
+    ooksinstall = {
       system = "x86_64-linux";
-      hostname = "ooksinstall";
       type = "iso";
       role = "installer";
     };

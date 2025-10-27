@@ -74,11 +74,17 @@ in {
         profile = mkOption {
           type = nullOr str;
           default = null;
+          description = "Profile to use instead of hostname-based config";
         };
         type = mkOption {
-          type = enum ["iso" "installer"];
-          description = "Type of image (e.g., installer, iso)";
+          type = enum ["iso"];
+          description = "Image format type";
           example = "iso";
+        };
+        role = mkOption {
+          type = enum ["installer" "live"];
+          description = "Role of the image (installer or live)";
+          example = "installer";
         };
       };
     };

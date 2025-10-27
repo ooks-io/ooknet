@@ -7,8 +7,8 @@
   ooknetModules,
   ...
 }: let
-  inherit (lib) mapAttrs mkDefault filterAttrs;
-  inherit (builtins) concatLists singleton;
+  inherit (lib) mapAttrs mkDefault filterAttrs singleton;
+  inherit (builtins) concatLists;
   inherit (self) hozen ook;
   inherit (ooknetModules) nixosCore darwinCore common nixos hostModules;
 

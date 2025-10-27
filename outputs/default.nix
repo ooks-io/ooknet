@@ -2,6 +2,7 @@
   imports = [
     ./apps.nix
     ./lib
+    ./builder
     ./hozen
     ./hosts
     ./pkgs
