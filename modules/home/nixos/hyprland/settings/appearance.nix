@@ -1,10 +1,10 @@
 {
   osConfig,
-  hozen,
+  ook,
   ...
 }: let
   inherit (osConfig.ooknet.appearance) cursor;
-  inherit (hozen) color;
+  inherit (ook) color;
 in {
   wayland.windowManager.hyprland = {
     #plugins = [inputs'.hyprland-plugins.packages.borders-plus-plus];

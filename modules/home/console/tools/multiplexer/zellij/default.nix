@@ -2,12 +2,12 @@
   osConfig,
   config,
   lib,
-  hozen,
+  ook,
   self',
   pkgs,
   ...
 }: let
-  inherit (hozen) color;
+  inherit (ook) color;
   inherit (osConfig.ooknet) console;
   inherit (osConfig.ooknet.host) admin;
   inherit (lib) getExe mkIf;

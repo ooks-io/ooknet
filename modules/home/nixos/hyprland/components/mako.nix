@@ -1,12 +1,12 @@
 {
   osConfig,
-  hozen,
+  ook,
   lib,
   ...
 }: let
   inherit (osConfig.ooknet.appearance) fonts;
   inherit (osConfig.ooknet.workstation) environment;
-  inherit (hozen) color;
+  inherit (ook) color;
   inherit (lib) mkIf;
 in {
   config = mkIf (environment == "hyprland") {

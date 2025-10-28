@@ -1,6 +1,6 @@
 {
   lib,
-  hozen,
+  ook,
   osConfig,
   config,
   pkgs,
@@ -8,7 +8,7 @@
 }: let
   inherit (lib) mkIf mkMerge;
   inherit (pkgs.stdenv) isDarwin;
-  inherit (hozen) color;
+  inherit (ook) color;
   inherit (osConfig.ooknet.host) admin;
   inherit (osConfig.ooknet.appearance.fonts) monospace;
   inherit (osConfig.ooknet.workstation) default;

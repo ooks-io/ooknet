@@ -1,9 +1,9 @@
 {
   lib,
-  hozen,
+  ook,
   ...
 }: let
-  inherit (hozen) color;
+  inherit (ook) color;
 in {
   xdg.configFile."kdeglobals".text = lib.generators.toINI {} {
     "ColorEffects:Disabled" = {

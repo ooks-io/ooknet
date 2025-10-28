@@ -1,5 +1,5 @@
-{hozen, ...}: let
-  inherit (hozen) color;
+{ook, ...}: let
+  inherit (ook) color;
 in {
   vim.gruvbox-material = {
     enable = true;

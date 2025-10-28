@@ -1,7 +1,7 @@
 {
   inputs,
   lib,
-  hozen,
+  ook,
   ...
 }: {
   perSystem = {pkgs, ...}: let
@@ -25,7 +25,7 @@
       #caddy-with-cloudflare = callPackage ./caddy-with-cloudflare {};
       wii-u-gc-adapter = callPackage ./wii-u-gc-adapter {};
       ghostty-shaders = callPackage ./ghostty-shaders {};
-      ook-vim = callPackage ./ook-vim {inherit inputs pkgs lib hozen;};
+      ook-vim = callPackage ./ook-vim {inherit inputs pkgs lib ook;};
 
       inherit (projectPlus) fpp-config fpp-launcher fpp-sd;
       project-plus = projectPlus.package;

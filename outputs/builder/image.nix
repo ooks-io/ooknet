@@ -9,7 +9,7 @@
 }: let
   inherit (lib) mapAttrs mkDefault singleton optionals;
   inherit (builtins) concatLists;
-  inherit (self) hozen ook;
+  inherit (self) ook;
   inherit (ooknetModules) nixosMinimal isoModules nixos hostModules;
 
   buildImage = hostname: cfg:
@@ -21,7 +21,7 @@
       inputs.nixpkgs.lib.nixosSystem {
         specialArgs =
           {
-            inherit hozen ook inputs self inputs' self';
+            inherit ook inputs self inputs' self';
           }
           // cfg.additionalArgs;
 

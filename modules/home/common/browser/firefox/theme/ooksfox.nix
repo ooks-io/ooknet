@@ -1,9 +1,9 @@
 {
-  hozen,
+  ook,
   fonts,
   ...
 }: let
-  inherit (hozen) color;
+  inherit (ook) color;
 in
   #css
   ''

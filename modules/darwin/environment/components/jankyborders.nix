@@ -1,10 +1,10 @@
 {
   lib,
-  hozen,
+  ook,
   config,
   ...
 }: let
-  inherit (hozen) color;
+  inherit (ook) color;
   inherit (lib) mkIf;
   inherit (config.ooknet.workstation) environment;
 in {

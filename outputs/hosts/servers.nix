@@ -1,4 +1,4 @@
-{...}: {
+{
   flake.ooknet.servers = {
     ooknode = {
       system = "x86_64-linux";

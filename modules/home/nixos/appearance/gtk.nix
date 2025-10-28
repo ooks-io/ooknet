@@ -1,12 +1,12 @@
 {
   osConfig,
-  hozen,
+  ook,
   pkgs,
   ...
 }: let
   inherit (osConfig.ooknet.appearance) fonts;
 
-  gtkCss = import ./gtkCss.nix {inherit hozen;};
+  gtkCss = import ./gtkCss.nix {inherit ook;};
 in {
   config = rec {
     gtk = {

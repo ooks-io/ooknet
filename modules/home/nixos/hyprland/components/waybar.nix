@@ -2,11 +2,11 @@
   lib,
   pkgs,
   osConfig,
-  hozen,
+  ook,
   ...
 }: let
   inherit (osConfig.ooknet.appearance) fonts;
-  inherit (hozen) color;
+  inherit (ook) color;
   inherit (osConfig.ooknet.hardware) monitors;
   inherit (osConfig.ooknet.workstation) environment;
   inherit (lib) mkIf head elem;

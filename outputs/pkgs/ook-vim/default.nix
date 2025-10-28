@@ -1,12 +1,12 @@
 {
   inputs,
   pkgs,
-  hozen,
+  ook,
   ...
 }: let
   ooks-vim = inputs.nvf.lib.neovimConfiguration {
     inherit pkgs;
-    extraSpecialArgs = {inherit inputs hozen;};
+    extraSpecialArgs = {inherit inputs ook;};
     modules = [
       ./config
       ./modules

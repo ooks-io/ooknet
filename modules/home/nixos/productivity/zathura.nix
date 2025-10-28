@@ -1,13 +1,13 @@
 {
   lib,
   osConfig,
-  hozen,
+  ook,
   ...
 }: let
   inherit (lib) mkIf elem;
   inherit (osConfig.ooknet.appearance) fonts;
   inherit (osConfig.ooknet.workstation) profiles;
-  inherit (hozen) color;
+  inherit (ook) color;
 
   zathuraMime = {"application/pdf" = ["org.pwmt.zathura.desktop"];};
 in {

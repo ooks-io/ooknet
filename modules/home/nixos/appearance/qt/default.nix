@@ -1,10 +1,10 @@
 {
   pkgs,
-  hozen,
+  ook,
   lib,
   ...
 }: let
-  inherit (hozen) color;
+  inherit (ook) color;
   mkKvconig = text: lib.generators.toINI {} text;
   kvantumSVG = import ./gruv.nix {inherit color;};
 

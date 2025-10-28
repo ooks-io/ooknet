@@ -1,9 +1,8 @@
 {
   imports = [
     ./apps.nix
-    ./lib
+    ./ook
     ./builder
-    ./hozen
     ./hosts
     ./pkgs
     ./images.nix

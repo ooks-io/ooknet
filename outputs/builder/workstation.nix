@@ -9,7 +9,7 @@
 }: let
   inherit (lib) mapAttrs mkDefault filterAttrs singleton;
   inherit (builtins) concatLists;
-  inherit (self) hozen ook;
+  inherit (self) ook;
   inherit (ooknetModules) nixosCore darwinCore common nixos hostModules;
 
   buildWorkstation = hostname: cfg:
@@ -33,7 +33,7 @@
       mkSystem {
         specialArgs =
           {
-            inherit hozen ook inputs self inputs' self';
+            inherit ook inputs self inputs' self';
           }
           // cfg.additionalArgs;
 

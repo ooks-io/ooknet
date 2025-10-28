@@ -3,7 +3,7 @@
   pkgs,
   config,
   lib,
-  hozen,
+  ook,
   self',
   ...
 }: let
@@ -13,7 +13,7 @@
   inherit (osConfig.ooknet.workstation) profiles;
   inherit (osConfig.age.secrets) spotify_key;
   inherit (config.ooknet) binds;
-  inherit (hozen) color;
+  inherit (ook) color;
 in {
   config = mkIf (elem "media" profiles) {
     home.packages = attrValues {

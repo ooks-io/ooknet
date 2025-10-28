@@ -4,13 +4,13 @@
   inputs',
   config,
   osConfig,
-  hozen,
+  ook,
   inputs,
   ...
 }: let
   inherit (lib) mkIf mkMerge;
   inherit (osConfig.ooknet.appearance) fonts;
-  inherit (hozen) color;
+  inherit (ook) color;
   inherit (osConfig.ooknet.workstation) default;
   inherit (pkgs.stdenv) isDarwin;
 

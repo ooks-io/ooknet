@@ -1,5 +1,5 @@
-{ook, ...}: let
-  inherit (ook.lib.color.utils) mkLightColorScheme mkDarkColorScheme;
+{ook-lib, ...}: let
+  inherit (ook-lib.color.utils) mkLightColorScheme mkDarkColorScheme;
 
   darkScheme = mkDarkColorScheme {
     slug = "gruvbox-material-dark-medium";
@@ -72,12 +72,10 @@
     pink = "925d66"; # contrast 4.6
     brown = "654735"; # contrast 7.31
   };
-  style = {
-    color = darkScheme;
-    light.color = lightScheme;
-    dark.color = darkScheme;
-  };
 in {
-  _module.args.hozen = style;
-  flake.hozen = style;
+  color = darkScheme;
+  themes = {
+    dark = darkScheme;
+    light = lightScheme;
+  };
 }

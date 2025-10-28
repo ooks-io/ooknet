@@ -3,10 +3,10 @@
   config,
   inputs',
   osConfig,
-  hozen,
+  ook,
   ...
 }: let
-  inherit (hozen) color;
+  inherit (ook) color;
   inherit (lib) optionalAttrs mapAttrs' nameValuePair mkIf mkOption;
   inherit (lib.types) nullOr lines submodule str attrsOf;
 

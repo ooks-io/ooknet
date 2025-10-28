@@ -5,7 +5,6 @@
   self',
   lib,
   config,
-  hozen,
   ook,
   pkgs,
   ...
@@ -43,7 +42,7 @@ in {
       useUserPackages = true;
       backupFileExtension = "hm.old";
       verbose = true;
-      extraSpecialArgs = {inherit ook hozen inputs inputs' self self';};
+      extraSpecialArgs = {inherit ook inputs inputs' self self';};
       users =
         (optionalAttrs admin.homeManager (mkHomeUser admin.name))
         // (optionalAttrs guest.homeManager (mkHomeUser guest.name));
