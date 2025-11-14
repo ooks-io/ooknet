@@ -14,10 +14,11 @@
   commonPackages = attrValues {
     inherit
       (pkgs)
+      yt-dlp
       claude-code
       bc
       duf
-      du-dust
+      dust
       fd
       ripgrep
       zip
