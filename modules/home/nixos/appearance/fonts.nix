@@ -15,7 +15,7 @@ in {
 
       pkgs.noto-fonts
       pkgs.noto-fonts-cjk-sans
-      pkgs.noto-fonts-emoji
+      pkgs.noto-fonts-color-emoji
       pkgs.nerd-fonts.symbols-only
     ]
     ++ optionals (monospace.fallback != null) [monospace.fallback.package];
