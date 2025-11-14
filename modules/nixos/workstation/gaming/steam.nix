@@ -10,7 +10,7 @@ in {
   config = mkIf (elem "gaming" profiles) {
     programs.steam = {
       enable = true;
-      package = pkgs.steam-small;
+      package = pkgs.steam;
       protontricks.enable = true;
       extraCompatPackages = [pkgs.proton-ge-bin];
     };
