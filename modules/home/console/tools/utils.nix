@@ -1,5 +1,6 @@
 {
   pkgs,
+  inputs',
   lib,
   osConfig,
   self',
@@ -15,7 +16,6 @@
     inherit
       (pkgs)
       yt-dlp
-      claude-code
       bc
       duf
       dust
@@ -40,10 +40,12 @@
       ;
 
     # AI tools
+
     inherit
       (self'.packages)
       repomix
       goki
+      claude-code
       ;
   };
 

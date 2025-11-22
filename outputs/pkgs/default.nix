@@ -5,7 +5,7 @@
   ...
 }: {
   perSystem = {pkgs, ...}: let
-    inherit (pkgs) callPackage qt6Packages;
+    inherit (pkgs) callPackage qt6Packages writeTextFile;
 
     projectPlus = {
       fpp-config = callPackage ./project-plus/fpp-config.nix {};
@@ -14,6 +14,11 @@
       package = qt6Packages.callPackage ./project-plus {
         inherit (projectPlus) fpp-config;
       };
+    };
+
+    colorSchemeScss = writeTextFile {
+      name = "colors.scss";
+      text = ook.lib.color.export.toScss ook.color;
     };
   in {
     packages = {
@@ -29,6 +34,11 @@
 
       inherit (projectPlus) fpp-config fpp-launcher fpp-sd;
       project-plus = projectPlus.package;
+
+      # Color scheme exports
+      color-scheme-scss = colorSchemeScss;
+
+      claude-code = callPackage ./claude-code {};
 
       # disable spotify-player images due to jank with zellij
       # put it here so it gets cached

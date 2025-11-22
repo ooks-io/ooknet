@@ -23,8 +23,9 @@
         inherit (ook-lib) math;
         inherit check types translate;
       };
+      export = import ./lib/color/export.nix {inherit lib;};
     in {
-      inherit check types translate utils;
+      inherit check types translate utils export;
     };
   };
   color = import ./color.nix {inherit ook-lib;};
