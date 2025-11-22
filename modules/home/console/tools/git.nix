@@ -12,7 +12,6 @@ in {
   config = mkIf cfg.enable {
     programs.git = {
       enable = true;
-      package = pkgs.gitAndTools.gitFull;
       userName = admin.gitName;
       userEmail = admin.gitEmail;
       ignores = [".direnv" "result"];
