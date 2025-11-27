@@ -8,7 +8,8 @@
 in {
   config = mkIf (elem "gaming" profiles) {
     programs.ns-usbloader = {
-      enable = true;
+      # FIXME: https://github.com/NixOS/nixpkgs/issues/461543
+      enable = false;
     };
   };
 }
