@@ -14,8 +14,8 @@ in {
       extraPackages = attrValues {
         inherit
           (pkgs)
-          vaapiIntel
-          vaapiVdpau
+          intel-vaapi-driver
+          libva-vdpau-driver
           libvdpau-va-gl
           intel-compute-runtime
           intel-media-driver
@@ -24,8 +24,8 @@ in {
       extraPackages32 = attrValues {
         inherit
           (pkgs.pkgsi686Linux)
-          vaapiIntel
-          vaapiVdpau
+          intel-vaapi-driver
+          libva-vdpau-driver
           libvdpau-va-gl
           intel-media-driver
           ;
