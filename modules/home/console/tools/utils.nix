@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs',
   lib,
   osConfig,
   self',
@@ -26,7 +25,6 @@
       rsync
       wget
       httpie
-      diffsitter
       jq
       tldr
       progress
