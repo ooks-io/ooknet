@@ -13,9 +13,10 @@ in {
     };
     xdg.configFile."hypr/hyprpaper.conf".text = ''
       preload = ${wallpaperPath}
-      wallpaper = , ${wallpaperPath}
-      splash = false
-      ipc = off
+      wallpaper {
+        monitor =
+        path = ${wallpaperPath}
+      }
     '';
   };
 }
