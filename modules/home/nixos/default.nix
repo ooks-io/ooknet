@@ -7,6 +7,7 @@
     ./productivity
     ./creative
     ./gaming
+    ./work
     ./userDirs.nix
     ./mimeApps.nix
   ];
