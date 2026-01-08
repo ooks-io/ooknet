@@ -35,6 +35,7 @@
       gum
       nvd
       nix-output-monitor
+      claude-code
       ;
 
     # AI tools
@@ -43,7 +44,6 @@
       (self'.packages)
       repomix
       goki
-      claude-code
       ;
   };
 
