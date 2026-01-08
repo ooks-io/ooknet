@@ -1,5 +1,4 @@
 {
-  lib,
   buildNpmPackage,
   fetchzip,
   writableTmpDirAsHomeHook,
@@ -7,14 +6,14 @@
 }:
 buildNpmPackage (finalAttrs: {
   pname = "claude-code";
-  version = "2.0.42";
+  version = "2.1.1";
 
   src = fetchzip {
     url = "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-${finalAttrs.version}.tgz";
-    hash = "sha256-Xn1h9Phw4FLrF0EfrY5MLA0RnOuA6Dk+PWqP7fN1DUU=";
+    hash = "sha256-GZIh20GyhsXaAm13veg2WErT4rF9a1x8Dzr9q5Al0io=";
   };
 
-  npmDepsHash = "sha256-lM1BpuRSH7M5R2FoogMCoQLC+opgN5+LcwW2/5VF+ds=";
+  npmDepsHash = "sha256-zx81gB3CpKzqBnMJaVHunDVHYL3JI7ty3NJxQCVMAzg=";
 
   postPatch = ''
     cp ${./package-lock.json} package-lock.json
@@ -39,7 +38,6 @@ buildNpmPackage (finalAttrs: {
     versionCheckHook
   ];
   versionCheckKeepEnvironment = ["HOME"];
-  versionCheckProgramArg = "--version";
 
   passthru.updateScript = ./update.sh;
 
