@@ -12,8 +12,10 @@ in {
   config = mkIf cfg.enable {
     programs.git = {
       enable = true;
-      userName = admin.gitName;
-      userEmail = admin.gitEmail;
+      user = {
+        name = admin.gitName;
+        email = admin.gitEmail;
+      };
       ignores = [".direnv" "result"];
       lfs.enable = true;
     };
