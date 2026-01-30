@@ -24,7 +24,7 @@
     workstation = {
       environment = "hyprland";
       theme = "minimal";
-      profiles = ["creative" "virtualization" "gaming" "media" "communication" "productivity" "infra"];
+      profiles = ["creative" "virtualization" "gaming" "media" "communication" "productivity" "infra" "work"];
       default = {
         browser = "zen";
         terminal = "foot";
