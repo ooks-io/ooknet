@@ -20,7 +20,7 @@ in {
       # media streaming server
       # docs: <https://docs.linuxserver.io/images/docker-jellyfin/>
       jellyfin = {
-        image = "lscr.io/linuxserver/jellyfin:10.10.7";
+        image = "lscr.io/linuxserver/jellyfin:10.11.5";
         autoStart = true;
         hostname = "jellyfin";
         ports = [(mkContainerPort jellyfin.port)];
