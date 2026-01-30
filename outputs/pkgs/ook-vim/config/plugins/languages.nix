@@ -1,5 +1,10 @@
 {
   vim.languages = {
+    powershell = {
+      enable = true;
+      lsp.enable = true;
+      treesitter.enable = true;
+    };
     astro = {
       enable = true;
       extraDiagnostics.enable = true;
@@ -42,11 +47,11 @@
       treesitter.enable = true;
       lsp = {
         enable = true;
-        server = "tinymist";
+        servers = ["tinymist"];
       };
       format = {
         enable = true;
-        type = "typstyle";
+        type = ["typstyle"];
       };
       extensions.typst-preview-nvim = {
         enable = true;
@@ -92,11 +97,11 @@
       extraDiagnostics.enable = true;
       format = {
         enable = true;
-        type = "alejandra";
+        type = ["alejandra"];
       };
       lsp = {
         enable = true;
-        server = "nil";
+        server = ["nil"];
       };
       treesitter.enable = true;
     };

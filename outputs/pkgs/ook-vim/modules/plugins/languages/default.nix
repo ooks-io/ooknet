@@ -1,1 +1,6 @@
-{imports = [./markdown.nix];}
+{
+  imports = [
+    ./markdown.nix
+    ./powershell.nix
+  ];
+}
