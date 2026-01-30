@@ -35,7 +35,7 @@
     upower.enable = true;
     thermald.enable = true;
     power-profiles-daemon.enable = false;
-    logind.HandleLidSwitch = "suspend";
+    logind.settings.Login.HandleLidSwitch = "suspend";
   };
   powerManagement.powertop.enable = true;
   hardware.cpu.intel.updateMicrocode = true;

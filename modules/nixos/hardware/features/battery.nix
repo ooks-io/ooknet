@@ -30,7 +30,7 @@ in {
       # we are most likely using a laptop
       # lidSwitch defines the action to perform when the laptop lid is
       # closed
-      logind = {lidSwitch = "suspend";};
+      logind.settings.Login.HandleLidSwitch = "suspend";
     };
     boot = {
       kernelModules = ["acpi_call"];
