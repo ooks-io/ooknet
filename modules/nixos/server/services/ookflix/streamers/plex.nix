@@ -9,7 +9,7 @@
   inherit (ookflixLib) mkServiceUser mkServiceStateDir;
   inherit (lib) mkIf optionalAttrs;
   inherit (ook.lib.container) mkContainerLabel mkContainerEnvironment mkContainerPort;
-  inherit (config.ooknet.server.ookflix) gpuAcceleration services volumes groups;
+  inherit (config.ooknet.server.ookflix) gpuAcceleration volumes groups;
   inherit (config.ooknet.server.ookflix.services) plex;
 in {
   config = mkIf plex.enable {

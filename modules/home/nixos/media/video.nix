@@ -1,7 +1,6 @@
 {
   lib,
   osConfig,
-  pkgs,
   ...
 }: let
   inherit (lib) elem mkIf;

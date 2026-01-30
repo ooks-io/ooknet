@@ -1,10 +1,7 @@
 {
-  lib,
-  config,
   pkgs,
   ...
 }: let
-  inherit (lib) mkIf;
   discordify = pkgs.writeShellApplication {
     name = "discordify";
     runtimeInputs = [pkgs.ffmpeg pkgs.bc pkgs.gum];

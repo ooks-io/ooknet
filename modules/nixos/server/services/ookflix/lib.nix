@@ -86,12 +86,7 @@
         else throw "Invalid VolumeOption rootPath: ${rootPath}. Must be one of 'state' 'data' 'media' 'torrents' 'usenet' 'usenet/complete' 'root'";
     };
 
-  mkServiceOptions = name: {
-    port,
-    gid,
-    uid,
-    ...
-  } @ args: {
+  mkServiceOptions = name: {...} @ args: {
     enable = mkEnableOption "Enable ${name} container" // {default = ookflixEnabled;};
     port = mkPortOption args.port "Port for ${name} container." 80;
     domain = mkSubdomainOption name "Domain for ${name} container." "${name}.mydomain.com";
@@ -99,11 +94,7 @@
     user = mkUserOption name args.uid;
     group = mkGroupOption name args.gid;
   };
-  mkBasicServiceOptions = name: {
-    gid,
-    uid,
-    ...
-  } @ args: {
+  mkBasicServiceOptions = name: {...} @ args: {
     enable = mkEnableOption "Enable ${name} container" // {default = ookflixEnabled;};
     user = mkUserOption name args.uid;
     group = mkGroupOption name args.gid;

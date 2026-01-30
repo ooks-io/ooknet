@@ -1,9 +1,7 @@
 {
   lib,
-  config,
   ...
 }: let
-  inherit (config.services) forgejo;
   inherit (lib) mkEnableOption mkOption;
   inherit (lib.types) str;
   mkColorOption = description:
