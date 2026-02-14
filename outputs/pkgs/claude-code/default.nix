@@ -1,19 +1,24 @@
 {
+  lib,
+  stdenv,
   buildNpmPackage,
   fetchzip,
-  writableTmpDirAsHomeHook,
   versionCheckHook,
+  writableTmpDirAsHomeHook,
+  bubblewrap,
+  procps,
+  socat,
 }:
 buildNpmPackage (finalAttrs: {
   pname = "claude-code";
-  version = "2.1.1";
+  version = "2.1.20";
 
   src = fetchzip {
     url = "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-${finalAttrs.version}.tgz";
-    hash = "sha256-GZIh20GyhsXaAm13veg2WErT4rF9a1x8Dzr9q5Al0io=";
+    hash = "sha256-V2BIqUUJnQpjIsCAAk932L8wp5T74s22q3KgFoxfdDg=";
   };
 
-  npmDepsHash = "sha256-zx81gB3CpKzqBnMJaVHunDVHYL3JI7ty3NJxQCVMAzg=";
+  npmDepsHash = "sha256-X8j7httM9qMpAPR11oDAWwDpkxZ2bc20y6ruMoStMsQ=";
 
   postPatch = ''
     cp ${./package-lock.json} package-lock.json
@@ -29,7 +34,21 @@ buildNpmPackage (finalAttrs: {
   postInstall = ''
     wrapProgram $out/bin/claude \
       --set DISABLE_AUTOUPDATER 1 \
-      --unset DEV
+      --set DISABLE_INSTALLATION_CHECKS 1 \
+      --unset DEV \
+      --prefix PATH : ${
+      lib.makeBinPath (
+        [
+          # claude-code uses [node-tree-kill](https://github.com/pkrumins/node-tree-kill) which requires procps's pgrep(darwin) or ps(linux)
+          procps
+        ]
+        # the following packages are required for the sandbox to work (Linux only)
+        ++ lib.optionals stdenv.hostPlatform.isLinux [
+          bubblewrap
+          socat
+        ]
+      )
+    }
   '';
 
   doInstallCheck = true;
