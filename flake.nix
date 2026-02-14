@@ -95,6 +95,13 @@
       };
     };
 
+    nix-citizen = {
+      url = "github:LovingMelody/nix-citizen";
+      inputs.nix-gaming.follows = "nix-gaming";
+    };
+
+    nix-gaming.url = "github:fufexan/nix-gaming";
+
     copyparty = {
       url = "github:9001/copyparty";
       inputs.flake-utils.follows = "flake-utils";

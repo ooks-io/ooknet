@@ -5,5 +5,6 @@
     ./switch.nix
     ./emulation.nix
     ./esync.nix
+    ./starcitizen.nix
   ];
 }
