@@ -3,12 +3,12 @@
   appimageTools,
   fetchurl,
 }: let
-  version = "2.21.0-beta.3";
-  pname = "wowup-cf";
+  version = "2.22.1-beta.2";
+  pname = "wowup";
 
   src = fetchurl {
-    url = "https://github.com/WowUp/WowUp.CF/releases/download/v${version}/WowUp-CF-${version}.AppImage";
-    hash = "sha256-6UN5YMahrmKBxIjMDyWz2MNLJTxYxnuhR/Y2CYf+eZE=";
+    url = "https://github.com/WowUp/WowUp/releases/download/v${version}/WowUp-${version}.AppImage";
+    hash = "sha256-z1HGPSNXOAK2YJE1g1dKx0PYNrIaHdp3ID2UU9SYkC0=";
   };
 
   appimageContents = appimageTools.extractType1 {inherit pname version src;};
