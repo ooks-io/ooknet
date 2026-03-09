@@ -18,8 +18,8 @@ in {
 
     # Add XDG user directories that the scripts use
     xdg.userDirs.extraConfig = {
-      XDG_RECORDINGS_DIR = "${config.xdg.userDirs.videos}/Recordings";
-      XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
+      RECORDINGS = "${config.xdg.userDirs.videos}/Recordings";
+      SCREENSHOTS = "${config.xdg.userDirs.pictures}/Screenshots";
     };
 
     wayland.windowManager.hyprland.settings.bind = [

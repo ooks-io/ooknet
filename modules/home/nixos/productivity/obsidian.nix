@@ -10,7 +10,7 @@
   # admin = osConfig.ooknet.host.admin;
   # TODO: use admin.githubUsername
   notesRepo = "git@github.com:ooks-io/notes.git";
-  notesPath = "${config.xdg.userDirs.extraConfig.XDG_NOTES_DIR}";
+  notesPath = "${config.xdg.userDirs.extraConfig.NOTES}";
 in {
   config = mkIf (elem "productivity" profiles) {
     home.packages = [pkgs.obsidian];

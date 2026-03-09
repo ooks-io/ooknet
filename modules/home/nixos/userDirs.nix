@@ -17,10 +17,10 @@
       videos = "${summit}/Media/Videos";
       pictures = "${summit}/Media/Pictures";
       extraConfig = {
-        XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
-        XDG_CODE_DIR = "${summit}/code";
-        XDG_RECORDINGS_DIR = "${config.xdg.userDirs.videos}/Recordings";
-        XDG_NOTES_DIR = "${summit}/notes";
+        SCREENSHOTS = "${config.xdg.userDirs.pictures}/Screenshots";
+        CODE = "${summit}/code";
+        RECORDINGS = "${config.xdg.userDirs.videos}/Recordings";
+        NOTES = "${summit}/notes";
       };
     };
   };
