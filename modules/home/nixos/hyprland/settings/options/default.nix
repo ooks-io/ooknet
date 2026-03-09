@@ -26,7 +26,6 @@
     oneOf
     ;
 
-  # our cursed regex types
   hyprland = import ./rules.nix {inherit lib;};
 
   _toString = type: val:
@@ -37,22 +36,27 @@
         if val
         then "1"
         else "0"
-      else boolToString val # for workspace rules
+      else boolToString val
     else toString val;
 
-  # format rules for hyprland
-  formatRules = type: rule:
-    concatStringsSep "," (
-      mapAttrsToList (name: value: "${name}:${_toString type value}")
+  # format match props for window rules: match:name value
+  formatWindowMatches = rule:
+    concatStringsSep ", " (
+      mapAttrsToList (name: value: "match:${name} ${_toString "windowrule" value}")
       (filterAttrs (_: v: v != null) rule)
     );
 
-  # workspace handling
+  # format props for workspace rules: name:value
+  formatWorkspaceRules = rule:
+    concatStringsSep "," (
+      mapAttrsToList (name: value: "${name}:${_toString "workspacerule" value}")
+      (filterAttrs (_: v: v != null) rule)
+    );
+
   mkWorkspaces = mapAttrsToList (
-    selector: rules: "${selector},${formatRules "workspacerule" rules}"
+    selector: rules: "${selector},${formatWorkspaceRules rules}"
   );
 
-  # rule options
   mkRuleOption = type: description:
     mkOption {
       type = nullOr type;
@@ -60,22 +64,28 @@
       inherit description;
     };
 
-  # window rule matchers
   windowRuleMatchers = submodule {
     options = {
       class = mkRuleOption str "Window class matcher";
       title = mkRuleOption str "Window title matcher";
-      initialClass = mkRuleOption str "Initial window class matcher";
-      initialTitle = mkRuleOption str "Initial window title matcher";
+      initial_class = mkRuleOption str "Initial window class matcher";
+      initial_title = mkRuleOption str "Initial window title matcher";
       tag = mkRuleOption str "Window tag matcher";
       xwayland = mkRuleOption bool "Match XWayland windows";
-      floating = mkRuleOption bool "Match floating windows";
+      float = mkRuleOption bool "Match floating windows";
       fullscreen = mkRuleOption bool "Match fullscreen windows";
       workspace = mkRuleOption str "Match windows on specific workspace";
+      pin = mkRuleOption bool "Match pinned windows";
+      focus = mkRuleOption bool "Match focused windows";
+      group = mkRuleOption bool "Match grouped windows";
+      modal = mkRuleOption bool "Match modal windows";
+      fullscreen_state_client = mkRuleOption int "Match fullscreen state client";
+      fullscreen_state_internal = mkRuleOption int "Match fullscreen state internal";
+      content = mkRuleOption str "Match content type";
+      xdg_tag = mkRuleOption str "Match XDG tag";
     };
   };
 
-  # Workspace rules submodule
   workspaceRules = submodule {
     options = {
       name = mkRuleOption str "Default name of workspace";
@@ -93,20 +103,17 @@
     };
   };
 
-  # Window rules type using our validated types from rules.nix
   windowRuleType = listOf (oneOf (attrValues hyprland.types));
 
   cfg = config.wayland.windowManager.hyprland;
 in {
   options.wayland.windowManager.hyprland = {
-    # Workspace configuration
     workspaces = mkOption {
       type = attrsOf workspaceRules;
       default = {};
       description = "Workspace-specific configurations";
     };
 
-    # Window rules configuration
     windowRules = mkOption {
       type = listOf (submodule {
         options = {
@@ -127,11 +134,10 @@ in {
 
   config.wayland.windowManager.hyprland.settings = {
     workspace = mkWorkspaces cfg.workspaces;
-    windowrulev2 = let
-      # Convert rules to Hyprland format
+    windowrule = let
       formatWindowRule = rule: let
-        matches = formatRules "windowrule" rule.matches;
-        rules = map (r: "${r},${matches}") rule.rules;
+        matches = formatWindowMatches rule.matches;
+        rules = map (r: "${r}, ${matches}") rule.rules;
       in
         rules;
     in

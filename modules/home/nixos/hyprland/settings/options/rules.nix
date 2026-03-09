@@ -1,6 +1,6 @@
 {lib, ...}: let
   inherit (lib) concatStringsSep attrValues;
-  inherit (lib.types) enum strMatching;
+  inherit (lib.types) strMatching;
 
   # helper function for constructing regex patterns for hyprland rules
   mkRegexTarget = {
@@ -17,69 +17,53 @@
   in
     strMatching "${name}${parameterPart}${extraRegex}";
 
-  # basic windowrules that can be validated with simple enum
-
-  basicWindowRules = enum [
+  toggleableRules = [
     "float"
     "tile"
     "fullscreen"
     "maximize"
     "pseudo"
-    "noinitialfocus"
+    "no_initial_focus"
     "pin"
-    "unset"
-    "nomaxsize"
-    "stayfocused"
+    "decorate"
+    "no_blur"
+    "no_anim"
+    "no_dim"
+    "opaque"
+    "force_rgbx"
+    "xray"
+    "immediate"
+    "dim_around"
+    "focus_on_activate"
+    "no_focus"
+    "stay_focused"
+    "keep_aspect_ratio"
+    "nearest_neighbor"
+    "no_max_size"
+    "no_shortcuts_inhibit"
+    "allows_input"
+    "render_unfocused"
+    "sync_fullscreen"
+    "no_shadow"
+    "center"
+    "persistent_size"
+    "no_follow_mouse"
+    "no_screen_share"
+    "no_vrr"
   ];
 
-  # toggleable options
-  toggleableRules = [
-    # window decoration
-    "decorate" # window decorations
-    "noborder" # borders
-    "noshadow" # shadows
-    "norounding" # corner rounding
-
-    # Visual effects
-    "noblur" # blur
-    "noanim" # animations
-    "nodim" # dimming
-    "opaque" # opacity enforcement
-    "forcergbx" # RGB handling
-    "xray" # blur xray mode
-    "immediate" # tearing mode
-
-    # Behavior
-    "dimaround" # dim around window
-    "focusonactivate" # focus on activation request
-    "nofocus" # disable focus
-    "stayfocused" # keep focus
-    "keepaspectratio" # maintain aspect ratio
-    "nearestneighbor" # nearest neighbor filtering
-    "nomaxsize" # disable max size
-    "noshortcutsinhibit" # shortcut inhibiting
-    "allowsinput" # XWayland input forcing
-    "renderunfocused" # unfocused rendering
-    "syncfullscreen" # fullscreen sync
-  ];
-
-  # reusable regex pattens to be used in constructing our types
   patterns = {
-    # toggles
-    onOpt = "1|true|on|yes|0|salse|off|no|toggle|unset";
+    onOpt = "1|true|on|yes|0|false|off|no|toggle|unset";
 
-    # numbers
     float = "[+-]?([0-9]*[.])?[0-9]+";
     int = "[0-9]+";
     alpha = ''(0|0?\.[[:digit:]]+|1|1\.0)'';
     percentage = "[0-9]+(%)?";
 
-    # position
     anchor = "100%-w?-[0-9]+";
     coordinate = "${patterns.percentage}|${patterns.anchor}";
     deg = "(0-360)";
 
-    # identification
     numericId = "[1-9][0-9]*";
     sign = "[+-]";
     relative = "${patterns.sign}${patterns.numericId}";
@@ -94,7 +78,6 @@
     previous = "previous(_per_monitor)?";
     openWorkspace = "e(${patterns.sign}${patterns.numericId}|~${patterns.numericId})";
 
-    # colors
     rgbValue = ''([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])'';
     rgbaHex = ''rgba\([[:xdigit:]]{8}\)'';
     rgbaDecimal = ''rgba\(${patterns.rgbValue}, *${patterns.rgbValue}, *${patterns.rgbValue}, *${patterns.alpha}\)'';
@@ -123,11 +106,8 @@
     })
     toggleableRules);
 
-  # regex patterns to pass to the workspace rule
-
   types =
     {
-      inherit basicWindowRules;
       workspace = mkRegexTarget {
         name = "workspace";
         regex = attrValues {
@@ -164,13 +144,13 @@
         ];
       };
 
-      bordercolor = mkRegexTarget {
-        name = "bordercolor";
+      border_color = mkRegexTarget {
+        name = "border_color";
         regex = [patterns.color];
       };
 
-      idleinhibit = mkRegexTarget {
-        name = "idleinhibit";
+      idle_inhibit = mkRegexTarget {
+        name = "idle_inhibit";
         regex = [patterns.mode];
       };
 
@@ -185,19 +165,13 @@
         ];
       };
 
-      center = mkRegexTarget {
-        name = "center";
-        regex = ["[0-1]"];
-        optional = true;
-      };
-
-      roundingpower = mkRegexTarget {
-        name = "roundingpower";
+      rounding_power = mkRegexTarget {
+        name = "rounding_power";
         regex = [patterns.float];
       };
 
-      bordersize = mkRegexTarget {
-        name = "bordersize";
+      border_size = mkRegexTarget {
+        name = "border_size";
         regex = [patterns.int];
       };
 
@@ -206,13 +180,13 @@
         regex = [patterns.int];
       };
 
-      scrollmouse = mkRegexTarget {
-        name = "scrollmouse";
+      scroll_mouse = mkRegexTarget {
+        name = "scroll_mouse";
         regex = [patterns.float];
       };
 
-      scrolltouchpad = mkRegexTarget {
-        name = "scrolltouchpad";
+      scroll_touchpad = mkRegexTarget {
+        name = "scroll_touchpad";
         regex = [patterns.float];
       };
 
@@ -221,18 +195,39 @@
         regex = [''[+-]?[[:alnum:]_]+\*?''];
       };
 
-      maxsize = mkRegexTarget {
-        name = "maxsize";
+      max_size = mkRegexTarget {
+        name = "max_size";
         regex = ["${patterns.int} ${patterns.int}"];
       };
 
-      minsize = mkRegexTarget {
-        name = "minsize";
+      min_size = mkRegexTarget {
+        name = "min_size";
         regex = ["${patterns.int} ${patterns.int}"];
       };
+
       animation = mkRegexTarget {
         name = "animation";
         regex = ["(slide)( (left|right|up|down|top|bottom))?|(popin)( ([0-9]+%))?"];
+      };
+
+      fullscreen_state = mkRegexTarget {
+        name = "fullscreen_state";
+        regex = ["[0-3] [0-3]"];
+      };
+
+      suppress_event = mkRegexTarget {
+        name = "suppress_event";
+        regex = ["[a-z_]+( [a-z_]+)*"];
+      };
+
+      content = mkRegexTarget {
+        name = "content";
+        regex = ["none|photo|video|game"];
+      };
+
+      no_close_for = mkRegexTarget {
+        name = "no_close_for";
+        regex = [patterns.int];
       };
     }
     // toggleTargets;
