@@ -16,7 +16,7 @@ in {
         protontricks
         protonup-qt
         ;
-      inherit (pkgs.wineWowPackages) waylandFull;
+      inherit (pkgs.wineWow64Packages) waylandFull;
     };
   };
 }

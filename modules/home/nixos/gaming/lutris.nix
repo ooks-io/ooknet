@@ -16,7 +16,7 @@ in {
       protonPackages = [pkgs.proton-ge-bin];
       winePackages = [
         pkgs.wineWow64Packages.full
-        pkgs.wineWowPackages.stagingFull
+        pkgs.wineWow64Packages.stagingFull
       ];
       extraPackages = attrValues {
         inherit
