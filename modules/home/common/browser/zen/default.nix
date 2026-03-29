@@ -69,7 +69,7 @@ in {
 
     (mkIf (default.browser == "zen" && !isDarwin) {
       home.sessionVariables.BROWSER = "zen";
-      ooknet.binds.browser = "zen";
+      ooknet.binds.browser = "zen-beta";
       xdg.mimeApps = {
         associations.added = zenMime;
         defaultApplications = zenMime;
