@@ -13,7 +13,7 @@ in {
       serviceConfig = {
         Type = "oneshot";
         RemainAfterExit = true;
-        ExecStart = "${getExe podman.package} network create -d bridge authentik";
+        ExecStart = "${getExe podman.package} network create --ignore -d bridge authentik";
         ExecStop = "${getExe podman.package} network rm -f authentik";
       };
       wantedBy = ["multi-user.target"];
