@@ -12,7 +12,7 @@ in {
   ];
   config = mkIf (elem "gaming" profiles) {
     programs.rsi-launcher = {
-      enable = true;
+      enable = false;
     };
   };
 }
