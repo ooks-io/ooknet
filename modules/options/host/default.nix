@@ -55,6 +55,7 @@ in {
       enable = mkEnableOption "Enable syncthing";
     };
 
+
     # mapping deploy-rs options
     deployment = {
       enable = mkEnableOption "Enable remote deployment";

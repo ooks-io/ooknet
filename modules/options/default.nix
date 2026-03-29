@@ -5,6 +5,7 @@
     ./server
     ./workstation
     ./hardware
+    ./system
     ./virtualization
   ];
 }
