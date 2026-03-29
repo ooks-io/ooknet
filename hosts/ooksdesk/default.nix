@@ -9,6 +9,7 @@
   ];
 
   ooknet = {
+    system.earlyoom.enable = true;
     host = {
       deployment = {
         enable = true;

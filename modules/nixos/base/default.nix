@@ -4,9 +4,8 @@
     ./openssh.nix
     ./tailscale.nix
     ./networking.nix
-    ./switch.nix
     ./security
+    ./system
     ./syncthing.nix
-    ./locale.nix
   ];
 }
