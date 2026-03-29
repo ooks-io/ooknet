@@ -31,6 +31,7 @@
       wii-u-gc-adapter = callPackage ./wii-u-gc-adapter {};
       ghostty-shaders = callPackage ./ghostty-shaders {};
       ook-vim = callPackage ./ook-vim {inherit inputs pkgs lib ook;};
+      curseforge = callPackage ./curseforge {};
 
       inherit (projectPlus) fpp-config fpp-launcher fpp-sd;
       project-plus = projectPlus.package;
