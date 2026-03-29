@@ -57,7 +57,7 @@ in {
             blink = "yes";
           };
 
-          colors = {
+          colors-dark = {
             alpha = 1.0;
             foreground = "${color.base05}";
             background = "${color.base00}";
