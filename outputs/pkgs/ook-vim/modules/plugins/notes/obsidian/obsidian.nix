@@ -86,16 +86,9 @@ in {
           Customize how a note ID is generated given an optional title
         '';
       };
-      follow_url_func = mkOption {
-        type = nullOr luaInline;
-        default =
-          mkLuaInline
-          # lua
-          ''
-            function(url)
-              vim.fn.jobstart({"xdg-open", url})
-            end
-          '';
+      legacy_commands = mkOption {
+        type = bool;
+        default = false;
       };
       ui = {
         enable = mkOption {

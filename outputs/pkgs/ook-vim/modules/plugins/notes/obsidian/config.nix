@@ -29,9 +29,9 @@ in {
         require("obsidian").setup(${toLuaObject cfg.setupOpts})
       '';
       keymaps = [
-        (mkKeymap "n" keys.openNote "<cmd>ObsidianOpen<CR>" {desc = mappings.openNote.description;})
-        (mkKeymap "n" keys.findNote "<cmd>ObsidianQuickSwitch<CR>" {desc = mappings.findNote.description;})
-        (mkKeymap "n" keys.newNote "<cmd>ObsidianNewFromTemplate<CR>" {desc = mappings.newNote.description;})
+        (mkKeymap "n" keys.openNote "<cmd>Obsidian open<CR>" {desc = mappings.openNote.description;})
+        (mkKeymap "n" keys.findNote "<cmd>Obsidian quick-switch<CR>" {desc = mappings.findNote.description;})
+        (mkKeymap "n" keys.newNote "<cmd>Obsidian new-from-template<CR>" {desc = mappings.newNote.description;})
       ];
     };
   };
