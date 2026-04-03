@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   vim.treesitter = {
     enable = true;
-    fold = true;
+    fold = false;
     addDefaultGrammars = true;
     autotagHtml = true;
     grammars = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
