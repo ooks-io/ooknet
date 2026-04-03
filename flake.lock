@@ -1299,11 +1299,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1773343795,
-        "narHash": "sha256-0+HEuOytpwyPt7i1jj6v2QJ+NXXisCYnL2XNwPBltvg=",
+        "lastModified": 1774736237,
+        "narHash": "sha256-uQ+Was7QP9Bupr0XZyZXOAD32Ox8z2mJnevT2FmDwS8=",
         "owner": "notashelf",
         "repo": "nvf",
-        "rev": "83b44eaf50b96bd5d06b1a56a3a51f1b2362db52",
+        "rev": "a0636d5c977743851c91d3c2e74bfac90be48835",
         "type": "github"
       },
       "original": {
@@ -1421,11 +1421,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771737003,
-        "narHash": "sha256-atuJ+rU3qN28vZBzObGnSSuoPbdkSoTF+eLbPZo5fdM=",
+        "lastModified": 1775179282,
+        "narHash": "sha256-B+tVdL3Vox9p8l/hDLL6wmUvF8EhBstr1lzrtNdK9E8=",
         "ref": "refs/heads/master",
-        "rev": "f57e132930df35565d6630471d8cb180df0237b5",
-        "revCount": 66,
+        "rev": "d2db0a70ce52640a6a72d9bf3dd8a9b7f4223060",
+        "revCount": 67,
         "type": "git",
         "url": "ssh://git@github.com/ooks-io/kunzen"
       },

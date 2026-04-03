@@ -4,7 +4,7 @@
   ...
 }: let
   inherit (inputs.secrets.nixosModules) nixosSecrets;
-  inherit (inputs.secrets.nixosModules) darwinSecrets;
+  inherit (inputs.secrets.darwinModules) darwinSecrets;
   inherit (inputs.disko.nixosModules) disko;
 
   nixosModules = "${self}/modules/nixos";
