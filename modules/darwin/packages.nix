@@ -15,11 +15,19 @@ in {
       # uninstall package if removed from configuration
       cleanup = "uninstall";
     };
+    enableFishIntegration = true;
+    brews = [
+      "uv"
+      "poppler"
+    ];
     casks =
       [
         "1password-cli"
         "raycast"
         "claude"
+        "obsidian"
+        "microsoft-teams"
+        "slack"
       ]
       ++ optionals (default.terminal == "ghostty" || programs.ghostty.enable) ["ghostty"]
       ++ optionals (default.browser == "firefox" || programs.firefox.enable) ["firefox"]
