@@ -10,7 +10,7 @@
 in {
   config = mkIf (elem "gaming" profiles) {
     programs.lutris = {
-      enable = true;
+      enable = false; # disabled - openldap i686 test failure on current nixpkgs
       steamPackage = osConfig.programs.steam.package;
       defaultWinePackage = pkgs.proton-ge-bin;
       protonPackages = [pkgs.proton-ge-bin];

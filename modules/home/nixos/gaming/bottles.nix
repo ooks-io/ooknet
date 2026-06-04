@@ -9,11 +9,12 @@
   inherit (osConfig.ooknet.workstation) profiles;
 in {
   config = mkIf (elem "gaming" profiles) {
+    # disabled - openldap i686 test failure on current nixpkgs
     home.packages = attrValues {
-      inherit
-        (pkgs)
-        bottles
-        ;
+      # inherit
+      #   (pkgs)
+      #   bottles
+      #   ;
     };
   };
 }
