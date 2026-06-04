@@ -33,8 +33,8 @@ in {
 
     programs = {
       spotify-player = {
-        enable = true;
-        package = self'.packages.spotify-player;
+        enable = false;
+        # package = self'.packages.spotify-player;
         settings = {
           theme = "default";
           client_id_command = "cat ${spotify_key.path}";
