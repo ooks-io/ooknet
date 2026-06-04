@@ -35,13 +35,13 @@
       gum
       nvd
       nix-output-monitor
-      claude-code
       ;
 
     # AI tools
 
     inherit
       (self'.packages)
+      claude-code
       repomix
       goki
       ;
