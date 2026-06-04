@@ -38,16 +38,18 @@ The goals of this repository are:
 
 Below are all the hosts I currently maintain within this flake:
 
-| host      | spec                                  | role        | description                       | architecture   | status |
-| --------- | ------------------------------------- | ----------- | --------------------------------- | -------------- | ------ |
-| ooksdesk  | 7500F / RX5700XT / 32 GB DDR5         | Workstation | Primary desktop workstation       | x86_64         | UP     |
-| ookst480s | T480s / i5-8350U / 24 GB DDR4         | Workstation | Primary mobile workstation        | x86_64         | UP     |
-| ooksmicro | GPD Micro PC / N8100 / 8 GB LPDR3     | Workstation | Pocket workstation                | x86_64         | UP     |
-| ooksmedia | i3-10100 / 1650 Super / 64 GB DDR4    | Server      | Homelab/Media server              | x86_64         | UP     |
-| ooksx1    | X1 Carbon G4 / i5 6200U / 8 GB LPDDR3 | Workstation | Guest laptop                      | x86_64         | UP     |
-| ooknode   | Linode Nanode                         | Server      | VPS for website                   | x86_64         | UP     |
-| ooksphone | Termux                                | Workstation | Nix environment for android phone | aarch64        | DOWN   |
-| ooksair   | M4 MBA                                | Workstation | Primary mobile workstation        | aarch64-darwin | UP     |
+| host        | spec                                  | role        | description                       | architecture   | status |
+| ----------- | ------------------------------------- | ----------- | --------------------------------- | -------------- | ------ |
+| ooksdesk    | 7500F / RX5700XT / 32 GB DDR5         | Workstation | Primary desktop workstation       | x86_64         | UP     |
+| ookst480s   | T480s / i5-8350U / 24 GB DDR4         | Workstation | Secondary mobile workstation      | x86_64         | UP     |
+| ooksmicro   | GPD Micro PC / N8100 / 8 GB LPDR3     | Workstation | Pocket workstation                | x86_64         | UP     |
+| ooksmedia   | i3-10100 / 1650 Super / 64 GB DDR4    | Server      | Homelab/Media server              | x86_64         | UP     |
+| ooksx1      | X1 Carbon G4 / i5 6200U / 8 GB LPDDR3 | Workstation | Guest laptop                      | x86_64         | UP     |
+| ooknode     | Linode Nanode                         | Server      | VPS for website                   | x86_64         | UP     |
+| ookstest    | QEMU VM                               | Server      | Disposable test/sandbox server    | x86_64         | N/A    |
+| ooksphone   | Termux                                | Workstation | Nix environment for android phone | aarch64        | DOWN   |
+| ooksair     | M4 MBA                                | Workstation | Primary mobile workstation        | aarch64-darwin | UP     |
+| ooksinstall | Live ISO                              | Installer   | Bootable installer image          | x86_64         | N/A    |
 
 ## Architecture
 
@@ -62,42 +64,65 @@ accomplished using a roles and profiles pattern (similar to
 
 ### Roles
 
-- **Workstation**: Desktop/laptop systems with GUI environment
+- **Workstation**: Desktop/laptop systems with a GUI environment
 - **Server**: Headless systems running specific services
+- **Installer**: Bootable ISO images for provisioning new hosts
 
-Roles are declared via their own respective helper functions `mkWorkstation` and
-`mkServer`. Both being thin wrappers of
-[`lib.nixosSystem`](https://github.com/NixOS/nixpkgs/blob/e5db80ae487b59b4e9f950d68983ffb0575e26c6/flake.nix#L21)
-(also see [`lib.evalModules`](https://noogle.dev/f/lib/evalModules)). These
-functions serve to abstract the boilerplate, leaving a simple interface for
-declaring hosts.
+Hosts are declared as plain data under
+`flake.ooknet.{workstations,servers,images}`. The builders in `outputs/builder/`
+map that data with `mapAttrs` into `nixosConfigurations` /
+`darwinConfigurations`, wiring up the right platform modules
+([`lib.nixosSystem`](https://github.com/NixOS/nixpkgs/blob/master/flake.nix) for
+linux, nix-darwin's `darwinSystem` for macos) and importing the matching host
+module from `hosts/<hostname>`. The host attribute name is the hostname, so a
+declaration only carries what makes the host unique while the builder absorbs the
+boilerplate.
 
-Example:
+Workstations:
 
 ```nix
-flake.nixosConfigurations = {
-  ookst480s = mkWorkstation {
-    inherit withSystem;
+flake.ooknet.workstations = {
+  ookst480s = {
     system = "x86_64-linux";
-    hostname = "ookst480s";
     type = "laptop";
   };
-  ooknode = mkServer {
-    inherit withSystem;
+  ooksair = {
+    system = "aarch64-darwin";
+    type = "laptop";
+  };
+};
+```
+
+Servers:
+
+```nix
+flake.ooknet.servers = {
+  ooknode = {
     system = "x86_64-linux";
-    hostname = "ooknode";
-    domain = "ooknet.org";
     type = "vm";
     profile = "linode";
-    services = ["website" "forgejo"]; 
+    domain = "ooknet.org";
+    services = ["website" "forgejo"];
+  };
+};
+```
+
+Installer images:
+
+```nix
+flake.ooknet.images = {
+  ooksinstall = {
+    system = "x86_64-linux";
+    type = "iso";
+    role = "installer";
   };
 };
 ```
 
 ### Profiles
 
-Profiles are collections of related software and configurations that can be
-enabled on a per-host basis. Here are some example profiles for workstations:
+Profiles are collections of related software and configuration that can be
+enabled on a per-host basis. Some example workstation profiles:
 
 - `gaming`: Steam & emulators
 - `communication`: Discord, Teams, Matrix
@@ -105,6 +130,8 @@ enabled on a per-host basis. Here are some example profiles for workstations:
 - `creative`: Art and design tools
 - `media`: Audio/video playback and management
 - `virtualization`: Virtual machine support
+- `infra`: Infrastructure and ops tooling
+- `work`: Work specific tooling
 
 Example:
 
@@ -112,14 +139,17 @@ Example:
 ooknet.workstation.profiles = ["gaming" "creative" "media"];
 ```
 
-For servers, profiles are defined as services. For example:
+Servers pick a base `profile` (for VMs, e.g. `linode`) and a list of `services`
+to run. Some example services:
 
-- `ookflix`: Media server services
-- `forgjo`: Git server
 - `website`: My static website
+- `forgejo`: Git server
+- `ookflix`: Media server services
+- `monitoring`: Metrics and dashboards
+- `authentik`: Identity provider
 
 ```nix
-ooknet.server.services = ["ookflix"];
+ooknet.server.services = ["ookflix" "monitoring"];
 ```
 
 ## Desktop environment
