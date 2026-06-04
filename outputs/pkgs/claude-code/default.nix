@@ -1,66 +1,101 @@
 {
   lib,
-  stdenv,
-  buildNpmPackage,
-  fetchzip,
+  stdenvNoCC,
+  fetchurl,
+  installShellFiles,
+  makeBinaryWrapper,
+  autoPatchelfHook,
+  alsa-lib,
+  procps,
+  ripgrep,
+  bubblewrap,
+  socat,
   versionCheckHook,
   writableTmpDirAsHomeHook,
-  bubblewrap,
-  procps,
-  socat,
-}:
-buildNpmPackage (finalAttrs: {
-  pname = "claude-code";
-  version = "2.1.20";
+}: let
+  stdenv = stdenvNoCC;
+  baseUrl = "https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases";
+  manifest = lib.importJSON ./manifest.json;
+  platformKey = "${stdenv.hostPlatform.node.platform}-${stdenv.hostPlatform.node.arch}";
+  platformManifestEntry = manifest.platforms.${platformKey};
+in
+  stdenv.mkDerivation (finalAttrs: {
+    pname = "claude-code";
+    inherit (manifest) version;
 
-  src = fetchzip {
-    url = "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-${finalAttrs.version}.tgz";
-    hash = "sha256-V2BIqUUJnQpjIsCAAk932L8wp5T74s22q3KgFoxfdDg=";
-  };
+    src = fetchurl {
+      url = "${baseUrl}/${finalAttrs.version}/${platformKey}/claude";
+      sha256 = platformManifestEntry.checksum;
+    };
 
-  npmDepsHash = "sha256-X8j7httM9qMpAPR11oDAWwDpkxZ2bc20y6ruMoStMsQ=";
+    dontUnpack = true;
+    dontBuild = true;
+    __noChroot = stdenv.hostPlatform.isDarwin;
+    # otherwise the bun runtime is executed instead of the binary
+    dontStrip = true;
 
-  postPatch = ''
-    cp ${./package-lock.json} package-lock.json
-  '';
+    nativeBuildInputs =
+      [
+        installShellFiles
+        makeBinaryWrapper
+      ]
+      ++ lib.optionals stdenv.hostPlatform.isElf [autoPatchelfHook];
 
-  dontNpmBuild = true;
+    strictDeps = true;
 
-  env.AUTHORIZED = "1";
+    installPhase = ''
+      runHook preInstall
 
-  # `claude-code` tries to auto-update by default, this disables that functionality.
-  # https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview#environment-variables
-  # The DEV=true env var causes claude to crash with `TypeError: window.WebSocket is not a constructor`
-  postInstall = ''
-    wrapProgram $out/bin/claude \
-      --set DISABLE_AUTOUPDATER 1 \
-      --set DISABLE_INSTALLATION_CHECKS 1 \
-      --unset DEV \
-      --prefix PATH : ${
-      lib.makeBinPath (
-        [
-          # claude-code uses [node-tree-kill](https://github.com/pkrumins/node-tree-kill) which requires procps's pgrep(darwin) or ps(linux)
-          procps
-        ]
-        # the following packages are required for the sandbox to work (Linux only)
-        ++ lib.optionals stdenv.hostPlatform.isLinux [
-          bubblewrap
-          socat
-        ]
-      )
-    }
-  '';
+      installBin $src
 
-  doInstallCheck = true;
-  nativeInstallCheckInputs = [
-    writableTmpDirAsHomeHook
-    versionCheckHook
-  ];
-  versionCheckKeepEnvironment = ["HOME"];
+      wrapProgram $out/bin/claude \
+        --set DISABLE_AUTOUPDATER 1 \
+        --set-default FORCE_AUTOUPDATE_PLUGINS 1 \
+        --set DISABLE_INSTALLATION_CHECKS 1 \
+        --set USE_BUILTIN_RIPGREP 0 \
+        ${lib.optionalString stdenv.hostPlatform.isLinux ''
+        --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [alsa-lib]} \
+      ''}--prefix PATH : ${
+        lib.makeBinPath (
+          [
+            # claude-code uses [node-tree-kill](https://github.com/pkrumins/node-tree-kill) which requires procps's pgrep(darwin) or ps(linux)
+            procps
+            # https://code.claude.com/docs/en/troubleshooting#search-and-discovery-issues
+            ripgrep
+          ]
+          # the following packages are required for the sandbox to work (Linux only)
+          ++ lib.optionals stdenv.hostPlatform.isLinux [
+            bubblewrap
+            socat
+          ]
+        )
+      }
 
-  passthru.updateScript = ./update.sh;
+      runHook postInstall
+    '';
 
-  meta = {
-    mainProgram = "claude";
-  };
-})
+    doInstallCheck = true;
+    nativeInstallCheckInputs = [
+      writableTmpDirAsHomeHook
+      versionCheckHook
+    ];
+    versionCheckKeepEnvironment = ["HOME"];
+    versionCheckProgramArg = "--version";
+
+    passthru.updateScript = ./update.sh;
+
+    meta = {
+      description = "Agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster";
+      homepage = "https://github.com/anthropics/claude-code";
+      downloadPage = "https://claude.com/product/claude-code";
+      changelog = "https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md";
+      sourceProvenance = with lib.sourceTypes; [binaryNativeCode];
+      platforms = [
+        "aarch64-darwin"
+        "x86_64-darwin"
+        "aarch64-linux"
+        "x86_64-linux"
+      ];
+      mainProgram = "claude";
+    };
+  })
