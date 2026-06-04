@@ -8,7 +8,7 @@
 
   src = fetchurl {
     url = "https://curseforge.overwolf.com/downloads/curseforge-latest-linux.AppImage";
-    hash = "sha256-LZlOEGSNdVZMaLJx6pfwLaDeW4kHsDRszMiOYQjRvQk=";
+    hash = "sha256-8jvwfDNUqTTry/RJAEZkMmnCITGDHOs3WV+gVS6Jh5c=";
   };
 
   appimageContents = appimageTools.extractType1 {inherit pname version src;};
