@@ -102,6 +102,11 @@
 
     nix-gaming.url = "github:fufexan/nix-gaming";
 
+    nixzeroth = {
+      url = "git+file:///home/ooks/projects/nixzeroth";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     copyparty = {
       url = "github:9001/copyparty";
       inputs.flake-utils.follows = "flake-utils";
