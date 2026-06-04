@@ -1,0 +1,5 @@
+{
+  imports = [
+    ./challenge-modes.nix
+  ];
+}

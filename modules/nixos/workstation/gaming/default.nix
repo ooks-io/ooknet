@@ -6,5 +6,6 @@
     ./emulation.nix
     ./esync.nix
     ./starcitizen.nix
+    ./nixzeroth
   ];
 }
