@@ -14,6 +14,7 @@ in {
     ./project-plus
     ./minecraft.nix
     ./lutris.nix
+    ./nixzeroth
   ];
   config = mkIf (elem "gaming" profiles) {
     ooknet.binds = {
