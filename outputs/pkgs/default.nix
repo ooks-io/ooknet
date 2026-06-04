@@ -41,12 +41,11 @@
 
       claude-code = callPackage ./claude-code {};
 
-      # disable spotify-player images due to jank with zellij
-      # put it here so it gets cached
-      spotify-player = pkgs.spotify-player.override {
-        withImage = false;
-        withSixel = false;
-      };
+      # disabled temporarily - regex-syntax compile failure on current nixpkgs
+      # spotify-player = pkgs.spotify-player.override {
+      #   withImage = false;
+      #   withSixel = false;
+      # };
     };
   };
 }
