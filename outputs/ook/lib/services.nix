@@ -11,7 +11,10 @@
   mkTrayService = exec: {
     Unit = {
       Requires = ["tray.target"];
-      After = ["graphical-session-pre.target" "tray.target"];
+      # graphical-session.target needs an explicit After, without it systemd injects an
+      # implicit Before=graphical-session.target which loops back through
+      # tray.target -> waybar -> graphical-session.target and breaks session startup
+      After = ["graphical-session.target" "graphical-session-pre.target" "tray.target"];
       PartOf = ["graphical-session.target"];
     };
     Service = {

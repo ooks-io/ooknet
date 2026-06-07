@@ -21,6 +21,7 @@ in {
     silentBoot = {
       enable = mkEnableOption "Enable silent boot with plymouth";
     };
+    sunshine.enable = mkEnableOption "Sunshine game/desktop streaming host";
     environment = mkOption {
       type = nullOr (enum ["hyprland" "gnome" "aerospace"]);
       default = "hyprland";

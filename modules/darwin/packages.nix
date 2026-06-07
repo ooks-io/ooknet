@@ -28,6 +28,7 @@ in {
         "obsidian"
         "microsoft-teams"
         "slack"
+        "moonlight"
       ]
       ++ optionals (default.terminal == "ghostty" || programs.ghostty.enable) ["ghostty"]
       ++ optionals (default.browser == "firefox" || programs.firefox.enable) ["firefox"]

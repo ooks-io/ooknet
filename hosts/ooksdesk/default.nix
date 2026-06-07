@@ -25,6 +25,7 @@
     workstation = {
       environment = "hyprland";
       theme = "minimal";
+      sunshine.enable = true;
       profiles = ["creative" "virtualization" "gaming" "media" "communication" "productivity" "infra" "work"];
       default = {
         browser = "zen";
