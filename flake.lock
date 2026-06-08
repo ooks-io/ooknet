@@ -1428,11 +1428,11 @@
         "systems": "systems_5"
       },
       "locked": {
-        "lastModified": 1780574309,
-        "narHash": "sha256-qsKlNsaax8jCihiIYBO1MYxZX4OjXprTc0p8eEBqXrE=",
+        "lastModified": 1780879482,
+        "narHash": "sha256-T+Rfdm3MPyNZ7D8J+sfnWxlXvCyz0F4WPGBwJ7dOYJo=",
         "ref": "refs/heads/master",
-        "rev": "1a030802c85dc1500d13e21daa19fc2c5d08a62b",
-        "revCount": 239,
+        "rev": "938493a594fc26e5179bb5a61eb0a06653f93c7a",
+        "revCount": 252,
         "type": "git",
         "url": "file:///home/ooks/projects/nixzeroth"
       },
