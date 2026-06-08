@@ -2,9 +2,10 @@
   imports = [
     ./rofi.nix
     ./hyprcapture.nix
-    ./mako.nix
+    # ./mako.nix # replaced by ookshell notifications
     ./tools.nix
-    ./waybar.nix
+    ./ookshell
+    # ./waybar.nix # replaced by ookshell, kept for reference/fallback
     ./hypridle.nix
     ./hyprlock.nix
     ./hyprpaper.nix
