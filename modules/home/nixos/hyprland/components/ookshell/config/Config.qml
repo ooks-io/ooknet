@@ -54,6 +54,7 @@ Singleton {
     // tray
     readonly property int trayIconSize: data.tray ? data.tray.iconSize : 21
     readonly property int traySpacing: data.tray ? data.tray.spacing : 8
+    readonly property bool trayCompact: data.tray ? (data.tray.compact ?? true) : true
     readonly property var trayMenu: data.tray ? (data.tray.menu ?? ({})) : ({})
     readonly property int trayMenuPadding: trayMenu.padding ?? 6
     readonly property int trayMenuTimeout: trayMenu.timeout ?? 1500
@@ -65,6 +66,8 @@ Singleton {
 
     // notifications
     readonly property var notif: data.notifications ?? ({})
+    readonly property string notifLogCmd: notif.logCmd ?? ""
+    readonly property string notifLogPath: notif.logPath ?? ""
     readonly property int notifColumns: notif.columns ?? 38
     readonly property int notifPadding: notif.padding ?? 8
     readonly property int notifMaxBodyLines: notif.maxBodyLines ?? 4
@@ -77,6 +80,7 @@ Singleton {
     readonly property int notifTimeoutCritical: notif.timeout ? notif.timeout.critical : 0
     readonly property var notifGlyphs: notif.glyphs ?? ({})
     readonly property var notifColors: notif.colors ?? ({})
+    readonly property var notifApps: notif.apps ?? ({})
     readonly property var notifImageEditor: notif.imageEditor ?? []
     readonly property var notifFrame: notif.frame ?? ({})
     readonly property var notifShadow: notifFrame.shadow ?? ({})
@@ -99,6 +103,18 @@ Singleton {
     readonly property int osdMarginTop: osd.marginTop ?? 42
     readonly property var osdGlyphs: osd.glyphs ?? ({})
     readonly property var osdColors: osd.colors ?? ({})
+
+    // audio
+    readonly property var audioData: data.audio ?? ({})
+    readonly property string pwMetadata: audioData.pwMetadata ?? "pw-metadata"
+
+    // monitor / dashboard
+    readonly property var monitorData: data.monitor ?? ({})
+    readonly property string monitorCmd: monitorData.cmd ?? ""
+    readonly property string monitorConfig: monitorData.config ?? ""
+    readonly property string notifyCmd: monitorData.notifyCmd ?? "notify-send"
+    readonly property int dashWidth: monitorData.width ?? 380
+    readonly property int dashGap: monitorData.gap ?? 10
 
     // color roles, resolved in nix and read straight from config.json
     readonly property color bg: colors.background

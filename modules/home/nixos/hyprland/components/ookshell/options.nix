@@ -4,7 +4,7 @@
   ...
 }: let
   inherit (lib) mkOption;
-  inherit (lib.types) int bool str listOf;
+  inherit (lib.types) int bool str listOf attrsOf submodule;
   inherit (ook) color;
   mkInt = default:
     mkOption {
@@ -17,6 +17,23 @@
       inherit default;
     };
   mkStr = mkColor;
+  mkBool = default:
+    mkOption {
+      type = bool;
+      inherit default;
+    };
+  service = submodule {
+    options = {
+      name = mkStr "";
+      http = mkStr ""; # direct: url to GET
+      bodyContains = mkStr ""; # http only
+      ssh = mkStr ""; # ssh check: host to curl localhost on (for proxied/vpn'd services)
+      port = mkInt 0; # localhost port for the ssh check
+      path = mkStr ""; # url path, default /
+      expect = mkInt 0; # expected status, 0 = any 2xx/3xx
+      degradedMs = mkInt 0; # latency over this -> degraded
+    };
+  };
 in {
   options.ooknet.ookshell = {
     enable = mkOption {
@@ -45,6 +62,7 @@ in {
     tray = {
       iconSize = mkInt 21;
       spacing = mkInt 8;
+      compact = mkBool true; # collapse to a chevron, reveal icons on hover
       menu = {
         padding = mkInt 6;
         timeout = mkInt 1500; # ms before auto-closing when not hovered
@@ -54,6 +72,74 @@ in {
           disabled = mkColor "#${color.typography.subtext}";
           hover = mkColor "#${color.layout.selection}";
         };
+      };
+    };
+
+    monitor = {
+      width = mkInt 380; # dashboard pane width
+      services = mkOption {
+        type = listOf service;
+        # ookflix stack on ooksmedia is behind traefik/gluetun, so checked via ssh
+        # (curl localhost on the host) rather than directly
+        default = [
+          {
+            name = "website";
+            http = "https://www.ooknet.org";
+          }
+          {
+            name = "plex";
+            ssh = "ooksmedia";
+            port = 32400;
+            path = "/identity";
+          }
+          {
+            name = "jellyfin";
+            ssh = "ooksmedia";
+            port = 8096;
+          }
+          {
+            name = "sonarr";
+            ssh = "ooksmedia";
+            port = 8989;
+          }
+          {
+            name = "radarr";
+            ssh = "ooksmedia";
+            port = 7878;
+          }
+          {
+            name = "prowlarr";
+            ssh = "ooksmedia";
+            port = 9696;
+          }
+          {
+            name = "jellyseerr";
+            ssh = "ooksmedia";
+            port = 5055;
+          }
+          {
+            name = "tautulli";
+            ssh = "ooksmedia";
+            port = 8181;
+          }
+          {
+            name = "homepage";
+            ssh = "ooksmedia";
+            port = 3000;
+          }
+          {
+            name = "qbittorrent";
+            ssh = "ooksmedia";
+            port = 8081;
+          }
+        ];
+      };
+      qbittorrent = {
+        enable = mkBool true;
+        service = mkStr "qbittorrent"; # which service entry to enrich
+        ssh = mkStr "ooksmedia";
+        container = mkStr "qbittorrent"; # podman container (queried via podman exec, no auth)
+        port = mkInt 8080; # webui port inside the container
       };
     };
 
@@ -113,6 +199,25 @@ in {
           low = mkColor "#${color.neutrals."650"}";
           normal = mkColor "#${color.neutrals."650"}";
           critical = mkColor "#${color.red.base}";
+        };
+      };
+
+      # per-app overrides keyed by appName (lowercased). lets chat apps that ship
+      # avatars + channel context render with their brand color and a clean layout
+      apps = mkOption {
+        type = attrsOf (submodule {
+          options = {
+            border = mkColor ""; # border color, empty -> urgency color
+            titleFromName = mkBool false; # header = sender name parsed from summary
+            hideImage = mkBool false; # ignore the notification image (avatars)
+          };
+        });
+        default = {
+          vesktop = {
+            border = "#5865F2"; # discord blurple
+            titleFromName = true;
+            hideImage = true;
+          };
         };
       };
     };

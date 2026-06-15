@@ -18,7 +18,12 @@ Singleton {
         actionsSupported: true
         actionIconsSupported: false
 
-        // notifications are discarded unless tracked
-        onNotification: notification => notification.tracked = true
+        // notifications are discarded unless tracked. also append every one to
+        // the json log for later categorization / per-type styling.
+        onNotification: notification => {
+            notification.tracked = true;
+            if (Config.notifLogCmd)
+                Quickshell.execDetached([Config.notifLogCmd, notification.appName, notification.summary, notification.body, ["low", "normal", "critical"][notification.urgency] ?? "normal", notification.appIcon, notification.desktopEntry]);
+        }
     }
 }

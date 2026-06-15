@@ -20,8 +20,12 @@ Item {
     readonly property var c: Config.notifColors
     readonly property var sh: Config.notifShadow
 
-    // ascii border color carries urgency
+    // per-app overrides (brand color / layout), keyed by appName
+    readonly property var appRule: Config.notifApps[(notif.appName || "").toLowerCase()] ?? ({})
+
+    // ascii border color: app brand color if set, else urgency
     readonly property color borderColor: {
+        if (appRule.border && appRule.border.length) return appRule.border;
         const u = notif.urgency;
         const uc = c.urgency ?? ({});
         return u === 2 ? uc.critical : u === 0 ? uc.low : uc.normal;
@@ -36,6 +40,11 @@ Item {
             : Config.notifTimeoutNormal;
     }
 
+    // strip unicode bidi controls/isolates (discord wraps names + mentions in
+    // them); they render as tofu in the mono card
+    function clean(s) {
+        return (s || "").replace(/[\u200e\u200f\u202a-\u202e\u2066-\u2069]/g, "");
+    }
     function rep(ch, n) {
         return n > 0 ? ch.repeat(n) : "";
     }
@@ -67,8 +76,18 @@ Item {
         return lines;
     }
 
+    // sender name parsed from the summary. discord summaries are
+    // "Name (#channel, Category)" — keep just the name
+    readonly property string senderName: {
+        let s = clean(notif.summary).trim();
+        const p = s.indexOf(" (");
+        return p !== -1 ? s.substring(0, p) : s;
+    }
+
     readonly property string appLabel: {
-        let a = (notif.appName || "notify").toLowerCase();
+        let a = appRule.titleFromName && senderName.length
+            ? senderName
+            : (notif.appName || "notify").toLowerCase();
         const maxLen = cols - 6;
         return a.length > maxLen ? a.substring(0, maxLen) : a;
     }
@@ -77,8 +96,16 @@ Item {
 
     readonly property var bodyLines: {
         let lines = [];
-        if (notif.summary && notif.summary.length) lines = lines.concat(wrap(notif.summary, innerW));
-        if (notif.body && notif.body.length) lines = lines.concat(wrap(notif.body, innerW));
+        const summary = clean(notif.summary).trim();
+        const body = clean(notif.body);
+        // titleFromName apps (discord) put the sender in the header, so the summary
+        // is just name + channel context — only the message body goes in the card
+        const showSummary = !appRule.titleFromName;
+        // some apps (satty etc.) set the title to their own name, which the header
+        // already shows — drop it from the body unless it's all we have
+        const dupTitle = summary.toLowerCase() === (notif.appName || "").trim().toLowerCase();
+        if (showSummary && summary.length && !(dupTitle && body.length)) lines = lines.concat(wrap(summary, innerW));
+        if (body.length) lines = lines.concat(wrap(body, innerW));
         const max = Config.notifMaxBodyLines;
         if (lines.length > max) {
             lines = lines.slice(0, max);
@@ -88,7 +115,13 @@ Item {
         return lines;
     }
 
-    readonly property bool hasImage: (notif.image || "").length > 0
+    // some apps (notably satty via GIO/GNotification) deliver their themed app
+    // icon through the image-path hint instead of app_icon, so quickshell exposes
+    // it as `image`. don't blow a tiny icon up to full width and hide the body —
+    // only real content (screenshots, album art) lives outside an icon theme dir.
+    readonly property string imageSrc: notif.image || ""
+    readonly property bool imageIsAppIcon: imageSrc.indexOf("/icons/") !== -1 || imageSrc.indexOf("/pixmaps/") !== -1
+    readonly property bool hasImage: imageSrc.length > 0 && !imageIsAppIcon && !appRule.hideImage
 
     // a notification is "editable" (click to open an editor) if it carries the
     // x-ookshell-edit hint, or falls back to a screenshot app with a file image
@@ -210,7 +243,7 @@ Item {
                 visible: card.hasImage
                 width: bottomBorder.implicitWidth
                 height: implicitWidth > 0 ? width * implicitHeight / implicitWidth : 0
-                source: card.hasImage ? card.notif.image : ""
+                source: card.hasImage ? card.imageSrc : ""
                 sourceSize.width: 700
                 fillMode: Image.PreserveAspectFit
                 smooth: true

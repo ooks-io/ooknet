@@ -107,6 +107,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    ooknet-monitor = {
+      url = "git+file:///home/ooks/Summit/ookgen/ooknet-monitor";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        systems.follows = "systems";
+      };
+    };
+
     copyparty = {
       url = "github:9001/copyparty";
       inputs.flake-utils.follows = "flake-utils";

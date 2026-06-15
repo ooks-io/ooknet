@@ -4,6 +4,7 @@
   config,
   osConfig,
   ook,
+  inputs',
   ...
 }: let
   inherit (lib) mkIf;
@@ -29,6 +30,24 @@
     then cfg.notifications.imageEditor
     else ["${pkgs.satty}/bin/satty" "-f"];
 
+  # append-only notification log -> ~/.local/state/ookshell/notifications.jsonl
+  # one json line per notification, for later categorization / per-type styling
+  notifyLog = pkgs.writeShellApplication {
+    name = "ooknotify-log";
+    runtimeInputs = [pkgs.jq pkgs.coreutils];
+    text = ''
+      # ooknotify-log APP SUMMARY BODY URGENCY ICON DESKTOP
+      dir="''${XDG_STATE_HOME:-$HOME/.local/state}/ookshell"
+      mkdir -p "$dir"
+      jq -nc \
+        --arg app "''${1:-}" --arg summary "''${2:-}" --arg body "''${3:-}" \
+        --arg urgency "''${4:-}" --arg icon "''${5:-}" --arg desktop "''${6:-}" \
+        '{ts: (now|todateiso8601), app: $app, summary: $summary, body: $body,
+          urgency: $urgency, icon: $icon, desktop: $desktop}' \
+        >> "$dir/notifications.jsonl"
+    '';
+  };
+
   notifFrame = {
     borderWidth = borderSize;
     rounding = hyprDeco.rounding or 0;
@@ -50,6 +69,16 @@
     then 0
     else z;
 
+  # services to health-check + qbittorrent enrichment (engine reads via --config)
+  monitorConfig = pkgs.writeText "ooknet-monitor-config.json" (builtins.toJSON ({
+      inherit (cfg.monitor) services;
+    }
+    // lib.optionalAttrs cfg.monitor.qbittorrent.enable {
+      qbittorrent = {
+        inherit (cfg.monitor.qbittorrent) service ssh container port;
+      };
+    }));
+
   settings = {
     font = {inherit (fonts.monospace) family size;};
     bar = {
@@ -59,6 +88,14 @@
     };
     workspaces = {inherit (cfg.workspaces) persistent spacing;};
     tray = cfg.tray;
+    audio.pwMetadata = lib.getExe' pkgs.pipewire "pw-metadata";
+    monitor = {
+      cmd = lib.getExe inputs'.ooknet-monitor.packages.default;
+      config = "${monitorConfig}";
+      notifyCmd = lib.getExe' pkgs.libnotify "notify-send";
+      inherit (cfg.monitor) width;
+      gap = gapsOut; # align the pane with hyprland window gaps
+    };
     colors = cfg.colors;
     frame = notifFrame; # shared hyprland-style window frame (notifications + osd)
     notifications =
@@ -66,6 +103,8 @@
       // {
         frame = notifFrame;
         imageEditor = imageEditor;
+        logCmd = "${notifyLog}/bin/ooknotify-log";
+        logPath = "${config.xdg.stateHome}/ookshell/notifications.jsonl";
       };
     # overlay-layer margins are measured from the bar's reserved edge, not the
     # screen top. windows start gaps_out below that edge, so matching gaps_out

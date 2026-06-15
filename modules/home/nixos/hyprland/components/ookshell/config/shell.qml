@@ -13,4 +13,6 @@ ShellRoot {
     NotificationPopups {}
 
     OsdWindow {}
+
+    Dashboard {}
 }
