@@ -22,6 +22,7 @@ in {
     };
     tools = {
       codex.enable = mkEnableOption "";
+      claude.enable = mkEnableOption "";
       bat.enable = mkEnableOption "";
       btop.enable = mkEnableOption "";
       direnv.enable = mkEnableOption "";

@@ -26,7 +26,7 @@
       environment = "hyprland";
       theme = "minimal";
       sunshine.enable = true;
-      profiles = ["creative" "virtualization" "gaming" "media" "communication" "productivity" "infra" "work"];
+      profiles = ["creative" "virtualization" "gaming" "media" "communication" "productivity" "infra" "work" "ai"];
       default = {
         browser = "zen";
         terminal = "foot";

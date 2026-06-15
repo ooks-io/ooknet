@@ -12,6 +12,7 @@ in {
       multiplexer = "zellij";
       tools = {
         codex.enable = true;
+        claude.enable = true;
         bat.enable = true;
         btop.enable = true;
         direnv.enable = true;

@@ -7,6 +7,18 @@
   perSystem = {pkgs, ...}: let
     inherit (pkgs) callPackage qt6Packages writeTextFile;
 
+    # claude-desktop is unfree, our package set isnt; scope an unfree
+    # nixpkgs to just it rather than flipping allowUnfree globally
+    pkgsClaude = import inputs.nixpkgs {
+      inherit (pkgs.stdenv.hostPlatform) system;
+      config.allowUnfreePredicate = p: lib.getName p == "claude-desktop";
+    };
+    claudeDesktop = rec {
+      node-pty = pkgsClaude.callPackage ./claude-desktop/node-pty.nix {};
+      package = pkgsClaude.callPackage ./claude-desktop {inherit node-pty;};
+      fhs = pkgsClaude.callPackage ./claude-desktop/fhs.nix {claude-desktop = package;};
+    };
+
     projectPlus = {
       fpp-config = callPackage ./project-plus/fpp-config.nix {};
       fpp-launcher = callPackage ./project-plus/fpp-launcher.nix {};
@@ -40,6 +52,9 @@
       color-scheme-scss = colorSchemeScss;
 
       claude-code = callPackage ./claude-code {};
+
+      claude-desktop = claudeDesktop.package;
+      claude-desktop-fhs = claudeDesktop.fhs;
 
       # disabled temporarily - regex-syntax compile failure on current nixpkgs
       # spotify-player = pkgs.spotify-player.override {
