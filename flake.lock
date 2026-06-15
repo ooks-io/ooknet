@@ -1415,6 +1415,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_7": {
+      "locked": {
+        "lastModified": 1780749050,
+        "narHash": "sha256-3av0pIjlOWQ6rDbNOmpUSvbNnJkGORQKKjb4LtCZsIY=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixzeroth": {
       "inputs": {
         "azerothcore-src": "azerothcore-src",
@@ -1428,11 +1444,10 @@
         "systems": "systems_5"
       },
       "locked": {
-        "lastModified": 1780879482,
-        "narHash": "sha256-T+Rfdm3MPyNZ7D8J+sfnWxlXvCyz0F4WPGBwJ7dOYJo=",
-        "ref": "refs/heads/master",
-        "rev": "938493a594fc26e5179bb5a61eb0a06653f93c7a",
-        "revCount": 252,
+        "dirtyRev": "246bbf1c4164de7e975721e38601bd3c6b0a8a06-dirty",
+        "dirtyShortRev": "246bbf1-dirty",
+        "lastModified": 1781514508,
+        "narHash": "sha256-3pv52Cbtx7vlps6ukJtaDr/kmjQSLyL3OGgqa8/3DkA=",
         "type": "git",
         "url": "file:///home/ooks/projects/nixzeroth"
       },
@@ -1491,6 +1506,30 @@
         "owner": "notashelf",
         "repo": "nvf",
         "type": "github"
+      }
+    },
+    "ooknet-monitor": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": "nixpkgs_7",
+        "systems": [
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1781168983,
+        "narHash": "sha256-fj2d8+8lDTNp9vG+L+DquPWSAYtC8mrCWZBbT3iy0M0=",
+        "ref": "refs/heads/master",
+        "rev": "50485e7b1e8499f9bc26350fed466e1e0048b8f3",
+        "revCount": 10,
+        "type": "git",
+        "url": "file:///home/ooks/Summit/ookgen/ooknet-monitor"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:///home/ooks/Summit/ookgen/ooknet-monitor"
       }
     },
     "pre-commit-hooks": {
@@ -1561,6 +1600,7 @@
         "nixpkgs-small": "nixpkgs-small",
         "nixzeroth": "nixzeroth",
         "nvf": "nvf",
+        "ooknet-monitor": "ooknet-monitor",
         "rust-overlay": "rust-overlay",
         "secrets": "secrets",
         "systems": "systems_7",
@@ -1603,11 +1643,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1778146164,
-        "narHash": "sha256-P34Geu0e2yWs1i/ReDW46SzuRLGt8f9zgYNR2KGetHQ=",
+        "lastModified": 1781167527,
+        "narHash": "sha256-s+nK5cflDjpz9WzYee1DR0b4E48nPInbO7gioIDXl7U=",
         "ref": "refs/heads/master",
-        "rev": "60cd43a2e51803d5db38fa872923f949f19191ee",
-        "revCount": 69,
+        "rev": "27e3840f9688957f09ab92a43bc99d1f07ab7cdd",
+        "revCount": 72,
         "type": "git",
         "url": "ssh://git@github.com/ooks-io/kunzen"
       },
