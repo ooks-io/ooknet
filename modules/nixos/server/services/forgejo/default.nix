@@ -2,19 +2,52 @@
   config,
   lib,
   pkgs,
+  ook,
   ...
 }: let
-  inherit (lib) mkIf elem getExe;
+  inherit (lib) mkIf elem getExe optionalAttrs optionals;
 
   inherit (config.ooknet.server) services domain;
   inherit (config.services) fail2ban;
+
+  forgejoCfg = config.ooknet.server.forgejo;
+  themeCfg = forgejoCfg.customTheme;
+  themeFile = pkgs.writeText "theme-${themeCfg.name}.css" (
+    ook.lib.color.export.toForgejoTheme {scheme = ook.themes.dark;}
+  );
+
+  blankLogoSvg = pkgs.writeText "logo.svg" ''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"></svg>'';
+  blankLogoPng = pkgs.runCommand "logo.png" {nativeBuildInputs = [pkgs.imagemagick];} ''
+    magick -size 1x1 xc:transparent PNG32:$out
+  '';
 
   settingsFormat = lib.generators.toINI {
     mkKeyValue = lib.generators.mkKeyValueDefault {} " = ";
   };
 in {
+  imports = [./options.nix];
+
   config = mkIf (elem "forgejo" services) {
     networking.firewall.allowedTCPPorts = [2222];
+
+    systemd.tmpfiles.rules = let
+      fj = config.services.forgejo;
+      pub = "${fj.customDir}/public";
+      mkdir = p: "d ${p} 0750 ${fj.user} ${fj.group} - -";
+    in
+      optionals (themeCfg.enable || forgejoCfg.hideLogo) [
+        (mkdir pub)
+        (mkdir "${pub}/assets")
+      ]
+      ++ optionals themeCfg.enable [
+        (mkdir "${pub}/assets/css")
+        "L+ ${pub}/assets/css/theme-${themeCfg.name}.css - - - - ${themeFile}"
+      ]
+      ++ optionals forgejoCfg.hideLogo [
+        (mkdir "${pub}/assets/img")
+        "L+ ${pub}/assets/img/logo.svg - - - - ${blankLogoSvg}"
+        "L+ ${pub}/assets/img/logo.png - - - - ${blankLogoPng}"
+      ];
 
     ooknet.server = {
       webserver.caddy.enable = true;
@@ -45,6 +78,12 @@ in {
           security = {
             INSTALL_LOCK = true;
           };
+          ui = mkIf themeCfg.enable ({
+              THEMES = "forgejo-auto,forgejo-light,forgejo-dark,${themeCfg.name}";
+            }
+            // optionalAttrs themeCfg.default {
+              DEFAULT_THEME = themeCfg.name;
+            });
         };
       };
       caddy.virtualHosts = {
