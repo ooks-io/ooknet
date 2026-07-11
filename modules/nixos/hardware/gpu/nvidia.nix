@@ -38,7 +38,6 @@ in {
         libva
         libva-utils
         vulkan-loader
-        vulkan-validation-layers
         vulkan-tools
         vulkan-extension-layer
         mesa

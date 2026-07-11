@@ -20,7 +20,6 @@ in {
             vulkan-tools
             vulkan-loader
             vulkan-extension-layer
-            vulkan-validation-layers
             mesa
             ;
         };
