@@ -4,6 +4,7 @@
   lib,
   ook,
   self',
+  inputs',
   pkgs,
   ...
 }: let
@@ -18,6 +19,8 @@ in {
   config = mkIf (cfg.enable || console.multiplexer == "zellij") {
     programs.zellij = {
       enable = true;
+      # pinned, see nixpkgs-zellij input
+      package = inputs'.nixpkgs-zellij.legacyPackages.zellij;
       settings = {
         theme = "${color.slug}";
         default_shell = "${admin.shell}";

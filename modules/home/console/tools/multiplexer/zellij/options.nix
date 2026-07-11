@@ -1,7 +1,7 @@
 {
   lib,
   config,
-  inputs',
+  pkgs,
   osConfig,
   ook,
   ...
@@ -79,7 +79,11 @@
       };
       zjstatus = mkOption {
         type = str;
-        default = "${inputs'.zjstatus.packages.default}/bin/zjstatus.wasm";
+        # 0.21.0 matches the pinned zellij 0.42.2, 0.23+ targets zellij-tile 0.44
+        default = "${pkgs.fetchurl {
+          url = "https://github.com/dj95/zjstatus/releases/download/v0.21.0/zjstatus.wasm";
+          hash = "sha256-p6JTnAyim0T3TkJzGhEitzc3JpPovL5k7jb8gv+oLD4=";
+        }}";
       };
       tabs = mkOption {
         type = lines;
