@@ -97,11 +97,14 @@ in {
             Referrer-Policy "no-referrer"
           }
 
-          # rate limiting: 30 requests per minute per IP
+          # rate limiting: 300 req/min per real client. {client_ip} resolves
+          # the true client via trusted_proxies, not the shared cloudflare
+          # edge IP that {remote_host} gave (which made one user's page load
+          # of assets 429 everyone behind that edge)
           rate_limit {
             zone git {
-              key {remote_host}
-              events 30
+              key {client_ip}
+              events 300
               window 1m
             }
           }
@@ -109,8 +112,8 @@ in {
           # Handle proxying
           handle_path /* {
             reverse_proxy localhost:3000 {
-              header_up X-Real-IP {remote_host}
-              header_up X-Forwarded-For {remote_host}
+              header_up X-Real-IP {client_ip}
+              header_up X-Forwarded-For {client_ip}
               header_up X-Forwarded-Proto {scheme}
             }
           }
@@ -128,8 +131,11 @@ in {
     };
     environment = {
       etc."fail2ban/filter.d/forgejo.conf".text = mkIf fail2ban.enable (settingsFormat {
-        Definitions = {
-          failregex = "^.*(Failed authentication attempt|invalid credentials|Attempted access of unknown user).";
+        # fail2ban only reads [Definition] (singular); and the regex needs
+        # <HOST> to extract the IP to ban. forgejo now logs the real client
+        # IP (X-Real-IP {client_ip}) as "... from <ip>:<port>".
+        Definition = {
+          failregex = "^.*(Failed authentication attempt|invalid credentials|Attempted access of unknown user).* from <HOST>";
           journalmatch = "_SYSTEMD_UNIT=forgejo.service";
         };
       });
