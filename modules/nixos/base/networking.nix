@@ -37,8 +37,10 @@ in {
     resolved = {
       enable = true;
 
-      domains = ["~."];
-      fallbackDns = ["8.8.8.8"]; # google dns
+      settings.Resolve = {
+        Domains = ["~."];
+        FallbackDNS = ["8.8.8.8"]; # google dns
+      };
     };
   };
   # sometimes causes issues with network manager service never actually starting
