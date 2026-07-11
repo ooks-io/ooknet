@@ -42,10 +42,17 @@ in {
           # box drawing glyph thickness
           adjust-box-thickness = -10; # why where they so thick?
 
+          # ghostty >=1.2.3 counts each hi-res wheel event (G502: ~8/notch) as a
+          # full click, see ghostty-org/ghostty#9966. discrete = mouse wheel,
+          # precision left at default so touchpad hosts are unaffected
+          mouse-scroll-multiplier = "precision:1,discrete:0.15";
+
           # disable the decorations
           gtk-titlebar = false;
           window-decoration = false;
           resize-overlay = "never";
+
+          gtk-single-instance = true;
 
           # disable close terminal prompt
           confirm-close-surface = false;

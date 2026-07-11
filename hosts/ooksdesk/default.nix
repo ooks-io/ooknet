@@ -29,7 +29,7 @@
       profiles = ["creative" "virtualization" "gaming" "media" "communication" "productivity" "infra" "work" "ai"];
       default = {
         browser = "zen";
-        terminal = "foot";
+        terminal = "ghostty";
       };
       programs = {
         firefox.enable = true;
