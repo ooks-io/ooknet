@@ -43,7 +43,7 @@ in {
       "SUPER CTRL,     F,             fullscreenstate"
       "SUPER,          Space,         togglefloating"
       "SUPER,          P,             pseudo" # dwindle
-      "SUPER,          S,             togglesplit" # dwindle
+      "SUPER,          S,             layoutmsg,togglesplit" # dwindle
 
       # Focus Arrows
       "SUPER,          left,          movefocus,l"

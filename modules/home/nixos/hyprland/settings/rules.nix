@@ -7,7 +7,7 @@ in {
     # TODO tag games for immediate
     {
       matches = {initial_title = "Syncthing Tray";};
-      rules = ["float 1" "center 1" "size 50%"];
+      rules = ["float 1" "center 1" "size 50% 50%"];
     }
     {
       matches = {class = "factorio";};
@@ -31,7 +31,7 @@ in {
     }
     {
       matches = {title = "Steam Settings";};
-      rules = ["float 1" "size 50%" "center 1"];
+      rules = ["float 1" "size 50% 50%" "center 1"];
     }
     {
       matches = {class = "firefox";};
@@ -39,11 +39,11 @@ in {
     }
     {
       matches = {class = "1Password";};
-      rules = ["center 1" "float 1" "size 50%"];
+      rules = ["center 1" "float 1" "size 50% 50%"];
     }
     {
       matches = {title = "BTOP";};
-      rules = ["float 1" "size 85%" "pin 1" "center 1" "stay_focused 1" "dim_around 1"];
+      rules = ["float 1" "size 85% 85%" "pin 1" "center 1" "stay_focused 1" "dim_around 1"];
     }
     {
       matches = {class = "vesktop";};
@@ -55,7 +55,7 @@ in {
     }
     {
       matches = {title = "^(Open Files)$";};
-      rules = ["center 1" "float 1" "size 50%"];
+      rules = ["center 1" "float 1" "size 50% 50%"];
     }
     {
       matches = {initial_title = "dropdown";};
