@@ -8,9 +8,9 @@
     astro = {
       enable = true;
       extraDiagnostics.enable = true;
-      format = {
-        enable = true;
-      };
+      # nvf's prettier-plugin-astro pins fetchPnpmDeps fetcherVersion=3 which our
+      # bumped nixpkgs dropped for pnpm_11; disable until nvf catches up
+      format.enable = false;
       lsp.enable = true;
       treesitter.enable = true;
     };
@@ -113,7 +113,7 @@
       format.enable = true;
     };
 
-    ts = {
+    typescript = {
       enable = true;
       extraDiagnostics.enable = true;
       treesitter.enable = true;

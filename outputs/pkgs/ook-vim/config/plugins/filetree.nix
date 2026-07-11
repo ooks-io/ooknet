@@ -10,8 +10,12 @@
       };
     };
   };
-  vim.maps.normal."<C-e>" = {
-    desc = "Toggle Tree";
-    action = "<cmd>Neotree toggle reveal<cr>";
-  };
+  vim.keymaps = [
+    {
+      key = "<C-e>";
+      mode = "n";
+      desc = "Toggle Tree";
+      action = "<cmd>Neotree toggle reveal<cr>";
+    }
+  ];
 }
