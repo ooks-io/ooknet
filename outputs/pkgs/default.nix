@@ -52,6 +52,7 @@
       color-scheme-scss = colorSchemeScss;
 
       claude-code = callPackage ./claude-code {};
+      codex = callPackage ./codex {};
 
       claude-desktop = claudeDesktop.package;
       claude-desktop-fhs = claudeDesktop.fhs;
