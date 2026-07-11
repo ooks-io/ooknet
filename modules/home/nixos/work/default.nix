@@ -10,7 +10,7 @@
 in {
   config = mkIf (elem "work" profiles) {
     home.packages = attrValues {
-      inherit (pkgs) teams-for-linux slack;
+      inherit (pkgs) teams-for-linux slack omnissa-horizon-client;
     };
   };
 }
