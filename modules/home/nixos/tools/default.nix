@@ -13,5 +13,6 @@
     ./nemo.nix
     ./qtscrcpy.nix
     ./discordify.nix
+    ./join-jam.nix
   ];
 }

@@ -14,6 +14,7 @@
   inherit (osConfig.age.secrets) spotify_key;
   inherit (config.ooknet) binds;
   inherit (ook) color;
+  spotifyMime."x-scheme-handler/spotify" = ["spotify.desktop"];
 in {
   config = mkIf (elem "media" profiles) {
     home.packages = attrValues {
@@ -21,7 +22,13 @@ in {
         (pkgs)
         alsa-utils
         mpv
+        spotify
         ;
+    };
+
+    xdg.mimeApps = {
+      associations.added = spotifyMime;
+      defaultApplications = spotifyMime;
     };
 
     ooknet.binds.spotify = {
