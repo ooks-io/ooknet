@@ -4,14 +4,34 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkIf mkMerge;
+  inherit (lib) mkIf mkMerge concatStringsSep;
   inherit (config.ooknet.server.webserver) caddy;
+  cf = import ./cloudflare-ips.nix;
 in {
   config = mkIf caddy.enable {
     users.groups.www = {};
 
     # metrics scraping via tailscale
     networking.firewall.interfaces."tailscale0".allowedTCPPorts = [2019];
+
+    # origin lockdown: drop direct (non-cloudflare) hits on 80/443 so the vps
+    # cant be reached bypassing cloudflare. dedicated chain at higher priority
+    # than the firewall (drop is terminal, and firewall extraInputRules run
+    # AFTER the port accepts so a drop there wouldnt fire). lo + tailscale0
+    # exempt so loopback and tailnet admin access to the web UI still work.
+    networking.nftables.tables = mkIf caddy.cloudflareOnly {
+      cf-origin-lock = {
+        family = "inet";
+        content = ''
+          chain input {
+            type filter hook input priority -10; policy accept;
+            iifname { "lo", "tailscale0" } accept
+            tcp dport { 80, 443 } ip  saddr != { ${concatStringsSep ", " cf.v4} } drop
+            tcp dport { 80, 443 } ip6 saddr != { ${concatStringsSep ", " cf.v6} } drop
+          }
+        '';
+      };
+    };
 
     services.caddy = mkMerge [
       {

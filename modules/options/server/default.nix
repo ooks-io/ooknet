@@ -27,6 +27,8 @@ in {
       caddy = {
         enable = mkEnableOption "";
         cloudflare.enable = mkEnableOption "";
+        # lock 80/443 to cloudflare ip ranges (origin cant be reached directly)
+        cloudflareOnly = mkEnableOption "restricting 80/443 ingress to Cloudflare ranges";
       };
     };
     database = {
