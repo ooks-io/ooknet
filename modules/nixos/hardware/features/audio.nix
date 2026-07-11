@@ -19,7 +19,11 @@ in {
         };
         pulse.enable = true;
         jack.enable = true;
-        wireplumber.enable = true;
+        wireplumber = {
+          enable = true;
+          # keep BT headphones in A2DP, dont auto-flip to mono HFP when an app grabs the mic
+          extraConfig."51-bluez-no-hfp-switch"."wireplumber.settings"."bluetooth.autoswitch-to-headset-profile" = false;
+        };
       };
       pulseaudio.enable = false;
     };
