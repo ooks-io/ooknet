@@ -10,6 +10,9 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
+    # zellij 0.44.x has a plugin render loop (zellij-org/zellij#5063, dj95/zjstatus#174)
+    # pin 0.42.2 until fixed upstream
+    nixpkgs-zellij.url = "github:NixOS/nixpkgs/7c43f080a7f28b2774f3b3f43234ca11661bf334";
     systems.url = "github:nix-systems/default";
 
     nix-darwin = {
@@ -49,19 +52,6 @@
     nix-index-db = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    zjstatus = {
-      url = "github:dj95/zjstatus";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        rust-overlay.follows = "rust-overlay";
-      };
     };
 
     firefox-addons = {
