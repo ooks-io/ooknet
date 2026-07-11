@@ -35,6 +35,8 @@ in {
     (mkIf (cfg.enable || default.browser == "firefox") {
       programs.firefox = {
         enable = true;
+        # keep legacy path; new HM default moved to $XDG_CONFIG_HOME/mozilla/firefox
+        configPath = ".mozilla/firefox";
         package =
           if isDarwin
           then null

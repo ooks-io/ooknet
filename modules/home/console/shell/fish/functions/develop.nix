@@ -4,7 +4,7 @@
   ...
 }: let
   # get devshell names from flake
-  devShellNames = builtins.concatStringsSep " " (builtins.attrNames self.devShells.${pkgs.system});
+  devShellNames = builtins.concatStringsSep " " (builtins.attrNames self.devShells.${pkgs.stdenv.hostPlatform.system});
 in {
   programs.fish = {
     # add devshells completions to init script

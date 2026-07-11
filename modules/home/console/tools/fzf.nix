@@ -12,14 +12,16 @@ in {
       enable = true;
       enableFishIntegration = mkIf (admin.shell == "fish") true;
       defaultCommand = "rg --files --hidden";
-      changeDirWidgetOptions = [
+      changeDirWidget.options = [
         "--preview 'eza --icons -L 3 -T --color always {} | head -200'"
         "--exact"
       ];
-      fileWidgetCommand = "rg --files";
-      fileWidgetOptions = [
-        "--preview 'bat --color=always {}'"
-      ];
+      fileWidget = {
+        command = "rg --files";
+        options = [
+          "--preview 'bat --color=always {}'"
+        ];
+      };
     };
   };
 }
