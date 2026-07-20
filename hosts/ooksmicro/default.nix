@@ -30,14 +30,7 @@
     kernelParams = ["fbcon=rotate:1"];
     initrd.availableKernelModules = ["battery" "sdhci_pci"];
   };
-  services = {
-    tlp.enable = true;
-    upower.enable = true;
-    thermald.enable = true;
-    power-profiles-daemon.enable = false;
-    logind.settings.Login.HandleLidSwitch = "suspend";
-  };
-  powerManagement.powertop.enable = true;
-  hardware.cpu.intel.updateMicrocode = true;
+  # power management, cpu microcode and intel gpu stack now come from the
+  # battery feature + cpu.type/gpu.type in hardware.nix
   system.stateVersion = lib.mkDefault "23.11";
 }

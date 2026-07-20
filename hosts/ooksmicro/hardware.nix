@@ -1,8 +1,11 @@
 {
   ooknet.hardware = {
+    cpu.type = "intel";
+    gpu.type = "intel";
     features = [
       "bluetooth"
       "backlight"
+      "battery"
       "ssd"
       "audio"
       "video"
