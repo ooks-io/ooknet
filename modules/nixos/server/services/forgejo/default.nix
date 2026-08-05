@@ -78,6 +78,11 @@ in {
           security = {
             INSTALL_LOCK = true;
           };
+          # the site-builder webhook lives on loopback; forgejo blocks
+          # private targets unless allow-listed
+          webhook = {
+            ALLOWED_HOST_LIST = "loopback";
+          };
           ui = mkIf themeCfg.enable ({
               THEMES = "forgejo-auto,forgejo-light,forgejo-dark,${themeCfg.name}";
             }
