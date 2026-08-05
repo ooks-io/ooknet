@@ -1,50 +1,40 @@
 {
   lib,
   config,
-  self',
+  inputs,
   ...
 }: let
   inherit (lib) mkIf elem;
   inherit (config.ooknet.server) services;
-  inherit (self'.packages) website;
-
-  websitePermissions = {
-    group = "www";
-    user = "caddy";
-    mode = "0775";
-  };
 in {
+  imports = [inputs.ooknet-org.nixosModules.ooknet-site];
+
   config = mkIf (elem "website" services) {
     ooknet.server.webserver.caddy = {
       enable = true;
       cloudflare.enable = true;
     };
-    systemd.tmpfiles.settings.websiteDirs = {
-      "/var/www"."d" = websitePermissions;
-      "/var/www/ooknet.org"."d" = websitePermissions;
-    };
 
-    # cursed activation script
-    # need to find a better way
-
-    system.activationScripts.copyWebsite = {
-      text =
-        # sh
-        ''
-          # clean-up
-          rm -rf /var/www/ooknet.org/*
-
-          # ensure dir exists
-          mkdir -p /var/www/ooknet.org
-
-          # copy files from pkg
-          cp -r ${website}/* /var/www/ooknet.org/
-
-          # set permissions
-          chown -R caddy:www /var/www/ooknet.org
-          chmod -R 775 /var/www/ooknet.org
-        '';
-      deps = ["users" "groups"];
+    # push-driven builder from the ooknet-org flake: clones the site
+    # from forgejo, mirrors the /git repos, builds, swaps a symlink.
+    # replaces the old zola package + activation-script copy.
+    services.ooknet-site = {
+      enable = true;
+      siteRepo = "http://localhost:3000/ooks/ooknet.org.git";
+      mirrors = [
+        {
+          slug = "ooknet-org";
+          url = "http://localhost:3000/ooks/ooknet.org.git";
+        }
+        {
+          slug = "ooknet";
+          url = "http://localhost:3000/ooks/ooknet.git";
+        }
+        {
+          slug = "wowsim-stats";
+          url = "http://localhost:3000/ooks/wowsim-stats.git";
+        }
+      ];
     };
 
     # using caddy because it makes my life easy
@@ -75,7 +65,7 @@ in {
               }
             }
 
-            root * /var/www/ooknet.org/
+            root * ${config.services.ooknet-site.webroot}
             file_server
           '';
         "www.ooknet.org".extraConfig = ''

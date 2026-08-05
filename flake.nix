@@ -15,6 +15,13 @@
     nixpkgs-zellij.url = "github:NixOS/nixpkgs/7c43f080a7f28b2774f3b3f43234ca11661bf334";
     systems.url = "github:nix-systems/default";
 
+    # personal website - provides the site-builder nixos module.
+    # git+ssh because the repo is private; rides the deployer ssh key
+    ooknet-org = {
+      url = "git+ssh://git@github.com/ooks-io/ooknet.org";
+      flake = true;
+    };
+
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
