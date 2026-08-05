@@ -1,9 +1,9 @@
 import QtQuick
 import Quickshell.Services.UPower
 
-Row {
+// root is the click target; sizes to the text row. click opens the info popover
+MouseArea {
     id: root
-    spacing: 4
 
     readonly property var dev: UPower.displayDevice
     readonly property int pct: dev ? Math.round(dev.percentage * 100) : 0
@@ -18,11 +18,18 @@ Row {
     ]
 
     visible: dev && dev.isLaptopBattery && dev.isPresent
+    implicitWidth: label.implicitWidth
+    implicitHeight: label.implicitHeight
+
+    onClicked: BatteryPopup.toggle()
 
     Text {
+        id: label
+        anchors.centerIn: parent
         font.family: Config.fontFamily
         font.pixelSize: Config.fontSize
-        color: root.pct <= 15 ? Config.batCrit
+        color: BatteryPopup.active ? Config.primary
+            : root.pct <= 15 ? Config.batCrit
             : root.pct <= 35 ? Config.batWarn
             : Config.batGood
         text: (root.charging ? "\u{f140b} " : "")
