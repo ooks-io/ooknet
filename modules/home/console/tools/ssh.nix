@@ -23,7 +23,9 @@ in {
         "git.ooknet.org" = {
           User = "forgejo";
           Port = 2222;
-          HostName = "git.ooknet.org";
+          # direct to the vps: the public dns name is cloudflare-proxied,
+          # which only passes http - ssh dies at the edge
+          HostName = "ooknode";
           IdentityFile = "${osConfig.age.secrets.ooknet_org.path}";
         };
       };
