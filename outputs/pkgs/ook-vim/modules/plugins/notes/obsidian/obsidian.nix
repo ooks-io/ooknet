@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}: let
+{lib, ...}: let
   inherit (lib.options) mkOption mkEnableOption;
   inherit (lib.types) str nullOr bool enum;
   inherit (lib.generators) mkLuaInline;
@@ -27,14 +23,6 @@ in {
           type = nullOr str;
           default = null;
           description = "Date format used for creating daily notes";
-        };
-      };
-      completion = {
-        nvim_cmp = mkOption {
-          # If using nvim-cmp, otherwise set to false
-          type = bool;
-          description = "If using nvim-cmp, otherwise set to false";
-          default = config.vim.autocomplete.nvim-cmp.enable;
         };
       };
       new_notes_location = mkOption {

@@ -84,10 +84,8 @@
     lua = {
       enable = true;
       extraDiagnostics.enable = true;
-      lsp = {
-        enable = true;
-        lazydev.enable = false;
-      };
+      lsp.enable = true;
+      extensions.lazydev.enable = false;
       treesitter.enable = true;
       format.enable = true;
     };
