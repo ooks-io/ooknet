@@ -55,6 +55,12 @@ in {
           else ["@admin"]
         );
       experimental-features = ["nix-command" "flakes"];
+      # lix 2.95 warns on old syntax still used inside nixpkgs, not our code
+      extra-deprecated-features = [
+        "broken-string-indentation"
+        "broken-string-escape"
+        "or-as-identifier"
+      ];
       accept-flake-config = false;
       warn-dirty = false;
       # cache
