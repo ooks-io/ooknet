@@ -20,6 +20,9 @@ in {
     ./silent-boot.nix
   ];
 
+  # leave a few cores free during big compiles
+  nix.settings.cores = 8;
+
   home-manager.users =
     (optionalAttrs admin.homeManager {
       "${admin.name}" = {
