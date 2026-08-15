@@ -7,7 +7,7 @@
   inherit (osConfig.ooknet.workstation) profiles;
 in {
   imports = [
-    ./wow.nix
+    # ./wow.nix
     ./wine.nix
     ./bottles.nix
     ./emulation.nix
