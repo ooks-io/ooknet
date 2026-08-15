@@ -7,6 +7,10 @@
   inherit (osConfig.ooknet.appearance) fonts;
 
   gtkCss = import ./gtkCss.nix {inherit ook;};
+  theme = {
+    name = "adw-gtk3";
+    package = pkgs.adw-gtk3;
+  };
 in {
   config = rec {
     gtk = {
@@ -15,10 +19,9 @@ in {
         name = fonts.regular.family;
         size = 12;
       };
-      theme = {
-        name = "adw-gtk3";
-        package = pkgs.adw-gtk3;
-      };
+      inherit theme;
+      # hm 26.05 drops gtk4 theme inheritance, keep it explicit
+      gtk4.theme = theme;
       iconTheme = {
         name = "Gruvbox-Plus-Dark";
         package = pkgs.gruvbox-dark-icons-gtk;
