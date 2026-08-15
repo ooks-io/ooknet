@@ -16,6 +16,9 @@ in {
           http_addr = "0.0.0.0";
           http_port = 3001;
         };
+        # old nixpkgs default key, nothing sensitive in the db to protect
+        # and no official rotation path, see 26.05 changelog
+        security.secret_key = "SW2YcwTIb9zpOOhoPsMm";
       };
 
       provision = {
