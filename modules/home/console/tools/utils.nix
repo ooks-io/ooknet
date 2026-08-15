@@ -42,7 +42,6 @@
     inherit
       (self'.packages)
       claude-code
-      repomix
       goki
       ;
   };
