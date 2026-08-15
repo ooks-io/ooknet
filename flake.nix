@@ -88,7 +88,6 @@
       url = "github:Infinidoge/nix-minecraft";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
       };
     };
 
@@ -128,10 +127,7 @@
     nvf = {
       url = "github:notashelf/nvf";
       inputs = {
-        systems.follows = "systems";
-
         nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
       };
     };
 
