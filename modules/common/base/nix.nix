@@ -9,7 +9,7 @@
   inherit (builtins) attrValues;
   inherit (lib) mapAttrs mapAttrsToList filterAttrs isType;
   inherit (config.ooknet.host) admin;
-  inherit (pkgs.stdenv) isLinux;
+  inherit (pkgs.stdenv.hostPlatform) isLinux;
 
   flakeInputs = filterAttrs (_: v: isType "flake" v) inputs;
 

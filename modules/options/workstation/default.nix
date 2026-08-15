@@ -6,7 +6,7 @@
 }: let
   inherit (lib) mkEnableOption mkOption;
   inherit (lib.types) nullOr enum listOf;
-  inherit (pkgs.stdenv) isDarwin;
+  inherit (pkgs.stdenv.hostPlatform) isDarwin;
   cfg = config.ooknet.workstation;
 in {
   options.ooknet.workstation = {

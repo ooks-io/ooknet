@@ -11,7 +11,7 @@
 }: let
   inherit (lib) optionalAttrs mkIf;
   inherit (config.ooknet.host) guest admin;
-  inherit (pkgs.stdenv) isLinux;
+  inherit (pkgs.stdenv.hostPlatform) isLinux;
 
   mkHomeUser = name: {
     "${name}" = let

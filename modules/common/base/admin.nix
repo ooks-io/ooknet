@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  inherit (pkgs.stdenv) isLinux;
+  inherit (pkgs.stdenv.hostPlatform) isLinux;
   inherit (lib) mkMerge mkIf;
   inherit (config.ooknet.host) admin;
   inherit (config.ooknet.secrets) keys;

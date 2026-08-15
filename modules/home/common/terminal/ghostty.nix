@@ -7,7 +7,7 @@
   ...
 }: let
   inherit (lib) mkIf mkMerge;
-  inherit (pkgs.stdenv) isDarwin;
+  inherit (pkgs.stdenv.hostPlatform) isDarwin;
   inherit (ook) color;
   inherit (osConfig.ooknet.host) admin;
   inherit (osConfig.ooknet.appearance.fonts) monospace;

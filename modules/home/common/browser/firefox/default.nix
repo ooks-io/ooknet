@@ -10,7 +10,7 @@
   inherit (lib) mkIf mkMerge;
   inherit (osConfig.ooknet.appearance) fonts;
   inherit (osConfig.ooknet.workstation) default;
-  inherit (pkgs.stdenv) isDarwin;
+  inherit (pkgs.stdenv.hostPlatform) isDarwin;
 
   addons = inputs'.firefox-addons.packages;
   cfg = osConfig.ooknet.workstation.programs.firefox;

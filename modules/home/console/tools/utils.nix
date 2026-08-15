@@ -7,7 +7,7 @@
 }: let
   inherit (lib) optionals mkIf;
   inherit (builtins) attrValues;
-  inherit (pkgs.stdenv) isLinux isDarwin;
+  inherit (pkgs.stdenv.hostPlatform) isLinux isDarwin;
   cfg = osConfig.ooknet.console.tools.utils;
 
   # common packages for all platforms

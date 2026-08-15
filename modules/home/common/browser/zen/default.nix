@@ -12,7 +12,7 @@
   inherit (osConfig.ooknet.appearance) fonts;
   inherit (ook) color;
   inherit (osConfig.ooknet.workstation) default;
-  inherit (pkgs.stdenv) isDarwin;
+  inherit (pkgs.stdenv.hostPlatform) isDarwin;
 
   addons = inputs'.firefox-addons.packages;
   cfg = osConfig.ooknet.workstation.programs.zen;

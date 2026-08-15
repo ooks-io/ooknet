@@ -8,7 +8,7 @@
   inherit (config.ooknet.host) guest;
   inherit (config.ooknet.secrets) keys;
 
-  inherit (pkgs.stdenv) isLinux;
+  inherit (pkgs.stdenv.hostPlatform) isLinux;
 
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in {

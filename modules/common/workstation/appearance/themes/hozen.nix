@@ -6,7 +6,7 @@
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (pkgs.stdenv) isLinux;
+  inherit (pkgs.stdenv.hostPlatform) isLinux;
   inherit (config.ooknet.workstation) theme;
   generatedWallpaper = import ./generated-wallpaper.nix {inherit ook config pkgs;} {};
 in {
