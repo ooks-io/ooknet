@@ -23,6 +23,16 @@ in {
         variables = ["--all"];
       };
     };
+    # hm hyprland module force-enables xdg.portal, mirror the system portal config
+    # so the user-level portals.conf matches instead of warning
+    xdg.portal.config = {
+      hyprland.default = ["gtk" "hyprland"];
+      common = {
+        default = ["gtk"];
+        "org.freedesktop.impl.portal.Screencast" = "hyprland";
+        "org.freedesktop.impl.portal.Screenshot" = "hyprland";
+      };
+    };
     home.sessionVariables =
       {
         NIXOS_OZONE_WL = "1";
