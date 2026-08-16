@@ -57,13 +57,17 @@ in {
           # disable close terminal prompt
           confirm-close-surface = false;
 
-          keybind = [
-            "ctrl+equal=increase_font_size:1"
-            "ctrl+minus=decrease_font_size:1"
-            "ctrl+zero=reset_font_size"
-            "ctrl+shift+v=paste_from_clipboard"
-            "ctrl+shift+c=copy_to_clipboard"
-          ];
+          keybind =
+            [
+              "ctrl+equal=increase_font_size:1"
+              "ctrl+minus=decrease_font_size:1"
+              "ctrl+zero=reset_font_size"
+              "ctrl+shift+v=paste_from_clipboard"
+              "ctrl+shift+c=copy_to_clipboard"
+            ]
+            # clearDefaultKeybinds also wipes ghostty's default cmd-q quit;
+            # restore it so cmd-q quits ghostty like every other macos app
+            ++ lib.optional isDarwin "super+q=quit";
           macos-option-as-alt = isDarwin;
         };
         themes.hozen = {
