@@ -23,7 +23,9 @@ in {
           outer = {
             left = padding;
             right = padding;
-            top = padding;
+            # sketchybar reserves y_offset + height (28) from the screen, so
+            # 0 here lands the window tops exactly on the bar bottom edge
+            top = 0;
             bottom = padding;
           };
           inner = {
