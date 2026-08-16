@@ -46,7 +46,7 @@ in {
             "github.com/WeidiDeng/caddy-cloudflare-ip@v0.0.0-20231130002422-f53b62aa13cb"
             "github.com/mholt/caddy-ratelimit@v0.1.0"
           ];
-          hash = "sha256-N2NLSoeRP7w/eYb+9QWsrp1O6s29LCeLMYQch7Q+lb0=";
+          hash = "sha256-09PIWFhQ6XJOGtrXcI2wxb6Tz2wTRjPv0meth0V1Cm4=";
         };
         globalConfig = ''
           admin 0.0.0.0:2019
