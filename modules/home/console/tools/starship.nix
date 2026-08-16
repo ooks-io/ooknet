@@ -24,11 +24,12 @@ in {
           "$git_state"
           "$git_status"
           "$jobs"
+          "$line_break"
           "$character"
         ];
 
         directory = {
-          truncation_length = 0;
+          truncation_length = 5;
           truncate_to_repo = true;
           substitutions = {
             "Documents" = " Documents";
@@ -40,9 +41,9 @@ in {
           };
         };
 
-        fill = {
-          symbol = " ";
-          disabled = false;
+        nix_shell = {
+          format = "[$symbol]($style) ";
+          symbol = "󱄅";
         };
 
         character = {
