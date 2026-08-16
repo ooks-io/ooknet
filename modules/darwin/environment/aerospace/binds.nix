@@ -1,10 +1,12 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }: {
   services.aerospace.settings.mode.main.binding = let
     inherit (lib) getExe;
+    inherit (config.ooknet.host) admin;
     mod = "cmd";
   in {
     "${mod}-left" = "focus left --boundaries all-monitors-outer-frame";
@@ -54,8 +56,30 @@
     "${mod}-ctrl-k" = "resize height +50";
     "${mod}-ctrl-j" = "resize height -50";
 
+    # workspace cycling, mirrors hyprland super+period/comma and super+tab
+    # (cmd-tab is reserved by macos, so back-and-forth lives on alt-tab)
+    "${mod}-period" = "workspace --wrap-around next";
+    "${mod}-comma" = "workspace --wrap-around prev";
+    alt-tab = "workspace-back-and-forth";
+
+    # window management, mirrors hyprland super-ctrl+backspace/super+space/
+    # super+s (cmd-space is raycast and cmd-s is save, so those get
+    # shift/alt instead). cmd-q is intentionally unbound: native macos quit
+    # everywhere — ghostty rebinds its own super+q=quit since
+    # clearDefaultKeybinds removes it
+    "${mod}-ctrl-backspace" = "close";
+    "${mod}-shift-space" = "layout floating tiling";
+    alt-s = "layout tiles horizontal vertical";
     alt-f = "fullscreen";
 
+    # launchers, mirrors hyprland super+{b,return,e,d,escape} super-shift+{p,n,e}
+    "${mod}-b" = "exec-and-forget open -b app.zen-browser.zen";
+    "${mod}-enter" = "exec-and-forget open -na Ghostty";
+    "${mod}-e" = "exec-and-forget open -na Ghostty --args -e nvim";
+    "${mod}-esc" = "exec-and-forget open -na Ghostty --args --title=BTOP -e /etc/profiles/per-user/${admin.name}/bin/btop";
+    "${mod}-shift-p" = "exec-and-forget open -b com.1password.1password";
+    "${mod}-shift-n" = "exec-and-forget open -b md.obsidian";
+    "${mod}-shift-e" = "exec-and-forget open -a Finder $HOME";
     "${mod}-d" = "exec-and-forget open -a ${getExe pkgs.vesktop}";
   };
 }
