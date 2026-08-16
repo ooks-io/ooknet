@@ -7,6 +7,7 @@
     ./monitoring
     ./auth
     ./authentik
+    ./searxng
     # ./minecraft
   ];
 }

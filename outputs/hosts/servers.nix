@@ -11,7 +11,7 @@
       system = "x86_64-linux";
       type = "desktop";
       domain = "ooknet.org";
-      services = ["ookflix" "monitoring" "authentik"];
+      services = ["ookflix" "monitoring" "authentik" "searxng"];
     };
     ookstest = {
       system = "x86_64-linux";
