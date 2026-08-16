@@ -4,32 +4,37 @@
   ...
 }: let
   inherit (config.ooknet.workstation) default profiles;
-  inherit (lib) optionals elem;
+  inherit (lib) optional elem;
 in {
-  services.aerospace.window-rules = [
-    {
-      conditions.id = "com.1password.1password";
-      float = true;
-    }
-    {
-      conditions.id = "com.apple.finder";
-      float = true;
-    }
-    # {
-    #   conditions.id = "com.anthropic.claudefordesktop";
-    #   workspace = "ai";
-    # }
-    (optionals (default.browser == "zen") {
+  services.aerospace.window-rules =
+    [
+      {
+        conditions.id = "com.1password.1password";
+        float = true;
+      }
+      {
+        conditions.id = "com.apple.finder";
+        float = true;
+      }
+      {
+        conditions.id = "com.tinyspeck.slackmacgap";
+        workspace = 5;
+      }
+      {
+        conditions.id = "com.microsoft.teams2";
+        workspace = 5;
+      }
+    ]
+    ++ optional (default.browser == "zen") {
       conditions.id = "app.zen-browser.zen";
       workspace = 2;
-    })
-    (optionals (default.terminal == "ghostty") {
-      conditions.id = "com.mitchell.ghostty";
+    }
+    ++ optional (default.terminal == "ghostty") {
+      conditions.id = "com.mitchellh.ghostty";
       workspace = 1;
-    })
-    (optionals (elem "communication" profiles) {
+    }
+    ++ optional (elem "communication" profiles) {
       conditions.id = "dev.vencord.vesktop";
       workspace = 4;
-    })
-  ];
+    };
 }
