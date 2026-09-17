@@ -42,6 +42,7 @@ in {
         "ssd"
         "printing"
         "fingerprint"
+        "peripherals"
       ]);
       default = ["ssd"];
     };

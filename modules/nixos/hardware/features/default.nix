@@ -7,5 +7,6 @@
     ./backlight.nix
     ./ssd.nix
     ./bluetooth.nix
+    ./peripherals.nix
   ];
 }

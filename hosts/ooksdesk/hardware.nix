@@ -8,10 +8,10 @@
       type = "amd";
       lact.enable = true;
     };
-    features = ["printing" "ssd" "audio" "video" "bluetooth"];
+    features = ["printing" "ssd" "audio" "video" "bluetooth" "peripherals"];
     monitors = [
       {
-        name = "DP-2";
+        name = "DP-1";
         primary = true;
         width = 1920;
         height = 1080;
