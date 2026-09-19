@@ -47,7 +47,12 @@ in {
           window-decoration = false;
           resize-overlay = "never";
 
-          gtk-single-instance = true;
+          # one process per window. hyprland picks a swallow target by walking
+          # the new windows pid ancestry, so a shared pid makes every ghostty
+          # window a candidate and it grabs whichever was focused last. apps
+          # that map windows late (bambu studio) then yank random terminals
+          # onto their workspace
+          gtk-single-instance = false;
 
           # disable close terminal prompt
           confirm-close-surface = false;
