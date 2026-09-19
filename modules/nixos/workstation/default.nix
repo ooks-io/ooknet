@@ -16,6 +16,7 @@ in {
     ./services
     ./programs
     ./gaming
+    ./3d-printing
     ./environment
     ./silent-boot.nix
   ];

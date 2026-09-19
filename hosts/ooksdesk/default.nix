@@ -26,7 +26,7 @@
       environment = "hyprland";
       theme = "minimal";
       sunshine.enable = true;
-      profiles = ["creative" "virtualization" "gaming" "media" "communication" "productivity" "infra" "work" "ai"];
+      profiles = ["creative" "virtualization" "gaming" "media" "communication" "productivity" "infra" "work" "ai" "3dprinting"];
       default = {
         browser = "zen";
         terminal = "ghostty";
