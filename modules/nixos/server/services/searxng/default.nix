@@ -24,11 +24,13 @@
   };
 in {
   config = mkIf (elem "searxng" services) {
-    networking.firewall.interfaces = {
+    networking.firewall = {
       # direct tailnet access (and web_search fallback url)
-      "tailscale0".allowedTCPPorts = [8888];
-      # traefik reaches the host service from podman's bridge networks
-      "podman+".allowedTCPPorts = [8888];
+      interfaces."tailscale0".allowedTCPPorts = [8888];
+      # traefik reaches the host service from podman's bridge networks.
+      # nftables wildcard, the iptables-style "podman+" interface name no
+      # longer parses as of nftables 1.1
+      extraInputRules = ''iifname "podman*" tcp dport 8888 accept'';
     };
 
     services.searx = {
