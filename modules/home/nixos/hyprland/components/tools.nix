@@ -18,9 +18,8 @@ in {
           libnotify
           wl-screenrec
           wl-clipboard
+          wf-recorder
           ;
-        # broken against ffmpeg 9, drop override once nixpkgs #552231 hits unstable
-        wf-recorder = pkgs.wf-recorder.override {ffmpeg = pkgs.ffmpeg_8;};
       };
     };
 
