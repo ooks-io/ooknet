@@ -1,5 +1,6 @@
 {
   lib,
+  config,
   osConfig,
   ...
 }: let
@@ -17,10 +18,8 @@ in {
       enable = true;
       configType = "lua";
       package = null;
-      systemd = {
-        enable = true;
-        variables = ["--all"];
-      };
+      # uwsm owns the session targets and activation env
+      systemd.enable = false;
     };
     # hm hyprland module force-enables xdg.portal, mirror the system portal config
     # so the user-level portals.conf matches instead of warning
@@ -32,6 +31,13 @@ in {
         "org.freedesktop.impl.portal.Screenshot" = "hyprland";
       };
     };
+    # uwsm sources this for the session regardless of how it was started,
+    # covers greetd not going through a login shell
+    xdg.configFile."uwsm/env".text = ''
+      . /etc/set-environment
+      . ${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh
+    '';
+
     home.sessionVariables =
       {
         NIXOS_OZONE_WL = "1";

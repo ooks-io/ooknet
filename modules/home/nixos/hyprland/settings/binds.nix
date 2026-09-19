@@ -11,6 +11,8 @@
   bind = key: dsp: "hl.bind(${toJSON key}, ${dsp})";
   bindWith = flags: key: dsp: "hl.bind(${toJSON key}, ${dsp}, ${toLua flags})";
   exec = cmd: "hl.dsp.exec_cmd(${toJSON cmd})";
+  # launch as its own systemd scope under uwsm
+  app = cmd: exec "uwsm app -- ${cmd}";
 
   dirs = {
     left = "l";
@@ -32,24 +34,24 @@
   lines =
     [
       "-- programs"
-      (bind "SUPER + b" (exec binds.browser))
-      (bind "SUPER + return" (exec binds.terminal))
-      (bind "SUPER + SHIFT + return" (exec "${binds.terminal} --title=dropdown"))
-      (bind "SUPER + e" (exec "${binds.terminalLaunch} $EDITOR"))
-      (bind "SUPER + SHIFT + P" (exec binds.password))
-      (bind "SUPER + CTRL + P" (exec binds.quickpass))
-      (bind "SUPER + d" (exec binds.discord))
-      (bind "SUPER + SHIFT + e" (exec binds.fileManager))
-      (bind "SUPER + SHIFT + S" (exec binds.steam))
-      (bind "SUPER + SHIFT + n" (exec binds.notes))
-      (bind "SUPER + escape" (exec binds.btop))
-      (bind "SUPER + CTRL + return" (exec binds.zellijMenu))
+      (bind "SUPER + b" (app binds.browser))
+      (bind "SUPER + return" (app binds.terminal))
+      (bind "SUPER + SHIFT + return" (app "${binds.terminal} --title=dropdown"))
+      (bind "SUPER + e" (app "${binds.terminalLaunch} $EDITOR"))
+      (bind "SUPER + SHIFT + P" (app binds.password))
+      (bind "SUPER + CTRL + P" (app binds.quickpass))
+      (bind "SUPER + d" (app binds.discord))
+      (bind "SUPER + SHIFT + e" (app binds.fileManager))
+      (bind "SUPER + SHIFT + S" (app binds.steam))
+      (bind "SUPER + SHIFT + n" (app binds.notes))
+      (bind "SUPER + escape" (app binds.btop))
+      (bind "SUPER + CTRL + return" (app binds.zellijMenu))
       (bind "SUPER + delete" (exec binds.powerMenu))
-      (bind "SUPER + SHIFT + F" (exec binds.factorio))
+      (bind "SUPER + SHIFT + F" (app binds.factorio))
       (bind "SUPER + Backspace" (exec binds.lock))
 
       "-- spotify"
-      (bind "SUPER + M" (exec binds.spotify.launch))
+      (bind "SUPER + M" (app binds.spotify.launch))
       (bind "SUPER + bracketright" (exec binds.spotify.next))
       (bind "SUPER + bracketleft" (exec binds.spotify.previous))
       (bind "SUPER + backslash" (exec binds.spotify.play))
@@ -64,7 +66,7 @@
       "-- window management"
       (bind "SUPER + Q" "hl.dsp.window.close()")
       (bind "SUPER + CTRL + backspace" "hl.dsp.window.close()")
-      (bind "SUPER + SHIFT + ALT + delete" (exec "hyprkillsession"))
+      (bind "SUPER + SHIFT + ALT + delete" (exec "uwsm stop"))
       (bind "SUPER + F" "hl.dsp.window.fullscreen()")
       # was `fullscreenstate` with no args, a noop in hyprlang too
       (bind "SUPER + CTRL + F" "hl.dsp.window.fullscreen_state({ internal = -1, client = -1 })")

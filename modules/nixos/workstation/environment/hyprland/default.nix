@@ -4,12 +4,39 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf getExe;
   inherit (config.ooknet.workstation) environment;
+  inherit (config.ooknet.host) admin;
+
+  # hyprland 0.56 warns when not launched through its start-hyprland watchdog,
+  # uwsm has a start_hyprland plugin so the binary name is fine as the unit id
+  uwsmStart = "${getExe config.programs.uwsm.package} start -D Hyprland -- /run/current-system/sw/bin/start-hyprland";
 in {
   config = mkIf (environment == "hyprland") {
     programs.hyprland = {
       enable = true;
+      withUWSM = true;
+    };
+
+    # withUWSM only enables uwsm, the session entry still has to be declared
+    programs.uwsm.waylandCompositors.hyprland = {
+      prettyName = "Hyprland";
+      comment = "Hyprland compositor managed by UWSM";
+      binPath = "/run/current-system/sw/bin/start-hyprland";
+    };
+
+    # autologin straight into the uwsm session, hyprlock is the lock (luks is
+    # the boot boundary). tuigreet only shows up after a logout
+    services.greetd = {
+      enable = true;
+      useTextGreeter = true;
+      settings = {
+        initial_session = {
+          command = uwsmStart;
+          user = admin.name;
+        };
+        default_session.command = "${getExe pkgs.tuigreet} --time --remember --asterisks --cmd '${uwsmStart}'";
+      };
     };
 
     xdg.portal = {
