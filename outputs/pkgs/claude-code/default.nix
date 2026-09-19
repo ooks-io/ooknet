@@ -6,7 +6,6 @@
   lib,
   stdenvNoCC,
   fetchurl,
-  installShellFiles,
   makeBinaryWrapper,
   autoPatchelfHook,
   alsa-lib,
@@ -14,9 +13,10 @@
   ripgrep,
   bubblewrap,
   socat,
+  zstd,
   versionCheckHook,
   writableTmpDirAsHomeHook,
-  manifest ? lib.importJSON ./manifest.json,
+  manifest ? lib.importJSON ./manifest.zst.json,
 }: let
   stdenv = stdenvNoCC;
   baseUrl = "https://downloads.claude.ai/claude-code-releases";
@@ -28,7 +28,7 @@ in
     inherit (manifest) version;
 
     src = fetchurl {
-      url = "${baseUrl}/${finalAttrs.version}/${platformKey}/claude";
+      url = "${baseUrl}/${finalAttrs.version}/${platformKey}/${platformManifestEntry.binary}";
       sha256 = platformManifestEntry.checksum;
     };
 
@@ -40,8 +40,8 @@ in
 
     nativeBuildInputs =
       [
-        installShellFiles
         makeBinaryWrapper
+        zstd
       ]
       ++ lib.optionals stdenv.hostPlatform.isElf [autoPatchelfHook];
 
@@ -50,7 +50,9 @@ in
     installPhase = ''
       runHook preInstall
 
-      installBin $src
+      mkdir -p $out/bin
+      unzstd -q $src -o $out/bin/claude
+      chmod 755 $out/bin/claude
 
       wrapProgram $out/bin/claude \
         --set DISABLE_AUTOUPDATER 1 \
@@ -88,6 +90,7 @@ in
 
     passthru.updateScript = ./update.sh;
 
+    # meta trimmed: no unfree license so it stays in our free pkgs scope
     meta = {
       platforms = [
         "aarch64-darwin"
