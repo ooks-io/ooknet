@@ -1,13 +1,10 @@
 {
+  # keys are the AC config names verbatim
   services.nixzeroth.world = {
-    enablePlayerSettings = 1;
-    maxPlayerLevel = 60;
-    startPlayerLevel = 60;
-    rate = {
-      moveSpeed = {
-        # default movespeed
-        player = 1;
-      };
-    };
+    EnablePlayerSettings = true;
+    MaxPlayerLevel = 60;
+    StartPlayerLevel = 60;
+    # default movespeed
+    Rate.MoveSpeed.Player = 1;
   };
 }

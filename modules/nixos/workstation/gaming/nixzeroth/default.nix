@@ -8,7 +8,7 @@
   inherit (config.ooknet.workstation) profiles;
 in {
   imports = [
-    inputs.nixzeroth.nixosModules.nixzeroth
+    inputs.hozen-core.nixosModules.nixzeroth
 
     ./world
     ./modules
@@ -23,7 +23,7 @@ in {
       };
       openFirewall = true;
       world = {
-        dataDir = "/var/lib/nixzeroth/client-data";
+        DataDir = "/var/lib/nixzeroth/client-data";
       };
     };
 

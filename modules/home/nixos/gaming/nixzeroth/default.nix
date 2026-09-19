@@ -3,28 +3,30 @@
   osConfig,
   config,
   inputs,
+  pkgs,
   ...
 }: let
   inherit (lib) mkIf elem;
   inherit (osConfig.ooknet.workstation) profiles;
 in {
   imports = [
-    inputs.nixzeroth.homeModules.nixzeroth
+    inputs.hozen-core.homeModules.nixzeroth
   ];
 
   config = mkIf (elem "gaming" profiles) {
     programs.nixzeroth = {
       enable = true;
+      # the cli lives in the content repo, the module has no default for it
+      cli.package = inputs.nixzeroth.packages.${pkgs.system}.hozen-cli;
       references = {
-        clientsDir = "${config.home.homeDirectory}/projects/nixzeroth/.internal/reference-clients";
+        clientsDir = "${config.home.homeDirectory}/.local/share/nixzeroth/reference-clients";
       };
+      # keys are the AC config names verbatim
       world = {
-        enablePlayerSettings = 1;
-        maxPlayerLevel = 60;
-        startPlayerLevel = 60;
-        rate.moveSpeed = {
-          player = 1;
-        };
+        EnablePlayerSettings = true;
+        MaxPlayerLevel = 60;
+        StartPlayerLevel = 60;
+        Rate.MoveSpeed.Player = 1;
       };
     };
   };
