@@ -8,8 +8,8 @@
   inherit (config.ooknet.host) role;
   inherit (lib) mkIf mkDefault;
   inherit (builtins) attrValues;
-  # production = config.boot.kernelPackages.nvidiaPackages.production;
-  inherit (config.boot.kernelPackages.nvidiaPackages) beta;
+  # beta (595.45.04) predates the of_gpio.h removal in newer kernels, wont build
+  inherit (config.boot.kernelPackages.nvidiaPackages) stable;
 in {
   config = mkIf (gpu.type == "nvidia") {
     # need this even if using wayland
@@ -17,7 +17,7 @@ in {
     hardware = {
       nvidia = {
         open = false;
-        package = beta;
+        package = stable;
         forceFullCompositionPipeline = true;
         nvidiaSettings = false;
         nvidiaPersistenced = role == "server";
