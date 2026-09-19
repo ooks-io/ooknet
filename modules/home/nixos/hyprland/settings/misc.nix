@@ -1,5 +1,5 @@
 {
-  wayland.windowManager.hyprland.settings.misc = {
+  wayland.windowManager.hyprland.settings.config.misc = {
     mouse_move_enables_dpms = true;
     key_press_enables_dpms = true;
     disable_hyprland_logo = true;

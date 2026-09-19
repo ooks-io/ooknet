@@ -15,8 +15,7 @@ in {
   config = mkIf (environment == "hyprland") {
     wayland.windowManager.hyprland = {
       enable = true;
-      # HM flipped the default to "lua"; keep hyprlang for our structured settings
-      configType = "hyprlang";
+      configType = "lua";
       package = null;
       systemd = {
         enable = true;

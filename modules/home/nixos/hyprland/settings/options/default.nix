@@ -3,59 +3,8 @@
   config,
   ...
 }: let
-  inherit
-    (lib)
-    flatten
-    attrValues
-    concatStringsSep
-    filterAttrs
-    mapAttrsToList
-    boolToString
-    mkOption
-    isBool
-    ;
-  inherit
-    (lib.types)
-    listOf
-    attrsOf
-    submodule
-    nullOr
-    str
-    int
-    bool
-    oneOf
-    ;
-
-  hyprland = import ./rules.nix {inherit lib;};
-
-  _toString = type: val:
-    if isBool val
-    then
-      if type == "windowrule"
-      then
-        if val
-        then "1"
-        else "0"
-      else boolToString val
-    else toString val;
-
-  # format match props for window rules: match:name value
-  formatWindowMatches = rule:
-    concatStringsSep ", " (
-      mapAttrsToList (name: value: "match:${name} ${_toString "windowrule" value}")
-      (filterAttrs (_: v: v != null) rule)
-    );
-
-  # format props for workspace rules: name:value
-  formatWorkspaceRules = rule:
-    concatStringsSep "," (
-      mapAttrsToList (name: value: "${name}:${_toString "workspacerule" value}")
-      (filterAttrs (_: v: v != null) rule)
-    );
-
-  mkWorkspaces = mapAttrsToList (
-    selector: rules: "${selector},${formatWorkspaceRules rules}"
-  );
+  inherit (lib) filterAttrs mapAttrsToList mkOption optionalAttrs;
+  inherit (lib.types) listOf attrsOf submodule nullOr str int bool oneOf;
 
   mkRuleOption = type: description:
     mkOption {
@@ -63,6 +12,8 @@
       default = null;
       inherit description;
     };
+
+  notNull = filterAttrs (_: v: v != null);
 
   windowRuleMatchers = submodule {
     options = {
@@ -88,22 +39,26 @@
 
   workspaceRules = submodule {
     options = {
-      name = mkRuleOption str "Default name of workspace";
+      default_name = mkRuleOption str "Default name of workspace";
       monitor = mkRuleOption str "Binds workspace to monitor";
       default = mkRuleOption bool "Set as default workspace for monitor";
-      gapsin = mkRuleOption int "Gaps between windows";
-      gapsout = mkRuleOption int "Gaps between windows and monitor edges";
-      bordersize = mkRuleOption int "Border size around windows";
-      border = mkRuleOption bool "Draw borders";
-      shadow = mkRuleOption bool "Draw shadows";
-      rounding = mkRuleOption bool "Draw rounded corners";
+      gaps_in = mkRuleOption int "Gaps between windows";
+      gaps_out = mkRuleOption int "Gaps between windows and monitor edges";
+      border_size = mkRuleOption int "Border size around windows";
+      no_border = mkRuleOption bool "Disable borders";
+      no_shadow = mkRuleOption bool "Disable shadows";
+      no_rounding = mkRuleOption bool "Disable rounded corners";
       decorate = mkRuleOption bool "Draw window decorations";
       persistent = mkRuleOption bool "Keep workspace alive when empty";
-      on-created-empty = mkRuleOption str "Command to run when workspace created empty";
+      animation = mkRuleOption str "Workspace animation style";
+      layout = mkRuleOption str "Layout for this workspace";
+      on_created_empty = mkRuleOption str "Command to run when workspace created empty";
     };
   };
 
-  windowRuleType = listOf (oneOf (attrValues hyprland.types));
+  # window rule effects are lua table keys, see
+  # https://wiki.hypr.land/configuring/core/rules/window-rules/
+  ruleValue = oneOf [bool int str (listOf int)];
 
   cfg = config.wayland.windowManager.hyprland;
 in {
@@ -111,36 +66,40 @@ in {
     workspaces = mkOption {
       type = attrsOf workspaceRules;
       default = {};
-      description = "Workspace-specific configurations";
+      description = "Workspace rules keyed by workspace selector";
     };
 
     windowRules = mkOption {
       type = listOf (submodule {
         options = {
+          name = mkRuleOption str "Rule name, named rules return a handle in lua";
           matches = mkOption {
             type = windowRuleMatchers;
             description = "Window matching criteria";
           };
           rules = mkOption {
-            type = windowRuleType;
-            description = "Rules to apply to matching windows";
+            type = attrsOf ruleValue;
+            description = "Effects to apply to matching windows";
           };
         };
       });
       default = [];
-      description = "Window-specific rules";
+      description = "Window rules";
     };
   };
 
   config.wayland.windowManager.hyprland.settings = {
-    workspace = mkWorkspaces cfg.workspaces;
-    windowrule = let
-      formatWindowRule = rule: let
-        matches = formatWindowMatches rule.matches;
-        rules = map (r: "${r}, ${matches}") rule.rules;
-      in
-        rules;
-    in
-      flatten (map formatWindowRule cfg.windowRules);
+    workspace_rule =
+      mapAttrsToList (workspace: rules: {inherit workspace;} // notNull rules)
+      cfg.workspaces;
+
+    window_rule =
+      map (
+        r:
+          {match = notNull r.matches;}
+          // optionalAttrs (r.name != null) {inherit (r) name;}
+          // r.rules
+      )
+      cfg.windowRules;
   };
 }

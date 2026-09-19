@@ -9,25 +9,25 @@
 in {
   wayland.windowManager.hyprland.workspaces = {
     "1" = {
-      name = "terminal";
+      default_name = "terminal";
       monitor = primary;
       default = true;
     };
     "2" = {
-      name = "browser";
+      default_name = "browser";
       monitor = primary;
     };
     "3" = {
-      name = "media";
+      default_name = "media";
       monitor = secondary;
       default = true;
     };
     "4" = {
-      name = "discord";
+      default_name = "discord";
       monitor = secondary;
     };
     "5" = {
-      name = "gaming";
+      default_name = "gaming";
       monitor = primary;
     };
     "r[6-9]" = {

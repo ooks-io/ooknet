@@ -78,7 +78,7 @@
           dry_success "Logged out"
           PROCESS="Hyprland|\.Hyprland-wrapp"
           if pgrep -x $PROCESS >/dev/null; then
-            hyprctl dispatch exit 0
+            hyprctl dispatch 'hl.dsp.exit()'
             sleep 2
             if pgrep -x $PROCESS; then
               pkill -9 $PROCESS

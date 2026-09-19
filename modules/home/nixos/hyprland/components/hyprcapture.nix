@@ -42,14 +42,13 @@ in {
       SCREENSHOTS = "${config.xdg.userDirs.pictures}/Screenshots";
     };
 
-    wayland.windowManager.hyprland.settings.bind = [
-      # Screenshot binds
-      ",               Print,         exec,     ookscreenshot area"
-      "SUPER,          Print,         exec,     ookscreenshot screen"
-      # Recording binds
-      "SUPER,          r,             exec,     hyprrecord -a -w video screen copysave"
-      "SUPER CTRL,     r,             exec,     hyprrecord -a -w video area copysave"
-      "SUPER ALT,      r,             exec,     hyprrecord -w gif area copysave"
-    ];
+    wayland.windowManager.hyprland.extraLuaFiles.binds.content = ''
+      -- capture
+      hl.bind("Print", hl.dsp.exec_cmd("ookscreenshot area"))
+      hl.bind("SUPER + Print", hl.dsp.exec_cmd("ookscreenshot screen"))
+      hl.bind("SUPER + r", hl.dsp.exec_cmd("hyprrecord -a -w video screen copysave"))
+      hl.bind("SUPER + CTRL + r", hl.dsp.exec_cmd("hyprrecord -a -w video area copysave"))
+      hl.bind("SUPER + ALT + r", hl.dsp.exec_cmd("hyprrecord -w gif area copysave"))
+    '';
   };
 }

@@ -13,10 +13,7 @@
 
   optimizeScriptStart = pkgs.writeShellScript "gamemode-start" ''
     ${optionalString (environment == "hyprland") ''
-      ${hyprctl} -i 0 --batch "\
-        keyword misc:vfr false; \
-        keyword render:direct_scanout true; \
-        keyword general:allow_tearing true" \
+      ${hyprctl} eval 'hl.config({ debug = { vfr = false }, render = { direct_scanout = true }, general = { allow_tearing = true } })'
     ''}
     ${powerprofilectl} set performance
     ${notify-send} 'Gamemode Started'
@@ -24,7 +21,7 @@
 
   optimizeScriptStop = pkgs.writeShellScript "gamemode-end" ''
     ${optionalString (environment == "hyprland") ''
-      ${hyprctl} -i 0 reload
+      ${hyprctl} reload
     ''}
     ${powerprofilectl} set balanced
     ${notify-send} 'Gamemode Stopped'

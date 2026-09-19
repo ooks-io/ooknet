@@ -8,7 +8,8 @@
   inherit (lib) getExe getExe' mkIf optionals;
   inherit (osConfig.ooknet.workstation) environment sunshine;
 
-  dpms = "${getExe' osConfig.programs.hyprland.package "hyprctl"} dispatch dpms";
+  hyprctl = getExe' osConfig.programs.hyprland.package "hyprctl";
+  dpms = action: "${hyprctl} dispatch 'hl.dsp.dpms({ action = \"${action}\" })'";
   lock = "${getExe' pkgs.systemd "loginctl"} lock-session";
   hyprlock = getExe config.programs.hyprlock.package;
 in {
@@ -32,8 +33,8 @@ in {
           ++ optionals (!sunshine.enable) [
             {
               timeout = 360;
-              on-timeout = "${dpms} off";
-              on-resume = "${dpms} on";
+              on-timeout = dpms "off";
+              on-resume = dpms "on";
             }
           ];
       };

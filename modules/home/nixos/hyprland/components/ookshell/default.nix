@@ -16,10 +16,10 @@
   # pull window gaps/border/shadow straight from hyprland so the bar sits flush
   # and notifications wear the same frame as windows
   hyprSettings = config.wayland.windowManager.hyprland.settings;
-  hyprGeneral = hyprSettings.general or {};
-  hyprDeco = hyprSettings.decoration or {};
+  hyprGeneral = hyprSettings.config.general or {};
+  hyprDeco = hyprSettings.config.decoration or {};
   hyprShadow = hyprDeco.shadow or {};
-  shadowOffset = lib.splitString " " (toString (hyprShadow.offset or "2 2"));
+  shadowOffset = hyprShadow.offset or [2 2];
   gapsOut = hyprGeneral.gaps_out or 10;
   borderSize = hyprGeneral.border_size or 2;
 
@@ -55,8 +55,8 @@
     shadow = {
       enabled = hyprShadow.enabled or false;
       size = hyprShadow.range or 0;
-      offsetX = lib.toInt (builtins.elemAt shadowOffset 0);
-      offsetY = lib.toInt (builtins.elemAt shadowOffset 1);
+      offsetX = builtins.elemAt shadowOffset 0;
+      offsetY = builtins.elemAt shadowOffset 1;
       color = "#${color.neutrals."850"}";
     };
   };

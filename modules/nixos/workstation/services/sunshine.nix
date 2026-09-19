@@ -13,7 +13,7 @@
   # sunshine runs prep cmds without a shell, so wrap them in a script
   # never fail the stream over a convenience cmd, hence the `|| true`
   prepDo = pkgs.writeShellScript "sunshine-prep-do" ''
-    ${hyprctl} dispatch dpms on || true
+    ${hyprctl} dispatch 'hl.dsp.dpms({ action = "on" })' || true
     ${systemctl} --user stop hypridle.service || true
   '';
   prepUndo = pkgs.writeShellScript "sunshine-prep-undo" ''
