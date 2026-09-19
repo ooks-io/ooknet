@@ -10,7 +10,7 @@
   inherit (lib) mapAttrs mkDefault filterAttrs singleton;
   inherit (builtins) concatLists;
   inherit (self) ook;
-  inherit (ooknetModules) nixosCore darwinCore common nixos hostModules;
+  inherit (ooknetModules) nixosCore darwinCore common nixos hostModules nixos-flatpak;
 
   buildWorkstation = hostname: cfg:
     withSystem cfg.system ({
@@ -28,7 +28,7 @@
       platformModules =
         if isDarwin
         then darwinCore ++ [common.workstation]
-        else nixosCore ++ [nixos.workstation common.workstation];
+        else nixosCore ++ [nixos.workstation common.workstation nixos-flatpak];
     in
       mkSystem {
         specialArgs =

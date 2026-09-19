@@ -10,8 +10,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
-    # zellij 0.44.x has a plugin render loop (zellij-org/zellij#5063, dj95/zjstatus#174)
-    # pin 0.42.2 until fixed upstream
+    # zellij 0.44.x+ has a plugin render loop (zellij-org/zellij#5063, dj95/zjstatus#174)
+    # 0.45.0 + zjstatus 0.24.0 still glitches (tried 2026-08-28), pin 0.42.2
     nixpkgs-zellij.url = "github:NixOS/nixpkgs/7c43f080a7f28b2774f3b3f43234ca11661bf334";
     systems.url = "github:nix-systems/default";
 
@@ -61,6 +61,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-flatpak = {
+      url = "github:gmodena/nix-flatpak";
+    };
+
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -98,9 +102,20 @@
 
     nix-gaming.url = "github:fufexan/nix-gaming";
 
+    # content side: hozen-cli, game DSL, warcraft-xl
     nixzeroth = {
       url = "git+file:///home/ooks/projects/nixzeroth";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # server side: AC fork + world/auth packages + nixos/hm modules
+    hozen-core = {
+      url = "git+file:///home/ooks/projects/hozen-core?ref=hozen";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        systems.follows = "systems";
+      };
     };
 
     ooknet-monitor = {

@@ -14,6 +14,7 @@
 
   nixos-hm = inputs.home-manager.nixosModules.home-manager;
   darwin-hm = inputs.home-manager.darwinModules.home-manager;
+  nixos-flatpak = inputs.nix-flatpak.nixosModules.nix-flatpak;
 
   nixos = {
     base = nixosModules + "/base";
@@ -83,6 +84,7 @@
       hostModules
       nixos-hm
       darwin-hm
+      nixos-flatpak
       nixosSecrets
       darwinSecrets
       options
