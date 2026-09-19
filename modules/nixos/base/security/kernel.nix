@@ -29,9 +29,6 @@ in {
 
     # slight increase in attack surface, but allows for sandboxing
     allowUserNamespaces = true;
-
-    # we don't need unpivileged user namespaces unless we are messing with containers so we disable
-    unprivilegedUsernsClone = false;
   };
 
   boot = {
