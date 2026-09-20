@@ -10,6 +10,9 @@ in {
         configurationLimit = 5;
       };
       efi.canTouchEfiVariables = mkDefault true;
+      # boot the default entry straight away, hold a key during the loader to
+      # get the menu (rollback etc)
+      timeout = mkDefault 0;
     };
     initrd = {
       availableKernelModules = [
