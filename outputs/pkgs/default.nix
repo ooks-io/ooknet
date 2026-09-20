@@ -42,6 +42,7 @@
       #caddy-with-cloudflare = callPackage ./caddy-with-cloudflare {};
       wii-u-gc-adapter = callPackage ./wii-u-gc-adapter {};
       ghostty-shaders = callPackage ./ghostty-shaders {};
+      ook-plymouth = callPackage ./ook-plymouth {inherit ook;};
       ook-vim = callPackage ./ook-vim {inherit inputs pkgs lib ook;};
       curseforge = callPackage ./curseforge {};
 
