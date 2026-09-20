@@ -97,6 +97,13 @@ in {
             type = bool;
             default = true;
           };
+          # render depth the compositor drives the panel at. amdgpu lights a
+          # 10-bit capable panel up at 10 bpc, so an 8-bit compositor commit is a
+          # full modeset (link retrain, screen blanks). match the panel instead
+          bitDepth = mkOption {
+            type = lib.types.nullOr (lib.types.enum [8 10]);
+            default = null;
+          };
         };
       });
       default = [];

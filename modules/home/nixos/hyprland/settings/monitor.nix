@@ -20,6 +20,7 @@ in {
           else {disabled = true;}
         )
         // optionalAttrs (m.transform != 0) {inherit (m) transform;}
+        // optionalAttrs (m.bitDepth != null) {bitdepth = m.bitDepth;}
     )
     monitors;
 }
