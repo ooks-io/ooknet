@@ -1,7 +1,6 @@
 {
   lib,
   osConfig,
-  config,
   ook,
   ...
 }: let
@@ -13,19 +12,6 @@
 in {
   config = mkIf (environment == "hyprland") {
     ooknet.binds.lock = "loginctl lock-session";
-
-    # greetd autologins, so lock immediately on session start
-    wayland.windowManager.hyprland.settings.on = [
-      {
-        _args = [
-          "hyprland.start"
-          (lib.generators.mkLuaInline ''
-            function()
-              hl.exec_cmd("${lib.getExe config.programs.hyprlock.package}")
-            end'')
-        ];
-      }
-    ];
 
     programs.hyprlock = {
       enable = true;

@@ -52,6 +52,9 @@ in {
         };
       };
 
+      # first frame after the splash, before hyprlock is up
+      misc.background_color = "rgb(${color.layout.body})";
+
       animations.enabled = false;
     };
   };

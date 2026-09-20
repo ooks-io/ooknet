@@ -31,10 +31,12 @@ in {
         "org.freedesktop.impl.portal.Screenshot" = "hyprland";
       };
     };
-    # uwsm sources this for the session regardless of how it was started,
-    # covers greetd not going through a login shell
+    # uwsm loads the posix login profile itself (/etc/profile -> set-environment
+    # -> ~/.profile -> hm vars). this is only a safety net for a session started
+    # without one, so respect the same guards: set-environment has none of its
+    # own and would re-export the nixos defaults (EDITOR=nano) over hm's
     xdg.configFile."uwsm/env".text = ''
-      . /etc/set-environment
+      [ -n "$__NIXOS_SET_ENVIRONMENT_DONE" ] || . /etc/set-environment
       . ${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh
     '';
 
