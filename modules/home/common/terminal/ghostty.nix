@@ -57,6 +57,9 @@ in {
           # disable close terminal prompt
           confirm-close-surface = false;
 
+          # no "copied to clipboard" toast, keep the config reload one
+          app-notifications = "config-reload";
+
           keybind =
             [
               "ctrl+equal=increase_font_size:1"
