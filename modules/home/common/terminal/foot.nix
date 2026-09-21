@@ -1,11 +1,11 @@
 {
+  config,
   osConfig,
   lib,
-  ook,
   ...
 }: let
   inherit (osConfig.ooknet.appearance.fonts) monospace;
-  inherit (ook) color;
+  color = config.ooknet.appearance.colors;
   inherit (lib) mkMerge mkIf;
   inherit (osConfig.ooknet.workstation) default;
 

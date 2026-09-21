@@ -3,12 +3,11 @@
   pkgs,
   config,
   osConfig,
-  ook,
   inputs',
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (ook) color;
+  color = config.ooknet.appearance.colors;
   inherit (osConfig.ooknet.appearance) fonts;
   inherit (osConfig.ooknet.workstation) environment;
   cfg = config.ooknet.ookshell;

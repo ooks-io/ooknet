@@ -3,10 +3,8 @@
   config,
   pkgs,
   osConfig,
-  ook,
   ...
 }: let
-  inherit (ook) color;
   inherit (lib) optionalAttrs mapAttrs' nameValuePair mkIf mkOption;
   inherit (lib.types) nullOr lines submodule str attrsOf;
 
@@ -26,35 +24,35 @@
           plugin location="file:${zjstatus}" {
             format_left  "{mode}"
             format_right "{session} {datetime}"
-            format_center "#[fg=#${color.base0D},bold] {tabs}"
+            format_center "#[fg=blue,bold] {tabs}"
             format_space ""
 
             border_enabled  "true"
             border_char     "─"
-            border_format   "#[fg=#${color.base05}]{char}"
+            border_format   "#[fg=white]{char}"
             border_position "bottom"
 
             hide_frame_for_single_pane "true"
 
-            mode_normal       "#[fg=#${color.base0D}]${icon} "
-            mode_tmux         "#[fg=#${color.base0E}]${icon} "
-            mode_pane         "#[fg=#${color.base08}]${icon} "
-            mode_tab          "#[fg=#${color.base08}]${icon} "
-            mode_rename_tab   "#[fg=#${color.base08}]${icon} "
-            mode_rename_pane  "#[fg=#${color.base08}]${icon} "
-            mode_session      "#[fg=#${color.base08}]${icon} "
-            mode_locked       "#[fg=#${color.base05}]${icon} "
-            mode_move         "#[fg=#${color.base0B}]${icon} "
-            mode_resize       "#[fg=#${color.base0B}]${icon} "
-            mode_prompt       "#[fg=#${color.base0A}]${icon} "
-            mode_search       "#[fg=#${color.base0A}]${icon} "
-            mode_enter_search "#[fg=#${color.base0A}]${icon} "
+            mode_normal       "#[fg=blue]${icon} "
+            mode_tmux         "#[fg=magenta]${icon} "
+            mode_pane         "#[fg=red]${icon} "
+            mode_tab          "#[fg=red]${icon} "
+            mode_rename_tab   "#[fg=red]${icon} "
+            mode_rename_pane  "#[fg=red]${icon} "
+            mode_session      "#[fg=red]${icon} "
+            mode_locked       "#[fg=white]${icon} "
+            mode_move         "#[fg=green]${icon} "
+            mode_resize       "#[fg=green]${icon} "
+            mode_prompt       "#[fg=yellow]${icon} "
+            mode_search       "#[fg=yellow]${icon} "
+            mode_enter_search "#[fg=yellow]${icon} "
 
-            tab_normal   "#[bg=#${color.base01}] {name} "
-            tab_active   "#[bg=#${color.base02}] {name} "
+            tab_normal   "#[bg=black] {name} "
+            tab_active   "#[bg=bright_black] {name} "
             tab_separator "  "
 
-            datetime        "#[fg=#${color.base05},bold] {format} "
+            datetime        "#[fg=white,bold] {format} "
             datetime_format "%I:%M %p"
             datetime_timezone "${timeZone}"
           }

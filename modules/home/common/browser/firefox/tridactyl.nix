@@ -1,12 +1,12 @@
 {
+  config,
   lib,
   osConfig,
-  ook,
   ...
 }: let
   inherit (lib) mkIf;
   inherit (osConfig.ooknet.appearance) fonts;
-  inherit (ook) color;
+  color = config.ooknet.appearance.colors;
   inherit (osConfig.ooknet.workstation) default;
   cfg = osConfig.ooknet.workstation.programs.firefox;
 in {

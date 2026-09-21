@@ -1,6 +1,11 @@
-{lib, ...}: let
+{
+  lib,
+  config,
+  ook,
+  ...
+}: let
   inherit (lib) mkOption;
-  inherit (lib.types) str package path int bool submodule nullOr;
+  inherit (lib.types) str package path int bool submodule nullOr enum attrs;
 
   mkVariantOption = {
     regular = mkOption {
@@ -51,6 +56,17 @@
 in {
   #  imports = [./palettes];
   options.ooknet.appearance = {
+    scheme = mkOption {
+      type = enum ["dark" "light"];
+      default = "dark";
+    };
+    # the palette for the active scheme, read this instead of ook.color so the
+    # scheme can differ per host
+    colors = mkOption {
+      type = attrs;
+      readOnly = true;
+      default = ook.themes.${config.ooknet.appearance.scheme};
+    };
     fonts = {
       monospace = mkFontOption;
       regular = mkFontOption;

@@ -1,9 +1,9 @@
 {
+  config,
   lib,
-  ook,
   ...
 }: let
-  inherit (ook) color;
+  color = config.ooknet.appearance.colors;
 in {
   xdg.configFile."kdeglobals".text = lib.generators.toINI {} {
     "ColorEffects:Disabled" = {

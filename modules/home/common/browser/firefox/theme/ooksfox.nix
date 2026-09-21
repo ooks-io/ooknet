@@ -1,9 +1,8 @@
 {
-  ook,
+  color,
   fonts,
   ...
 }: let
-  inherit (ook) color;
 in
   #css
   ''

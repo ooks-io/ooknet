@@ -4,5 +4,6 @@
     ./browser
     ./communication
     ./binds.nix
+    ./appearance.nix
   ];
 }

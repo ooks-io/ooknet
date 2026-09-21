@@ -1,14 +1,19 @@
 {
+  config,
   osConfig,
-  ook,
   pkgs,
   ...
 }: let
   inherit (osConfig.ooknet.appearance) fonts;
 
-  gtkCss = import ./gtkCss.nix {inherit ook;};
+  inherit (config.ooknet.appearance) scheme;
+  gtkCss = import ./gtkCss.nix {color = config.ooknet.appearance.colors;};
   theme = {
-    name = "adw-gtk3";
+    # gtk3 apps pick the variant up live from gsettings, prefer-dark does not
+    name =
+      if scheme == "dark"
+      then "adw-gtk3-dark"
+      else "adw-gtk3";
     package = pkgs.adw-gtk3;
   };
 in {
@@ -29,13 +34,12 @@ in {
       gtk3.extraCss = gtkCss;
       gtk4.extraCss = gtkCss;
 
-      # Dark system theme
-      gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
-      gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
+      gtk3.extraConfig.gtk-application-prefer-dark-theme = scheme == "dark";
+      gtk4.extraConfig.gtk-application-prefer-dark-theme = scheme == "dark";
     };
 
     dconf.settings = {
-      "org/gnome/desktop/interface".color-scheme = "prefer-dark";
+      "org/gnome/desktop/interface".color-scheme = "prefer-${scheme}";
       "org/gtk/Settings/Debug".enable-inspector-keybinding = true;
     };
 

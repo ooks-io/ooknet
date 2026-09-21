@@ -2,13 +2,16 @@
   config,
   lib,
   pkgs,
-  ook,
   ...
 }: let
   inherit (lib) mkIf;
   inherit (pkgs.stdenv.hostPlatform) isLinux;
   inherit (config.ooknet.workstation) theme;
-  generatedWallpaper = import ./generated-wallpaper.nix {inherit ook config pkgs;} {};
+  generatedWallpaper = import ./generated-wallpaper.nix {
+    inherit pkgs;
+    inherit (config.ooknet.hardware) monitors;
+    color = config.ooknet.appearance.colors;
+  } {};
 in {
   config = mkIf (theme == "hozen") {
     ooknet.appearance = {

@@ -30,7 +30,7 @@
 
     colorSchemeScss = writeTextFile {
       name = "colors.scss";
-      text = ook.lib.color.export.toScss ook.color;
+      text = ook.lib.color.generators.scss.scssStylesheet ook.color;
     };
   in {
     packages = {

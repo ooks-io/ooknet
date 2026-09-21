@@ -3,7 +3,6 @@
   pkgs,
   config,
   lib,
-  ook,
   self',
   ...
 }: let
@@ -13,7 +12,7 @@
   inherit (osConfig.ooknet.workstation) profiles;
   inherit (osConfig.age.secrets) spotify_key;
   inherit (config.ooknet) binds;
-  inherit (ook) color;
+  color = config.ooknet.appearance.colors;
   spotifyMime."x-scheme-handler/spotify" = ["spotify.desktop"];
 in {
   config = mkIf (elem "media" profiles) {

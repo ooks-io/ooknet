@@ -1,14 +1,14 @@
 {
+  ook,
   osConfig,
   config,
   lib,
-  ook,
   self',
   inputs',
   pkgs,
   ...
 }: let
-  inherit (ook) color;
+  inherit (config.ooknet.appearance) scheme;
   inherit (osConfig.ooknet) console;
   inherit (osConfig.ooknet.host) admin;
   inherit (lib) getExe mkIf;
@@ -22,13 +22,15 @@ in {
       # pinned, see nixpkgs-zellij input
       package = inputs'.nixpkgs-zellij.legacyPackages.zellij;
       settings = {
-        theme = "${color.slug}";
+        # both palettes defined, zellij reloads config.kdl live (it watches the
+        # dir, hm relinking counts as a create) and restyles panes
+        theme = "ook-${scheme}";
         default_shell = "${admin.shell}";
         default_layout = "default";
         pane_frames = false;
         scrollback_editor = "${console.editor}";
-        themes = {
-          "${color.slug}" = {
+        themes = let
+          mkTheme = color: {
             fg = "#${color.base05}";
             bg = "#${color.base00}";
             black = "#${color.base00}";
@@ -41,6 +43,9 @@ in {
             white = "#${color.base05}";
             orange = "#${color.base09}";
           };
+        in {
+          ook-dark = mkTheme ook.themes.dark;
+          ook-light = mkTheme ook.themes.light;
         };
       };
 

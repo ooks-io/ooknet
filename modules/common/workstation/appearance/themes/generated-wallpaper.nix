@@ -1,11 +1,9 @@
 # Credit to github:misterio77/nix-colors
 {
   pkgs,
-  config,
-  ook,
+  monitors,
+  color,
 }: let
-  inherit (config.ooknet.hardware) monitors;
-  inherit (ook) color;
   largest = f: xs: builtins.head (builtins.sort (a: b: a > b) (map f xs));
   largestWidth = largest (x: x.width) monitors;
   largestHeight = largest (x: x.height) monitors;

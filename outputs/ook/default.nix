@@ -1,46 +1,50 @@
 {
   lib,
   config,
+  inputs,
   ...
 }: let
+  style = inputs.style;
+
+  # style nests scales under colors and semantic under colors.semantic, the
+  # tree reads the flat shape (color.layout.body, color.red.base, color.base05)
+  flatten = t:
+    t.colors
+    // t.colors.semantic
+    // t.colors.base24
+    // {
+      inherit (t) slug;
+      typography =
+        t.colors.semantic.typography
+        // {
+          # old name, keep until consumers move
+          contrast-text = t.colors.semantic.typography.text-inverse;
+        };
+    };
+
+  themes = lib.mapAttrs (_: flatten) style.theme;
+
   # my scuffed lib
   ook-lib = {
-    math = import ./lib/math.nix {inherit lib;};
+    inherit (style.lib') math;
     container = import ./lib/containers.nix {inherit lib config;};
     services = import ./lib/services.nix {inherit lib;};
-    color = let
-      check = import ./lib/color/check.nix {inherit lib;};
-      types = import ./lib/color/types.nix {
-        inherit (ook-lib) math;
-        inherit check;
+    color =
+      style.lib'.color
+      // {
+        inherit (style.lib') generators;
+        export = import ./lib/color/export.nix {inherit lib;};
       };
-      translate = import ./lib/color/translate.nix {
-        inherit lib;
-        inherit (ook-lib) math;
-        inherit types;
-      };
-      utils = import ./lib/color/utils.nix {
-        inherit (ook-lib) math;
-        inherit check types translate;
-      };
-      export = import ./lib/color/export.nix {inherit lib;};
-    in {
-      inherit check types translate utils export;
-    };
   };
-  color = import ./color.nix {inherit ook-lib;};
+
+  ook = {
+    lib = ook-lib;
+    inherit themes;
+    color = themes.dark;
+  };
 in {
   # Expose color lib separately so hozen can use it without circular dependency
   _module.args.colorLib = ook-lib.color;
-
-  _module.args.ook =
-    {
-      lib = ook-lib;
-    }
-    // color;
-  flake.ook =
-    {
-      lib = ook-lib;
-    }
-    // color;
+  _module.args.ook = ook;
+  flake.ook = ook;
 }

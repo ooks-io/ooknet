@@ -1864,6 +1864,7 @@
         "ooknet-monitor": "ooknet-monitor",
         "ooknet-org": "ooknet-org",
         "secrets": "secrets",
+        "style": "style",
         "systems": "systems_10",
         "zen-browser": "zen-browser"
       }
@@ -1894,6 +1895,32 @@
       "original": {
         "type": "git",
         "url": "ssh://git@github.com/ooks-io/kunzen"
+      }
+    },
+    "style": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "systems": [
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1762248113,
+        "narHash": "sha256-prluro5wGuLnVUPls/nvilugQUv4TjmhdwsDOzup+3o=",
+        "ref": "refs/heads/master",
+        "rev": "5a29479a36f059ab3356b1d03db63e72e14bf3f3",
+        "revCount": 17,
+        "type": "git",
+        "url": "ssh://git@github.com/ooknet-org/style"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/ooknet-org/style"
       }
     },
     "systems": {

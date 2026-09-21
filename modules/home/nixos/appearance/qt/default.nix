@@ -1,10 +1,10 @@
 {
+  config,
   pkgs,
-  ook,
   lib,
   ...
 }: let
-  inherit (ook) color;
+  color = config.ooknet.appearance.colors;
   mkKvconig = text: lib.generators.toINI {} text;
   kvantumSVG = import ./gruv.nix {inherit color;};
 

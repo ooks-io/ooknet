@@ -1,11 +1,10 @@
 {
   lib,
-  ook,
   config,
   pkgs,
   ...
 }: let
-  inherit (ook) color;
+  color = config.ooknet.appearance.colors;
   inherit (lib) mkIf;
   inherit (config.ooknet.workstation) environment;
 

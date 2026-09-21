@@ -1,11 +1,11 @@
 {
+  config,
   lib,
   osConfig,
-  ook,
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (ook) color;
+  color = config.ooknet.appearance.colors;
   cfg = osConfig.ooknet.console.tools.btop;
 in {
   config = mkIf cfg.enable {

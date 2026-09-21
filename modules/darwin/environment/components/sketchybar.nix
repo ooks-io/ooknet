@@ -2,11 +2,10 @@
   lib,
   pkgs,
   config,
-  ook,
   ...
 }: let
   inherit (lib) mkIf concatMapStringsSep;
-  inherit (ook) color;
+  color = config.ooknet.appearance.colors;
   inherit (config.ooknet.workstation) environment;
   inherit (config.ooknet.appearance.fonts) monospace;
 

@@ -8,7 +8,6 @@
 }: let
   inherit (lib) mkIf mkMerge;
   inherit (pkgs.stdenv.hostPlatform) isDarwin;
-  inherit (ook) color;
   inherit (osConfig.ooknet.host) admin;
   inherit (osConfig.ooknet.appearance.fonts) monospace;
   inherit (osConfig.ooknet.workstation) default;
@@ -28,8 +27,9 @@ in {
         enableFishIntegration = admin.shell == "fish";
         clearDefaultKeybinds = true;
         settings = {
-          # defined below
-          theme = "hozen";
+          # both palettes as themes, ghostty picks by the portal colour scheme
+          # and switches live, no reload needed
+          theme = "light:ook-light,dark:ook-dark";
 
           # font config
           font-size = monospace.size;
@@ -73,27 +73,32 @@ in {
             ++ lib.optional isDarwin "super+q=quit";
           macos-option-as-alt = isDarwin;
         };
-        themes.hozen = {
-          background = "${color.base00}";
-          foreground = "${color.base05}";
-          palette = [
-            "0=#${color.base00}" # black
-            "1=#${color.base08}" # red
-            "2=#${color.base0B}" # green
-            "3=#${color.base0A}" # yellow
-            "4=#${color.base0D}" # blue
-            "5=#${color.base0E}" # magenta
-            "6=#${color.base0C}" # cyan
-            "7=#${color.base05}" # white
-            "8=#${color.base03}" # bright black
-            "9=#${color.base08}" # bright red
-            "10=#${color.base0B}" # bright green
-            "11=#${color.base0A}" # bright yellow
-            "12=#${color.base0D}" # bright blue
-            "13=#${color.base0E}" # bright magenta
-            "14=#${color.base0C}" # bright cyan
-            "15=#${color.base07}" # bright white
-          ];
+        themes = let
+          mkTheme = color: {
+            background = "${color.base00}";
+            foreground = "${color.base05}";
+            palette = [
+              "0=#${color.base00}" # black
+              "1=#${color.base08}" # red
+              "2=#${color.base0B}" # green
+              "3=#${color.base0A}" # yellow
+              "4=#${color.base0D}" # blue
+              "5=#${color.base0E}" # magenta
+              "6=#${color.base0C}" # cyan
+              "7=#${color.base05}" # white
+              "8=#${color.base03}" # bright black
+              "9=#${color.base08}" # bright red
+              "10=#${color.base0B}" # bright green
+              "11=#${color.base0A}" # bright yellow
+              "12=#${color.base0D}" # bright blue
+              "13=#${color.base0E}" # bright magenta
+              "14=#${color.base0C}" # bright cyan
+              "15=#${color.base07}" # bright white
+            ];
+          };
+        in {
+          ook-dark = mkTheme ook.themes.dark;
+          ook-light = mkTheme ook.themes.light;
         };
       };
     })

@@ -1,11 +1,11 @@
 {
+  config,
   osConfig,
-  ook,
   lib,
   ...
 }: let
   inherit (osConfig.ooknet.appearance) cursor;
-  inherit (ook) color;
+  color = config.ooknet.appearance.colors;
 in {
   wayland.windowManager.hyprland.settings = {
     on = [

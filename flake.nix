@@ -16,6 +16,16 @@
     systems.url = "github:nix-systems/default";
 
     # personal website - provides the site-builder nixos module.
+    # colour system, private like ooknet-org
+    style = {
+      url = "git+ssh://git@github.com/ooknet-org/style";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        systems.follows = "systems";
+      };
+    };
+
     # git+ssh because the repo is private; rides the deployer ssh key
     ooknet-org = {
       url = "git+ssh://git@github.com/ooks-io/ooknet.org";

@@ -1,11 +1,11 @@
 {
+  config,
   lib,
-  ook,
   ...
 }: let
   inherit (lib) mkOption;
   inherit (lib.types) int bool str listOf attrsOf submodule;
-  inherit (ook) color;
+  color = config.ooknet.appearance.colors;
   mkInt = default:
     mkOption {
       type = int;
