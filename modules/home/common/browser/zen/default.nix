@@ -4,13 +4,12 @@
   inputs',
   config,
   osConfig,
-  ook,
   inputs,
   ...
 }: let
   inherit (lib) mkIf mkMerge;
   inherit (osConfig.ooknet.appearance) fonts;
-  inherit (ook) color;
+  color = config.ooknet.appearance.colors;
   inherit (osConfig.ooknet.workstation) default;
   inherit (pkgs.stdenv.hostPlatform) isDarwin;
 
@@ -51,6 +50,11 @@ in {
           ];
           settings = {
             "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+            # follow the portal colour scheme, "auto" only does that under gnome/kde
+            "widget.use-xdg-desktop-portal.settings" = 1;
+            # web content follows the system scheme (2), the profile had it
+            # pinned to dark (0) from zens appearance settings
+            "layout.css.prefers-color-scheme.content-override" = 2;
             "zen.urlbar.behavior" = "float";
             "zen.theme.border-radius" = 0;
             "zen.view.compact.hide-tabbar" = true;
