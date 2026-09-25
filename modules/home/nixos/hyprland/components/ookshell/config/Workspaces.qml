@@ -40,14 +40,16 @@ Row {
 
             MouseArea {
                 anchors.fill: parent
-                onClicked: Hyprland.dispatch("workspace " + wsItem.wsId)
+                onClicked: Hyprland.dispatch("hl.dsp.focus({ workspace = " + wsItem.wsId + " })")
             }
         }
     }
 
+    // hyprland 0.56+ evaluates ipc dispatch as lua, plain "workspace N" is rejected
     WheelHandler {
         onWheel: (event) => {
-            Hyprland.dispatch(event.angleDelta.y > 0 ? "workspace m+1" : "workspace m-1");
+            const dir = event.angleDelta.y > 0 ? "m+1" : "m-1";
+            Hyprland.dispatch('hl.dsp.focus({ workspace = "' + dir + '" })');
         }
     }
 }
