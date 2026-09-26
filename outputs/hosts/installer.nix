@@ -5,5 +5,10 @@
       type = "iso";
       role = "installer";
     };
+    ookspi = {
+      system = "aarch64-linux";
+      type = "sd";
+      role = "installer";
+    };
   };
 }

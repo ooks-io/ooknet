@@ -4,20 +4,36 @@
   config,
   lib,
   pkgs,
-  self,
   ...
 }: let
   inherit (inputs) nixpkgs;
   inherit (config.ooknet.host) role admin;
-  inherit (lib) mkIf mkForce mkDefault cleanSource;
+  inherit (config.ooknet.secrets) keys;
+  inherit (lib) mkIf mkForce mkDefault;
 in {
   imports = [
     # provides a set of packages/modules helpful for installing/repairing a system
     "${nixpkgs}/nixos/modules/profiles/base.nix"
   ];
   config = mkIf (role == "installer") {
-    users.users.root.initialHashedPassword = "";
+    # nixos-anywhere skips kexec when it sees this in os-release
+    system.nixos.variant_id = "installer";
+    users.users.root = {
+      initialHashedPassword = "";
+      # install-key, used by ooknet-provision
+      openssh.authorizedKeys.keys = [keys.hosts.ooksinstall];
+    };
     services.getty.autologinUser = admin.name;
+    # installers arent on the tailnet until someone logs in, publish <hostname>.local so
+    # ooknet-provision can find them on the lan
+    services.avahi = {
+      enable = true;
+      nssmdns4 = true;
+      publish = {
+        enable = true;
+        addresses = true;
+      };
+    };
     boot = {
       kernelPackages = mkDefault pkgs.linuxPackages_latest;
       # zfs broken
@@ -33,15 +49,5 @@ in {
     environment.systemPackages = [
       inputs'.disko.packages.disko
     ];
-    isoImage = {
-      appendToMenuLabel = " ooknet installer";
-      contents = [
-        # copy contents of current flake to build initial installation
-        {
-          source = cleanSource self;
-          target = "/ooknet";
-        }
-      ];
-    };
   };
 }
