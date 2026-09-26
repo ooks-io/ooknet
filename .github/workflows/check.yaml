@@ -28,19 +28,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@main
-      - uses: cachix/cachix-action@v15
-        with:
-          name: deadnix
-      - uses: astro/deadnix-action@main
-
-  check-flake:
-    name: Check Flake
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.KUNZEN_DEPLOY_KEY }}
-      - uses: DeterminateSystems/nix-installer-action@main
-      - run: nix flake check
+      # check only. deadnix-action runs --edit and opens a pr, which needs
+      # write access and strips comments like the #css hint in ooksfox.nix
+      - run: nix run nixpkgs#deadnix -- --fail .
+  # no flake check here, local git+file inputs and private repos cant be
+  # fetched from gh runners. eval happens locally, local ci planned
 

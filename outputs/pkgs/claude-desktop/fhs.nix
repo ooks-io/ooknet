@@ -12,7 +12,7 @@
 buildFHSEnv {
   name = "claude-desktop";
 
-  targetPkgs = pkgs: [
+  targetPkgs = _pkgs: [
     bubblewrap
     claude-desktop
     docker

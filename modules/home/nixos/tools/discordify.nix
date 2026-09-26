@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: let
+{pkgs, ...}: let
   discordify = pkgs.writeShellApplication {
     name = "discordify";
     runtimeInputs = [pkgs.ffmpeg pkgs.bc pkgs.gum];

@@ -1,5 +1,5 @@
 {lib}: let
-  inherit (lib) concatStringsSep mapAttrsToList flatten concatMap;
+  inherit (lib) concatStringsSep flatten concatMap;
 
   # overrides the whole UI palette. nearly everything in forgejos theme
   # references --steel-* so redefining those cascades to body/box/text/etc
