@@ -53,30 +53,33 @@
   '';
 
   # $1 toplevel, $2 firmware dir (sdImage passes its staging dir)
-  populate = pkgs.writeShellScript "pi5-populate" ''
-    set -euo pipefail
-    # switch-to-configuration runs this under systemd-run with no coreutils on PATH
-    export PATH=${lib.makeBinPath [pkgs.coreutils]}
-    top=$(readlink -f "$1")
-    dir=''${2:-/boot/firmware}
-    dtbs=${kernel}/dtbs
+  # runtimeInputs sets PATH, switch-to-configuration runs this under
+  # systemd-run with no coreutils on PATH otherwise
+  populate = pkgs.writeShellApplication {
+    name = "pi5-populate";
+    runtimeInputs = [pkgs.coreutils];
+    text = ''
+      top=$(readlink -f "$1")
+      dir=''${2:-/boot/firmware}
+      dtbs=${kernel}/dtbs
 
-    put() { cp "$1" "$2.tmp" && mv "$2.tmp" "$2"; }
+      put() { cp "$1" "$2.tmp" && mv "$2.tmp" "$2"; }
 
-    put ${configTxt} "$dir/config.txt"
-    put "$top/kernel" "$dir/kernel.img"
-    put "$top/initrd" "$dir/initrd"
-    for dtb in $dtbs/broadcom/bcm2712*.dtb; do
-      put "$dtb" "$dir/$(basename "$dtb")"
-    done
-    mkdir -p "$dir/overlays"
-    for ovr in $dtbs/overlays/*; do
-      put "$ovr" "$dir/overlays/$(basename "$ovr")"
-    done
-    echo "$(cat "$top/kernel-params") init=$top/init" > "$dir/cmdline.txt.tmp"
-    mv "$dir/cmdline.txt.tmp" "$dir/cmdline.txt"
-    sync
-  '';
+      put ${configTxt} "$dir/config.txt"
+      put "$top/kernel" "$dir/kernel.img"
+      put "$top/initrd" "$dir/initrd"
+      for dtb in "$dtbs"/broadcom/bcm2712*.dtb; do
+        put "$dtb" "$dir/$(basename "$dtb")"
+      done
+      mkdir -p "$dir/overlays"
+      for ovr in "$dtbs"/overlays/*; do
+        put "$ovr" "$dir/overlays/$(basename "$ovr")"
+      done
+      echo "$(cat "$top/kernel-params") init=$top/init" > "$dir/cmdline.txt.tmp"
+      mv "$dir/cmdline.txt.tmp" "$dir/cmdline.txt"
+      sync
+    '';
+  };
 in {
   boot = {
     kernelPackages = crossPkgs.linuxPackagesFor linux_rpi5;
@@ -94,7 +97,7 @@ in {
       efi.canTouchEfiVariables = false;
       external = {
         enable = true;
-        installHook = populate;
+        installHook = lib.getExe populate;
       };
     };
   };
