@@ -77,6 +77,36 @@ UPS yet, and it wont turn on without them (auto start needs external power
 **and** battery above the auto start voltage). once batteries are in, move power
 to the UPS usb-c and unplug the pis, otherwise its two sources again.
 
+## Batteries
+
+Ordered 2026-09-26: 2x Samsung INR18650-35E, flat top, unprotected, untabbed,
+one matched pair for the included 2S case.
+
+| spec                 | 35E datasheet                          |
+| -------------------- | -------------------------------------- |
+| capacity             | 3500mAh, 3.6V nominal, 4.2V full       |
+| continuous discharge | 8A (listings claiming 10A are wrong)   |
+| max charge           | ~2A, lowest of the usual 3500mAh cells |
+| cutoff               | 2.65V                                  |
+| size / weight        | 18.3 x 65mm, ~48g                      |
+
+Why these: bmo-001 pulls ~1-2.5A per cell from a 2S pack, the UPS 40W max is
+~6A, so 8A has plenty of margin and capacity matters more than drain. Avoid
+tabbed cells (wont seat in the case), and button tops add ~4mm, only needed if
+the case has springs at both ends.
+
+| protection voltage (`0x21`) | ~5W idle | ~8W light load |
+| --------------------------- | -------- | -------------- |
+| 7400 mV default (3.7V/cell) | ~1.5-2h  | ~1-1.3h        |
+| 6400 mV (3.2V/cell)         | ~3.5h    | ~2.2h          |
+
+The 7400 mV default leaves roughly half the pack unused. Plan is 6400-6600 mV,
+still well above the 3.0V/cell damage point, kept conservative since theres no
+balancing. Each extra 2S pack in parallel adds about the same runtime again.
+
+Open question: UPS charge current isnt documented. read it from `0x1A` once the
+cells are in, if its over ~2A the 35E is being pushed past its rating.
+
 ## What we found on the running system
 
 - supply (pi usb-c, 2026-09-26): usb-pd negotiated 5V 5A, pdos match the
@@ -173,8 +203,10 @@ scripted fetches).
 
 ## Todo
 
+- fit the 35Es (checks above), move power to the UPS usb-c
 - UPS monitor service: `dtparam=i2c_arm=on`, poll `0x17`, shut down cleanly on
-  low battery using the `0x23` countdown
+  low battery using the `0x23` countdown, set protection voltage `0x21` to
+  ~6400-6600 mV, check charge current on `0x1A`
 - gpio input, plain gpio reads need no config.txt changes, just access to
   `/dev/gpiochip*`. check the UPS pogo pins dont claim the pins you want
 - sort out the power source question above
