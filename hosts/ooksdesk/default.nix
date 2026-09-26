@@ -52,6 +52,8 @@
     };
   };
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  # build aarch64 images (ookspi)
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
 
   system.stateVersion = lib.mkDefault "24.11";
 }

@@ -11,7 +11,7 @@
         options =
           {
             system = mkOption {
-              type = enum ["x86_64-linux" "aarch64-darwin"];
+              type = enum ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
               description = "Systems architecture (e.g., x86_64-linux, aarch64-darwin)";
               example = "x86_64-linux";
             };
@@ -63,7 +63,7 @@ in {
           description = "Servers domain name";
         };
         type = mkOption {
-          type = enum ["desktop" "vm"];
+          type = enum ["desktop" "vm" "sbc"];
           description = "Type of server (e.g., desktop, vm)";
           example = "vm";
         };
@@ -77,7 +77,7 @@ in {
           description = "Profile to use instead of hostname-based config";
         };
         type = mkOption {
-          type = enum ["iso"];
+          type = enum ["iso" "sd"];
           description = "Image format type";
           example = "iso";
         };

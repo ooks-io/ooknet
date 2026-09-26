@@ -5,7 +5,7 @@
 }: let
   inherit (builtins) filter length head;
   inherit (lib) mkOption mkEnableOption;
-  inherit (lib.types) nullOr enum bool submodule listOf int str float;
+  inherit (lib.types) nullOr enum bool submodule listOf int str float lines;
 
   cfg = config.ooknet.hardware;
   hasMonitors = length cfg.monitors != 0;
@@ -229,6 +229,19 @@ in {
       };
 
       amd.pstate.enable = mkEnableOption "";
+    };
+
+    rpi5.configTxt = mkOption {
+      type = lines;
+      default = "";
+      description = ''
+        Extra config.txt lines appended after the raspberry pi os defaults.
+        Only read at boot, a bad line can stop the pi booting.
+      '';
+      example = ''
+        dtparam=i2c_arm=on
+        gpio=17=ip,pu
+      '';
     };
   };
 

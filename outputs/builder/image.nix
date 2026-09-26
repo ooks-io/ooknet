@@ -10,7 +10,7 @@
   inherit (lib) mapAttrs mkDefault singleton optionals;
   inherit (builtins) concatLists;
   inherit (self) ook;
-  inherit (ooknetModules) nixosMinimal isoModules nixos hostModules;
+  inherit (ooknetModules) nixosMinimal isoModules sdModules nixos hostModules;
 
   buildImage = hostname: cfg:
     withSystem cfg.system ({
@@ -40,6 +40,7 @@
           })
           nixosMinimal
           (optionals (cfg.type == "iso") isoModules)
+          (optionals (cfg.type == "sd") sdModules)
           (optionals (cfg.role == "installer") [(nixos.image + "/installer.nix")])
           (
             if cfg.profile != null

@@ -39,7 +39,7 @@ in {
       default = "ooks-generic";
     };
     type = mkOption {
-      type = enum ["vm" "desktop" "laptop" "iso"];
+      type = enum ["vm" "desktop" "laptop" "iso" "sd" "sbc"];
     };
     role = mkOption {
       type = enum ["workstation" "server" "installer" "live"];
@@ -54,7 +54,6 @@ in {
     syncthing = {
       enable = mkEnableOption "Enable syncthing";
     };
-
 
     # mapping deploy-rs options
     deployment = {

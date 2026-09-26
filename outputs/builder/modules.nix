@@ -71,9 +71,19 @@
     (common.base + "/sudo.nix")
   ];
 
+  sdModules = [
+    nixosSecrets
+    (nixos.image + "/sdImage.nix")
+    (nixos.base + "/networking.nix")
+    (common.base + "/nix.nix")
+    (common.base + "/sudo.nix")
+    (nixos.base + "/security/sudo.nix")
+  ];
+
   ooknetModules = {
     inherit
       isoModules
+      sdModules
       nixosCore
       nixosMinimal
       darwinCore
