@@ -9,6 +9,7 @@
       "ssd"
       "audio"
       "video"
+      "wifi"
     ];
     monitors = [
       {

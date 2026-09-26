@@ -43,6 +43,7 @@ in {
         "printing"
         "fingerprint"
         "peripherals"
+        "wifi"
       ]);
       default = ["ssd"];
     };

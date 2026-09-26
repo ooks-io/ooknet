@@ -8,5 +8,6 @@
     ./ssd.nix
     ./bluetooth.nix
     ./peripherals.nix
+    ./wifi.nix
   ];
 }
