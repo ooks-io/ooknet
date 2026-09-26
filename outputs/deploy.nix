@@ -22,6 +22,7 @@
       "ooksdesk"
       "ooknode"
       "ookst480s"
+      "bmo-001"
     ];
     deployableTargets = filterAttrs (name: _: elem name allowedTargets) self.nixosConfigurations;
   in

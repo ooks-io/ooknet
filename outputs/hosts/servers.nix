@@ -13,6 +13,12 @@
       domain = "ooknet.org";
       services = ["ookflix" "monitoring" "authentik" "searxng" "nixcache"];
     };
+    bmo-001 = {
+      system = "aarch64-linux";
+      type = "sbc";
+      domain = "ooknet.org";
+      services = [];
+    };
     ookstest = {
       system = "x86_64-linux";
       type = "vm";
