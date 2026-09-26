@@ -8,6 +8,7 @@
     ./auth
     ./authentik
     ./searxng
+    ./nixcache
     # ./minecraft
   ];
 }
