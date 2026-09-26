@@ -8,6 +8,10 @@
   inherit (config.networking) hostName;
   inherit (config.ooknet.secrets) keys;
 
+  # full magicdns names, bare names go through the lan search domain first
+  # and the router dns can hang for minutes
+  tailnet = "taila3ca6.ts.net";
+
   mkBuilderMachine = {
     host,
     speedFactor,
@@ -23,12 +27,12 @@
 
   builders = {
     ooksdesk = mkBuilderMachine {
-      host = "ooksdesk";
+      host = "ooksdesk.${tailnet}";
       speedFactor = 16;
       maxJobs = 4;
     };
     ooksmedia = mkBuilderMachine {
-      host = "ooksmedia";
+      host = "ooksmedia.${tailnet}";
       speedFactor = 8;
       maxJobs = 1;
     };
@@ -56,5 +60,19 @@ in {
       else if hostName == "ooksmedia"
       then [builders.ooksdesk]
       else [builders.ooksdesk builders.ooksmedia];
+  };
+
+  # the daemon connects as root, declare builder host keys so a fresh or
+  # renamed host doesnt fail verification. these are the live sshd keys,
+  # kunzen keys.hosts for these two are stale
+  programs.ssh.knownHosts = {
+    ooksdesk = {
+      hostNames = ["ooksdesk" "ooksdesk.${tailnet}"];
+      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBLkmmdypXVGzOkQhUDQf8VXC4GhQ3sQp3U4nb5GrryM";
+    };
+    ooksmedia = {
+      hostNames = ["ooksmedia" "ooksmedia.${tailnet}"];
+      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAyGQHIvKtmdVOi/1R+iUnnYTFnI0xkuWN2Eg56+fKmd";
+    };
   };
 }
