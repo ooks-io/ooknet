@@ -12,6 +12,7 @@ Stacked top to bottom: nvme -> m.2 hat -> pi -> ups (the ups sits under the pi).
 | Waveshare PoE M.2 HAT+ (B), sku 29320        | pcie ffc to m.2 (2230-2280), PoE powered, stackable 40 pin header                      |
 | Raspberry Pi 5, 8GB                          | official active cooler (heatsink + fan) under the m.2 hat, kernel controlled `pwm-fan` |
 | 52Pi / GeeekPi UPS Gen 6, sku EP-0245        | 18650 packs (2S, up to 4 in parallel), feeds the pi from underneath via pogo pins      |
+| Freenove 5" DSI touchscreen, sku FNK0078A      | 800x480 IPS, 5-point touch, on CAM/DISP 1 via ribbon only (no pogo pins on the 5") |
 
 ### Waveshare PoE M.2 HAT+ (B)
 
@@ -62,6 +63,22 @@ Stacked top to bottom: nvme -> m.2 hat -> pi -> ups (the ups sits under the pi).
 - docs: [wiki](https://wiki.52pi.com/index.php?title=EP-0245),
   [scripts + register map](https://github.com/geeekpi/upsv6_pub)
   (`script/tools/read_device.c`, `script/tools/python_demo/`)
+
+### Freenove 5" DSI screen
+
+- behaves like the official 7" display: tc358762 bridge, attiny backlight/power
+  controller at `11-0045`, ft5x06 touch at `11-0038`. bmo-001 sets
+  `dtoverlay=vc4-kms-dsi-7inch` explicitly via `ooknet.hardware.rpi5.configTxt`
+- the 5" is powered entirely from the ribbons 3.3V (the 7" variant has pogo
+  pins + a 5V socket, the 5" doesnt). the GND/PWM pads are an optional external
+  backlight input, leave them unconnected
+- **ribbon orientation matters and isnt obvious.** in the wrong way round the
+  screen stays dark but the attiny still answers once, then `failed to enable
+  backlight: -121` and touch probe `-121`. if that shows up, flip the cable
+  before touching config. pi powered off when reseating
+- dsi isnt hotpluggable, the panel is only picked up at boot
+- docs: [freenove repo](https://github.com/Freenove/Freenove_Touchscreen_Monitor_for_Raspberry_Pi),
+  [tutorial](https://docs.freenove.com/projects/fnk0078/en/latest/)
 
 ## Power, read this first
 
@@ -204,6 +221,11 @@ scripted fetches).
 ## Todo
 
 - fit the 35Es (checks above), move power to the UPS usb-c
+- UPS fan runs flat out (loud) even with the pi off. no fan register in the
+  UPS docs, likely uncontrolled while the UPS itself is unpowered. once its
+  running, watch temp `0x1C` vs fan to see if the "automatic" control kicks in.
+  if not: inline usb fan controller / resistor / thermistor fan. optional:
+  `POWER_OFF_ON_HALT=1` in the eeprom cuts the 5V rail (and the fan) on shutdown
 - UPS monitor service: `dtparam=i2c_arm=on`, poll `0x17`, shut down cleanly on
   low battery using the `0x23` countdown, set protection voltage `0x21` to
   ~6400-6600 mV, check charge current on `0x1A`
