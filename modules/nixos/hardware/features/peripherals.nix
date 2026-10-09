@@ -19,6 +19,11 @@ in {
         text = ''
           # rapoo
           KERNEL=="hidraw*", ATTRS{idVendor}=="24ae", TAG+="uaccess"
+
+          # xbox pad over bt advertises a pile of keyboard keys so udev
+          # classes it as a keyboard, not a joystick, and it never gets
+          # uaccess. chromium gamepad api cant open it
+          SUBSYSTEM=="input", KERNEL=="event*|js*", ATTRS{id/vendor}=="045e", ATTRS{name}=="Xbox Wireless Controller", ENV{ID_INPUT_JOYSTICK}="1", ENV{ID_INPUT_KEYBOARD}="", ENV{ID_INPUT_KEY}="", TAG+="uaccess"
         '';
       })
     ];
