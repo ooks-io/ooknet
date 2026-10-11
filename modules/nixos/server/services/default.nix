@@ -9,6 +9,7 @@
     ./authentik
     ./searxng
     ./nixcache
+    ./hozen-cdn
     # ./minecraft
   ];
 }

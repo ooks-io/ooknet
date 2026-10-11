@@ -128,6 +128,15 @@
       };
     };
 
+    # wow game file tree served from ooksmedia (cdn.hozen.dev)
+    hozen-cdn = {
+      url = "git+file:///home/ooks/projects/hozen-cdn";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
+    };
+
     ooknet-monitor = {
       url = "git+file:///home/ooks/Summit/ookgen/ooknet-monitor";
       inputs = {

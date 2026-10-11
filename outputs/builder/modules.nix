@@ -15,6 +15,7 @@
   nixos-hm = inputs.home-manager.nixosModules.home-manager;
   darwin-hm = inputs.home-manager.darwinModules.home-manager;
   nixos-flatpak = inputs.nix-flatpak.nixosModules.nix-flatpak;
+  hozen-cdn = inputs.hozen-cdn.nixosModules.hozen-cdn;
 
   nixos = {
     base = nixosModules + "/base";
@@ -52,6 +53,7 @@
       nixos-hm
       nixosSecrets
       disko
+      hozen-cdn
     ];
 
   darwinCore =

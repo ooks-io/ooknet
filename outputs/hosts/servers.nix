@@ -11,7 +11,7 @@
       system = "x86_64-linux";
       type = "desktop";
       domain = "ooknet.org";
-      services = ["ookflix" "monitoring" "authentik" "searxng" "nixcache"];
+      services = ["ookflix" "monitoring" "authentik" "searxng" "nixcache" "hozen-cdn"];
     };
     bmo-001 = {
       system = "aarch64-linux";
