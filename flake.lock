@@ -106,22 +106,6 @@
         "type": "github"
       }
     },
-    "classic-ui-upscaled": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1789002489,
-        "narHash": "sha256-4x3ZsW+L1CXUkiWM9vELvVU8WUKcLGYSfbvKXqJ7/lA=",
-        "ref": "refs/heads/main",
-        "rev": "f21560c765f3b5649f84acff0f54f5aa4db96691",
-        "revCount": 20,
-        "type": "git",
-        "url": "file:///home/ooks/projects/classic-ui-upscaled"
-      },
-      "original": {
-        "type": "git",
-        "url": "file:///home/ooks/projects/classic-ui-upscaled"
-      }
-    },
     "copyparty": {
       "inputs": {
         "flake-utils": [
@@ -1690,7 +1674,6 @@
     },
     "nixzeroth": {
       "inputs": {
-        "classic-ui-upscaled": "classic-ui-upscaled",
         "flake-parts": "flake-parts_3",
         "hozen-pkgs": "hozen-pkgs",
         "nixpkgs": [
@@ -1702,10 +1685,10 @@
         "wxl-grasswind": "wxl-grasswind"
       },
       "locked": {
-        "dirtyRev": "10d8cfca6ee46a446ab5d6e26c7e934a7ddd412f-dirty",
-        "dirtyShortRev": "10d8cfca-dirty",
-        "lastModified": 1791700171,
-        "narHash": "sha256-/y5E2fRdmKw+UVQeBkkOzKboQHQrUFRJ7TZp5m7MG1Q=",
+        "dirtyRev": "39d7616baa059618c25d306de12edb4d2669c312-dirty",
+        "dirtyShortRev": "39d7616b-dirty",
+        "lastModified": 1791709502,
+        "narHash": "sha256-UMPxhcV+ZBRloGcQ7geTwSL1RWio2fwHk1Me9T9H0bU=",
         "type": "git",
         "url": "file:///home/ooks/projects/nixzeroth"
       },
