@@ -21,6 +21,12 @@ in {
       references = {
         clientsDir = "${config.home.homeDirectory}/.local/share/nixzeroth/reference-clients";
       };
+      # legion/mop-classic assets come from our own tree on ooksmedia, never
+      # wago. the name is traefik on the same box, the ts.net one is direct
+      cdn = {
+        mirrors = ["https://cdn.hozen.dev" "http://ooksmedia.taila3ca6.ts.net:5001"];
+        wago = false;
+      };
       # keys are the AC config names verbatim
       world = {
         EnablePlayerSettings = true;
