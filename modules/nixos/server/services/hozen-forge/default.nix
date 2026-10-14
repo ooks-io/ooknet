@@ -5,6 +5,7 @@
   lib,
   pkgs,
   ook,
+  inputs,
   ...
 }: let
   inherit (lib) mkIf elem;
@@ -75,7 +76,7 @@ in {
 
     # ci for the hozen repos, on the host itself (label nixos): jobs run nix builds through the daemon. the
     # registration token is placed by hand: `forgejo-cli actions generate-runner-token` into
-    # /var/lib/forgejo-runner/token as TOKEN=...; hozen-mmo also needs the retail Wow.exe in the host's store
+    # /var/lib/forgejo-runner/token as TOKEN=...
     services.gitea-actions-runner = {
       package = pkgs.forgejo-runner;
       instances.hozen = {
@@ -88,6 +89,10 @@ in {
         settings.runner.capacity = 1;
       };
     };
+
+    # what hozen-mmo's ci needs and nix-gc must keep: the VS2005 toolchain (built from Microsoft's SDK iso) and
+    # the retail Wow.exe, which is never fetched: `nix-store --add-fixed sha256 Wow.exe` once on this host
+    system.extraDependencies = with inputs.hozen-mmo.packages.${pkgs.stdenv.hostPlatform.system}; [cl8 wow-exe];
 
     systemd.tmpfiles.rules = let
       fj = config.services.forgejo;

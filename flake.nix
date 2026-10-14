@@ -32,6 +32,14 @@
       flake = true;
     };
 
+    # the forge host roots its ci toolchain through this; its own nixpkgs on purpose, so the paths are the ones
+    # the runner builds
+    hozen-mmo = {
+      url = "git+ssh://forgejo@git.hozen.dev:2222/ooks/hozen-mmo";
+      flake = true;
+      inputs.nixzeroth.follows = "nixzeroth";
+    };
+
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
